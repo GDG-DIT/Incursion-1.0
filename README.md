@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Incurssion — Doomsday
 
-## Getting Started
+An immersive hackathon homepage: scroll from an enclosed, empty throne hall through an emerald rift into a ruined city, then witness two colliding realities.
 
-First, run the development server:
+## Development
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Use Node.js 24 and Bun 1.4.4 (the package manager pinned in `package.json`).
+
+```sh
+bun install --frozen-lockfile
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000. For a production build, run `bun run build`, followed by `bun run start`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The repository's existing Next.js 16.4.3 App Router, React 19.3.1, TypeScript 7, Tailwind CSS 4 and Bun setup are retained, including the Geist fonts and Turbopack configuration. Three.js, React Three Fiber, Drei and GSAP provide the procedural environments and animation.
 
-## Learn More
+`app/page.tsx` renders `app/components/hero/HeroSection.tsx`. `Hall.tsx` builds the sanctuary; `Journey.tsx` implements the scrolling camera, portal, ruined city and colliding dimensions. Browser-dependent scene code is dynamically loaded from the client component with server rendering disabled. No external models or image assets are required.
 
-To learn more about Next.js, take a look at the following resources:
+## Controls
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Scroll to move forward or backward through the three chapters.
+- Awaken the rift starts a guided camera journey into the city. Scrolling, touch or navigation keys interrupt automatic travel.
+- Sanctuary, Ruins and Incursion provide conventional chapter navigation.
+- Motion off uses static chapter viewpoints and disables ambient animation; system reduced-motion preferences are respected.
+- Mobile reduces rendering resolution and particles.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+There is no preloader or character. Registration currently opens a clearly labeled demo link to `https://example.com/register`; replace it with the event's real registration destination before launch. No information is collected.
 
-## Deploy on Vercel
+## Visual scope
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is a procedural 3D prototype. Authored architecture, city meshes, detailed PBR textures and profiled volumetric lighting would be needed for a photorealistic finish. The scene contains original geometric imagery without Marvel logos or character assets.
