@@ -431,6 +431,192 @@ footer button span {
     padding: 27px;
   }
 }
+
+/* Closing scene: kept independent from the fixed journey controls above. */
+.incursion-footer {
+  isolation: isolate;
+  position: relative;
+  z-index: 4;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: max(780px, 105svh);
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding: clamp(48px, 8vw, 120px) 6% 0;
+  background: transparent;
+  color: #f0ecd9;
+}
+.incursion-footer__landscape,
+.incursion-footer__horizon,
+.incursion-footer__skyline,
+.incursion-footer__ground {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.incursion-footer__landscape {
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 51% 45%, rgb(180 123 85 / var(--footer-glow-alpha, 0.12)) 0, #65473a18 20%, transparent 48%),
+    linear-gradient(180deg, #080f0c00 0%, #080f0c00 24%, #0e17146b 46%, #101816de 68%, #111714 84%, #080f0c 100%);
+}
+.incursion-footer__horizon {
+  inset: 23% -12% auto;
+  height: 43%;
+  background: radial-gradient(ellipse at 50% 78%, #e2b98720 0, #b1816020 16%, transparent 63%);
+  filter: blur(18px);
+  opacity: var(--footer-horizon-opacity, 1);
+  transform: scale(var(--footer-scale, 1));
+}
+.incursion-footer__moon {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  width: clamp(95px, 16vw, 230px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(var(--footer-scale, 1));
+  background: radial-gradient(circle at 42% 42%, #d6b68b30, #bd95741a 52%, transparent 72%);
+  box-shadow: 0 0 90px 25px #b5896420;
+}
+.incursion-footer__skyline {
+  inset: auto -3% 20%;
+  height: 49%;
+  clip-path: polygon(0 54%, 4% 54%, 4% 35%, 8% 35%, 8% 65%, 12% 65%, 12% 24%, 16% 24%, 16% 48%, 19% 48%, 19% 12%, 22% 0, 25% 37%, 28% 37%, 28% 57%, 32% 57%, 32% 29%, 36% 29%, 36% 63%, 40% 63%, 40% 43%, 43% 43%, 43% 18%, 47% 18%, 47% 54%, 52% 54%, 52% 33%, 56% 33%, 56% 61%, 60% 61%, 60% 22%, 64% 22%, 64% 0, 68% 22%, 68% 57%, 72% 57%, 72% 31%, 77% 31%, 77% 62%, 81% 62%, 81% 17%, 84% 17%, 84% 45%, 89% 45%, 89% 27%, 93% 27%, 93% 59%, 97% 59%, 97% 40%, 100% 40%, 100% 100%, 0 100%);
+}
+.incursion-footer__skyline--far {
+  bottom: 24%;
+  height: 39%;
+  opacity: var(--footer-far-opacity, .58);
+  background: repeating-linear-gradient(90deg, #131a19 0 2px, #26302e 3px 4px, #141b1a 5px 12px);
+  filter: blur(1px);
+  transform: translateY(var(--footer-far-lift, 0px));
+}
+.incursion-footer__skyline--near {
+  bottom: 15%;
+  height: 41%;
+  opacity: var(--footer-near-opacity, .96);
+  background: linear-gradient(180deg, #222725, #101614 70%);
+  clip-path: polygon(0 61%, 5% 61%, 5% 20%, 10% 20%, 10% 48%, 14% 48%, 14% 10%, 19% 10%, 19% 39%, 23% 39%, 23% 66%, 28% 66%, 28% 29%, 33% 29%, 33% 55%, 38% 55%, 38% 4%, 43% 4%, 43% 47%, 48% 47%, 48% 68%, 53% 68%, 53% 35%, 58% 35%, 58% 12%, 63% 12%, 63% 56%, 68% 56%, 68% 23%, 73% 23%, 73% 60%, 78% 60%, 78% 5%, 83% 5%, 83% 49%, 88% 49%, 88% 31%, 93% 31%, 93% 64%, 100% 64%, 100% 100%, 0 100%);
+  transform: translateY(var(--footer-near-lift, 0px));
+}
+.incursion-footer__ground {
+  inset: auto 0 0;
+  height: 32%;
+  background: linear-gradient(180deg, transparent, #0b100e 48%, #080f0c 100%);
+}
+.incursion-footer__debris {
+  position: absolute;
+  display: block;
+  background: linear-gradient(135deg, #5a625d, #222a27 68%);
+  opacity: .75;
+  filter: drop-shadow(0 12px 10px #0008);
+  animation: incursion-drift 11s ease-in-out infinite alternate;
+}
+.incursion-footer__debris--one {
+  top: 22%; left: 16%; width: 30px; height: 21px;
+  clip-path: polygon(23% 0, 100% 23%, 77% 100%, 0 63%);
+}
+.incursion-footer__debris--two {
+  top: 39%; right: 18%; width: 47px; height: 32px;
+  clip-path: polygon(0 27%, 61% 0, 100% 48%, 72% 100%, 19% 78%);
+  animation-delay: -4s;
+}
+.incursion-footer__debris--three {
+  top: 16%; right: 34%; width: 19px; height: 14px;
+  clip-path: polygon(0 37%, 68% 0, 100% 70%, 34% 100%);
+  animation-delay: -7s;
+}
+.incursion-footer__content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1200px);
+  margin: auto auto 17vh;
+  text-align: center;
+  text-shadow: 0 3px 32px #000b;
+  opacity: var(--footer-content-opacity, 1);
+  transform: translateY(var(--footer-content-lift, 0px));
+}
+.incursion-footer__eyebrow,
+.incursion-footer__tagline {
+  margin: 0;
+  color: #d3c49e;
+  font-size: 10px;
+  letter-spacing: .28em;
+}
+.incursion-footer__content h2 {
+  position: relative;
+  overflow: hidden;
+  clip-path: inset(0 var(--footer-title-mask, 0%) 0 0);
+  margin: 20px 0 12px;
+  font: 400 clamp(3.2rem, 13.8vw, 12.5rem)/.82 Georgia, 'Times New Roman', serif;
+  letter-spacing: -.075em;
+  white-space: nowrap;
+}
+.incursion-footer__content h2::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 34%, #f0ecd9c9 49%, #d3c49e22 57%, transparent 69%);
+  mix-blend-mode: screen;
+  transform: translateX(var(--footer-title-sweep, -125%));
+}
+.incursion-footer__tagline { color: #e0ddcf; letter-spacing: .38em; }
+.incursion-footer__base {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  padding: 25px 0 max(24px, env(safe-area-inset-bottom));
+  border-top: 1px solid #d3c49e35;
+  background: linear-gradient(180deg, #080f0c00, #080f0c88 30%);
+}
+.incursion-footer__organizer { display: inline-grid; gap: 5px; width: fit-content; font: 16px Georgia, serif; letter-spacing: .12em; }
+.incursion-footer__organizer small { color: #c2bdab; font: 8px Arial, sans-serif; letter-spacing: .2em; }
+.incursion-footer__notice,
+.incursion-footer__copyright { margin: 0; color: #c2c4b9; font-size: 10px; line-height: 1.6; }
+.incursion-footer__notice { text-align: center; }
+.incursion-footer__copyright { text-align: right; letter-spacing: .08em; }
+.incursion-footer__base { opacity: var(--footer-content-opacity, 1); }
+.incursion-footer a:focus-visible { outline: 2px solid #bdedb4; outline-offset: 6px; }
+.journey-page.footer-approach .hall-interface {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .65s ease;
+}
+.journey-page.footer-approach .journey-progress {
+  opacity: 0;
+  transition: opacity .4s ease;
+}
+@keyframes incursion-drift {
+  from { transform: translate3d(0, 0, 0) rotate(-7deg); }
+  to { transform: translate3d(9px, -13px, 0) rotate(8deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .incursion-footer__debris { animation: none; }
+}
+@media (max-width: 700px) {
+  .incursion-footer { min-height: max(680px, 100svh); padding-inline: 6%; }
+  .incursion-footer__content { margin-bottom: 22vh; }
+  .incursion-footer__content h2 { font-size: clamp(3rem, 15vw, 7.5rem); }
+  .incursion-footer__eyebrow, .incursion-footer__tagline { font-size: 8px; letter-spacing: .2em; }
+  .incursion-footer__base { grid-template-columns: 1fr 1fr; gap: 18px 12px; }
+  .incursion-footer__notice { grid-column: 1 / -1; grid-row: 2; text-align: left; }
+  .incursion-footer__copyright { justify-self: end; }
+  .incursion-footer__skyline--near { bottom: 19%; }
+  .incursion-footer__debris--one { left: 8%; }
+  .incursion-footer__debris--two { right: 8%; }
+}
 @media (max-height: 550px) {
   .preloader-content {
     padding: 12px;

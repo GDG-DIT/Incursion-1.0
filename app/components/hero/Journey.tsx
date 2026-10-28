@@ -5,7 +5,8 @@ import { useMemo, useRef, useLayoutEffect, type MutableRefObject } from "react";
 import * as THREE from "three";
 import type { Room } from "./Hall";
 export type Progress = MutableRefObject<number>;
-const stops = [0, 0.1, 0.23, 0.34, 0.46, 0.62, 0.76, 0.86, 1];
+const finalProgress = 1.35;
+const stops = [0, 0.1, 0.23, 0.34, 0.46, 0.62, 0.76, 0.86, 1, 1.1, 1.23, finalProgress];
 const positions = [
   [0, 4.4, 16],
   [0, 4, 10],
@@ -16,6 +17,9 @@ const positions = [
   [-2, 11, -208],
   [0, 14, -320],
   [0, 17, -379],
+  [0, 20, -410],
+  [0, 14, -455],
+  [0, 10, -500],
 ];
 const targets = [
   [0, 4.1, -9],
@@ -27,6 +31,9 @@ const targets = [
   [0, 18, -270],
   [0, 20, -410],
   [0, 22, -430],
+  [0, 20, -520],
+  [0, 16, -620],
+  [0, 16, -760],
 ];
 const ease = (t: number) => t * t * (3 - 2 * t);
 export function JourneyCamera({
@@ -54,7 +61,7 @@ export function JourneyCamera({
       Math.min(dt, 0.1),
     );
     let p = value.current;
-    if (reduced) p = p < 0.4 ? 0 : p < 0.8 ? 0.62 : 1;
+    if (reduced) p = p < 0.4 ? 0 : p < 0.8 ? 0.62 : finalProgress;
     let i = 0;
     while (i < stops.length - 2 && p > stops[i + 1]) i++;
     const f = ease(
@@ -113,7 +120,7 @@ export function Visibility({
         ? 0
         : progress.current < 0.8
           ? 0.62
-          : 1
+          : finalProgress
       : progress.current;
     if (g.current) g.current.visible = p >= min && p <= max;
   });
@@ -229,6 +236,66 @@ function Ruins({ inverted = false }: { inverted?: boolean }) {
     </group>
   );
 }
+function AftermathCity({
+  debrisRef,
+}: {
+  debrisRef: React.Ref<THREE.Group>;
+}) {
+  const floatingTowers = useMemo(
+    () =>
+      Array.from({ length: 8 }, (_, i) => {
+        const side = i % 2 ? 1 : -1;
+        const row = Math.floor(i / 2);
+        return {
+          x: side * (26 + row * 12),
+          z: -520 - row * 24,
+          h: 16 + ((i * 13) % 24),
+          w: 5 + (i % 3) * 2,
+          seed: i + 80,
+        };
+      }),
+    [],
+  );
+  const fragments = useMemo(
+    () =>
+      Array.from({ length: 22 }, (_, i) => ({
+        position: [
+          Math.sin(i * 7.7) * (24 + (i % 4) * 9),
+          7 + ((i * 13) % 48),
+          -650 - ((i * 29) % 390),
+        ] as [number, number, number],
+        rotation: [i * 0.71, i * 0.43, i * 0.29] as [number, number, number],
+        size: 1.2 + (i % 4) * 0.55,
+      })),
+    [],
+  );
+  return (
+    <group>
+      <group position={[0, 0, -400]}>
+        <Ruins />
+        {floatingTowers.map((tower) => (
+          <Tower key={tower.seed} {...tower} inverted />
+        ))}
+      </group>
+      <group ref={debrisRef}>
+        {fragments.map((fragment, i) => (
+          <mesh
+            key={i}
+            position={fragment.position}
+            rotation={fragment.rotation}
+          >
+            <dodecahedronGeometry args={[fragment.size, 0]} />
+            <meshStandardMaterial
+              color={i % 4 === 0 ? "#73685c" : "#3e4845"}
+              roughness={0.94}
+              metalness={0.12}
+            />
+          </mesh>
+        ))}
+      </group>
+    </group>
+  );
+}
 export function OtherWorlds({
   progress,
   reduced,
@@ -240,19 +307,118 @@ export function OtherWorlds({
 }) {
   const portal = useRef<THREE.Group>(null),
     collision = useRef<THREE.Group>(null),
-    debris = useRef<THREE.Group>(null);
+    debris = useRef<THREE.Group>(null),
+    collisionLight = useRef<THREE.PointLight>(null),
+    rupture = useRef<THREE.Group>(null),
+    ruptureLight = useRef<THREE.PointLight>(null),
+    finalWorld = useRef<THREE.Group>(null),
+    horizonPlanet = useRef<THREE.Group>(null),
+    finalDebris = useRef<THREE.Group>(null),
+    finalKeyLight = useRef<THREE.DirectionalLight>(null),
+    finalFillLight = useRef<THREE.PointLight>(null),
+    collisionMaterials = useRef<
+      Array<{
+        material: THREE.Material;
+        opacity: number;
+        transparent: boolean;
+        depthWrite: boolean;
+      }>
+    >([]);
+  const finalMaterials = useRef<typeof collisionMaterials.current>([]),
+    debrisPositions = useRef<THREE.Vector3[]>([]),
+    debrisRotations = useRef<THREE.Euler[]>([]),
+    finalFragmentPositions = useRef<THREE.Vector3[]>([]),
+    finalFragmentRotations = useRef<THREE.Euler[]>([]);
   const { scene } = useThree();
   const green = useMemo(() => new THREE.Color("#091a14"), []),
     blue = useMemo(() => new THREE.Color("#101722"), []),
-    purple = useMemo(() => new THREE.Color("#160f28"), []);
+    purple = useMemo(() => new THREE.Color("#160f28"), []),
+    impactSky = useMemo(() => new THREE.Color("#2a2028"), []),
+    aftermathSky = useMemo(() => new THREE.Color("#111816"), []),
+    skyColor = useMemo(() => new THREE.Color(), []);
+  useLayoutEffect(() => {
+    const capture = (roots: Array<THREE.Group | null>) => {
+      const materials: typeof collisionMaterials.current = [];
+      roots.forEach((root) => {
+        root?.traverse((object) => {
+          if (!(object instanceof THREE.Mesh)) return;
+          const meshMaterials = Array.isArray(object.material)
+            ? object.material
+            : [object.material];
+          meshMaterials.forEach((material) => {
+            materials.push({
+              material,
+              opacity: material.opacity,
+              transparent: material.transparent,
+              depthWrite: material.depthWrite,
+            });
+            material.transparent = true;
+            material.depthWrite = false;
+            material.needsUpdate = true;
+          });
+        });
+      });
+      return materials;
+    };
+    const collisionSet = capture([collision.current, debris.current]);
+    const finalSet = capture([finalWorld.current]);
+    collisionMaterials.current = collisionSet;
+    finalMaterials.current = finalSet;
+    debrisPositions.current =
+      debris.current?.children.map((object) => object.position.clone()) ?? [];
+    debrisRotations.current =
+      debris.current?.children.map((object) => object.rotation.clone()) ?? [];
+    finalFragmentPositions.current =
+      finalDebris.current?.children.map((object) => object.position.clone()) ?? [];
+    finalFragmentRotations.current =
+      finalDebris.current?.children.map((object) => object.rotation.clone()) ?? [];
+    return () => {
+      [...collisionSet, ...finalSet].forEach(
+        ({ material, opacity, transparent, depthWrite }) => {
+          material.opacity = opacity;
+          material.transparent = transparent;
+          material.depthWrite = depthWrite;
+          material.needsUpdate = true;
+        },
+      );
+      collisionMaterials.current = [];
+      finalMaterials.current = [];
+      debrisPositions.current = [];
+      debrisRotations.current = [];
+      finalFragmentPositions.current = [];
+      finalFragmentRotations.current = [];
+    };
+  }, []);
   useFrame(({ clock }, dt) => {
-    const p = progress.current;
-    const color = p < 0.4 ? green : p < 0.8 ? blue : purple;
-    (scene.background as THREE.Color)?.copy(color);
+    const p = reduced
+      ? progress.current < 0.4
+        ? 0
+        : progress.current < 0.8
+          ? 0.62
+          : finalProgress
+      : progress.current;
+    const impact = THREE.MathUtils.smoothstep(p, 0.94, 1.12);
+    const ruptureFade = 1 - THREE.MathUtils.smoothstep(p, 1.14, 1.27);
+    const departure = THREE.MathUtils.smoothstep(p, 1.02, 1.17);
+    const arrival = THREE.MathUtils.smoothstep(p, 0.96, 1.17);
+    const collisionOpacity = 1 - departure;
+    collisionMaterials.current.forEach(({ material, opacity }) => {
+      material.opacity = opacity * collisionOpacity;
+    });
+    finalMaterials.current.forEach(({ material, opacity }) => {
+      material.opacity = opacity * arrival;
+    });
+    const phase = THREE.MathUtils.smoothstep(p, 0.82, 1.12);
+    skyColor.copy(purple).lerp(impactSky, phase).lerp(aftermathSky, arrival);
+    if (p < 0.4)
+      skyColor.copy(green).lerp(blue, THREE.MathUtils.smoothstep(p, 0, 0.4));
+    else if (p < 0.8)
+      skyColor.copy(blue).lerp(purple, THREE.MathUtils.smoothstep(p, 0.4, 0.8));
+    (scene.background as THREE.Color)?.copy(skyColor);
     if (scene.fog instanceof THREE.Fog) {
-      scene.fog.color.copy(color);
-      scene.fog.near = p < 0.4 ? 28 : 35;
-      scene.fog.far = p < 0.4 ? 80 : 160;
+      scene.fog.color.copy(skyColor);
+      scene.fog.near = THREE.MathUtils.lerp(35, 22, arrival);
+      scene.fog.far = THREE.MathUtils.lerp(p < 0.4 ? 80 : 160, 245, arrival);
     }
     if (portal.current) {
       portal.current.scale.setScalar(
@@ -270,15 +436,69 @@ export function OtherWorlds({
         12,
         0,
         THREE.MathUtils.smoothstep(p, 0.8, 1),
-      );
+      ) + impact * 22;
+      if (collisionLight.current)
+        collisionLight.current.intensity = 700 * collisionOpacity;
       if (!reduced)
         collision.current.rotation.z =
-          Math.sin(clock.elapsedTime * 0.12) * 0.035;
+          Math.sin(clock.elapsedTime * 0.12) * 0.035 * collisionOpacity;
     }
-    if (debris.current && !reduced) {
-      debris.current.rotation.y += Math.min(dt, 0.05) * 0.035;
-      debris.current.position.y = Math.sin(clock.elapsedTime * 0.6) * 0.5;
+    if (debris.current) {
+      const blast = THREE.MathUtils.smoothstep(p, 0.97, 1.14);
+      debris.current.children.forEach((rock, i) => {
+        const origin = debrisPositions.current[i];
+        const rotation = debrisRotations.current[i];
+        if (!origin || !rotation) return;
+        rock.position.copy(origin).multiplyScalar(1 + blast * 2.2);
+        rock.rotation.set(
+          rotation.x + blast * (i % 3) * 0.55,
+          rotation.y + blast * (i % 4) * 0.4,
+          rotation.z + blast * (i % 5) * 0.35,
+        );
+      });
+      debris.current.position.y = Math.sin(clock.elapsedTime * 0.32) * 0.35;
+      if (!reduced) debris.current.rotation.y = Math.sin(clock.elapsedTime * 0.16) * 0.04;
     }
+    if (rupture.current) {
+      const expansion = THREE.MathUtils.smoothstep(p, 0.94, 1.12);
+      rupture.current.visible = expansion > 0.001 && ruptureFade > 0.001;
+      rupture.current.scale.setScalar(0.06 + expansion * 7.2);
+      rupture.current.position.z = -464 + expansion * 22;
+      if (!reduced)
+        rupture.current.rotation.z = Math.sin(clock.elapsedTime * 0.7) * 0.025;
+      rupture.current.children.forEach((ring, i) => {
+        if (!(ring instanceof THREE.Mesh)) return;
+        const material = ring.material as THREE.MeshBasicMaterial;
+        material.opacity = (0.22 + (i % 2) * 0.14) * expansion * ruptureFade;
+      });
+      if (ruptureLight.current)
+        ruptureLight.current.intensity = 360 * expansion * ruptureFade;
+    }
+    if (horizonPlanet.current && !reduced)
+      horizonPlanet.current.rotation.y = Math.sin(clock.elapsedTime * 0.035) * 0.04;
+    if (finalDebris.current && !reduced) {
+      finalDebris.current.children.forEach((fragment, i) => {
+        const origin = finalFragmentPositions.current[i];
+        const rotation = finalFragmentRotations.current[i];
+        if (!origin || !rotation) return;
+        const drift = clock.elapsedTime * 0.12 + i * 1.7;
+        fragment.position.set(
+          origin.x + Math.sin(drift) * 0.75,
+          origin.y + Math.sin(drift * 0.73) * 0.55,
+          origin.z + Math.cos(drift * 0.61) * 0.45,
+        );
+        fragment.rotation.set(
+          rotation.x + Math.sin(drift * 0.6) * 0.06,
+          rotation.y + Math.cos(drift * 0.8) * 0.08,
+          rotation.z + Math.sin(drift * 0.7) * 0.04,
+        );
+      });
+    }
+    if (finalWorld.current) {
+      finalWorld.current.visible = arrival > 0.001;
+    }
+    if (finalKeyLight.current) finalKeyLight.current.intensity = 2.2 * arrival;
+    if (finalFillLight.current) finalFillLight.current.intensity = 210 * arrival;
   });
   return (
     <>
@@ -332,7 +552,7 @@ export function OtherWorlds({
           />
         )}
       </Visibility>
-      <Visibility reduced={reduced} progress={progress} min={0.34} max={0.83}>
+      <Visibility reduced={reduced} progress={progress} min={0.34} max={0.98}>
         <Ruins />
         <Ruins inverted />
         <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.2, -180]}>
@@ -392,7 +612,7 @@ export function OtherWorlds({
           />
         )}
       </Visibility>
-      <Visibility reduced={reduced} progress={progress} min={0.75} max={1.1}>
+      <Visibility reduced={reduced} progress={progress} min={0.75} max={1.18}>
         <Stars
           radius={110}
           depth={70}
@@ -446,7 +666,12 @@ export function OtherWorlds({
                 side={THREE.DoubleSide}
               />
             </mesh>
-            <pointLight color="#c6a5ff" intensity={700} distance={110} />
+            <pointLight
+              ref={collisionLight}
+              color="#c6a5ff"
+              intensity={700}
+              distance={110}
+            />
           </group>
           <group ref={debris}>
             {Array.from({ length: 55 }, (_, i) => (
@@ -469,6 +694,91 @@ export function OtherWorlds({
             ))}
           </group>
         </group>
+      </Visibility>
+      <group ref={rupture} position={[0, 20, -464]}>
+        {[0, 1, 2].map((i) => (
+          <mesh key={i} rotation={[0.15 + i * 0.12, i * 0.18, i * 0.08]}>
+            <torusGeometry args={[5 + i * 2.6, 0.045 + i * 0.012, 8, 128]} />
+            <meshBasicMaterial
+              color={i === 0 ? "#f1d6ad" : i === 1 ? "#d3a9c9" : "#a9d6d0"}
+              toneMapped={false}
+              transparent
+              opacity={0}
+              depthWrite={false}
+              blending={THREE.AdditiveBlending}
+            />
+          </mesh>
+        ))}
+        <pointLight
+          ref={ruptureLight}
+          color="#e6c9df"
+          intensity={0}
+          distance={180}
+        />
+      </group>
+      <group ref={finalWorld}>
+        <directionalLight
+          ref={finalKeyLight}
+          position={[-32, 58, -720]}
+          color="#ddc6a0"
+          intensity={0}
+        />
+        <pointLight
+          ref={finalFillLight}
+          position={[0, 38, -890]}
+          color="#a890b4"
+          intensity={0}
+          distance={260}
+        />
+        <group ref={horizonPlanet} position={[0, 82, -1060]}>
+          <mesh>
+            <sphereGeometry args={[78, 48, 32]} />
+            <meshStandardMaterial
+              color="#493c48"
+              emissive="#302137"
+              emissiveIntensity={0.42}
+              roughness={0.88}
+              metalness={0.08}
+            />
+          </mesh>
+          <mesh>
+            <sphereGeometry args={[78.25, 32, 24]} />
+            <meshBasicMaterial
+              color="#d1a7cb"
+              wireframe
+              transparent
+              opacity={0.11}
+              depthWrite={false}
+            />
+          </mesh>
+          <mesh rotation={[1.16, 0.08, -0.12]}>
+            <torusGeometry args={[92, 0.16, 8, 128]} />
+            <meshBasicMaterial
+              color="#cfb1a0"
+              toneMapped={false}
+              transparent
+              opacity={0.58}
+              depthWrite={false}
+            />
+          </mesh>
+        </group>
+        <AftermathCity debrisRef={finalDebris} />
+      </group>
+      <Visibility
+        reduced={reduced}
+        progress={progress}
+        min={0.75}
+        max={finalProgress}
+      >
+        <Stars
+          radius={160}
+          depth={260}
+          count={mobile ? 900 : 2200}
+          factor={3.2}
+          saturation={0.12}
+          fade
+          speed={reduced ? 0 : 0.12}
+        />
       </Visibility>
     </>
   );

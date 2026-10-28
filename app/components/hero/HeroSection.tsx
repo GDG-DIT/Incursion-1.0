@@ -9,6 +9,10 @@ const chapters = [
   { name: "Ruins", at: 0.56 },
   { name: "Incursion", at: 1 },
 ];
+const journeyProgressEnd = 1.35;
+function getJourneyLength() {
+  return Math.max(1, document.documentElement.scrollHeight - innerHeight);
+}
 function Registration({ close }: { close: () => void }) {
   const ref = useRef<HTMLDialogElement>(null);
   useEffect(() => {
@@ -50,6 +54,7 @@ export default function HeroSection() {
     [chapter, setChapter] = useState(0),
     [ready, setReady] = useState(false);
   const progress = useRef(0),
+    journey = useRef<HTMLElement>(null),
     bar = useRef<HTMLDivElement>(null),
     tween = useRef<gsap.core.Tween | null>(null),
     registerButton = useRef<HTMLButtonElement>(null);
@@ -66,12 +71,15 @@ export default function HeroSection() {
     size.addEventListener("change", sync);
     const scroll = () => {
       progress.current = Math.min(
-        1,
-        window.scrollY /
-          Math.max(1, document.documentElement.scrollHeight - innerHeight),
+        journeyProgressEnd,
+        (window.scrollY / getJourneyLength()) * journeyProgressEnd,
       );
       if (bar.current)
-        bar.current.style.transform = `scaleX(${progress.current})`;
+        bar.current.style.transform = `scaleX(${progress.current / journeyProgressEnd})`;
+      journey.current?.classList.toggle(
+        "footer-approach",
+        progress.current >= 1.08,
+      );
       setChapter(progress.current < 0.4 ? 0 : progress.current < 0.8 ? 1 : 2);
     };
     const cancel = () => tween.current?.kill();
@@ -109,7 +117,7 @@ export default function HeroSection() {
   function travel(at: number) {
     tween.current?.kill();
     setRoom("hall");
-    const target = at * (document.documentElement.scrollHeight - innerHeight);
+    const target = at * getJourneyLength();
     if (reduced) {
       window.scrollTo(0, target);
       return;
@@ -117,7 +125,8 @@ export default function HeroSection() {
     const proxy = { y: window.scrollY };
     tween.current = gsap.to(proxy, {
       y: target,
-      duration: Math.abs(progress.current - at) > 0.3 ? 5 : 2,
+      duration:
+        Math.abs(progress.current / journeyProgressEnd - at) > 0.3 ? 5 : 2,
       ease: "power2.inOut",
       onUpdate: () => window.scrollTo(0, proxy.y),
     });
@@ -125,6 +134,7 @@ export default function HeroSection() {
   const go = useCallback((r: Room) => setRoom(r), []);
   return (
     <main
+      ref={journey}
       className={`journey-page hall-entered ${reduced ? "motion-reduced" : ""}`}
     >
       <div
