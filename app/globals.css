@@ -1,4 +1,12 @@
 @font-face {
+  font-family: "Glacial Indifference";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/fonts/GlacialIndifference-Bold.otf) format("opentype");
+}
+
+@font-face {
   font-family: "Avengeance";
   font-style: normal;
   font-weight: 400;
@@ -26,7 +34,7 @@
   --mute: #8d928b;
   --em: #3fe08e;
   --serif: "Avengeance", "Impact", "Arial Narrow", sans-serif;
-  --sans: "Avengeance", "Impact", "Arial Narrow", sans-serif;
+  --sans: "Glacial Indifference", "Arial Narrow", Arial, sans-serif;
   color-scheme: dark;
 }
 * {
@@ -724,6 +732,19 @@ body,
 #tlv {
   background: radial-gradient(ellipse at 50% 55%, #0c1712, #000 76%);
 }
+#timeline-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.26;
+  filter: brightness(0.62) saturate(0.72) contrast(1.08);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
 #scroll {
   height: 2000vh;
 }
@@ -813,7 +834,11 @@ header b {
   white-space: nowrap;
 }
 #iv {
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transform: scale(1.06);
+  transform-origin: center center;
+  will-change: transform;
 }
 .warn {
   bottom: 20vh;
@@ -884,6 +909,9 @@ header b {
 }
 
 @media (max-width: 760px) {
+  #iv {
+    transform: scale(1.025);
+  }
   #scroll {
     height: 1800vh;
   }

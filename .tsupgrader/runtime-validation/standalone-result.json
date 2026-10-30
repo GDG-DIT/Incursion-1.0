@@ -1,0 +1,180 @@
+{
+  "planHash": "7838edf436348943475bb3e9d7f49b3d321db0608d5743bde81837c5a67e4f20",
+  "phase": "standalone",
+  "recordedAtUtc": "2026-10-30T16:42:38.2416292Z",
+  "retryCount": 1,
+  "resetBaseline": false,
+  "complete": true,
+  "result": {
+    "setupSucceeded": true,
+    "setupDurationMs": 45890,
+    "setupFailureOutput": null,
+    "assertions": [
+      {
+        "name": "production-build",
+        "kind": "process",
+        "verificationMethod": "exit-code",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E incursion-nextjs@1.0.0 build\r\n\u003E next build --webpack\r\n\r\n\u25B2 Next.js 16.4.3 (webpack)\r\n\u2713 Running next.config.mjs took 32ms\r\n\r\n  Creating an optimized production build ...\r\n\u2713 Compiled successfully in 1669ms\r\n  Running TypeScript ...\r\n  Finished TypeScript in 2ms ...\r\n  Collecting page data using 4 workers ...\r\n  Generating static pages using 4 workers (0/3) ...\r\n\u2713 Generating static pages using 4 workers (3/3) in 1219ms\r\n  Finalizing page optimization ...\r\n  Collecting build traces ...\r\n\r\nRoute (app)\r\n\u250C \u25CB /\r\n\u2514 \u25CB /_not-found\r\n\r\n\r\n\u25CB  (Static)  prerendered as static content\r\n\r\n",
+        "durationMs": 16562
+      },
+      {
+        "name": "tests-pass",
+        "kind": "process",
+        "verificationMethod": "test-results",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": 0,
+        "outputSample": "\r\n\u003E incursion-nextjs@1.0.0 test\r\n\u003E node --test tests/*.test.mjs\r\n\r\n\u2714 scrubbing fires once, ignores small reversals, and rearms after rewinding (0.8682ms)\r\n\u2714 a large jump plays one cue instead of overlapping three impacts (0.5049ms)\r\n\u2714 audio respects mute, fades out outside the collision, and releases its nodes (0.5471ms)\r\n\u2139 tests 3\r\n\u2139 suites 0\r\n\u2139 pass 3\r\n\u2139 fail 0\r\n\u2139 cancelled 0\r\n\u2139 skipped 0\r\n\u2139 todo 0\r\n\u2139 duration_ms 104.5089\r\n",
+        "durationMs": 821,
+        "testResults": {
+          "testFramework": "unknown",
+          "runnerDetectedFrom": "none",
+          "testsTotal": 0,
+          "testsPassed": 0,
+          "testsFailed": 0,
+          "testsSkipped": 0,
+          "parseFailed": true
+        }
+      },
+      {
+        "name": "dev-server-serves-home",
+        "kind": "http-probe",
+        "verificationMethod": "http-status",
+        "passed": true,
+        "timedOut": false,
+        "skipped": false,
+        "skippedReason": null,
+        "exitCode": null,
+        "outputSample": "HTTP 200\n\u003C!DOCTYPE html\u003E\u003Chtml lang=\u0022en\u0022\u003E\u003Chead\u003E\u003Cmeta charSet=\u0022utf-8\u0022/\u003E\u003Cmeta name=\u0022viewport\u0022 content=\u0022width=device-width, initial-scale=1, viewport-fit=cover\u0022/\u003E\u003Clink rel=\u0022stylesheet\u0022 href=\u0022/_next/static/chunks/app_globals_0yg4wg8plh8sv.css\u0022 data-precedence=\u0022next_static/chunks/app_globals_0yg4wg8plh8sv.css\u0022/\u003E\u003Clink rel=\u0022preload\u0022 as=\u0022script\u0022 fetchPriority=\u0022low\u0022 href=\u0022/_next/static/chunks/%5Bturbopack%5D_browser_dev_hmr-client_hmr-client_ts_0qva5cupmdgep._.js\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/1daa_next_dist_compiled_react-dom_cjs_react-dom-client_development_0mp0cp_t-ezj9.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/1q96_modules_next_dist_compiled_react-dom_cjs_react-dom_development_1sqry0_53krp4.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_react-dom_0grqycjrj6mju._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_react-server-dom-turbopack_164kp-67asdr9._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_next-devtools_index_090k2jmam7qwg.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_compiled_1amofcmz--cdp._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_client_1wygxxh5rwq0t._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_05y3oi5z9mc_3._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_%40swc_helpers_cjs_1r9vbqwj2323d._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_1anvha4rlo79g._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/turbopack-_06rkbud3pyrlm._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_219uq1sj0q91c._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_20wefz_f1k6jn._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_16p22knjquddc._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cscript src=\u0022/_next/static/chunks/_1weuafw110hcy._.js\u0022 async=\u0022\u0022\u003E\u003C/script\u003E\u003Cmeta name=\u0022theme-color\u0022 content=\u0022#040605\u0022/\u003E\u003Ctitle\u003EIncursion \u2014 a GDG hackathon, January 2027\u003C/title\u003E\u003Cmeta name=\u0022description\u0022 content=\u0022Two worlds. One final stand. Explore Incursion, a GDG on Campus hackathon in January 2027.\u0022/\u003E\u003Cscript src=\u0022/_next/static/chunks/node_modules_next_dist_build_polyfills_polyfill-nomodule.js\u0022 noModule=\u0022\u0022\u003E\u003C/script\u003E\u003C/head\u003E\u003Cbody\u003E\u003Cdiv hidden=\u0022\u0022\u003E\u003C!--$--\u003E\u003C!--/$--\u003E\u003C/div\u003E\u003Cmain\u003E\u003Cdiv id=\u0022scroll\u0022\u003E\u003Cdiv id=\u0022stage\u0022\u003E\u003Ccanvas id=\u0022c\u0022 role=\u0022img\u0022 aria-label=\u0022Two planets collide as you scroll\u0022\u003E\u003C/canvas\u003E\u003Cdiv id=\u0022burn\u0022\u003E\u003C/div\u003E\u003Csection id=\u0022throne\u0022 aria-label=\u0022Doctor Doom on his throne\u0022\u003E\u003Cimg id=\u0022tw2\u0022 class=\u0022pic\u0022 src=\u0022/media/doom-throne.webp\u0022 alt=\u0022\u0022/\u003E\u003Cimg id=\u0022tc\u0022 class=\u0022pic\u0022 src=\u0022/media/doom-closeup6.png\u0022 alt=\u0022Doctor Doom, hooded, eyes glowing green\u0022/\u003E\u003Cdiv class=\u0022vg\u0022 id=\u0022vg\u0022\u003E\u003C/div\u003E\u003Cdiv class=\u0022scrim\u0022 id=\u0022scrim\u0022\u003E\u003C/div\u003E\u003C/section\u003E\u003Cdiv id=\u0022aurw\u0022 aria-hidden=\u0022true\u0022\u003E\u003Cdiv id=\u0022aur\u0022\u003E\u003Cimg id=\u0022aimg\u0022 src=\u0022/media/aurora.webp\u0022 alt=\u0022\u0022/\u003E\u003Ci class=\u0022gl\u0022\u003E\u003C/i\u003E\u003Cdiv class=\u0022vn\u0022\u003E\u003C/div\u003E\u003Cdiv class=\u0022pt\u0022 id=\u0022pt\u0022\u003E\u003Ci style=\u0022left:0%;width:1px;height:1px;--dx:-39px;animation-duration:18s;animation-delay:0s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:37.7%;width:1.6px;height:1.6px;--dx:-26px;animation-duration:19s;animation-delay:-1.7s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:75.4%;width:2.2px;height:2.2px;--dx:-13px;animation-duration:20s;animation-delay:-3.4s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:13.100000000000009%;width:1px;height:1px;--dx:0px;animation-duration:21s;animation-delay:-5.1s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:50.80000000000001%;width:1.6px;height:1.6px;--dx:13px;animation-duration:22s;animation-delay:-6.8s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:88.5%;width:2.2px;height:2.2px;--dx:26px;animation-duration:23s;animation-delay:-8.5s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:26.200000000000017%;width:1px;height:1px;--dx:39px;animation-duration:24s;animation-delay:-10.2s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:63.900000000000034%;width:1.6px;height:1.6px;--dx:-39px;animation-duration:25s;animation-delay:-11.9s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:1.6000000000000227%;width:2.2px;height:2.2px;--dx:-26px;animation-duration:26s;animation-delay:-13.6s\u0022\u003E\u003C/i\u003E\u003Ci style=\u0022left:39.30000000000001%;width:1px;height:1px;--dx:-13px;animation-duration:27s;animati\n\u2026[truncated]",
+        "durationMs": 61
+      }
+    ],
+    "executions": [
+      {
+        "source": "setup[0]",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "args": [
+          "ci"
+        ],
+        "cwd": "D:\\DSA\\Incursion-1.0",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "nodeVersion": "v25.7.0",
+        "packageManager": "npm",
+        "packageManagerExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "packageManagerVersion": "11.0.0",
+        "cleanup": {
+          "RootProcessId": 67164,
+          "Completed": true,
+          "ProcessesObserved": 5,
+          "ProcessesTerminated": 1,
+          "Failure": null
+        }
+      },
+      {
+        "source": "devServer",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "args": [
+          "run",
+          "dev"
+        ],
+        "cwd": "D:\\DSA\\Incursion-1.0",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "nodeVersion": "v25.7.0",
+        "packageManager": "npm",
+        "packageManagerExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "packageManagerVersion": "11.0.0",
+        "cleanup": {
+          "RootProcessId": 82956,
+          "Completed": true,
+          "ProcessesObserved": 12,
+          "ProcessesTerminated": 6,
+          "Failure": null
+        }
+      },
+      {
+        "source": "production-build",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "args": [
+          "run",
+          "build"
+        ],
+        "cwd": "D:\\DSA\\Incursion-1.0",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "nodeVersion": "v25.7.0",
+        "packageManager": "npm",
+        "packageManagerExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "packageManagerVersion": "11.0.0",
+        "cleanup": {
+          "RootProcessId": 79876,
+          "Completed": true,
+          "ProcessesObserved": 18,
+          "ProcessesTerminated": 1,
+          "Failure": null
+        }
+      },
+      {
+        "source": "tests-pass",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "args": [
+          "test"
+        ],
+        "cwd": "D:\\DSA\\Incursion-1.0",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "nodeVersion": "v25.7.0",
+        "packageManager": "npm",
+        "packageManagerExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "packageManagerVersion": "11.0.0",
+        "cleanup": {
+          "RootProcessId": 49136,
+          "Completed": true,
+          "ProcessesObserved": 8,
+          "ProcessesTerminated": 1,
+          "Failure": null
+        }
+      },
+      {
+        "source": "dev-server-serves-home",
+        "resolvedExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "args": [
+          "run",
+          "dev"
+        ],
+        "cwd": "D:\\DSA\\Incursion-1.0",
+        "env": {},
+        "prependPath": [],
+        "platform": "win32",
+        "nodeExecutable": "C:\\Program Files\\nodejs\\node.EXE",
+        "nodeVersion": "v25.7.0",
+        "packageManager": "npm",
+        "packageManagerExecutable": "C:\\Program Files\\nodejs\\npm.cmd",
+        "packageManagerVersion": "11.0.0",
+        "cleanup": {
+          "RootProcessId": 63756,
+          "Completed": true,
+          "ProcessesObserved": 3,
+          "ProcessesTerminated": 3,
+          "Failure": null
+        }
+      }
+    ]
+  }
+}

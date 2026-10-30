@@ -27,6 +27,17 @@ function IntroGate() {
 function Timeline() {
   return (
     <section className="ch" id="tlv" aria-label="Schedule">
+      <video
+        id="timeline-bg"
+        className="timeline-bg"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        src="/media/timeline-bg.mp4"
+        aria-hidden="true"
+      />
       <div className="tlh"><div className="k">Schedule</div><h2>The Fractured Timeline</h2></div>
       <div id="tmask">
         <ol id="tcol">
