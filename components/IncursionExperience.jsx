@@ -84,7 +84,7 @@ export default function IncursionExperience() {
         <canvas id="c" role="img" aria-label="Two planets collide as you scroll" /><div id="burn" />
         <section id="throne" aria-label="Doctor Doom on his throne">
           <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="" />
-          <img id="tc" className="pic" src="/media/doom-closeup.webp" alt="Doctor Doom, hooded, eyes glowing green" />
+          <img id="tc" className="pic" src="/media/doom-closeup6.png" alt="Doctor Doom, hooded, eyes glowing green" />
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
         <TitleReveal />
