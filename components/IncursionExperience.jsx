@@ -109,7 +109,10 @@ export default function IncursionExperience() {
         <div id="hint">Scroll to explore</div><div className="grain" aria-hidden="true" />
         <IntroGate />
       </div></div>
-      <video id="collision-source" className="collision-source" muted playsInline preload="auto" src="/media/collision.mp4" aria-hidden="true" tabIndex={-1} />
+      <video id="collision-source" className="collision-source" muted playsInline preload="auto" src="/media/collision-scrub.mp4" aria-hidden="true" tabIndex={-1} />
+      <button id="top" type="button" aria-label="Go to top">
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" /></svg>
+      </button>
       <noscript><p>This experience uses JavaScript. Incursion is a GDG on Campus hackathon in January 2027.</p></noscript>
     </main>
   );

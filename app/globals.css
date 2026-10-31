@@ -1060,6 +1060,56 @@ header b {
   opacity: 0;
   pointer-events: none;
 }
+#top {
+  position: fixed;
+  right: 24px;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(233, 231, 224, 0.32);
+  border-radius: 50%;
+  background: rgba(4, 6, 5, 0.72);
+  color: var(--ink);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(10px);
+  backdrop-filter: blur(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease, background 0.35s ease, visibility 0s linear 0.35s;
+}
+#top.on {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+  transition-delay: 0s;
+}
+#top:hover {
+  border-color: var(--em);
+  background: rgba(12, 30, 21, 0.9);
+}
+#top:focus-visible {
+  outline: 2px solid var(--em);
+  outline-offset: 4px;
+}
+#top svg {
+  width: 16px;
+  height: 16px;
+}
+@media (max-width: 760px) {
+  #top {
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  #top {
+    transition: opacity 0.2s ease, visibility 0s;
+  }
+}
 #term.out,
 #gate.go {
   pointer-events: none;
