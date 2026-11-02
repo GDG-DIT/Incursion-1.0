@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { createExperience } from '../lib/experience';
 import { TIMELINE, REGISTER_URL, imageStyle, jag } from '../lib/content';
+import DoomMaskHero from './DoomMaskHero';
 
 function Arrow() {
   return <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 4h17M13 1l4 3-4 3" /></svg>;
@@ -26,19 +27,23 @@ function IntroGate() {
 
 function Timeline() {
   return (
-    <section className="ch" id="tlv" aria-label="Schedule">
+    <section className="timeline-section" id="tlv" aria-label="Schedule">
       <video
         id="timeline-bg"
-        className="timeline-bg"
         autoPlay
         loop
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/media/timeline-1.webp"
         src="/media/timeline-bg.mp4"
         aria-hidden="true"
       />
-      <div className="tlh"><div className="k">Schedule</div><h2>The Fractured Timeline</h2></div>
+      <div className="tlh">
+        <div className="k">Schedule</div>
+        <h2>The Fractured Timeline</h2>
+        <p>Five milestones. One universe-changing finale.</p>
+      </div>
       <div id="tmask">
         <ol id="tcol">
           {TIMELINE.map((event, index) => (
@@ -60,60 +65,85 @@ function Timeline() {
   );
 }
 
-function TitleReveal() {
-  return (
-    <>
-      <div id="aurw" aria-hidden="true"><div id="aur">
-        <img id="aimg" src="/media/aurora.webp" alt="" />
-        <i className="gl" /><div className="vn" />
-        <div className="pt" id="pt">
-          {Array.from({ length: 18 }, (_, index) => (
-            <i key={index} style={{
-              left: `${(index * 37.7) % 100}%`, width: `${1 + index % 3 * .6}px`, height: `${1 + index % 3 * .6}px`,
-              '--dx': `${(index % 7 - 3) * 13}px`, animationDuration: `${18 + index % 16}s`, animationDelay: `${-index * 1.7}s`,
-            }} />
-          ))}
-        </div>
-      </div></div>
-      <div id="title"><div>
-        <h1 id="tw"><span id="tm">Incursion</span>
-          {Array.from({ length: 7 }, (_, index) => <span className="b" aria-hidden="true" key={index} style={{ clipPath: `inset(${index * 100 / 7}% 0 ${100 - (index + 1) * 100 / 7}% 0)` }}>Incursion</span>)}
-        </h1>
-        <p id="sub">A GDG on Campus hackathon, January 2027</p>
-      </div></div>
-    </>
-  );
-}
-
 export default function IncursionExperience() {
   const root = useRef(null);
   useEffect(() => createExperience(root.current), []);
 
+  const registerHref = REGISTER_URL || '#tlv';
+
   return (
-    <main ref={root}>
-      <div id="scroll"><div id="stage">
-        <canvas id="c" role="img" aria-label="Two planets collide as you scroll" /><div id="burn" />
-        <section id="throne" aria-label="Doctor Doom on his throne">
-          <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="" />
-          <img id="tc" className="pic" src="/media/doom-closeup6.png" alt="Doctor Doom, hooded, eyes glowing green" />
-          <div className="vg" id="vg" /><div className="scrim" id="scrim" />
-        </section>
-        <TitleReveal />
-        <div className="t warn" data-w="14.0,14.6,16.4,16.9"><h2>Your universe is&nbsp;next.</h2></div>
-        <Timeline />
-        <section className="ch" id="c5"><div>
-          <h2>Doom isn&apos;t waiting.</h2><p>Incursion, January 2027</p>
-          <a className="btn reg" href={REGISTER_URL || '#tlv'}>Register<Arrow /></a>
-        </div><div className="k">A GDG on Campus hackathon</div></section>
-        <header id="hdr"><b>Incursion</b><button id="snd" aria-pressed="true" type="button">Sound on</button></header>
-        <div id="hint">Scroll to explore</div><div className="grain" aria-hidden="true" />
-        <IntroGate />
-      </div></div>
-      <video id="collision-source" className="collision-source" muted playsInline preload="auto" src="/media/collision-scrub.mp4" aria-hidden="true" tabIndex={-1} />
+    <main className="incursion-site" ref={root}>
+      <header className="site-header" id="hdr">
+        <a className="wordmark" href="#hero" aria-label="Incursion home">Incursion</a>
+        <nav className="header-nav" aria-label="Main navigation">
+          <a href="#tlv">Timeline</a>
+          <a href="#closing">Finale</a>
+        </nav>
+        <div className="header-actions">
+          <a className="header-register" href={registerHref}>Register <Arrow /></a>
+          <button id="snd" type="button" aria-pressed="true">Sound on</button>
+        </div>
+      </header>
+
+      <section className="hero" id="hero" aria-labelledby="hero-title">
+        <img className="hero-backdrop" src="/media/doom-throne.webp" alt="" fetchPriority="high" />
+        <div className="hero-shade" aria-hidden="true" />
+        <DoomMaskHero />
+        <div className="hero-copy">
+          <p className="hero-eyebrow">GDG on Campus presents</p>
+          <h1 id="hero-title">Incursion</h1>
+          <p className="hero-deck">Two worlds. One final stand.<br />Build what comes next.</p>
+          <div className="hero-meta">
+            <span>November 2026 – January 2027</span>
+            <i aria-hidden="true" />
+            <span>On campus finale</span>
+          </div>
+          <div className="hero-actions">
+            <a className="btn hero-primary" href={registerHref}>Register now<Arrow /></a>
+            <a className="btn hero-secondary" href="#tlv">View timeline</a>
+          </div>
+        </div>
+        <a className="hero-scroll" href="#tlv"><span>Scroll to explore</span><i aria-hidden="true" /></a>
+        <p className="model-credit">“Doctor Doom’s Mask” by <a href="https://sketchfab.com/3d-models/doctor-dooms-mask-8db5464072f341a994ad1c729d9080f7" target="_blank" rel="noreferrer">Nicolas_Laube</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a></p>
+      </section>
+
+      <Timeline />
+
+      <section className="closing" id="closing" aria-labelledby="closing-title">
+        <div className="k">The convergence awaits</div>
+        <h2 id="closing-title">Your universe is next.</h2>
+        <p>Bring your team. Build your answer. Meet us at the finale.</p>
+        <a className="btn hero-primary" href={registerHref}>Register now<Arrow /></a>
+        <span className="closing-mark">A GDG on Campus hackathon</span>
+      </section>
+
+      <footer className="site-footer" aria-label="Incursion site footer">
+        <div className="footer-main">
+          <div className="footer-brand">
+            <a className="footer-wordmark" href="#hero">Incursion</a>
+            <p>Two worlds. One final stand.</p>
+          </div>
+          <nav className="footer-links" aria-label="Footer navigation">
+            <a href="#hero">Home</a>
+            <a href="#tlv">Timeline</a>
+            <a href={registerHref}>Register</a>
+          </nav>
+          <div className="footer-event">
+            <span>GDG on Campus · Incursion 2026</span>
+            <strong>Grand finale · 30–31 January 2027</strong>
+            <span className="footer-location">On campus</span>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <span>© 2026 Incursion · GDG on Campus</span>
+          <a href="#hero">Back to top ↑</a>
+        </div>
+      </footer>
       <button id="top" type="button" aria-label="Go to top">
         <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" /></svg>
       </button>
-      <noscript><p>This experience uses JavaScript. Incursion is a GDG on Campus hackathon in January 2027.</p></noscript>
+      <IntroGate />
+      <noscript><p className="noscript">Incursion is a GDG on Campus hackathon running November 2026 through January 2027.</p></noscript>
     </main>
   );
 }
