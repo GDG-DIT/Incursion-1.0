@@ -72,7 +72,6 @@ function HeroStage() {
     <section className="hero" id="hero" aria-labelledby="hero-title">
       <img className="hero-backdrop" src="/media/doom-throne.webp" alt="" />
       <div className="hero-shade" aria-hidden="true" />
-      <DoomMaskHero />
       <div className="hero-copy">
         <p className="hero-eyebrow">GDG on Campus presents</p>
         <h1 id="hero-title">Incursion</h1>
@@ -84,14 +83,14 @@ function HeroStage() {
         </div>
         <div className="hero-actions">
           <a className="btn hero-primary reg" href={registerHref}>Register now<Arrow /></a>
-          <a className="btn hero-secondary" href="#tlv" data-scene-target="17.7">View timeline</a>
+          <a className="btn hero-secondary" href="#tlv" data-scene-target="13.9">View timeline</a>
         </div>
       </div>
-      <a className="hero-scroll" href="#tlv" data-scene-target="17.7">
+      <a className="hero-scroll" href="#tlv" data-scene-target="13.9">
         <span>Scroll to explore</span><i aria-hidden="true" />
       </a>
       <p className="model-credit">
-        “Doctor Doom’s Mask” by <a href="https://sketchfab.com/3d-models/doctor-dooms-mask-8db5464072f341a994ad1c729d9080f7" target="_blank" rel="noreferrer">Nicolas_Laube</a>
+        "Doctor Doom's Mask" by <a href="https://sketchfab.com/3d-models/doctor-dooms-mask-8db5464072f341a994ad1c729d9080f7" target="_blank" rel="noreferrer">Nicolas_Laube</a>
         {' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>
       </p>
     </section>
@@ -105,13 +104,14 @@ export default function IncursionExperience() {
   return (
     <main ref={root}>
       <div id="scroll"><div id="stage">
-        <HeroStage />
         <section id="throne" aria-label="Doctor Doom on his throne">
           <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="" decoding="async" />
           <img id="tc" className="pic" src="/media/doom-closeup6.png" alt="Doctor Doom, hooded, eyes glowing green" decoding="async" />
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
-        <div className="t warn" data-w="14.0,14.6,16.4,16.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
+        <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
+        <DoomMaskHero />
+        <HeroStage />
         <Timeline />
         <section className="ch" id="c5"><div>
           <h2>Doom isn&apos;t waiting.</h2><p>Incursion, January 2027</p>

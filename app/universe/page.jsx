@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import './universe.css';
 import BackgroundVideo from '../../components/universe/BackgroundVideo';
+import UniverseMaskCanvas from '../../components/universe/UniverseMaskCanvas';
 import Navbar from '../../components/universe/Navbar';
 import Hero from '../../components/universe/Hero';
 import About from '../../components/universe/About';
@@ -22,6 +23,9 @@ export default function UniversePage() {
     <div className="universe-page">
       {/* Fixed Looping Cinematic Background */}
       <BackgroundVideo />
+
+      {/* Persistent 3D Doctor Doom Mask Layer */}
+      <UniverseMaskCanvas />
 
       {/* Top Navbar */}
       <Navbar />

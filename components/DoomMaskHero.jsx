@@ -34,7 +34,9 @@ export default function DoomMaskHero() {
     let maskWidth = 1.7;
     let maskHeight = 2.4;
     let frontZ = 0.7;
+    let visibleHeight = 3.6;
     let touchActive = false;
+    let currentV = 11.0;
     const meshes = [];
     const pointer = new THREE.Vector2(0, 0);
     const raycaster = new THREE.Raycaster();
@@ -93,7 +95,7 @@ export default function DoomMaskHero() {
       renderer.setSize(width, height, false);
       camera.aspect = width / height;
       const widthFill = camera.aspect < 0.8 ? 1.05 : 0.84;
-      const visibleHeight = Math.max(maskHeight / 0.67, (maskWidth / widthFill) / camera.aspect);
+      visibleHeight = Math.max(maskHeight / 0.67, (maskWidth / widthFill) / camera.aspect);
       camera.position.set(0, 0, visibleHeight / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
@@ -148,7 +150,91 @@ export default function DoomMaskHero() {
       const dt = Math.min(clock.getDelta(), 0.06);
       const seconds = clock.elapsedTime;
 
-      if (meshes.length) {
+      if (meshes.length && pivot) {
+        const rect = host.getBoundingClientRect();
+        const width = Math.max(1, rect.width);
+        const mobile = width < 760;
+        const widthFill = camera.aspect < 0.8 ? 1.05 : 0.84;
+        const vHeight = visibleHeight || Math.max(maskHeight / 0.67, (maskWidth / widthFill) / camera.aspect);
+
+        const heroBaseX = mobile ? vHeight * camera.aspect * 0.06 : vHeight * camera.aspect * 0.17;
+        const heroBaseY = mobile ? vHeight * 0.02 : 0;
+
+        let targetX = heroBaseX;
+        let targetY = heroBaseY;
+        let targetZ = 0;
+        let targetRotX = 0;
+        let targetRotY = 0;
+        let targetRotZ = 0;
+        let targetScale = 1.0;
+
+        // When scrolling into Timeline (13.8 to 22.6), weave left & right around milestone cards
+        if (currentV >= 13.8 && currentV <= 22.6) {
+          const tProg = (currentV - 13.8) / (22.6 - 13.8); // 0.0 to 1.0
+          const sideX = mobile ? vHeight * camera.aspect * 0.13 : vHeight * camera.aspect * 0.28;
+
+          if (tProg < 0.20) {
+            // Milestone 1 (Left card) -> Mask on Right
+            targetX = sideX;
+            targetY = -0.12;
+            targetRotY = -0.32;
+            targetRotX = 0.05;
+            targetScale = 0.85;
+          } else if (tProg < 0.40) {
+            // Milestone 2 (Right card) -> Mask glides to Left
+            const local = (tProg - 0.20) / 0.20;
+            targetX = THREE.MathUtils.lerp(sideX, -sideX, local);
+            targetY = THREE.MathUtils.lerp(-0.12, 0.1, local);
+            targetRotY = THREE.MathUtils.lerp(-0.32, 0.32, local);
+            targetRotX = 0.04;
+            targetScale = 0.85;
+          } else if (tProg < 0.60) {
+            // Milestone 3 (Left card) -> Mask glides to Right
+            const local = (tProg - 0.40) / 0.20;
+            targetX = THREE.MathUtils.lerp(-sideX, sideX, local);
+            targetY = THREE.MathUtils.lerp(0.1, -0.1, local);
+            targetRotY = THREE.MathUtils.lerp(0.32, -0.28, local);
+            targetRotX = -0.05;
+            targetScale = 0.82;
+          } else if (tProg < 0.80) {
+            // Milestone 4 (Right card) -> Mask glides to Left
+            const local = (tProg - 0.60) / 0.20;
+            targetX = THREE.MathUtils.lerp(sideX, -sideX, local);
+            targetY = THREE.MathUtils.lerp(-0.1, 0.14, local);
+            targetRotY = THREE.MathUtils.lerp(-0.28, 0.28, local);
+            targetRotX = 0.06;
+            targetScale = 0.82;
+          } else {
+            // Milestone 5 (Grand Finale) -> Mask centers
+            const local = (tProg - 0.80) / 0.20;
+            targetX = THREE.MathUtils.lerp(-sideX, 0, local);
+            targetY = THREE.MathUtils.lerp(0.14, 0, local);
+            targetRotY = THREE.MathUtils.lerp(0.28, 0, local);
+            targetRotX = 0;
+            targetScale = THREE.MathUtils.lerp(0.82, 1.15, local);
+          }
+        } else if (currentV > 22.6) {
+          // Closing section: Mask centers and zooms forward into camera
+          const cProg = Math.min(1, (currentV - 22.6) / 1.4);
+          targetX = 0;
+          targetY = 0;
+          targetZ = THREE.MathUtils.lerp(0, 0.8, cProg);
+          targetScale = THREE.MathUtils.lerp(1.15, 1.4, cProg);
+          targetRotX = 0.08;
+          targetRotY = 0;
+        }
+
+        const lerpFactor = reducedMotion ? 1 : 1 - Math.exp(-dt * 5.5);
+        pivot.position.x += (targetX - pivot.position.x) * lerpFactor;
+        pivot.position.y += (targetY - pivot.position.y) * lerpFactor;
+        pivot.position.z += (targetZ - pivot.position.z) * lerpFactor;
+        pivot.scale.setScalar(THREE.MathUtils.lerp(pivot.scale.x, targetScale, lerpFactor));
+
+        const idleRotZ = reducedMotion ? 0 : Math.sin(seconds * 1.2) * 0.015;
+        pivot.rotation.x += (targetRotX - pointer.y * 0.06 - pivot.rotation.x) * lerpFactor;
+        pivot.rotation.y += (targetRotY + pointer.x * 0.12 - pivot.rotation.y) * lerpFactor;
+        pivot.rotation.z += (targetRotZ + idleRotZ - pivot.rotation.z) * lerpFactor;
+
         scene.updateMatrixWorld(true);
         raycaster.setFromCamera(pointer, camera);
         const hits = raycaster.intersectObjects(meshes, false);
@@ -169,11 +255,6 @@ export default function DoomMaskHero() {
         const glow = touchActive || !isTouch ? (onMask ? 1 : 0.65) : 0.35;
         const flicker = reducedMotion ? 1 : 1 + 0.05 * Math.sin(seconds * 11) + 0.025 * Math.sin(seconds * 25);
         torch.intensity = (0.85 + glow * 2.4) * flicker;
-        if (pivot && !reducedMotion) {
-          const factor = 1 - Math.exp(-dt * 2.8);
-          pivot.rotation.y += (pointer.x * 0.12 - pivot.rotation.y) * factor;
-          pivot.rotation.x += (-pointer.y * 0.06 - pivot.rotation.x) * factor;
-        }
       }
 
       renderer.render(scene, camera);
@@ -280,6 +361,13 @@ export default function DoomMaskHero() {
       });
     }
 
+    function onScroll(event) {
+      if (typeof event.detail?.v === 'number') {
+        currentV = event.detail.v;
+        if (heroActive) startLoop();
+      }
+    }
+
     if ('ResizeObserver' in window) {
       resizeObserver = new ResizeObserver(resize);
       resizeObserver.observe(host);
@@ -296,6 +384,7 @@ export default function DoomMaskHero() {
     }
     document.addEventListener('visibilitychange', visibilityChange);
     window.addEventListener('incursion:hero-active', heroActivity);
+    window.addEventListener('incursion:scroll', onScroll);
     canvas.addEventListener('pointermove', pointerMove);
     canvas.addEventListener('pointerup', pointerUp);
     canvas.addEventListener('pointercancel', pointerUp);
@@ -309,6 +398,7 @@ export default function DoomMaskHero() {
       window.removeEventListener('resize', resize);
       document.removeEventListener('visibilitychange', visibilityChange);
       window.removeEventListener('incursion:hero-active', heroActivity);
+      window.removeEventListener('incursion:scroll', onScroll);
       canvas.removeEventListener('pointermove', pointerMove);
       canvas.removeEventListener('pointerup', pointerUp);
       canvas.removeEventListener('pointercancel', pointerUp);
@@ -327,7 +417,7 @@ export default function DoomMaskHero() {
   }, []);
 
   return (
-    <div ref={hostRef} className={`mask-stage${modelAvailable ? '' : ' is-fallback'}${modelReady ? ' is-ready' : ''}`} aria-label="Interactive Doctor Doom mask">
+    <div ref={hostRef} id="mask-stage" className={`mask-stage${modelAvailable ? '' : ' is-fallback'}${modelReady ? ' is-ready' : ''}`} aria-label="Interactive Doctor Doom mask">
       <img className="mask-fallback" src="/media/doom-closeup.webp" alt="" aria-hidden="true" />
       <canvas ref={canvasRef} className="mask-canvas" aria-label="3D Doctor Doom mask. Move or touch the image to direct the light." role="img" />
       <p className="mask-hint" aria-live="polite">{hint}</p>
