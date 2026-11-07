@@ -14,9 +14,17 @@ export default function Footer() {
         <div className="universe-footer-grid">
           {/* Column 1: Brand & Theme */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
-              <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '26px', width: 'auto' }} />
-              <Link href="/universe" className="universe-footer-brand-title" style={{ margin: 0 }}>
+            <div className="universe-footer-brand-lockup">
+              <div className="universe-footer-logo-pair">
+                <img className="universe-footer-gdg-logo" src="/gdg-logo.svg" alt="GDG on Campus logo" />
+                <span className="universe-footer-logo-divider" aria-hidden="true" />
+                <span
+                  className="universe-footer-incursion-logo-slot"
+                  role="img"
+                  aria-label="Space reserved for the Incursion logo"
+                />
+              </div>
+              <Link href="/universe" className="universe-footer-brand-title">
                 INCURSION 2027
               </Link>
             </div>
