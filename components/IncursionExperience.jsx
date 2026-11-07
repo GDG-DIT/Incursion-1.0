@@ -77,7 +77,18 @@ function HeroStage() {
           <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'inline-block' }} />
           <span>GDG on Campus, DYPIT Pune presents</span>
         </p>
-        <h1 id="hero-title">INCURSION 2027</h1>
+        <h1 id="hero-title" aria-label="INCURSION 2027">
+          <img
+            className="hero-incursion-logo"
+            src="/incursion-logo.webp"
+            alt=""
+            width="1774"
+            height="887"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <span className="hero-year" aria-hidden="true">2027</span>
+        </h1>
         <p className="hero-deck">Two worlds. One final stand.<br />Doomsday Times Run Out.</p>
         <div className="hero-meta">
           <span>8 Nov 2026 – 31 Jan 2027</span>

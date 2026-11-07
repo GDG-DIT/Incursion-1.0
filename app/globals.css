@@ -1400,11 +1400,24 @@ header b {
 }
 
 #hero h1 {
-  margin: 0 0 27px -0.06em;
-  font: italic 400 clamp(72px, 8.7vw, 142px)/1.08 var(--serif);
-  letter-spacing: 0.005em;
-  white-space: nowrap;
-  text-shadow: 0 4px 42px rgba(0, 0, 0, 0.62);
+  width: min(100%, 600px);
+  margin: 0 0 22px;
+}
+
+#hero .hero-incursion-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#hero .hero-year {
+  display: block;
+  margin-top: 4px;
+  padding-right: 5px;
+  color: var(--accent);
+  font: 600 11px/1.4 var(--sans);
+  letter-spacing: 0.3em;
+  text-align: right;
 }
 
 #hero .hero-deck {
@@ -1836,9 +1849,14 @@ header b {
   }
 
   #hero h1 {
-    margin: 0 0 12px -0.05em;
-    font-size: clamp(54px, 16vw, 106px);
-    line-height: 1;
+    width: min(100%, 430px);
+    margin: 0 0 14px;
+  }
+
+  #hero .hero-year {
+    margin-top: 2px;
+    font-size: 10px;
+    letter-spacing: 0.26em;
   }
 
   #hero .hero-deck {
