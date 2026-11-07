@@ -13,6 +13,11 @@ export default function Navbar() {
       {/* Brand */}
       <Link href="/universe" className="universe-nav-brand">
         <img src="/gdg-logo.svg" alt="GDG on Campus Logo" className="universe-nav-logo" />
+        <span className="universe-nav-collab" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+            <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
+          </svg>
+        </span>
         <span className="universe-nav-title">INCURSION 2027</span>
       </Link>
 

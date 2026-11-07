@@ -294,12 +294,30 @@ header .hdr-logo,
   transform: translateY(-0.25em);
 }
 
+header .hdr-collab,
+#hdr .hdr-collab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(233, 231, 224, 0.7);
+  transform: translateY(-0.25em);
+  line-height: 1;
+}
+
+header .hdr-collab svg,
+#hdr .hdr-collab svg {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+
 header b,
 #hdr b {
   font: italic 400 28px/1 var(--serif);
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
+  overflow: visible;
 }
 
 #snd {
@@ -1421,11 +1439,13 @@ header b {
 
 @media (max-width: 480px) {
   #hdr {
-    padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 0;
+    padding: max(22px, calc(16px + env(safe-area-inset-top, 0px))) 16px 0;
   }
 
   #hdr b {
-    font-size: 20px;
+    font-size: 18px;
+    line-height: 1.15;
+    overflow: visible;
   }
 
   #hdr .hdr-portal {
@@ -2225,26 +2245,32 @@ header b {
 
   #hdr {
     z-index: 50;
-    padding: calc(12px + env(safe-area-inset-top, 0px)) 5vw 0;
+    padding: max(22px, calc(16px + env(safe-area-inset-top, 0px))) clamp(16px, 5vw, 24px) 0;
   }
 
   #hdr > div:first-child,
   #hdr .hdr-brand {
     min-width: 0;
-    gap: 6px !important;
-    font-size: 15px;
+    gap: 8px !important;
+    font-size: 18px;
+    align-items: center;
   }
 
   #hdr .hdr-logo,
   #hdr img {
-    height: 15px !important;
+    height: 18px !important;
     transform: translateY(-0.25em);
   }
 
+  #hdr .hdr-collab svg {
+    width: 10px;
+    height: 10px;
+  }
+
   #hdr b {
-    overflow: hidden;
-    font-size: 15px;
-    text-overflow: ellipsis;
+    font-size: 18px;
+    line-height: 1.15;
+    overflow: visible;
     white-space: nowrap;
   }
 

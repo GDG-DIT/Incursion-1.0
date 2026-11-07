@@ -144,6 +144,21 @@ header.universe-navbar {
   transform: translateY(-0.25em);
 }
 
+.universe-nav-collab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(233, 231, 224, 0.7);
+  transform: translateY(-0.25em);
+  line-height: 1;
+}
+
+.universe-nav-collab svg {
+  width: 15px;
+  height: 15px;
+  display: block;
+}
+
 .universe-nav-title {
   display: inline-flex;
   align-items: center;
@@ -154,6 +169,7 @@ header.universe-navbar {
   font-size: 28px;
   letter-spacing: 0.04em;
   color: var(--ink);
+  overflow: visible;
 }
 
 .universe-nav-links {
@@ -1098,6 +1114,10 @@ footer.universe-footer {
 }
 
 @media (max-width: 768px) {
+  header.universe-navbar {
+    height: calc(64px + env(safe-area-inset-top, 0px)) !important;
+    padding-top: env(safe-area-inset-top, 0px) !important;
+  }
   .universe-nav-links,
   .universe-nav-btn {
     display: none !important;
@@ -1156,14 +1176,20 @@ footer.universe-footer {
     height: 48px;
   }
   .universe-nav-brand {
-    gap: 10px;
+    gap: 8px;
   }
   .universe-nav-logo {
     height: 20px;
     transform: translateY(-0.25em);
   }
+  .universe-nav-collab svg {
+    width: 11px;
+    height: 11px;
+  }
   .universe-nav-title {
     font-size: 24px;
+    line-height: 1.15;
+    overflow: visible;
   }
   .universe-hero-title {
     font-size: clamp(38px, 11vw, 56px);
