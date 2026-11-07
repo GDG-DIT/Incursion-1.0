@@ -1,6 +1,7 @@
 import './globals.css';
 import type { ReactNode } from 'react';
 import ImageProtection from '../components/ImageProtection';
+import { Analytics } from '@vercel/analytics/next';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
@@ -66,5 +67,5 @@ export const metadata = {
 export const viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', themeColor: '#040605' };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  return <html lang="en"><body><ImageProtection />{children}</body></html>;
+  return <html lang="en"><body><ImageProtection />{children}<Analytics /></body></html>;
 }
