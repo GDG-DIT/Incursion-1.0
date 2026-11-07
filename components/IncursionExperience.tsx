@@ -147,8 +147,8 @@ export default function IncursionExperience() {
         </a>
         <Timeline />
         <header id="hdr">
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-            <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '18px', width: 'auto' }} />
+          <div className="hdr-brand">
+            <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG Logo" />
             <b>INCURSION 2027</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

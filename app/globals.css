@@ -277,9 +277,29 @@ header>* {
   pointer-events: auto;
 }
 
-header b {
-  font: italic 400 28px var(--serif);
+header .hdr-brand,
+#hdr .hdr-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+}
+
+header .hdr-logo,
+#hdr .hdr-logo,
+#hdr img {
+  height: 20px;
+  width: auto;
+  display: block;
+  transform: translateY(-0.25em);
+}
+
+header b,
+#hdr b {
+  font: italic 400 28px/1 var(--serif);
   letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
 }
 
 #snd {
@@ -2208,13 +2228,17 @@ header b {
     padding: calc(12px + env(safe-area-inset-top, 0px)) 5vw 0;
   }
 
-  #hdr > div:first-child {
+  #hdr > div:first-child,
+  #hdr .hdr-brand {
     min-width: 0;
     gap: 6px !important;
+    font-size: 15px;
   }
 
+  #hdr .hdr-logo,
   #hdr img {
     height: 15px !important;
+    transform: translateY(-0.25em);
   }
 
   #hdr b {

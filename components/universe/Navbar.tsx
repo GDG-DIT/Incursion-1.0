@@ -11,8 +11,8 @@ export default function Navbar() {
   return (
     <header className="universe-navbar">
       {/* Brand */}
-      <Link href="/universe" className="universe-nav-brand" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
-        <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '24px', width: 'auto', display: 'block' }} />
+      <Link href="/universe" className="universe-nav-brand">
+        <img src="/gdg-logo.svg" alt="GDG on Campus Logo" className="universe-nav-logo" />
         <span className="universe-nav-title">INCURSION 2027</span>
       </Link>
 
