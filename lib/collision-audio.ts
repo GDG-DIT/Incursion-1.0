@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 /** One-shot cues rearm after rewinding, without stacking on large scroll jumps. */
 export function advanceCollisionCues(progress, fired) {
   const thresholds = [0.37, 0.63, 0.89];

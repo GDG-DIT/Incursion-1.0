@@ -8,7 +8,7 @@ const DAY_1_SCHEDULE = [
   { time: '09:00', title: 'Location Distribution', desc: 'Teams settle into designated hacking zones and hardware stations.' },
   { time: '10:00', title: 'Opening Ceremony', desc: 'Welcome address by GDG on Campus, leadership, and keynote speakers.' },
   { time: '10:30', title: 'Challenge Reveal', desc: 'Detailed problem statements and track rubrics officially unveiled.' },
-  { time: '11:00', title: 'Hackathon Begins', desc: '24-hour sprint timer starts. Hacking is officially live.' },
+  { time: '11:00', title: 'Hackathon Begins', desc: 'Sprint timer starts. Hacking is officially live.' },
   { time: '13:00', title: 'Lunch', desc: 'Networking lunch served on-site for all participating teams.' },
   { time: '16:00', title: 'Mentor Checkpoint', desc: 'First round of technical reviews with domain experts and advisors.' },
   { time: '19:30', title: 'Dinner', desc: 'Fuel up for the overnight push.' },
@@ -41,7 +41,7 @@ export default function Schedule() {
           <div className="universe-eyebrow">Timeline & Schedule</div>
           <h2 className="universe-section-title">The Convergence Roadmap</h2>
           <p className="universe-section-desc">
-            From the opening national registration to the 24-hour finale on campus at DYPIT Pune.
+            From the opening national registration to the offline finale on campus at DYPIT Pune.
           </p>
 
           {/* Schedule Mode Switcher */}

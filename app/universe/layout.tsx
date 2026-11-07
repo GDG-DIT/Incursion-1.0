@@ -1,6 +1,6 @@
 export const metadata = {
   title: 'Hackathon Details, Tracks, Schedule and Prizes',
-  description: 'Explore INCURSION 2027 hackathon tracks, eligibility, schedule, prizes, judging, FAQs, and the 24-hour finale at DYPIT Pune.',
+  description: 'Explore INCURSION 2027 hackathon tracks, eligibility, schedule, prizes, judging, FAQs, and the offline finale at DYPIT Pune.',
   alternates: {
     canonical: '/universe',
   },
@@ -11,6 +11,7 @@ export const metadata = {
   },
 };
 
-export default function UniverseLayout({ children }) {
+export default function UniverseLayout({ children }: { children: ReactNode }) {
   return children;
 }
+import type { ReactNode } from 'react';

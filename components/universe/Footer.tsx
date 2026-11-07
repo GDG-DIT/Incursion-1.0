@@ -29,7 +29,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="universe-footer-desc">
-              National-level 24-hour student hackathon organized by GDG on Campus,
+              National-level student hackathon organized by GDG on Campus,
               Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.
             </p>
             <div className="universe-footer-tagline">
@@ -47,11 +47,6 @@ export default function Footer() {
               <li><a href="#prizes">Prize Pool & Perks</a></li>
               <li><a href="#sponsors">Partners & Sponsors</a></li>
               <li><a href="#faq">FAQ</a></li>
-              <li>
-                <Link href="/" style={{ color: 'var(--em)' }}>
-                  ← Replay Film Experience
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -87,12 +82,48 @@ export default function Footer() {
                   Email: gdg.dit@dypvp.edu.in
                 </a>
               </li>
-              <li>
-                <button type="button" onClick={scrollToTop} style={{ color: 'var(--em)', marginTop: '8px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
-                  ↑ Back to Top
-                </button>
+              <li className="universe-footer-contact">
+                <div className="universe-footer-contact-person">
+                  <strong>Tejas Nalawade</strong>
+                  <span>Event Director</span>
+                </div>
+                <a className="universe-footer-call" href="tel:+919970940311">
+                  <span>+91 99709 40311</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li className="universe-footer-contact">
+                <div className="universe-footer-contact-person">
+                  <strong>Parth Kharat</strong>
+                  <span>Tech Lead</span>
+                </div>
+                <a className="universe-footer-call" href="tel:+917972932522">
+                  <span>+91 79729 32522</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
               </li>
             </ul>
+          </div>
+
+          {/* Column 4: Campus Map */}
+          <div className="universe-footer-map-column">
+            <div className="universe-footer-col-title">Campus Location</div>
+            <div className="universe-footer-map">
+              <iframe
+                title="Dr. D. Y. Patil Institute of Technology campus map"
+                src="https://www.google.com/maps?q=Dr.+D.+Y.+Patil+Institute+of+Technology,+Pimpri,+Pune&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <a
+              className="universe-footer-map-link"
+              href="https://www.google.com/maps/search/?api=1&query=Dr.+D.+Y.+Patil+Institute+of+Technology,+Pimpri,+Pune"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Open in Google Maps →
+            </a>
           </div>
         </div>
 

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { advanceCollisionCues, createCollisionSound } from '../lib/collision-audio.js';
+import { advanceCollisionCues, createCollisionSound } from '../lib/collision-audio.ts';
 
 test('scrubbing fires once, ignores small reversals, and rearms after rewinding', () => {
   const fired = [false, false, false];

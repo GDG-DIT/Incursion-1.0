@@ -1,11 +1,13 @@
+// @ts-nocheck
+
 // Edit the schedule and registration destination here.
 // Source of truth: incursion-2027-content.md
 export const REGISTER_URL = process.env.NEXT_PUBLIC_REGISTER_URL || '';
 export const TIMELINE = [
   {
     t: 'Registration & Idea Submission',
-    d: '8 November – 5 December 2026',
-    x: 'National registration and team formation. Ideas submitted on the hackathon platform.',
+    d: '9 November – 5 December 2026',
+    x: 'National registration and team formation. Ideas submitted on the platform.',
     img: { f: 0 },
     ic: { f: 0, z: '420%', p: '4% 45%' },
   },
@@ -26,14 +28,14 @@ export const TIMELINE = [
   {
     t: 'Top 50 Finalists Announced',
     d: '5 January 2027',
-    x: 'Top 50 teams shortlisted, plus waitlist, for the offline 24-hour finale.',
+    x: 'Top 50 teams shortlisted, plus waitlist, for the offline finale.',
     img: { f: 3 },
     ic: { f: 3, z: '420%', p: '50% 52%' },
   },
   {
     t: 'Grand Finale',
     d: '30–31 January 2027 · DYPIT Campus, Pune',
-    x: '24-hour build sprint, mentor checkpoints, demos, jury review, and awards ceremony.',
+    x: 'Build sprint, mentor checkpoints, demos, jury review, and awards ceremony.',
     img: { url: '/media/doom-throne.webp', z: '190%', p: '50% 58%' },
     ic: { url: '/media/doom-closeup.webp', z: '390%', p: '52% 38%' },
   },

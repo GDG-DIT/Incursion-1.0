@@ -11,7 +11,7 @@ export default function About() {
           </div>
           <h2 className="universe-section-title">Doomsday Times Run Out</h2>
           <p className="universe-section-desc">
-            INCURSION 2027 is a national-level 24-hour student hackathon organized by GDG on Campus,
+            INCURSION 2027 is a national-level student hackathon organized by GDG on Campus,
             Dr. D. Y. Patil Institute of Technology, Pimpri, Pune. Designed around a two-round format—an
             online idea challenge followed by an offline build-and-demo sprint at the DYPIT campus—INCURSION
             summons builders, engineers, and creators to engineer critical solutions before the clock hits zero.
@@ -30,11 +30,11 @@ export default function About() {
           </div>
 
           <div className="universe-card">
-            <div className="universe-card-num">02 // Round 2: 24-Hour Finale</div>
+            <div className="universe-card-num">02 // Round 2: Offline Finale</div>
             <h3 className="universe-card-title">Offline Build Sprint</h3>
             <p className="universe-card-desc">
               The top 50 shortlisted teams assemble on 30–31 January 2027 at DYPIT Pune.
-              Experience challenge reveals, 24-hour non-stop prototyping with mentor checkpoints, and live jury demos.
+              Experience challenge reveals, non-stop prototyping with mentor checkpoints, and live jury demos.
             </p>
           </div>
 

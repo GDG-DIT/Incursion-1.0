@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { createCollisionSound } from "./collision-audio";
 import { REGISTER_URL } from "./content";
 
@@ -281,6 +283,7 @@ export function createExperience(root) {
     },
   };
   const collisionSound = createCollisionSound(AC);
+  let trk = 0;
   function upd() {
     if (disposed) return;
     const b = $("#snd");
@@ -341,8 +344,6 @@ export function createExperience(root) {
     ready = true;
     iv.pause();
     $("#skip").style.display = "none";
-    $("#gate").classList.add("go");
-    $("#gate").inert = true;
     document.documentElement.classList.remove("lock");
     iv.style.transition = "opacity 0.6s";
     iv.style.opacity = 0;
@@ -359,25 +360,49 @@ export function createExperience(root) {
   }
   function enter(snd) {
     introStarted = true;
-    AC.on = snd;
+    iv.muted = !snd;
+    iv.volume = snd ? 1 : 0;
     if (typeof window !== "undefined") {
       sessionStorage.setItem("incursion_audio_enabled", snd ? "true" : "false");
     }
     AC.init();
     AC.set(snd);
-    $("#gate").classList.add("go");
-    $("#gate").inert = true;
-    $("#skip").style.display = "block";
-    $("#skip").focus({ preventScroll: true });
+    if (snd && AC.ctx?.state === "suspended") {
+      AC.ctx.resume().catch(() => {});
+    }
+    if (snd && AC.trk && trk === 0) {
+      trk = 1;
+      AC.play(0, 1.0, 400);
+    }
     const p = iv.play();
-    if (p && p.catch) p.catch(finish);
+    if (p && p.catch) {
+      p.catch(() => {
+        if (disposed || done) return;
+        iv.muted = true;
+        iv.play().catch(() => {});
+        const resumeExperienceAudio = () => {
+          if (disposed || done || !AC.on) return;
+          if (AC.ctx?.state === "suspended") {
+            AC.ctx.resume().catch(() => {});
+          }
+          if (AC.trk) {
+            AC.play(AC.trk.currentTime || 0, 1.0, 400);
+          }
+          iv.muted = false;
+          iv.volume = 1;
+          iv.play().catch(() => {});
+        };
+        listen(window, "pointerdown", resumeExperienceAudio, { once: true });
+        listen(window, "keydown", resumeExperienceAudio, { once: true });
+      });
+    }
   }
 
-  listen($("#enter"), "click", () => enter(true));
-  listen($("#enterq"), "click", () => enter(false));
   listen(iv, "ended", finish);
   listen(iv, "error", finish);
+  $("#skip").style.display = "block";
   listen($("#skip"), "click", finish);
+  enter(true);
   /* ---- registration / schedule buttons ---- */
   $$("a[href*='/universe']").forEach((link) => {
     listen(link, "click", () => {
@@ -423,6 +448,8 @@ export function createExperience(root) {
     tc = $("#tc"),
     vg = $("#vg"),
     scrim = $("#scrim"),
+    stageTease = $("#stage-tease"),
+    stageEndTease = $("#stage-end-tease"),
     tl = $$("[data-w]").map((e) => ({
       e,
       w: e.dataset.w.split(",").map(Number),
@@ -450,8 +477,13 @@ export function createExperience(root) {
   const CH = [
     [$("#tlv"), 13.8, 22.6],
   ].map((a) => ({ el: a[0], s: a[1], e: a[2], seen: false }));
+  const scrollCue = $("#hero-scroll-cue");
+  const updateScrollCue = () => {
+    scrollCue?.classList.toggle("is-hidden", scrollY > 50);
+  };
+  listen(window, "scroll", updateScrollCue, { passive: true });
+  updateScrollCue();
   let reveal = 0,
-    trk = 0,
     redirected = false,
     firstScrollReveal = false,
     timelineVisited = false;
@@ -499,7 +531,28 @@ export function createExperience(root) {
       S = 1 + 0.8 * pu;
     const co = ss(3.8, 5.3, v),
       tO = 1 - ss(10.0, 10.8, v);
-    vis(THR, tO);
+    if (!ready) {
+      THR.style.opacity = "0";
+      THR.style.visibility = "hidden";
+      if (stageTease) {
+        stageTease.style.opacity = "0";
+        stageTease.style.visibility = "hidden";
+      }
+      if (stageEndTease) {
+        stageEndTease.style.opacity = "0";
+        stageEndTease.style.visibility = "hidden";
+      }
+    } else if (stageTease) {
+      const teaseOpacity = 1 - ss(0.8, 3.2, v);
+      stageTease.style.opacity = teaseOpacity;
+      stageTease.style.visibility = teaseOpacity > 0.002 ? "visible" : "hidden";
+    }
+    if (ready && stageEndTease) {
+      const endTeaseOpacity = ss(22.7, 24.2, v);
+      stageEndTease.style.opacity = endTeaseOpacity;
+      stageEndTease.style.visibility = endTeaseOpacity > 0.002 ? "visible" : "hidden";
+    }
+    if (ready) vis(THR, tO);
     if (co > 0.5 && !reveal) {
       reveal = now;
       AC.duck(0.025, 0.9);
@@ -514,12 +567,12 @@ export function createExperience(root) {
         jx = (Math.sin(v * 11) + Math.sin(v * 6.3)) * j,
         jy = Math.cos(v * 8.7) * j;
       tw2.style.transform = `translate(${jx}px,${jy}px) scale(${S})`;
-      tw2.style.filter = `brightness(${0.1 + 0.9 * em})${RM ? "" : ` blur(${0.25 * pu * pu}px)`}`;
+      tw2.style.filter = `brightness(${0.5 + 0.5 * em})${RM ? "" : ` blur(${0.25 * pu * pu}px)`}`;
       tw2.style.visibility = co < 0.999 ? "visible" : "hidden";
       tc.style.opacity = co;
       tc.style.transform = `scale(${1 + 0.07 * ss(5.6, 6.8, v)})`;
       tc.style.filter = `brightness(${1 - 0.28 * ss(6.8, 7.4, v) * (1 - ss(9.6, 10.0, v))})`;
-      const r = lerp(lerp(10, 74, em) * (1 - 0.5 * pu), 34, co);
+      const r = lerp(lerp(30, 74, em) * (1 - 0.5 * pu), 34, co);
       vg.style.setProperty("--r", r + "%");
       vg.style.setProperty("--fx", lerp(55, 52, co) + "%");
       vg.style.setProperty("--fy", lerp(58, 36, co) + "%");
@@ -540,7 +593,7 @@ export function createExperience(root) {
     const heroOpacity = ss(10.3, 10.9, v) * (1 - ss(13.4, 14.0, v));
     if (heroStage) {
       vis(heroStage, heroOpacity);
-      heroStage.style.transform = `scale(${1 + 0.08 * ss(10.3, 12.6, v)})`;
+      heroStage.style.transform = "none";
     }
     /* timeline (scroll-linked reveals over a star field) + closing scene */
     CH.forEach((k, i) => {
@@ -573,24 +626,17 @@ export function createExperience(root) {
         });
       }
     });
-    /* timeline finished -> redirect to /universe ("Enter the Universe") */
-      if (v >= 22.7 && timelineVisited && !redirected) {
-        redirected = true;
-        if (typeof window !== "undefined") {
-          sessionStorage.setItem("incursion_audio_enabled", AC.on ? "true" : "false");
-          sessionStorage.setItem("incursion_audio_time", String(AC.trk?.currentTime || 0));
-        }
-        const overlay = document.createElement("div");
-        overlay.style.cssText =
-          "position:fixed;inset:0;z-index:9999;background:#000;opacity:0;transition:opacity 0.8s ease;pointer-events:none;";
-        document.body.appendChild(overlay);
-        requestAnimationFrame(() => {
-          overlay.style.opacity = "1";
-          setTimeout(() => {
-            window.location.href = "/universe";
-          }, 850);
-        });
-      }
+    /*
+     * Stage 1 ends on the timeline.
+     * The transition to /universe is intentionally disabled until Stage 2.
+     *
+     * if (v >= 22.7 && timelineVisited && !redirected) {
+     *   redirected = true;
+     *   sessionStorage.setItem("incursion_audio_enabled", AC.on ? "true" : "false");
+     *   sessionStorage.setItem("incursion_audio_time", String(AC.trk?.currentTime || 0));
+     *   window.location.href = "/universe";
+     * }
+     */
       if (v < 0.05 && trk >= 1) {
         trk = 0;
         reveal = 0;

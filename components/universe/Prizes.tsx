@@ -113,25 +113,6 @@ export default function Prizes() {
           </div>
         </div>
 
-        {/* Special & Preserved Categories Strip */}
-        <div className="universe-grid-3" style={{ marginBottom: '40px' }}>
-          <div className="universe-card" style={{ textAlign: 'center' }}>
-            <div className="universe-eyebrow">Category Award</div>
-            <h3 className="universe-card-title">Best First-Time Team</h3>
-            <p className="universe-card-desc" style={{ color: 'var(--accent)', fontWeight: 700 }}>₹5,000 + Mentorship</p>
-          </div>
-          <div className="universe-card" style={{ textAlign: 'center' }}>
-            <div className="universe-eyebrow">Special Award</div>
-            <h3 className="universe-card-title">Best All-Women Team</h3>
-            <p className="universe-card-desc" style={{ color: 'var(--accent)', fontWeight: 700 }}>₹35,000 + Mentorship</p>
-          </div>
-          <div className="universe-card" style={{ textAlign: 'center' }}>
-            <div className="universe-eyebrow">Special Award</div>
-            <h3 className="universe-card-title">Most Creative UI/UX</h3>
-            <p className="universe-card-desc" style={{ color: 'var(--accent)', fontWeight: 700 }}>₹30,000 + Design Licenses</p>
-          </div>
-        </div>
-
         {/* Beyond Cash & Participant Kit */}
         <div className="universe-grid-2">
           <div className="universe-card">
@@ -150,10 +131,9 @@ export default function Prizes() {
             <div className="universe-eyebrow">Finalist Kit</div>
             <h3 className="universe-card-title">Participant Welcome Bag</h3>
             <p className="universe-card-desc" style={{ marginBottom: '12px' }}>
-              Every team checking in for the offline 24-hour finale receives an exclusive kit:
+              Every team checking in for the offline finale receives an exclusive kit:
             </p>
             <ul className="universe-prize-list">
-              <li className="universe-prize-item"><span className="universe-prize-item-bullet">✦</span><span>Official INCURSION 2027 T-shirt & ID Badge</span></li>
               <li className="universe-prize-item"><span className="universe-prize-item-bullet">✦</span><span>Developer notebook, pen & exclusive sticker packs</span></li>
               <li className="universe-prize-item"><span className="universe-prize-item-bullet">✦</span><span>Event guide, mentor contact booklet & schedule planner</span></li>
               <li className="universe-prize-item"><span className="universe-prize-item-bullet">✦</span><span>Sponsor merchandise and tech swag</span></li>

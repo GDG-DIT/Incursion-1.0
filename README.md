@@ -35,7 +35,7 @@ Participants begin with an online idea challenge before the strongest teams ente
 
 | Date | Milestone |
 |---|---|
-| **8 November 2026** | Registration opens |
+| **9 November 2026** | Registration opens |
 | **5 December 2026** | Registration and idea submission close |
 | **6 December 2026 – 5 January 2027** | Evaluation and finalist selection |
 | **30 January 2027** | Finale check-in and hackathon begins |

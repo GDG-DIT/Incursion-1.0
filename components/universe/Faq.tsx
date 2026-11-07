@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { useState } from 'react';
@@ -13,19 +14,19 @@ const FAQS = [
   },
   {
     q: 'Is there any registration fee?',
-    a: 'Round 1 (online registration and idea submission) is 100% free with no cap on the number of participating teams nationwide. For the top 50 shortlisted teams attending the offline 24-hour finale, a confirmation fee of ₹899 per team applies. Travel and accommodation are the participants’ responsibility unless sponsored.',
+    a: 'Round 1 (online registration and idea submission) is 100% free with no cap on the number of participating teams nationwide. For the top 50 shortlisted teams attending the offline finale, a confirmation fee of ₹899 per team applies. Travel and accommodation are the participants’ responsibility unless sponsored.',
   },
   {
     q: 'How does the two-round format work?',
-    a: 'Round 1 (8 Nov 2026 – 5 Dec 2026) is an online idea challenge conducted on the hackathon platform. Teams submit proposed solutions across the five tracks. Following structured jury evaluation, the top 50 teams (plus waitlist) advance to Round 2: an offline 24-hour build-and-demo sprint at the DYPIT campus in Pune on 30–31 January 2027.',
+    a: 'Round 1 (8 Nov 2026 – 5 Dec 2026) is an online idea challenge conducted on the hackathon platform. Teams submit proposed solutions across the five tracks. Following structured jury evaluation, the top 50 teams (plus waitlist) advance to Round 2: an offline build-and-demo sprint at the DYPIT campus in Pune on 30–31 January 2027.',
   },
   {
     q: 'Where will the offline finale take place?',
-    a: 'The 24-hour offline finale will be held on-campus at Dr. D. Y. Patil Institute of Technology (DYPIT), Pimpri, Pune, Maharashtra on 30–31 January 2027.',
+    a: 'The offline finale will be held on-campus at Dr. D. Y. Patil Institute of Technology (DYPIT), Pimpri, Pune, Maharashtra on 30–31 January 2027.',
   },
   {
-    q: 'What facilities are provided to finalists during the 24-hour sprint?',
-    a: 'Finalists are fully accommodated with on-site meals (lunch, evening snacks, dinner, midnight snacks, and breakfast), continuous water stations, high-speed enterprise-grade Wi-Fi with backup links, power outlets with charging stations, designated rest and recovery areas, first-aid and medical support, security, and an official participant welcome kit.',
+    q: 'What facilities are provided to finalists during the sprint?',
+    a: 'Finalists are fully accommodated with on-site meals, continuous water stations, high-speed enterprise-grade Wi-Fi with backup links, power outlets with charging stations, designated rest and recovery areas, first-aid and medical support, security, and an official participant welcome kit.',
   },
   {
     q: 'What are the judging criteria and weights?',
@@ -33,7 +34,7 @@ const FAQS = [
   },
   {
     q: 'When are problem statements released, and can we start early?',
-    a: 'Broad tracks are published now. Specific, detailed challenge statements will be unveiled at the kickoff ceremony on 30 January 2027 (10:30 AM). All project code and prototypes must be created during the 24-hour hackathon window.',
+    a: 'Broad tracks are published now. Specific, detailed challenge statements will be unveiled at the kickoff ceremony on 30 January 2027 (10:30 AM). All project code and prototypes must be created during the hackathon window.',
   },
   {
     q: 'Where do we register?',

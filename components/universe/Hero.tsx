@@ -50,7 +50,7 @@ export default function Hero() {
         {/* Cinematic Description */}
         <p className="universe-hero-subtitle">
           Two worlds have collided. The timeline is fractured. An online national idea challenge
-          followed by an offline 24-hour build-and-demo finale at DYPIT campus, Pune.
+          followed by an offline build-and-demo finale at DYPIT campus, Pune.
         </p>
 
         {/* Call to Actions */}
@@ -115,7 +115,7 @@ export default function Hero() {
           </div>
           <div>
             <div className="universe-stat-num">Open to All</div>
-            <div className="universe-stat-lbl">Round 1 (Unlimited Teams)</div>
+            <div className="universe-stat-lbl">Online Idea Submission</div>
           </div>
           <div>
             <div className="universe-stat-num accent">Top 50 Teams</div>

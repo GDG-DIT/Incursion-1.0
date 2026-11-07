@@ -12,13 +12,7 @@ function Arrow() {
 function IntroGate() {
   return (
     <section id="term" aria-label="Welcome to Incursion">
-      <video id="iv" playsInline preload="auto" src="/media/intro.mp4" aria-label="Incursion introduction" />
-      <div id="gate">
-        <h1>Two worlds</h1>
-        <h1>One final stand</h1>
-        <button className="btn" id="enter" type="button">Explore with sound<Arrow /></button>
-        <button className="btn q" id="enterq" type="button">Explore without sound</button>
-      </div>
+      <video id="iv" autoPlay playsInline preload="auto" src="/media/intro.mp4" aria-label="Incursion introduction" />
       <button id="skip" type="button">Skip intro</button>
     </section>
   );
@@ -78,7 +72,7 @@ function HeroStage() {
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
         <p className="hero-eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'inline-block' }} />
+          {/* <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'inline-block' }} /> */}
           <span>GDG on Campus, DYPIT Pune presents</span>
         </p>
         <h1 id="hero-title" aria-label="INCURSION 2027">
@@ -91,7 +85,6 @@ function HeroStage() {
             fetchPriority="high"
             decoding="async"
           />
-          <span className="hero-year" aria-hidden="true">2027</span>
         </h1>
         <p className="hero-deck">Two worlds. One final stand.<br />Doomsday Times Run Out.</p>
         <div className="hero-meta">
@@ -115,9 +108,6 @@ function HeroStage() {
           <a className="btn hero-secondary" href="#tlv" data-scene-target="13.9">View timeline</a>
         </div>
       </div>
-      <a className="hero-scroll" href="#tlv" data-scene-target="13.9">
-        <span>Scroll down to explore</span><i aria-hidden="true" />
-      </a>
     </section>
   );
 }
@@ -134,8 +124,22 @@ export default function IncursionExperience() {
           <img id="tc" className="pic" src="/media/doom-closeup6.png" alt="Doctor Doom, hooded, eyes glowing green" decoding="async" />
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
+        <div className="stage-tease" id="stage-tease" aria-live="polite">
+          <span className="stage-tease-alert">The multiverse is collapsing</span>
+          <strong className="stage-tease-title">INCURSION <em>2027</em></strong>
+          <strong className="stage-tease-subtitle">The final hour begins.</strong>
+          <span className="stage-tease-meta">30 — 31 January 2027 · Pune, India</span>
+        </div>
+        <div className="stage-end-tease" id="stage-end-tease" aria-live="polite">
+          <span>Stay tuned</span>
+          <strong>Something big is here</strong>
+        </div>
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />
+        <a className="hero-scroll" id="hero-scroll-cue" href="#tlv" data-scene-target="13.9" aria-label="Scroll to illuminate">
+          <span>Scroll to enter the incursion ↓</span>
+          <i aria-hidden="true" />
+        </a>
         <Timeline />
         <header id="hdr">
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -158,7 +162,7 @@ export default function IncursionExperience() {
       <button id="top" type="button" aria-label="Go to top">
         <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" /></svg>
       </button>
-      <noscript><p>This experience uses JavaScript. INCURSION 2027 is a national-level 24-hour student hackathon organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune on 30–31 January 2027.</p></noscript>
+      <noscript><p>This experience uses JavaScript. INCURSION 2027 is a national-level student hackathon organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune on 30–31 January 2027.</p></noscript>
     </main>
   );
 }

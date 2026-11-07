@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -12,7 +13,7 @@ export default function AudioPlayer() {
 
     audio.volume = 1.0;
 
-    const shouldPlay = sessionStorage.getItem('incursion_audio_enabled') === 'true';
+    const shouldPlay = sessionStorage.getItem('incursion_audio_enabled') !== 'false';
 
     // Check if there was a saved playback time
     const savedTime = sessionStorage.getItem('incursion_audio_time');
@@ -22,13 +23,13 @@ export default function AudioPlayer() {
       } catch (e) {}
     }
 
-    if (shouldPlay) {
+    const playAudio = () => {
       audio.play()
         .then(() => setIsPlaying(true))
         .catch(() => setIsPlaying(false));
-    } else {
-      setIsPlaying(false);
-    }
+    };
+
+    if (shouldPlay) playAudio();
 
     // Save timestamp before leaving page
     const handleBeforeUnload = () => {
@@ -49,10 +50,18 @@ export default function AudioPlayer() {
       }
     };
     window.addEventListener('incursion:audio-state', handleSharedAudioState);
+    if (shouldPlay) {
+      window.addEventListener('pointerdown', playAudio, { once: true });
+      window.addEventListener('keydown', playAudio, { once: true });
+    }
 
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('incursion:audio-state', handleSharedAudioState);
+      if (shouldPlay) {
+        window.removeEventListener('pointerdown', playAudio);
+        window.removeEventListener('keydown', playAudio);
+      }
     };
   }, []);
 
