@@ -299,13 +299,15 @@ header .hdr-collab,
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgba(233, 231, 224, 0.45);
+  color: rgba(233, 231, 224, 0.7);
   transform: translateY(-0.25em);
   line-height: 1;
 }
 
 header .hdr-collab svg,
 #hdr .hdr-collab svg {
+  width: 13px;
+  height: 13px;
   display: block;
 }
 
@@ -2257,8 +2259,8 @@ header b {
   }
 
   #hdr .hdr-collab svg {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 9px;
   }
 
   #hdr b {

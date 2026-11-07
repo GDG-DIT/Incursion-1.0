@@ -148,12 +148,14 @@ header.universe-navbar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: rgba(233, 231, 224, 0.45);
+  color: rgba(233, 231, 224, 0.7);
   transform: translateY(-0.25em);
   line-height: 1;
 }
 
 .universe-nav-collab svg {
+  width: 15px;
+  height: 15px;
   display: block;
 }
 
@@ -1176,8 +1178,8 @@ footer.universe-footer {
     transform: translateY(-0.25em);
   }
   .universe-nav-collab svg {
-    width: 8px;
-    height: 8px;
+    width: 11px;
+    height: 11px;
   }
   .universe-nav-title {
     font-size: 24px;
