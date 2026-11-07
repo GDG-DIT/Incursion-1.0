@@ -68,20 +68,27 @@ export function createExperience(root) {
   let lastTick = 0,
     scenePosition = 0,
     introStarted = false,
-    allowDirectJump = false;
+    allowDirectJump = 0;
   const scrollRange = () =>
     Math.max(1, document.documentElement.scrollHeight - innerHeight);
   const readPosition = () => (scrollY / scrollRange()) * STORY_END;
   function goScene(position, allowJump = false) {
-    if (allowJump) allowDirectJump = true;
+    if (allowJump) allowDirectJump = 8;
     scrollTo({
       top: (clamp(position, 0, STORY_END) / STORY_END) * scrollRange(),
-      behavior: "instant",
+      behavior: "auto",
     });
   }
   history.scrollRestoration = "manual";
   scrollTo(0, 0);
   document.documentElement.classList.add("lock");
+  listen(window, "incursion:scene-jump", (event) => {
+    const position = Number(event.detail?.position);
+    if (Number.isFinite(position)) goScene(position, true);
+  });
+  listen(window, "hashchange", () => {
+    if (window.location.hash === "#registration") goScene(23.4, true);
+  });
   const tcol = $("#tcol");
   let colH = 0;
   const rows = $$(".row");
@@ -422,7 +429,8 @@ export function createExperience(root) {
     } else
       listen(a, "click", (e) => {
         e.preventDefault();
-        goScene(15.4, true);
+        history.replaceState(null, "", "#registration");
+        goScene(23.4, true);
       });
   });
   $$('[data-scene-target]').forEach((link) => {
@@ -449,7 +457,7 @@ export function createExperience(root) {
     vg = $("#vg"),
     scrim = $("#scrim"),
     stageTease = $("#stage-tease"),
-    stageEndTease = $("#stage-end-tease"),
+    stageEndTease = $("#registration"),
     tl = $$("[data-w]").map((e) => ({
       e,
       w: e.dataset.w.split(",").map(Number),
@@ -507,7 +515,7 @@ export function createExperience(root) {
       );
       goScene(targetPosition);
     } else {
-      allowDirectJump = false;
+      allowDirectJump = Math.max(0, allowDirectJump - 1);
     }
     scenePosition = RM
       ? targetPosition
