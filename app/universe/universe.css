@@ -144,6 +144,19 @@ header.universe-navbar {
   transform: translateY(-0.25em);
 }
 
+.universe-nav-collab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(233, 231, 224, 0.45);
+  transform: translateY(-0.25em);
+  line-height: 1;
+}
+
+.universe-nav-collab svg {
+  display: block;
+}
+
 .universe-nav-title {
   display: inline-flex;
   align-items: center;
@@ -1156,11 +1169,15 @@ footer.universe-footer {
     height: 48px;
   }
   .universe-nav-brand {
-    gap: 10px;
+    gap: 8px;
   }
   .universe-nav-logo {
     height: 20px;
     transform: translateY(-0.25em);
+  }
+  .universe-nav-collab svg {
+    width: 8px;
+    height: 8px;
   }
   .universe-nav-title {
     font-size: 24px;

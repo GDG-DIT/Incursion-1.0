@@ -149,6 +149,11 @@ export default function IncursionExperience() {
         <header id="hdr">
           <div className="hdr-brand">
             <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG Logo" />
+            <span className="hdr-collab" aria-hidden="true">
+              <svg viewBox="0 0 12 12" width="9" height="9" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M2.5 2.5l7 7M9.5 2.5l-7 7" />
+              </svg>
+            </span>
             <b>INCURSION 2027</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>

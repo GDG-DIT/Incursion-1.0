@@ -294,6 +294,21 @@ header .hdr-logo,
   transform: translateY(-0.25em);
 }
 
+header .hdr-collab,
+#hdr .hdr-collab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(233, 231, 224, 0.45);
+  transform: translateY(-0.25em);
+  line-height: 1;
+}
+
+header .hdr-collab svg,
+#hdr .hdr-collab svg {
+  display: block;
+}
+
 header b,
 #hdr b {
   font: italic 400 28px/1 var(--serif);
@@ -2239,6 +2254,11 @@ header b {
   #hdr img {
     height: 15px !important;
     transform: translateY(-0.25em);
+  }
+
+  #hdr .hdr-collab svg {
+    width: 7px;
+    height: 7px;
   }
 
   #hdr b {
