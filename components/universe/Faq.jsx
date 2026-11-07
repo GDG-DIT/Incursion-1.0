@@ -4,28 +4,40 @@ import { useState } from 'react';
 
 const FAQS = [
   {
-    q: 'Who is eligible to participate in Incursion?',
-    a: 'Incursion is open to all university students, recent graduates, and self-taught developers across all disciplines and skill levels. Beginners are warmly welcomed with dedicated tracks and workshops!',
+    q: 'Who is eligible to participate in INCURSION 2027?',
+    a: 'INCURSION 2027 is a national-level student hackathon open to university students across India. Beginners and first-time hackathon participants are strongly encouraged to participate—there is a dedicated Best First-Time Team award (₹5,000) and mentors to guide you.',
   },
   {
-    q: 'What is the permitted team size?',
-    a: 'Teams can consist of 2 to 4 members. If you do not have a team yet, you can join our Discord to find teammates during the matchmaking phase.',
+    q: 'What is the required team size?',
+    a: 'Teams must consist of 2 to 4 members. Solo participation is not permitted.',
   },
   {
     q: 'Is there any registration fee?',
-    a: 'Zero. Incursion is completely free to enter, courtesy of GDG on Campus and our generous sponsors. Meals, snacks, coffee, and hackathon swag are fully provided for on-site hackers.',
+    a: 'Round 1 (online registration and idea submission) is 100% free with no cap on the number of participating teams nationwide. For the top 50 shortlisted teams attending the offline 24-hour finale, a confirmation fee of ₹899 per team applies. Travel and accommodation are the participants’ responsibility unless sponsored.',
   },
   {
-    q: 'Will the hackathon be conducted online or in-person?',
-    a: 'The convergence takes place on-site at our campus venue with 24/7 access to hacking spaces, hardware labs, and sleeping pods. Virtual check-ins will be supported for preliminary rounds.',
+    q: 'How does the two-round format work?',
+    a: 'Round 1 (8 Nov 2026 – 5 Dec 2026) is an online idea challenge conducted on the hackathon platform. Teams submit proposed solutions across the five tracks. Following structured jury evaluation, the top 50 teams (plus waitlist) advance to Round 2: an offline 24-hour build-and-demo sprint at the DYPIT campus in Pune on 30–31 January 2027.',
   },
   {
-    q: 'What are the primary evaluation criteria?',
-    a: 'Submissions are assessed on Innovation (originality of approach), Technical Execution (depth, complexity, functionality), UI/UX Polish, and Multiversal Impact (practical real-world viability).',
+    q: 'Where will the offline finale take place?',
+    a: 'The 24-hour offline finale will be held on-campus at Dr. D. Y. Patil Institute of Technology (DYPIT), Pimpri, Pune, Maharashtra on 30–31 January 2027.',
   },
   {
-    q: 'Can I start coding before the hackathon begins?',
-    a: 'No. All code and assets must be authored during the 24-hour build window. You are encouraged to formulate ideas, review problem statements, and organize your team beforehand.',
+    q: 'What facilities are provided to finalists during the 24-hour sprint?',
+    a: 'Finalists are fully accommodated with on-site meals (lunch, evening snacks, dinner, midnight snacks, and breakfast), continuous water stations, high-speed enterprise-grade Wi-Fi with backup links, power outlets with charging stations, designated rest and recovery areas, first-aid and medical support, security, and an official participant welcome kit.',
+  },
+  {
+    q: 'What are the judging criteria and weights?',
+    a: 'Projects are evaluated holistically across 7 criteria: Technical Implementation (25%), Innovation (20%), Problem Relevance (15%), Impact (15%), UX / Design (10%), Scalability (10%), and Pitch / Demo (5%). A panel of 5–7 senior industry experts, founders, engineers, and researchers will serve as the final jury.',
+  },
+  {
+    q: 'When are problem statements released, and can we start early?',
+    a: 'Broad tracks are published now. Specific, detailed challenge statements will be unveiled at the kickoff ceremony on 30 January 2027 (10:30 AM). All project code and prototypes must be created during the 24-hour hackathon window.',
+  },
+  {
+    q: 'Where do we register?',
+    a: 'Registrations will be hosted on Unstop. The link will be activated right here on the website as soon as the portal opens.',
   },
 ];
 
@@ -43,7 +55,7 @@ export default function Faq() {
           <div className="universe-eyebrow">Frequently Asked Questions</div>
           <h2 className="universe-section-title">Multiverse Field Manual</h2>
           <p className="universe-section-desc">
-            Everything you need to know about preparing for Incursion 2027.
+            Everything you need to know about eligibility, rounds, facilities, and evaluation for INCURSION 2027.
           </p>
         </div>
 

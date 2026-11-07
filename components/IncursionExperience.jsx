@@ -66,23 +66,37 @@ function Timeline() {
 }
 
 function HeroStage() {
-  const registerHref = REGISTER_URL || '#tlv';
+  const registerHref = REGISTER_URL || '';
 
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title">
       <img className="hero-backdrop" src="/media/doom-throne.webp" alt="" />
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
-        <p className="hero-eyebrow">GDG on Campus presents</p>
-        <h1 id="hero-title">Incursion</h1>
-        <p className="hero-deck">Two worlds. One final stand.<br />Build what comes next.</p>
+        <p className="hero-eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+          <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'inline-block' }} />
+          <span>GDG on Campus, DYPIT Pune presents</span>
+        </p>
+        <h1 id="hero-title">INCURSION 2027</h1>
+        <p className="hero-deck">Two worlds. One final stand.<br />Doomsday Times Run Out.</p>
         <div className="hero-meta">
-          <span>November 2026 – January 2027</span>
+          <span>8 Nov 2026 – 31 Jan 2027</span>
           <i aria-hidden="true" />
-          <span>On campus finale</span>
+          <span>DYPIT Campus, Pune</span>
         </div>
         <div className="hero-actions">
-          <a className="btn hero-primary reg" href={registerHref}>Register now<Arrow /></a>
+          <a
+            className="btn hero-primary reg"
+            href={registerHref}
+            target={registerHref ? '_blank' : undefined}
+            rel={registerHref ? 'noopener noreferrer' : undefined}
+            onClick={(e) => {
+              if (!registerHref) e.preventDefault();
+            }}
+            title={registerHref ? 'Register Now' : 'Registration opening soon on Unstop'}
+          >
+            Register now<Arrow />
+          </a>
           <a className="btn hero-secondary" href="#tlv" data-scene-target="13.9">View timeline</a>
         </div>
       </div>
@@ -114,18 +128,29 @@ export default function IncursionExperience() {
         <HeroStage />
         <Timeline />
         <section className="ch" id="c5"><div>
-          <h2>Doom isn&apos;t waiting.</h2><p>Incursion, January 2027</p>
+          <h2>Doom isn&apos;t waiting.</h2><p>INCURSION 2027 · 30–31 January 2027</p>
           {/* <a className="btn reg" href="/universe">Enter the Universe<Arrow /></a> */}
-        </div><div className="k">A GDG on Campus hackathon</div></section>
+        </div><div className="k" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+          <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '16px', width: 'auto' }} />
+          <span>GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pune</span>
+        </div></section>
         <header id="hdr"><div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}><button id="snd" aria-pressed="true" type="button">Sound on</button></div></header>
-        <header id="hdr"><b>Incursion</b><div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}><button id="snd" aria-pressed="true" type="button">Sound on</button></div></header>
+        <header id="hdr">
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+            <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '18px', width: 'auto' }} />
+            <b>INCURSION 2027</b>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <button id="snd" aria-pressed="true" type="button">Sound on</button>
+          </div>
+        </header>
         <div className="grain" aria-hidden="true" />
         <IntroGate />
       </div></div>
       <button id="top" type="button" aria-label="Go to top">
         <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" /></svg>
       </button>
-      <noscript><p>This experience uses JavaScript. Incursion is a GDG on Campus hackathon in January 2027.</p></noscript>
+      <noscript><p>This experience uses JavaScript. INCURSION 2027 is a national-level 24-hour student hackathon organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune on 30–31 January 2027.</p></noscript>
     </main>
   );
 }

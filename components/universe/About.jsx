@@ -5,42 +5,45 @@ export default function About() {
     <section id="about" className="universe-section">
       <div className="universe-container">
         <div className="universe-section-header">
-          <div className="universe-eyebrow">The Lore & Mission</div>
-          <h2 className="universe-section-title">When Timelines Collide</h2>
+          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px' }}>
+            <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '18px', width: 'auto' }} />
+            <div className="universe-eyebrow" style={{ margin: 0 }}>The Lore & Mission</div>
+          </div>
+          <h2 className="universe-section-title">Doomsday Times Run Out</h2>
           <p className="universe-section-desc">
-            Incursion is GDG on Campus’s flagship 24-hour national hackathon. Inspired by the
-            multiversal event where parallel dimensions threaten to destroy one another, we summon
-            the brightest developers, designers, and innovators to solve critical real-world
-            challenges before time runs out.
+            INCURSION 2027 is a national-level 24-hour student hackathon organized by GDG on Campus,
+            Dr. D. Y. Patil Institute of Technology, Pimpri, Pune. Designed around a two-round format—an
+            online idea challenge followed by an offline build-and-demo sprint at the DYPIT campus—INCURSION
+            summons builders, engineers, and creators to engineer critical solutions before the clock hits zero.
           </p>
         </div>
 
         {/* Feature Cards Grid */}
         <div className="universe-grid-3">
           <div className="universe-card">
-            <div className="universe-card-num">01 // The Signal</div>
-            <h3 className="universe-card-title">The Multiverse Threat</h3>
+            <div className="universe-card-num">01 // Round 1: Online Idea Challenge</div>
+            <h3 className="universe-card-title">National Screening</h3>
             <p className="universe-card-desc">
-              Parallel realities are bleeding into our realm. From synthetic intelligence to
-              quantum cryptography, our digital defenses must withstand cosmic interference.
+              Open nationwide to unlimited student teams of 2–4 members with free registration.
+              Submit your ideas and proposed technical blueprints on the hackathon platform for structured jury evaluation.
             </p>
           </div>
 
           <div className="universe-card">
-            <div className="universe-card-num">02 // The Build</div>
-            <h3 className="universe-card-title">24-Hour Crucible</h3>
+            <div className="universe-card-num">02 // Round 2: 24-Hour Finale</div>
+            <h3 className="universe-card-title">Offline Build Sprint</h3>
             <p className="universe-card-desc">
-              Teams of 2-4 builders assemble on-site to prototype, iterate, and deploy production-grade
-              defenses under continuous mentor guidance and industry workshops.
+              The top 50 shortlisted teams assemble on 30–31 January 2027 at DYPIT Pune.
+              Experience challenge reveals, 24-hour non-stop prototyping with mentor checkpoints, and live jury demos.
             </p>
           </div>
 
           <div className="universe-card">
-            <div className="universe-card-num">03 // The Legacy</div>
-            <h3 className="universe-card-title">Real-World Impact</h3>
+            <div className="universe-card-num">03 // The Bounties</div>
+            <h3 className="universe-card-title">₹2 Lakh Pool & Beyond</h3>
             <p className="universe-card-desc">
-              Top solutions receive grants, mentorship from Google Developer Experts, direct interview
-              pipelines, and incubation opportunities to turn hackathon projects into startups.
+              Compete for ₹2 Lakh in cash awards, grand trophies, official project showcases,
+              sponsor and alumni introductions, personalized mentorship, and potential internship discussions.
             </p>
           </div>
         </div>

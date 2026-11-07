@@ -12,8 +12,8 @@ export default function Hero() {
   });
 
   useEffect(() => {
-    // Target: 22 January 2027 (hackathon kickoff)
-    const target = new Date('2027-01-22T10:00:00Z').getTime();
+    // Target: 30 January 2027, 08:00 IST (Finale Check-in)
+    const target = new Date('2027-01-30T08:00:00+05:30').getTime();
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -36,30 +36,34 @@ export default function Hero() {
     <section className="universe-hero">
       <div className="universe-container">
         {/* Eyebrow badge */}
-        <div className="universe-hero-badge">
-          <span className="universe-hero-badge-dot" />
-          <span>GDG on Campus Presents • January 2027</span>
+        <div className="universe-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
+          <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'block' }} />
+          <span>GDG on Campus, DYPIT Pune Presents • 30–31 January 2027</span>
         </div>
 
         {/* Main Title */}
         <h1 className="universe-hero-title">
-          INCURSION <br />
-          <span className="universe-hero-title-accent"></span>
+          INCURSION 2027 <br />
+          <span className="universe-hero-title-accent">Doomsday Times Run Out</span>
         </h1>
 
         {/* Cinematic Description */}
         <p className="universe-hero-subtitle">
-          Two worlds have collided. The timeline is fractured. You have 24 hours to forge
-          solutions, defend humanity, and claim your place in the multiverse.
+          Two worlds have collided. The timeline is fractured. An online national idea challenge
+          followed by an offline 24-hour build-and-demo finale at DYPIT campus, Pune.
         </p>
 
         {/* Call to Actions */}
         <div className="universe-hero-cta">
           <a
-            href={REGISTER_URL || '#schedule'}
+            href={REGISTER_URL || ''}
             target={REGISTER_URL ? '_blank' : undefined}
-            rel="noopener noreferrer"
+            rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
+            onClick={(e) => {
+              if (!REGISTER_URL) e.preventDefault();
+            }}
             className="universe-btn-primary"
+            title={REGISTER_URL ? 'Register Now' : 'Registration opening soon on Unstop'}
           >
             <span>Claim Your Spot</span>
             <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="16" height="8">
@@ -103,19 +107,19 @@ export default function Hero() {
         <div className="universe-stats-row">
           <div>
             <div className="universe-stat-num">24 Hours</div>
-            <div className="universe-stat-lbl">Intense Hacking</div>
+            <div className="universe-stat-lbl">Offline Build Sprint</div>
           </div>
           <div>
-            <div className="universe-stat-num accent">₹5,00,000+</div>
-            <div className="universe-stat-lbl">Prize Pool & Perks</div>
+            <div className="universe-stat-num accent">₹2 Lakh</div>
+            <div className="universe-stat-lbl">Total Prize Pool</div>
           </div>
           <div>
-            <div className="universe-stat-num">500+</div>
-            <div className="universe-stat-lbl">Hackers & Builders</div>
+            <div className="universe-stat-num">Open to All</div>
+            <div className="universe-stat-lbl">Round 1 (Unlimited Teams)</div>
           </div>
           <div>
-            <div className="universe-stat-num accent">2 Worlds</div>
-            <div className="universe-stat-lbl">One Final Stand</div>
+            <div className="universe-stat-num accent">Top 50 Teams</div>
+            <div className="universe-stat-lbl">Round 2 Finale (DYPIT Pune)</div>
           </div>
         </div>
       </div>

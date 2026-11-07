@@ -2,36 +2,44 @@
 
 const TRACKS = [
   {
-    id: 'T1',
-    name: 'Quantum AI & Neural Defense',
-    tag: 'Artificial Intelligence',
+    id: 'TRACK 01',
+    name: 'Rogue Protocol',
+    tag: 'AI & Agentic Systems',
     description:
-      'Build generative agents, autonomous triage pipelines, multimodal perception models, or anomaly detectors that anticipate multiversal fractures.',
-    examples: ['Autonomous Threat Agents', 'Multimodal LLM Diagnostics', 'Neural Synthetics'],
+      'Architect autonomous AI agents, intelligent multilingual assistants, process automation pipelines, and cognitive models designed to tackle complex decision-making systems.',
+    focusAreas: ['AI Agents', 'Multilingual Assistants', 'Automation', 'Intelligent Assistants'],
   },
   {
-    id: 'T2',
-    name: 'Decentralized Realities & Web3',
-    tag: 'Blockchain & Security',
+    id: 'TRACK 02',
+    name: 'Firewall Zero',
+    tag: 'Cybersecurity & FinTech',
     description:
-      'Engineer trustless protocols, zero-knowledge temporal verification, smart contracts, and decentralized data storage resilient to censorship and corruption.',
-    examples: ['ZK Identity Bridges', 'Multichain State Syncer', 'Resilient DAOs'],
+      'Engineer robust threat detection engines, scam and fraud mitigation shields, privacy-preserving identities, modern payment layers, and inclusive financial tooling.',
+    focusAreas: ['Threat Detection', 'Fraud & Scams', 'Privacy & Identity', 'Payments', 'Financial Inclusion'],
   },
   {
-    id: 'T3',
-    name: 'Cloud Resilience & Edge Scale',
-    tag: 'Cloud & Infrastructure',
-    description:
-      'Architect hyper-scale distributed backends, real-time crisis response webs, serverless edge compute, and high-concurrency event telemetry.',
-    examples: ['Edge Compute Mesh', 'Zero-Downtime Failover', 'Real-time Telemetry'],
-  },
-  {
-    id: 'T4',
-    name: 'The Open Dimension',
+    id: 'TRACK 03',
+    name: 'Final Hour',
     tag: 'Open Innovation',
     description:
-      'Unleash unconventional solutions across healthcare, accessibility, education, and sustainability. Break existing molds to save our shared future.',
-    examples: ['Assistive Tech', 'Climate Intelligence', 'Accessible Education'],
+      'Tackle pressing existential and humanitarian frontiers spanning climate resilience, healthcare, emergency response, disaster management, agriculture, and space exploration.',
+    focusAreas: ['Climate Intelligence', 'Health & MedTech', 'Disaster & Safety', 'Agriculture & Space'],
+  },
+  {
+    id: 'TRACK 04',
+    name: 'Glass Wall',
+    tag: 'GovTech & Transparent Governance',
+    description:
+      'Create high-accountability public service platforms, transparent civic workflows, citizen grievance redressal mechanisms, and integrity audits for open governance.',
+    focusAreas: ['Transparency', 'Public Services', 'Grievances Redressal', 'Accountability'],
+  },
+  {
+    id: 'TRACK 05',
+    name: 'Survival City',
+    tag: 'Smart Cities & Civic Services',
+    description:
+      'Reimagine modern urban infrastructure with smart mobility networks, traffic intelligence, water conservation solutions, and responsive civic utilities.',
+    focusAreas: ['Transport & Mobility', 'Traffic Intelligence', 'Water Management', 'Civic Technology'],
   },
 ];
 
@@ -40,11 +48,11 @@ export default function Tracks() {
     <section id="tracks" className="universe-section">
       <div className="universe-container">
         <div className="universe-section-header">
-          <div className="universe-eyebrow">Battlegrounds</div>
-          <h2 className="universe-section-title">Choose Your Realm</h2>
+          <div className="universe-eyebrow">Domains & Tracks</div>
+          <h2 className="universe-section-title">Choose Your Battleground</h2>
           <p className="universe-section-desc">
-            Select the track where your team will stage its intervention. Each track features
-            specialized sponsor challenges and tailored prize pools.
+            Broad tracks are published now. Detailed problem statements will be revealed at kickoff on
+            30 January 2027. Each track carries a dedicated ₹5,000 Best Track Winner award.
           </p>
         </div>
 
@@ -61,9 +69,9 @@ export default function Tracks() {
               <p className="universe-card-desc">{track.description}</p>
 
               <div className="universe-focus-tags">
-                {track.examples.map((ex) => (
-                  <span key={ex} className="universe-focus-tag">
-                    {ex}
+                {track.focusAreas.map((area) => (
+                  <span key={area} className="universe-focus-tag">
+                    {area}
                   </span>
                 ))}
               </div>

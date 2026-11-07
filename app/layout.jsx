@@ -1,8 +1,8 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Incursion — a GDG hackathon, January 2027',
-  description: 'Two worlds. One final stand. Explore Incursion, a GDG on Campus hackathon in January 2027.',
+  title: 'INCURSION 2027 — National-Level 24-Hour Hackathon | GDG on Campus DYPIT Pune',
+  description: 'National-level 24-hour student hackathon organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune. Theme: "Doomsday Times Run Out". Dates: 30–31 January 2027.',
 };
 export const viewport = { width: 'device-width', initialScale: 1, viewportFit: 'cover', themeColor: '#040605' };
 

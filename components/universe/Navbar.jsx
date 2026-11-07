@@ -11,8 +11,9 @@ export default function Navbar() {
   return (
     <header className="universe-navbar">
       {/* Brand */}
-      <Link href="/universe" className="universe-nav-brand">
-        <span className="universe-nav-title">INCURSION</span>
+      <Link href="/universe" className="universe-nav-brand" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
+        <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '24px', width: 'auto', display: 'block' }} />
+        <span className="universe-nav-title">INCURSION 2027</span>
         <span className="universe-nav-divider" />
         <span className="universe-nav-subtitle">Enter the Universe</span>
       </Link>
@@ -23,6 +24,7 @@ export default function Navbar() {
         <a href="#tracks">Tracks</a>
         <a href="#schedule">Schedule</a>
         <a href="#prizes">Prizes</a>
+        <a href="#sponsors">Sponsors</a>
         <a href="#faq">FAQ</a>
         <Link href="/" className="universe-nav-replay">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" width="12" height="12">
@@ -36,10 +38,14 @@ export default function Navbar() {
       <div className="universe-nav-actions">
         <AudioPlayer />
         <a
-          href={REGISTER_URL || '#schedule'}
+          href={REGISTER_URL || ''}
           target={REGISTER_URL ? '_blank' : undefined}
-          rel="noopener noreferrer"
+          rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
+          onClick={(e) => {
+            if (!REGISTER_URL) e.preventDefault();
+          }}
           className="universe-nav-btn"
+          title={REGISTER_URL ? 'Register Now' : 'Registration opening soon on Unstop'}
         >
           <span>Register Now</span>
           <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="14" height="8">
@@ -70,15 +76,19 @@ export default function Navbar() {
         <a href="#tracks" onClick={() => setMobileOpen(false)}>Tracks</a>
         <a href="#schedule" onClick={() => setMobileOpen(false)}>Schedule</a>
         <a href="#prizes" onClick={() => setMobileOpen(false)}>Prizes</a>
+        <a href="#sponsors" onClick={() => setMobileOpen(false)}>Sponsors</a>
         <a href="#faq" onClick={() => setMobileOpen(false)}>FAQ</a>
         <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: 'var(--em)' }}>
           ← Replay Film Experience
         </Link>
         <a
-          href={REGISTER_URL || '#schedule'}
+          href={REGISTER_URL || ''}
           target={REGISTER_URL ? '_blank' : undefined}
-          rel="noopener noreferrer"
-          onClick={() => setMobileOpen(false)}
+          rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
+          onClick={(e) => {
+            if (!REGISTER_URL) e.preventDefault();
+            setMobileOpen(false);
+          }}
           className="universe-nav-btn"
           style={{ textAlign: 'center', justifyContent: 'center', marginTop: '10px' }}
         >
