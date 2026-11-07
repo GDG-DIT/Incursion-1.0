@@ -13,6 +13,7 @@ import Prizes from '../../components/universe/Prizes';
 import Sponsors from '../../components/universe/Sponsors';
 import Faq from '../../components/universe/Faq';
 import Footer from '../../components/universe/Footer';
+import { Analytics } from '@vercel/analytics/nuxt/runtime';
 
 export default function UniversePage() {
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function UniversePage() {
 
   return (
     <div className="universe-page">
+      <Analytics />
       {/* Fixed Looping Cinematic Background */}
       <BackgroundVideo />
 

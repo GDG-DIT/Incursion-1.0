@@ -1098,12 +1098,33 @@ footer.universe-footer {
 }
 
 @media (max-width: 768px) {
+  header.universe-navbar {
+    gap: 8px;
+    padding: 0 14px !important;
+  }
+  .universe-nav-brand {
+    min-width: 0;
+    flex: 1 1 auto;
+    gap: 8px;
+  }
+  .universe-nav-logo {
+    height: 20px;
+    max-width: 42px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    transform: none;
+  }
+  .universe-nav-title {
+    font-size: clamp(17px, 4.8vw, 22px);
+    letter-spacing: 0.02em;
+  }
   .universe-nav-links,
-  .universe-nav-btn {
+  .universe-nav-actions .universe-nav-btn {
     display: none !important;
   }
   .universe-nav-actions {
     display: flex !important;
+    flex: 0 0 auto;
     gap: 8px;
   }
   .universe-sound-btn {
@@ -1156,14 +1177,14 @@ footer.universe-footer {
     height: 48px;
   }
   .universe-nav-brand {
-    gap: 10px;
+    gap: 8px;
   }
   .universe-nav-logo {
-    height: 20px;
-    transform: translateY(-0.25em);
+    height: 18px;
+    transform: none;
   }
   .universe-nav-title {
-    font-size: 24px;
+    font-size: clamp(16px, 4.6vw, 20px);
   }
   .universe-hero-title {
     font-size: clamp(38px, 11vw, 56px);

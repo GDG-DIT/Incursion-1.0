@@ -282,16 +282,27 @@ header .hdr-brand,
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
   font-size: 28px;
+}
+
+header .hdr-tools,
+#hdr .hdr-tools {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
 }
 
 header .hdr-logo,
 #hdr .hdr-logo,
 #hdr img {
-  height: 20px;
+  height: 22px;
   width: auto;
+  max-width: 46px;
   display: block;
-  transform: translateY(-0.25em);
+  flex: 0 0 auto;
+  object-fit: contain;
+  object-position: left center;
 }
 
 header b,
@@ -300,6 +311,8 @@ header b,
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
+  color: #f6f3ea;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
 }
 
 #snd {
@@ -1420,14 +1433,6 @@ header b {
 }
 
 @media (max-width: 480px) {
-  #hdr {
-    padding: calc(14px + env(safe-area-inset-top, 0px)) 16px 0;
-  }
-
-  #hdr b {
-    font-size: 20px;
-  }
-
   #hdr .hdr-portal {
     display: none;
   }
@@ -2225,32 +2230,37 @@ header b {
 
   #hdr {
     z-index: 50;
-    padding: calc(12px + env(safe-area-inset-top, 0px)) 5vw 0;
+    align-items: center;
+    gap: 10px;
+    padding: calc(12px + env(safe-area-inset-top, 0px)) 14px 18px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.28) 72%, transparent 100%);
   }
 
   #hdr > div:first-child,
   #hdr .hdr-brand {
     min-width: 0;
-    gap: 6px !important;
-    font-size: 15px;
+    flex: 1 1 auto;
+    gap: 8px;
   }
 
   #hdr .hdr-logo,
   #hdr img {
-    height: 15px !important;
-    transform: translateY(-0.25em);
+    height: 20px;
+    max-width: 42px;
   }
 
   #hdr b {
-    overflow: hidden;
-    font-size: 15px;
-    text-overflow: ellipsis;
+    overflow: visible;
+    font-size: clamp(17px, 4.8vw, 22px);
+    letter-spacing: 0.01em;
+    text-overflow: clip;
     white-space: nowrap;
   }
 
   #snd {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
+    min-height: 36px;
   }
 
   #hero.hero {

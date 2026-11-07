@@ -151,7 +151,7 @@ export default function IncursionExperience() {
             <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG Logo" />
             <b>INCURSION 2027</b>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div className="hdr-tools">
             <button id="snd" aria-label="Turn sound off" aria-pressed="true" data-sound-state="on" type="button">
               <svg viewBox="0 0 24 24" aria-hidden="true">
                 <path className="snd-on-speaker" d="M4 10v4h4l5 4V6l-5 4H4Z" />
