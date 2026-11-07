@@ -54,11 +54,7 @@ export default function Sponsors() {
             </h3>
             <p style={{ fontSize: '14px', color: 'var(--mute)', margin: 0, maxWidth: '500px', marginLeft: 'auto', marginRight: 'auto' }}>
               Official sponsors, platform partners, and track challenges will be revealed leading up to the event.
-              Connect with us at <span style={{ color: 'var(--accent)', fontWeight: 600 }}>@gdg.dit</span> or{' '}
-              <a href="mailto:gdg.dit@dypvp.edu.in" style={{ color: 'var(--accent)', fontWeight: 600 }}>
-                gdg.dit@dypvp.edu.in
-              </a>{' '}
-              for partnership queries.
+              Connect with us at <span style={{ color: 'var(--accent)', fontWeight: 600 }}>@gdg.dit</span> for partnership queries.
             </p>
           </div>
         </div>
@@ -66,3 +62,4 @@ export default function Sponsors() {
     </section>
   );
 }
+

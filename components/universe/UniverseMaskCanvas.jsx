@@ -148,7 +148,7 @@ export default function UniverseMaskCanvas() {
 
         // Section-mapped choreographies across normalized progress (0.0 to 1.0)
         const p = scrollProgress;
-        const sideX = mobile ? visibleHeight * camera.aspect * 0.28 : visibleHeight * camera.aspect * 0.44;
+        const sideX = mobile ? visibleHeight * camera.aspect * 0.12 : visibleHeight * camera.aspect * 0.28;
 
         let targetX = sideX;
         let targetY = mobile ? visibleHeight * 0.04 : -0.05;
@@ -156,14 +156,14 @@ export default function UniverseMaskCanvas() {
         let targetRotX = 0;
         let targetRotY = -0.15;
         let targetRotZ = 0;
-        let targetScale = mobile ? 0.56 : 0.78;
+        let targetScale = mobile ? 0.72 : 1.0;
 
         if (p < 0.16) {
           // Hero Section (0.00 – 0.16): Floating on Right
           targetX = sideX;
           targetY = mobile ? 0.05 : -0.08;
           targetRotY = -0.18;
-          targetScale = mobile ? 0.56 : 0.78;
+          targetScale = mobile ? 0.72 : 1.0;
           targetRimColor.setHex(0x3fe08e); // Emerald
         } else if (p < 0.36) {
           // About Section (0.16 – 0.36): Glides to Left, 35° profile gazing toward text
@@ -358,3 +358,4 @@ export default function UniverseMaskCanvas() {
     </div>
   );
 }
+

@@ -14,28 +14,11 @@
   line-height: 1.6;
 }
 
-html:has(.universe-page) {
-  scroll-snap-type: y mandatory;
-}
-
-.universe-content > .universe-hero,
-.universe-content > .universe-section,
-.universe-content > .universe-footer {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}
-
 .universe-content {
   position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html:has(.universe-page) {
-    scroll-snap-type: none;
-  }
 }
 
 /* Fixed Background Video Layer */
@@ -129,20 +112,30 @@ header.universe-navbar {
   display: flex;
   align-items: center;
   gap: 14px;
-  height: 100%;
   text-decoration: none;
 }
 
 .universe-nav-title {
-  display: inline-flex;
-  align-items: center;
-  line-height: 1;
-  white-space: nowrap;
   font-family: var(--serif);
   font-style: italic;
   font-size: 28px;
   letter-spacing: 0.04em;
   color: var(--ink);
+}
+
+.universe-nav-divider {
+  display: inline-block;
+  height: 16px;
+  width: 1px;
+  background: rgba(233, 231, 224, 0.25);
+}
+
+.universe-nav-subtitle {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--em);
+  font-weight: 500;
 }
 
 .universe-nav-links {
@@ -192,34 +185,30 @@ header.universe-navbar {
 .universe-sound-btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 50%;
-  color: rgba(255, 255, 255, 0.9);
+  gap: 8px;
+  background: rgba(63, 224, 142, 0.05);
+  border: 1px solid rgba(63, 224, 142, 0.35);
+  border-radius: 4px;
+  padding: 8px 14px;
+  color: var(--em);
   cursor: pointer;
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
   transition: all 0.25s ease;
 }
 
 .universe-sound-btn:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  background: rgba(63, 224, 142, 0.14);
+  border-color: var(--em);
+  box-shadow: 0 0 15px rgba(63, 224, 142, 0.3);
 }
 
 .universe-sound-icon {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.universe-sound-icon svg {
-  width: 20px;
-  height: 20px;
 }
 
 .universe-sound-icon.playing {
@@ -319,7 +308,7 @@ header.universe-navbar {
   letter-spacing: 0.3em;
   color: var(--em);
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .universe-section-title {
@@ -358,7 +347,7 @@ header.universe-navbar {
   text-transform: uppercase;
   letter-spacing: 0.25em;
   font-weight: 500;
-  margin-bottom: 42px;
+  margin-bottom: 32px;
 }
 
 .universe-hero-badge-dot {
@@ -378,10 +367,7 @@ header.universe-navbar {
 .universe-hero-title {
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(48px, 8vw, 96px);
-  max-width: 980px;
-  margin-left: auto;
-  margin-right: auto;
+  font-size: clamp(52px, 10vw, 120px);
   line-height: 0.95;
   letter-spacing: 0.015em;
   color: var(--ink);
@@ -630,43 +616,6 @@ header.universe-navbar {
   position: relative;
 }
 
-.universe-floating-top {
-  position: fixed;
-  right: 24px;
-  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  z-index: 20;
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  color: rgba(255, 255, 255, 0.88);
-  background: rgba(8, 10, 10, 0.58);
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  cursor: pointer;
-  backdrop-filter: blur(8px);
-  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
-}
-
-.universe-floating-top svg {
-  width: 18px;
-  height: 18px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.2;
-}
-
-.universe-floating-top:hover {
-  background: rgba(255, 255, 255, 0.14);
-  border-color: rgba(255, 255, 255, 0.68);
-  transform: translateY(-2px);
-}
-
-.universe-floating-top:focus-visible {
-  outline: 2px solid var(--em);
-  outline-offset: 3px;
-}
-
 .universe-timeline-marker {
   position: absolute;
   left: calc(-1 * (clamp(20px, 3vw, 40px) + 7px));
@@ -897,17 +846,16 @@ footer.universe-footer {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
-  margin-bottom: 18px;
+  gap: 14px;
+  margin-bottom: 14px;
 }
 
 .universe-footer-logo-pair {
   display: grid;
-  grid-template-columns: 180px 1px 82px;
+  grid-template-columns: 82px 1px 144px;
   align-items: center;
-  column-gap: 18px;
-  min-height: 0;
-  padding: 12px 0;
+  gap: 14px;
+  min-height: 48px;
 }
 
 .universe-footer-gdg-logo {
@@ -920,15 +868,16 @@ footer.universe-footer {
 .universe-footer-logo-divider {
   display: block;
   width: 1px;
-  height: 56px;
-  background: rgba(233, 231, 224, 0.24);
+  height: 32px;
+  background: rgba(233, 231, 224, 0.2);
 }
 
 .universe-footer-incursion-logo-slot {
   display: block;
-  width: 180px;
-  height: 56px;
-  object-fit: contain;
+  width: 144px;
+  height: 48px;
+  border: 1px dashed rgba(233, 231, 224, 0.2);
+  border-radius: 3px;
 }
 
 .universe-footer-desc {
@@ -1003,7 +952,7 @@ footer.universe-footer {
   }
   .universe-footer-grid {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 36px;
   }
   .universe-prize-card.highlight {
     transform: none;
@@ -1020,8 +969,8 @@ footer.universe-footer {
     gap: 8px;
   }
   .universe-sound-btn {
-    width: 38px;
-    height: 38px;
+    padding: 6px 10px;
+    font-size: 10px;
   }
   .universe-mobile-toggle {
     display: block !important;
@@ -1053,9 +1002,8 @@ footer.universe-footer {
 
 @media (max-width: 480px) {
   .universe-footer-logo-pair {
-    grid-template-columns: minmax(0, 150px) 1px 68px;
-    column-gap: 12px;
-    padding: 10px 0;
+    grid-template-columns: 68px 1px minmax(0, 128px);
+    gap: 12px;
   }
   .universe-footer-gdg-logo {
     width: 68px;
@@ -1063,10 +1011,11 @@ footer.universe-footer {
   }
   .universe-footer-incursion-logo-slot {
     width: 100%;
-    height: 48px;
+    height: 42px;
   }
-  .universe-footer-logo-divider {
-    height: 48px;
+  .universe-nav-divider,
+  .universe-nav-subtitle {
+    display: none !important;
   }
   .universe-nav-title {
     font-size: 24px;
@@ -1122,3 +1071,4 @@ footer.universe-footer {
     gap: 12px;
   }
 }
+

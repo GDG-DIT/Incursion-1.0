@@ -5,7 +5,7 @@ export default function About() {
     <section id="about" className="universe-section">
       <div className="universe-container">
         <div className="universe-section-header">
-          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '8px' }}>
             <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '18px', width: 'auto' }} />
             <div className="universe-eyebrow" style={{ margin: 0 }}>The Lore & Mission</div>
           </div>

@@ -12,7 +12,9 @@ export default function AudioPlayer() {
 
     audio.volume = 1.0;
 
-    const shouldPlay = sessionStorage.getItem('incursion_audio_enabled') === 'true';
+    // Check if audio was explicitly turned off by the user
+    const savedEnabled = sessionStorage.getItem('incursion_audio_enabled');
+    const shouldPlay = savedEnabled !== 'false';
 
     // Check if there was a saved playback time
     const savedTime = sessionStorage.getItem('incursion_audio_time');
@@ -23,9 +25,34 @@ export default function AudioPlayer() {
     }
 
     if (shouldPlay) {
-      audio.play()
-        .then(() => setIsPlaying(true))
-        .catch(() => setIsPlaying(false));
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            sessionStorage.setItem('incursion_audio_enabled', 'true');
+          })
+          .catch(() => {
+            // Autoplay blocked by browser policy: play on first user interaction
+            setIsPlaying(false);
+            const enableAudioOnInteraction = () => {
+              audio
+                .play()
+                .then(() => {
+                  setIsPlaying(true);
+                  sessionStorage.setItem('incursion_audio_enabled', 'true');
+                })
+                .catch(() => {});
+              window.removeEventListener('click', enableAudioOnInteraction);
+              window.removeEventListener('scroll', enableAudioOnInteraction);
+              window.removeEventListener('keydown', enableAudioOnInteraction);
+            };
+
+            window.addEventListener('click', enableAudioOnInteraction, { once: true });
+            window.addEventListener('scroll', enableAudioOnInteraction, { once: true });
+            window.addEventListener('keydown', enableAudioOnInteraction, { once: true });
+          });
+      }
     } else {
       setIsPlaying(false);
     }
@@ -38,21 +65,9 @@ export default function AudioPlayer() {
       }
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
-    const handleSharedAudioState = (event) => {
-      const enabled = event.detail?.enabled;
-      if (typeof enabled !== 'boolean') return;
-      if (enabled) {
-        audio.play().then(() => setIsPlaying(true)).catch(() => setIsPlaying(false));
-      } else {
-        audio.pause();
-        setIsPlaying(false);
-      }
-    };
-    window.addEventListener('incursion:audio-state', handleSharedAudioState);
 
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
-      window.removeEventListener('incursion:audio-state', handleSharedAudioState);
     };
   }, []);
 
@@ -65,18 +80,12 @@ export default function AudioPlayer() {
       setIsPlaying(false);
       sessionStorage.setItem('incursion_audio_enabled', 'false');
       sessionStorage.setItem('incursion_audio_time', String(audio.currentTime || 0));
-      window.dispatchEvent(new CustomEvent('incursion:audio-state', {
-        detail: { enabled: false },
-      }));
     } else {
       audio
         .play()
         .then(() => {
           setIsPlaying(true);
           sessionStorage.setItem('incursion_audio_enabled', 'true');
-          window.dispatchEvent(new CustomEvent('incursion:audio-state', {
-            detail: { enabled: true },
-          }));
         })
         .catch(() => {});
     }
@@ -104,7 +113,9 @@ export default function AudioPlayer() {
             </svg>
           )}
         </span>
+        <span className="universe-sound-text">{isPlaying ? 'Sound on' : 'Sound off'}</span>
       </button>
     </>
   );
 }
+

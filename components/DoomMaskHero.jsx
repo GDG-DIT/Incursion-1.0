@@ -9,7 +9,6 @@ export default function DoomMaskHero() {
   const canvasRef = useRef(null);
   const [modelAvailable, setModelAvailable] = useState(true);
   const [modelReady, setModelReady] = useState(false);
-  const [timelineVisible, setTimelineVisible] = useState(false);
   const interactionStarted = useRef(false);
   const [hint, setHint] = useState('Loading the mask…');
 
@@ -48,12 +47,12 @@ export default function DoomMaskHero() {
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 80);
-    const ambient = new THREE.AmbientLight(0x9b927c, 2.15);
-    const rim = new THREE.DirectionalLight(0x8ca8ef, 1.8);
+    const ambient = new THREE.AmbientLight(0x86795f, 1.45);
+    const rim = new THREE.DirectionalLight(0x7890d0, 1.25);
     rim.position.set(-3, 3, -4);
-    const key = new THREE.DirectionalLight(0xffd9ad, 1.65);
+    const key = new THREE.DirectionalLight(0xffd29c, 1.1);
     key.position.set(-2.6, 4, 5);
-    const torch = new THREE.PointLight(0xffb36e, 1.65, 6.5, 2);
+    const torch = new THREE.PointLight(0xffa458, 1.15, 5.4, 2);
     scene.add(ambient, rim, key, torch);
 
     function makeEnvironment() {
@@ -102,7 +101,7 @@ export default function DoomMaskHero() {
       camera.updateProjectionMatrix();
       if (pivot) {
         const mobile = width < 760;
-        pivot.position.x = mobile ? visibleHeight * camera.aspect * 0.12 : visibleHeight * camera.aspect * 0.24;
+        pivot.position.x = mobile ? visibleHeight * camera.aspect * 0.06 : visibleHeight * camera.aspect * 0.17;
         pivot.position.y = mobile ? visibleHeight * 0.02 : 0;
       }
     }
@@ -115,7 +114,7 @@ export default function DoomMaskHero() {
         renderer.setClearColor(0x000000, 0);
         renderer.outputColorSpace = THREE.SRGBColorSpace;
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
-        renderer.toneMappingExposure = 1.4;
+        renderer.toneMappingExposure = 1.15;
         scene.environment = makeEnvironment();
         resize();
         return true;
@@ -158,7 +157,7 @@ export default function DoomMaskHero() {
         const widthFill = camera.aspect < 0.8 ? 1.05 : 0.84;
         const vHeight = visibleHeight || Math.max(maskHeight / 0.67, (maskWidth / widthFill) / camera.aspect);
 
-        const heroBaseX = mobile ? vHeight * camera.aspect * 0.12 : vHeight * camera.aspect * 0.24;
+        const heroBaseX = mobile ? vHeight * camera.aspect * 0.06 : vHeight * camera.aspect * 0.17;
         const heroBaseY = mobile ? vHeight * 0.02 : 0;
 
         let targetX = heroBaseX;
@@ -172,7 +171,7 @@ export default function DoomMaskHero() {
         // When scrolling into Timeline (13.8 to 22.6), weave left & right around milestone cards
         if (currentV >= 13.8 && currentV <= 22.6) {
           const tProg = (currentV - 13.8) / (22.6 - 13.8); // 0.0 to 1.0
-          const sideX = mobile ? vHeight * camera.aspect * 0.16 : vHeight * camera.aspect * 0.31;
+          const sideX = mobile ? vHeight * camera.aspect * 0.13 : vHeight * camera.aspect * 0.28;
 
           if (tProg < 0.20) {
             // Milestone 1 (Left card) -> Mask on Right
@@ -345,7 +344,7 @@ export default function DoomMaskHero() {
           object.receiveShadow = false;
           const materials = Array.isArray(object.material) ? object.material : [object.material];
           materials.forEach((material) => {
-            material.envMapIntensity = 1.15;
+            material.envMapIntensity = 0.7;
             material.needsUpdate = true;
           });
           meshes.push(object);
@@ -365,7 +364,6 @@ export default function DoomMaskHero() {
     function onScroll(event) {
       if (typeof event.detail?.v === 'number') {
         currentV = event.detail.v;
-        setTimelineVisible(currentV >= 13.8 && currentV <= 22.6);
         if (heroActive) startLoop();
       }
     }
@@ -419,9 +417,10 @@ export default function DoomMaskHero() {
   }, []);
 
   return (
-    <div ref={hostRef} id="mask-stage" className={`mask-stage${timelineVisible ? ' is-timeline' : ''}${modelAvailable ? '' : ' is-fallback'}${modelReady ? ' is-ready' : ''}`} aria-label="Interactive Doctor Doom mask">
+    <div ref={hostRef} id="mask-stage" className={`mask-stage${modelAvailable ? '' : ' is-fallback'}${modelReady ? ' is-ready' : ''}`} aria-label="Interactive Doctor Doom mask">
       <img className="mask-fallback" src="/media/doom-closeup.webp" alt="" aria-hidden="true" />
       <canvas ref={canvasRef} className="mask-canvas" aria-label="3D Doctor Doom mask. Move or touch the image to direct the light." role="img" />
+      <p className="mask-hint" aria-live="polite">{hint}</p>
     </div>
   );
 }

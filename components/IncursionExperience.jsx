@@ -61,7 +61,6 @@ function Timeline() {
           ))}
         </ol>
       </div>
-      <DoomMaskHero />
     </section>
   );
 }
@@ -71,10 +70,7 @@ function HeroStage() {
 
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title">
-      <picture>
-        <source media="(max-width: 760px)" srcSet="/media/doom-closeup.webp" />
-        <img className="hero-backdrop" src="/media/doom-closeup4.png" alt="" />
-      </picture>
+      <img className="hero-backdrop" src="/media/doom-throne.webp" alt="" />
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
         <p className="hero-eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
@@ -85,7 +81,7 @@ function HeroStage() {
           <img
             className="hero-incursion-logo"
             src="/incursion-logo.webp"
-            alt="Incursion"
+            alt=""
             width="1774"
             height="887"
             fetchPriority="high"
@@ -116,8 +112,12 @@ function HeroStage() {
         </div>
       </div>
       <a className="hero-scroll" href="#tlv" data-scene-target="13.9">
-        <span>Scroll down to explore</span><i aria-hidden="true" />
+        <span>Scroll to explore</span><i aria-hidden="true" />
       </a>
+      <p className="model-credit">
+        "Doctor Doom's Mask" by <a href="https://sketchfab.com/3d-models/doctor-dooms-mask-8db5464072f341a994ad1c729d9080f7" target="_blank" rel="noreferrer">Nicolas_Laube</a>
+        {' · '}<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>
+      </p>
     </section>
   );
 }
@@ -135,21 +135,24 @@ export default function IncursionExperience() {
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
+        <DoomMaskHero />
         <HeroStage />
         <Timeline />
+        <section className="ch" id="c5"><div>
+          <h2>Doom isn&apos;t waiting.</h2><p>INCURSION 2027 · 30–31 January 2027</p>
+          {/* <a className="btn reg" href="/universe">Enter the Universe<Arrow /></a> */}
+        </div><div className="k" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+          <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '16px', width: 'auto' }} />
+          <span>GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pune</span>
+        </div></section>
+        <header id="hdr"><div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}><button id="snd" aria-pressed="true" type="button">Sound on</button></div></header>
         <header id="hdr">
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
             <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '18px', width: 'auto' }} />
             <b>INCURSION 2027</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button id="snd" aria-label="Turn sound off" aria-pressed="true" data-sound-state="on" type="button">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path className="snd-on-speaker" d="M4 10v4h4l5 4V6l-5 4H4Z" />
-                <path className="snd-wave" d="M16 9.2a4 4 0 0 1 0 5.6M18.5 6.7a7.5 7.5 0 0 1 0 10.6" />
-                <path className="snd-off-speaker" strokeLinecap="round" strokeLinejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.531V19.94a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.506-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.395C2.806 8.757 3.63 8.25 4.51 8.25H6.75z" />
-              </svg>
-            </button>
+            <button id="snd" aria-pressed="true" type="button">Sound on</button>
           </div>
         </header>
         <div className="grain" aria-hidden="true" />
