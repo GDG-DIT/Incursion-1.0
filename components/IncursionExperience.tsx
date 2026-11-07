@@ -95,11 +95,16 @@ function HeroStage() {
         <div className="hero-actions">
           <a
             className="btn hero-primary reg"
-            href={registerHref}
+            href={registerHref || '#registration'}
             target={registerHref ? '_blank' : undefined}
             rel={registerHref ? 'noopener noreferrer' : undefined}
             onClick={(e) => {
-              if (!registerHref) e.preventDefault();
+              if (!registerHref) {
+                e.preventDefault();
+                const destination = 23.4;
+                window.location.hash = 'registration';
+                window.dispatchEvent(new CustomEvent('incursion:scene-jump', { detail: { position: destination } }));
+              }
             }}
             title={registerHref ? 'Register Now' : 'Registration opening soon on Unstop'}
           >
@@ -130,7 +135,7 @@ export default function IncursionExperience() {
           <strong className="stage-tease-subtitle">The final hour begins.</strong>
           <span className="stage-tease-meta">30 — 31 January 2027 · Pune, India</span>
         </div>
-        <div className="stage-end-tease" id="stage-end-tease" aria-live="polite">
+        <div className="stage-end-tease" id="registration" aria-live="polite">
           <span>Stay tuned</span>
           <strong>Something big is here</strong>
         </div>
