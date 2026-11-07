@@ -14,8 +14,6 @@ export default function Navbar() {
       <Link href="/universe" className="universe-nav-brand" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px' }}>
         <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '24px', width: 'auto', display: 'block' }} />
         <span className="universe-nav-title">INCURSION 2027</span>
-        <span className="universe-nav-divider" />
-        <span className="universe-nav-subtitle">Enter the Universe</span>
       </Link>
 
       {/* Desktop Nav Links */}

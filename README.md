@@ -1,50 +1,48 @@
-# Incursion
+<div align="center">
+  <img src="./public/media/incursion_logo.svg" alt="INCURSION 2027 — Time Runs Out" width="620">
+  <br>
+  <img src="./public/gdg-logo.svg" alt="GDG on Campus" width="150">
 
-A Next.js App Router version of the supplied hackathon website. The font, intro video, scroll-scrubbed planetary collision, lightning/glitch title reveal, Doom scenes, schedule, and sound controls are preserved. The film toolbar, chapter navigation, automatic playback mode, and “Watch film” option have been removed.
+  <h1>INCURSION 2027</h1>
+  <p><strong>Two worlds. One final stand.</strong></p>
+  <p>National-level student hackathon • GDG on Campus, DYPIT Pune</p>
+</div>
 
-## Run locally
+---
 
-Use Node.js 20.9 or newer.
+## ⚡ The event
 
-```sh
-npm ci
-npm run dev
-```
+INCURSION 2027 is a national-level student hackathon organized by **GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune**.
 
-Open http://localhost:3000. Enter with or without sound, optionally skip the intro, and scroll to explore.
+> **Theme:** “Doomsday Times Run Out”
 
-## Verify audio behavior
+Participants begin with an online idea challenge before the strongest teams enter an intense offline **24-hour build-and-demo finale**.
 
-```sh
-npm test
-```
+## 🌌 At a glance
 
-The tests cover cue rearming after rewinds, avoiding overlapping impacts on large scroll jumps, mute behavior, fade-out, and node cleanup.
+| | Details |
+|---|---|
+| **Date** | 30–31 January 2027 |
+| **Venue** | DYPIT Campus, Pune |
+| **Format** | Online idea challenge + offline 24-hour finale |
+| **Team size** | 2–4 members |
+| **Registration** | Free to register |
+| **Prize pool** | ₹2 Lakh |
+| **Finalists** | Top 50 teams plus a waitlist |
+| **Round 1** | Open to unlimited teams |
 
-## Production
+## 🗓️ Event timeline
 
-```sh
-npm run build
-npm start
-```
+| Date | Milestone |
+|---|---|
+| **8 November 2026** | Registration opens |
+| **5 December 2026** | Registration and idea submission close |
+| **6 December 2026 – 5 January 2027** | Evaluation and finalist selection |
+| **30 January 2027** | Finale check-in and hackathon begins |
+| **31 January 2027** | Submissions, demos, judging, awards, and closing |
 
-Deploy as a standard Next.js project on a compatible Node.js host. This project has not been published to a hosting service.
+---
 
-## Edit the site
-
-- `app/page.jsx` and `app/layout.jsx`: route, document metadata, and viewport configuration.
-- `components/IncursionExperience.jsx`: React markup for the welcome screen, title, schedule, and closing section.
-- `lib/content.js`: schedule dates, text, and image crops.
-- `lib/collision-audio.js`: scroll-synchronized rumble, rising air, and impact cues. Uses the same sound toggle as the rest of the site.
-- `lib/experience.js`: client-only scroll, canvas, video, audio, and title animation controller. Its React effect cleans up listeners, animation frames, timers, media playback, and the audio context on unmount, including development Strict Mode remounts.
-- `app/globals.css`: responsive styling and the supplied font declarations.
-- `public/media/`: original media extracted from the HTML, byte-for-byte, with normal browser caching and video range requests.
-- `public/fonts/avengeance.otf`: the supplied font.
-
-## Registration
-
-Copy `.env.example` to `.env.local` and set `NEXT_PUBLIC_REGISTER_URL` to the real registration URL. Restart development or rebuild production after changing it. With no URL configured, Register takes visitors to the schedule, matching the supplied page's fallback.
-
-The dates are retained from the source HTML, which marked the schedule as proposed. Confirm them before launch. Media resolution is unchanged; conversion does not upscale the source footage.
-
-Next.js reference: https://nextjs.org/docs/app/getting-started/installation
+<div align="center">
+  <strong>Build boldly. Solve meaningfully. Make time count.</strong>
+</div>

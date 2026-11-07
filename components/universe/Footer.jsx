@@ -16,13 +16,13 @@ export default function Footer() {
           <div>
             <div className="universe-footer-brand-lockup">
               <div className="universe-footer-logo-pair">
-                <img className="universe-footer-gdg-logo" src="/gdg-logo.svg" alt="GDG on Campus logo" />
-                <span className="universe-footer-logo-divider" aria-hidden="true" />
-                <span
+                <img
                   className="universe-footer-incursion-logo-slot"
-                  role="img"
-                  aria-label="Space reserved for the Incursion logo"
+                  src="/media/incursion_logo.svg"
+                  alt="Incursion logo"
                 />
+                <span className="universe-footer-logo-divider" aria-hidden="true" />
+                <img className="universe-footer-gdg-logo" src="/gdg-logo.svg" alt="GDG on Campus logo" />
               </div>
               <Link href="/universe" className="universe-footer-brand-title">
                 INCURSION 2027
@@ -73,12 +73,19 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://instagram.com/gdg.dit" target="_blank" rel="noopener noreferrer">
+                <a href="https://www.instagram.com/gdg.dit" target="_blank" rel="noopener noreferrer">
                   Instagram: @gdg.dit
                 </a>
               </li>
-              <li style={{ color: 'var(--mute)', fontSize: '13px' }}>
-                Other Channels: TBD
+              <li>
+                <a href="https://www.linkedin.com/company/gdg-dit/" target="_blank" rel="noopener noreferrer">
+                  LinkedIn: GDG DIT
+                </a>
+              </li>
+              <li>
+                <a href="mailto:gdg.dit@dypvp.edu.in">
+                  Email: gdg.dit@dypvp.edu.in
+                </a>
               </li>
               <li>
                 <button type="button" onClick={scrollToTop} style={{ color: 'var(--em)', marginTop: '8px', background: 'none', border: 'none', cursor: 'pointer', padding: 0 }}>
@@ -96,11 +103,22 @@ export default function Footer() {
             <span>© 2027 INCURSION • GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.</span>
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
-            <span>National Level Hackathon</span>
+            <span>24 Hours National Level Hackathon</span>
             <span>DYPIT Pune</span>
           </div>
         </div>
       </div>
+      <button
+        type="button"
+        className="universe-floating-top"
+        onClick={scrollToTop}
+        aria-label="Back to top"
+        title="Back to top"
+      >
+        <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" />
+        </svg>
+      </button>
     </footer>
   );
 }
