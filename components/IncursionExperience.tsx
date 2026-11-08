@@ -46,7 +46,7 @@ function Timeline() {
         playsInline
         preload="metadata"
         poster="/media/timeline-1.webp"
-        src="/media/timeline-bg.mp4"
+        // src="/media/timeline-bg.mp4"
         aria-hidden="true"
       />
       <div className="tlh">
@@ -83,7 +83,7 @@ function HeroStage() {
     <section className="hero" id="hero" aria-labelledby="hero-title">
       <picture>
         <source media="(max-width: 760px)" srcSet="/media/doom-closeup.webp" />
-        <img className="hero-backdrop" src="/media/doom-closeup4.png" alt="" />
+        <img className="hero-backdrop" src="/media/doom-closeup4.webp" alt="" />
       </picture>
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
@@ -94,7 +94,7 @@ function HeroStage() {
         <h1 id="hero-title" aria-label="INCURSION 2027">
           <img
             className="hero-incursion-logo"
-            src="/incursion-logo.webp"
+            src="/media/incursion_logo.svg"
             alt="Incursion"
             width="1774"
             height="887"
@@ -142,7 +142,7 @@ export default function IncursionExperience() {
       <div id="scroll"><div id="stage">
         <section id="throne" aria-label="Doctor Doom on his throne">
           <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="" decoding="async" />
-          <img id="tc" className="pic" src="/media/doom-closeup6.png" alt="Doctor Doom, hooded, eyes glowing green" decoding="async" />
+          <img id="tc" className="pic" src="/media/doom-closeup6.webp" alt="Doctor Doom, hooded, eyes glowing green" decoding="async" />
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
         <div className="stage-tease" id="stage-tease" aria-live="polite">
