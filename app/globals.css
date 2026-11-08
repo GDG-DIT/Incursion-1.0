@@ -285,17 +285,15 @@ header .hdr-brand,
 #hdr .hdr-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 28px;
+  gap: 12px;
+  font-size: 24px;
 }
 
 header .hdr-logo,
-#hdr .hdr-logo,
-#hdr img {
-  height: 20px;
+#hdr .hdr-logo {
+  height: 22px;
   width: auto;
   display: block;
-  transform: translateY(-0.25em);
 }
 
 header .hdr-collab,
@@ -304,7 +302,6 @@ header .hdr-collab,
   align-items: center;
   justify-content: center;
   color: rgba(233, 231, 224, 0.7);
-  transform: translateY(-0.25em);
   line-height: 1;
 }
 
@@ -315,9 +312,20 @@ header .hdr-collab svg,
   display: block;
 }
 
+header .hdr-incursion-logo,
+#hdr .hdr-incursion-logo {
+  height: 34px !important;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+}
+
 header b,
-#hdr b {
-  font: italic 400 28px/1 var(--serif);
+#hdr b,
+header .hdr-year,
+#hdr .hdr-year {
+  font: italic 400 24px/1 var(--serif);
   letter-spacing: 0.02em;
   display: inline-flex;
   align-items: center;
@@ -1446,8 +1454,9 @@ header b {
     padding: max(22px, calc(16px + env(safe-area-inset-top, 0px))) 16px 0;
   }
 
-  #hdr b {
-    font-size: 18px;
+  #hdr b,
+  #hdr .hdr-year {
+    font-size: 19px;
     line-height: 1.15;
     overflow: visible;
   }
@@ -2256,14 +2265,12 @@ header b {
   #hdr .hdr-brand {
     min-width: 0;
     gap: 8px !important;
-    font-size: 18px;
     align-items: center;
   }
 
-  #hdr .hdr-logo,
-  #hdr img {
+  #hdr .hdr-logo {
     height: 18px !important;
-    transform: translateY(-0.25em);
+    transform: none;
   }
 
   #hdr .hdr-collab svg {
@@ -2271,8 +2278,14 @@ header b {
     height: 10px;
   }
 
-  #hdr b {
-    font-size: 18px;
+  #hdr .hdr-incursion-logo {
+    height: 26px !important;
+    transform: none;
+  }
+
+  #hdr b,
+  #hdr .hdr-year {
+    font-size: 19px;
     line-height: 1.15;
     overflow: visible;
     white-space: nowrap;
