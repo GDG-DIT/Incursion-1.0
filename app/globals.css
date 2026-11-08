@@ -602,7 +602,7 @@ header .hdr-year,
   bottom: calc(28px + env(safe-area-inset-bottom, 0px));
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   .row {
     height: auto;
     padding-bottom: 7vh;
@@ -1236,7 +1236,7 @@ header b {
   border-width: 1px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   #term {
     position: fixed;
     inset: 0;
@@ -1517,7 +1517,7 @@ header b {
   height: 16px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   #top {
     right: 16px;
     bottom: calc(16px + env(safe-area-inset-bottom, 0px));
@@ -2264,7 +2264,7 @@ header b {
   transform: translateY(0);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   .stage-tease,
   .stage-end-tease {
     top: 46%;
