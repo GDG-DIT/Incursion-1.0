@@ -4,6 +4,7 @@ import { useEffect, useRef } from 'react';
 import { createExperience } from '../lib/experience';
 import { TIMELINE, REGISTER_URL, imageStyle, jag } from '../lib/content';
 import DoomMaskHero from './DoomMaskHero';
+import DoomsdayCountdown from './DoomsdayCountdown';
 
 function Arrow() {
   return <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 4h17M13 1l4 3-4 3" /></svg>;
@@ -149,6 +150,7 @@ export default function IncursionExperience() {
         <div className="stage-end-tease" id="registration" aria-live="polite">
           <span>Stay tuned</span>
           <strong>Something big is here</strong>
+          <DoomsdayCountdown />
         </div>
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />
