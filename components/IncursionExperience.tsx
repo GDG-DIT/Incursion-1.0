@@ -155,7 +155,6 @@ export default function IncursionExperience() {
               </svg>
             </span>
             <img className="hdr-incursion-logo" src="/incursion-logo.webp" alt="Incursion" />
-            <b className="hdr-year">2027</b>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button id="snd" aria-label="Turn sound off" aria-pressed="true" data-sound-state="on" type="button">

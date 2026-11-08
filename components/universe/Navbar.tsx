@@ -19,7 +19,6 @@ export default function Navbar() {
           </svg>
         </span>
         <img src="/incursion-logo.webp" alt="Incursion" className="universe-nav-incursion-logo" />
-        <span className="universe-nav-title universe-nav-year">2027</span>
       </Link>
 
       {/* Desktop Nav Links */}
