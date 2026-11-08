@@ -18,7 +18,7 @@ export default function Navbar() {
             <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
           </svg>
         </span>
-        <span className="universe-nav-title">INCURSION 2027</span>
+        <img src="/incursion-logo.webp" alt="Incursion" className="universe-nav-incursion-logo" />
       </Link>
 
       {/* Desktop Nav Links */}

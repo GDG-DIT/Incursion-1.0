@@ -18,7 +18,7 @@ export default function Footer() {
               <div className="universe-footer-logo-pair">
                 <img
                   className="universe-footer-incursion-logo-slot"
-                  src="/media/incursion_logo.svg"
+                  src="/incursion-logo.webp"
                   alt="Incursion logo"
                 />
                 <span className="universe-footer-logo-divider" aria-hidden="true" />

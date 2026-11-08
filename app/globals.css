@@ -117,10 +117,17 @@ h3 {
 
 /* intro */
 #term {
-  position: absolute;
+  position: fixed;
   inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
   z-index: 30;
   background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .intro-flash {
@@ -160,8 +167,14 @@ h3 {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 50%;
   background: #000;
+  transform: scale(1.04) translate3d(0, 0, 0);
+  -webkit-transform: scale(1.04) translate3d(0, 0, 0);
+  transform-origin: center center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 #gate {
@@ -262,6 +275,43 @@ h3 {
   color: var(--ink);
 }
 
+.sound-prompt {
+  display: none;
+  position: absolute;
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 35;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(4, 6, 5, 0.75);
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font: 500 12px var(--sans);
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  pointer-events: none;
+  animation: soundPromptPulse 2s ease-in-out infinite;
+}
+
+.sound-prompt.is-visible {
+  display: inline-flex;
+}
+
+@keyframes soundPromptPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(63, 224, 142, 0.4);
+    opacity: 0.85;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(63, 224, 142, 0);
+    opacity: 1;
+  }
+}
+
 /* header */
 header {
   position: absolute;
@@ -285,17 +335,15 @@ header .hdr-brand,
 #hdr .hdr-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  font-size: 28px;
+  gap: 12px;
+  font-size: 24px;
 }
 
 header .hdr-logo,
-#hdr .hdr-logo,
-#hdr img {
-  height: 20px;
+#hdr .hdr-logo {
+  height: 24px;
   width: auto;
   display: block;
-  transform: translateY(-0.25em);
 }
 
 header .hdr-collab,
@@ -304,21 +352,32 @@ header .hdr-collab,
   align-items: center;
   justify-content: center;
   color: rgba(233, 231, 224, 0.7);
-  transform: translateY(-0.25em);
   line-height: 1;
 }
 
 header .hdr-collab svg,
 #hdr .hdr-collab svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
 
+header .hdr-incursion-logo,
+#hdr .hdr-incursion-logo {
+  height: 48px !important;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+}
+
 header b,
-#hdr b {
-  font: italic 400 28px/1 var(--serif);
-  letter-spacing: 0.02em;
+#hdr b,
+header .hdr-year,
+#hdr .hdr-year {
+  font: italic 400 16px/1 var(--serif);
+  letter-spacing: 0.06em;
+  color: rgba(233, 231, 224, 0.88);
   display: inline-flex;
   align-items: center;
   overflow: visible;
@@ -543,7 +602,7 @@ header b,
   bottom: calc(28px + env(safe-area-inset-bottom, 0px));
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   .row {
     height: auto;
     padding-bottom: 7vh;
@@ -699,8 +758,8 @@ header b,
   visibility: hidden;
   pointer-events: none;
   transition:
-    opacity 1.2s ease,
-    visibility 0s 1.2s;
+    opacity 0.7s cubic-bezier(0.25, 1, 0.5, 1),
+    visibility 0s 0.7s;
 }
 
 .tlh {
@@ -1097,13 +1156,6 @@ header b {
   padding: 0 22px;
 }
 
-#iv {
-  object-fit: cover;
-  object-position: 50% 50%;
-  transform: scale(1.06);
-  transform-origin: center center;
-  will-change: transform;
-}
 
 .warn {
   bottom: clamp(32px, 8vh, 90px);
@@ -1184,9 +1236,51 @@ header b {
   border-width: 1px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
+  #term {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
   #iv {
-    transform: scale(1.025);
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    height: auto !important;
+    max-height: 100dvh !important;
+    aspect-ratio: 16 / 9 !important;
+    object-fit: contain !important;
+    object-position: center center !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    will-change: auto;
+    margin: auto;
+    background: #000;
+  }
+
+  #skip {
+    right: 20px;
+    bottom: max(20px, calc(16px + env(safe-area-inset-bottom, 0px)));
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    padding: 8px 14px;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: rgba(233, 231, 224, 0.85);
   }
 
   #scroll {
@@ -1423,7 +1517,7 @@ header b {
   height: 16px;
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   #top {
     right: 16px;
     bottom: calc(16px + env(safe-area-inset-bottom, 0px));
@@ -1446,8 +1540,9 @@ header b {
     padding: max(22px, calc(16px + env(safe-area-inset-top, 0px))) 16px 0;
   }
 
-  #hdr b {
-    font-size: 18px;
+  #hdr b,
+  #hdr .hdr-year {
+    font-size: 14px;
     line-height: 1.15;
     overflow: visible;
   }
@@ -2169,7 +2264,7 @@ header b {
   transform: translateY(0);
 }
 
-@media (max-width: 760px) {
+@media (max-width: 768px), (orientation: portrait) {
   .stage-tease,
   .stage-end-tease {
     top: 46%;
@@ -2256,23 +2351,27 @@ header b {
   #hdr .hdr-brand {
     min-width: 0;
     gap: 8px !important;
-    font-size: 18px;
     align-items: center;
   }
 
-  #hdr .hdr-logo,
-  #hdr img {
-    height: 18px !important;
-    transform: translateY(-0.25em);
+  #hdr .hdr-logo {
+    height: 20px !important;
+    transform: none;
   }
 
   #hdr .hdr-collab svg {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
   }
 
-  #hdr b {
-    font-size: 18px;
+  #hdr .hdr-incursion-logo {
+    height: 36px !important;
+    transform: none;
+  }
+
+  #hdr b,
+  #hdr .hdr-year {
+    font-size: 14px;
     line-height: 1.15;
     overflow: visible;
     white-space: nowrap;

@@ -143,7 +143,6 @@ header.universe-navbar {
   height: 24px;
   width: auto;
   display: block;
-  transform: translateY(-0.25em);
 }
 
 .universe-nav-collab {
@@ -151,7 +150,6 @@ header.universe-navbar {
   align-items: center;
   justify-content: center;
   color: rgba(233, 231, 224, 0.7);
-  transform: translateY(-0.25em);
   line-height: 1;
 }
 
@@ -161,16 +159,25 @@ header.universe-navbar {
   display: block;
 }
 
-.universe-nav-title {
+.universe-nav-incursion-logo {
+  height: 48px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+}
+
+.universe-nav-title,
+.universe-nav-year {
   display: inline-flex;
   align-items: center;
   line-height: 1;
   white-space: nowrap;
   font-family: var(--serif);
   font-style: italic;
-  font-size: 28px;
-  letter-spacing: 0.04em;
-  color: var(--ink);
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: rgba(233, 231, 224, 0.88);
   overflow: visible;
 }
 
@@ -1191,14 +1198,19 @@ footer.universe-footer {
   }
   .universe-nav-logo {
     height: 20px;
-    transform: translateY(-0.25em);
+    transform: none;
   }
   .universe-nav-collab svg {
     width: 11px;
     height: 11px;
   }
-  .universe-nav-title {
-    font-size: 24px;
+  .universe-nav-incursion-logo {
+    height: 36px;
+    transform: none;
+  }
+  .universe-nav-title,
+  .universe-nav-year {
+    font-size: 14px;
     line-height: 1.15;
     overflow: visible;
   }
