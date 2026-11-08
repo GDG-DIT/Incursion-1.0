@@ -261,7 +261,7 @@ h3 {
   position: absolute;
   right: 24px;
   bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-  z-index: 3;
+  z-index: 100 !important;
   font: 500 13px var(--sans);
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -269,6 +269,11 @@ h3 {
   background: none;
   border: 0;
   cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 #skip:hover {
@@ -1274,17 +1279,28 @@ header b {
   }
 
   #skip {
-    right: 20px;
-    bottom: max(20px, calc(16px + env(safe-area-inset-bottom, 0px)));
-    font-size: 11px;
+    right: 18px;
+    bottom: max(22px, calc(18px + env(safe-area-inset-bottom, 0px)));
+    font-size: 12px;
     letter-spacing: 0.14em;
-    padding: 8px 14px;
-    background: rgba(0, 0, 0, 0.55);
+    padding: 12px 22px;
+    min-height: 44px;
+    min-width: 96px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(4, 6, 5, 0.85);
     border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    color: rgba(233, 231, 224, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    z-index: 100 !important;
+    pointer-events: auto !important;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .sound-prompt {
@@ -2540,28 +2556,30 @@ header b {
   }
 
   #tlv .tlh {
-    top: calc(100px + env(safe-area-inset-top, 0px));
-    left: 7vw;
-    width: 86vw;
-    padding: 16px 0 18px;
+    top: calc(75px + env(safe-area-inset-top, 0px));
+    left: 6vw;
+    width: 88vw;
+    padding: 8px 0 12px;
+    pointer-events: none;
+    will-change: opacity, transform;
   }
 
   #tlv .tlh h2 {
-    margin-top: 38px;
-    font-size: clamp(28px, 7vw, 38px);
-    line-height: 1.12;
+    margin-top: 18px;
+    font-size: clamp(24px, 6.5vw, 34px);
+    line-height: 1.1;
   }
 
   #tlv .tlh > p {
-    max-width: 32ch;
-    margin-top: 14px;
+    max-width: 34ch;
+    margin-top: 10px;
     font-size: 11px;
-    line-height: 1.5;
+    line-height: 1.45;
   }
 
   #tlv #tcol {
-    --cw: 78vw;
-    --sh: 24vh;
+    --cw: 82vw;
+    --sh: 22vh;
     --rh: auto;
   }
 
@@ -2569,16 +2587,16 @@ header b {
     display: flex;
     height: auto;
     flex-direction: column;
-    padding-bottom: 7vh;
+    padding-bottom: 9vh;
   }
 
   #tlv .strip {
     position: relative;
     top: auto;
     left: auto;
-    width: 78vw;
-    height: 24vh;
-    margin: 0 auto;
+    width: 82vw;
+    height: 22vh;
+    margin: 0 auto 10px;
     translate: none;
   }
 
@@ -2589,14 +2607,21 @@ header b {
     top: auto;
     left: auto;
     right: auto;
-    width: 78vw;
+    width: 82vw;
     margin: 0 auto;
     padding: 16px 14px 18px;
     text-align: left;
     border: 1px solid rgba(233, 231, 224, 0.18);
-    background: linear-gradient(135deg, rgba(2, 5, 5, 0.86), rgba(2, 5, 5, 0.64));
-    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.34);
-    backdrop-filter: blur(9px);
+    background: linear-gradient(135deg, rgba(2, 5, 5, 0.88), rgba(2, 5, 5, 0.68));
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  #mask-stage,
+  .mask-stage,
+  .mask-canvas {
+    pointer-events: none !important;
   }
 
   #tlv .ic {

@@ -449,11 +449,24 @@ export function createExperience(root) {
 
   listen(iv, "ended", finish);
   listen(iv, "error", finish);
-  $("#skip").style.display = "block";
-  listen($("#skip"), "click", () => {
-    unlockAudio();
-    finish();
-  });
+  const skipBtn = $("#skip");
+  if (skipBtn) {
+    skipBtn.style.display = "inline-flex";
+    let skipped = false;
+    const triggerSkip = (e) => {
+      if (skipped || done) return;
+      skipped = true;
+      if (e) {
+        if (e.cancelable) e.preventDefault();
+        e.stopPropagation();
+      }
+      unlockAudio();
+      finish();
+    };
+    listen(skipBtn, "click", triggerSkip);
+    listen(skipBtn, "touchend", triggerSkip);
+    listen(skipBtn, "pointerup", triggerSkip);
+  }
   enter(true);
 
   // Resume audio on the first gesture after intro completes if still blocked
@@ -667,6 +680,12 @@ export function createExperience(root) {
         if (!colH) lay();
         const ty = lerp(innerHeight * 0.66, -(colH - innerHeight * 0.55), u);
         tcol.style.transform = `translate3d(0,${ty.toFixed(2)}px,0)`;
+        const tlh = $("#tlv .tlh");
+        if (tlh) {
+          const tlhOpacity = clamp(1 - u * 4.5);
+          tlh.style.opacity = tlhOpacity.toFixed(2);
+          tlh.style.transform = `translate3d(0,${(-u * 60).toFixed(1)}px,0)`;
+        }
         rows.forEach((r, j) => {
           const y = rowCY[j] + ty,
             e = RM ? 1 : ss(H * 0.98, H * 0.58, y),
