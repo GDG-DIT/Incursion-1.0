@@ -5,29 +5,29 @@
 export const REGISTER_URL = process.env.NEXT_PUBLIC_REGISTER_URL || '';
 export const TIMELINE = [
   {
-    t: 'Registration & Idea Submission',
-    d: '9 November – 5 December 2026',
-    x: 'National registration and team formation. Ideas submitted on the platform.',
+    t: 'Registration',
+    d: '10 November – 5 December 2026',
+    x: 'National registration and team formation on the official hackathon platform.',
     img: { f: 0 },
     ic: { f: 0, z: '420%', p: '4% 45%' },
   },
   {
-    t: 'Submission Closes',
-    d: '5 December 2026',
-    x: 'Registration and online idea submission officially closes nationwide.',
+    t: 'Idea Submission',
+    d: '6 December – 25 December 2026',
+    x: 'Registered teams submit their proposed solutions and architecture across the five tracks.',
     img: { f: 1 },
     ic: { f: 1, z: '420%', p: '56% 46%' },
   },
   {
     t: 'Jury Evaluation & Screening',
-    d: '6 December 2026 – 5 January 2027',
+    d: '26 December 2026 – 5 January 2027',
     x: 'Eligibility screening and structured jury evaluation of all submitted solutions.',
     img: { f: 2 },
     ic: { f: 2, z: '420%', p: '50% 50%' },
   },
   {
     t: 'Top 50 Finalists Announced',
-    d: '5 January 2027',
+    d: '6 January 2027',
     x: 'Top 50 teams shortlisted, plus waitlist, for the offline finale.',
     img: { f: 3 },
     ic: { f: 3, z: '420%', p: '50% 52%' },
