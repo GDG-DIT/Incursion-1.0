@@ -96,10 +96,12 @@ export default function GlobalSoundtrack() {
 
     (window as any).__INCURSION_AUDIO__ = globalAudio;
 
-    // Guaranteed loop restart without break
+    // Guaranteed loop restart without break - only when whole track is completed (~1:52 / ~113s)
     const handleEnded = () => {
       try {
-        audio.currentTime = 0;
+        if (!audio.duration || audio.currentTime >= audio.duration - 1.5) {
+          audio.currentTime = 0;
+        }
         const p = audio.play();
         if (p && p.catch) p.catch(() => {});
       } catch (e) {}
