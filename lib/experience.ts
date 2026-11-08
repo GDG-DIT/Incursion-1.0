@@ -347,6 +347,23 @@ export function createExperience(root) {
       fl.remove();
     }, 900);
   }
+  let audioUnlocked = false;
+  const unlockAudio = () => {
+    if (disposed || audioUnlocked) return;
+    audioUnlocked = true;
+    const soundPrompt = $("#sound-prompt");
+    if (soundPrompt) soundPrompt.classList.remove("is-visible");
+    AC.init();
+    if (AC.ctx?.state === "suspended") {
+      AC.ctx.resume().catch(() => {});
+    }
+    AC.set(true);
+    if (AC.trk) {
+      AC.trk.muted = false;
+      AC.play(AC.trk.currentTime || 0, 1.0, 300);
+    }
+  };
+
   function finish() {
     if (disposed || done) return;
     done = true;
@@ -354,18 +371,24 @@ export function createExperience(root) {
     iv.pause();
     const prompt = $("#sound-prompt");
     if (prompt) prompt.classList.remove("is-visible");
-    $("#skip").style.display = "none";
+    const skip = $("#skip");
+    if (skip) skip.style.display = "none";
     document.documentElement.classList.remove("lock");
     iv.style.transition = "opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
     iv.style.opacity = "0";
-    $("#term").classList.add("out");
-    $("#term").inert = true;
-    triggerFlash();
+    const term = $("#term");
+    if (term) {
+      term.classList.add("out");
+      term.inert = true;
+    }
+    try {
+      triggerFlash();
+    } catch (e) {}
     // soundtrack.mp3 continues playing seamlessly without interruption
     if (AC.on && AC.trk && (AC.trk.paused || AC.trk.volume < 0.5)) {
       AC.play(AC.trk.currentTime || 0, 1.0, 400);
     }
-    $("#snd").focus({ preventScroll: true });
+    $("#snd")?.focus?.({ preventScroll: true });
     dirty = true;
   }
   function enter(snd) {
@@ -395,22 +418,6 @@ export function createExperience(root) {
 
     const soundPrompt = $("#sound-prompt");
     const term = $("#term");
-
-    let unlocked = false;
-    const unlockAudio = () => {
-      if (disposed || unlocked) return;
-      unlocked = true;
-      if (soundPrompt) soundPrompt.classList.remove("is-visible");
-      AC.init();
-      if (AC.ctx?.state === "suspended") {
-        AC.ctx.resume().catch(() => {});
-      }
-      AC.set(true);
-      if (AC.trk) {
-        AC.trk.muted = false;
-        AC.play(AC.trk.currentTime || 0, 1.0, 300);
-      }
-    };
 
     const unlockEvents = [
       "pointerdown", "touchstart", "touchend", "mousedown",
@@ -457,15 +464,17 @@ export function createExperience(root) {
       if (skipped || done) return;
       skipped = true;
       if (e) {
-        if (e.cancelable) e.preventDefault();
-        e.stopPropagation();
+        if (typeof e.preventDefault === "function" && e.cancelable) e.preventDefault();
+        if (typeof e.stopPropagation === "function") e.stopPropagation();
       }
-      unlockAudio();
+      try {
+        unlockAudio();
+      } catch (err) {}
       finish();
     };
     listen(skipBtn, "click", triggerSkip);
     listen(skipBtn, "touchend", triggerSkip);
-    listen(skipBtn, "pointerup", triggerSkip);
+    listen(skipBtn, "pointerdown", triggerSkip);
   }
   enter(true);
 
