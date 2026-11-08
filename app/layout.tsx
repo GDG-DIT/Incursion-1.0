@@ -8,15 +8,15 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'INCURSION 2027 | National 24-Hour Hackathon in Pune',
+    default: 'INCURSION 2027 | National 24-Hour Event in Pune',
     template: '%s | INCURSION 2027',
   },
-  description: 'INCURSION 2027 is a national-level student hackathon by GDG on Campus, DYPIT Pune, featuring an online idea challenge and an offline finale on 30–31 January 2027.',
+  description: 'INCURSION 2027 is a national-level Event by GDG on Campus, DYPIT Pune, featuring an online idea challenge and an offline finale on 30–31 January 2027.',
   keywords: [
     'INCURSION 2027',
-    'hackathon Pune',
-    'student hackathon India',
-    'student hackathon',
+    'Event Pune',
+    'student Event India',
+    'student Event',
     'GDG on Campus DYPIT',
     'Doomsday Times Run Out',
   ],
@@ -32,8 +32,8 @@ export const metadata = {
     locale: 'en_IN',
     url: '/',
     siteName: 'INCURSION 2027',
-    title: 'INCURSION 2027 | National Student Hackathon in Pune',
-    description: 'Join the national student hackathon by GDG on Campus, DYPIT Pune. Build, demo, and compete in the offline finale.',
+    title: 'INCURSION 2027 | National Student Event in Pune',
+    description: 'Join the national student Event by GDG on Campus, DYPIT Pune. Build, demo, and compete in the offline finale.',
     images: [
       {
         url: '/media/doom-closeup4.png',
@@ -45,8 +45,8 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'INCURSION 2027 | National 24-Hour Hackathon in Pune',
-    description: 'A national student hackathon by GDG on Campus, DYPIT Pune.',
+    title: 'INCURSION 2027 | National 24-Hour Event in Pune',
+    description: 'A national student Event by GDG on Campus, DYPIT Pune.',
     images: ['/media/doom-closeup4.png'],
   },
   robots: {
