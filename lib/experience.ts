@@ -505,12 +505,12 @@ export function createExperience(root) {
     if (allowDirectJump > 0) {
       allowDirectJump--;
     }
-    // High-precision smooth interpolation: responsive on touch, silky gliding on wheel
-    const lerpRate = isTouch ? 9.5 : 8.0;
+    // Snappy, butter-smooth responsive interpolation: zero lag, velvety glide
+    const lerpRate = isTouch ? 14.0 : 12.0;
     scenePosition = RM
       ? targetPosition
       : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * lerpRate));
-    if (Math.abs(targetPosition - scenePosition) < 0.001) {
+    if (Math.abs(targetPosition - scenePosition) < 0.0005) {
       scenePosition = targetPosition;
     } else {
       dirty = true;
@@ -566,11 +566,11 @@ export function createExperience(root) {
       const j = RM ? 0 : 0.15 + 0.25 * pu,
         jx = (Math.sin(v * 11) + Math.sin(v * 6.3)) * j,
         jy = Math.cos(v * 8.7) * j;
-      tw2.style.transform = `translate(${jx}px,${jy}px) scale(${S})`;
+      tw2.style.transform = `translate3d(${jx.toFixed(2)}px,${jy.toFixed(2)}px,0) scale(${S.toFixed(4)})`;
       tw2.style.filter = `brightness(${0.5 + 0.5 * em})${RM ? "" : ` blur(${0.25 * pu * pu}px)`}`;
       tw2.style.visibility = co < 0.999 ? "visible" : "hidden";
       tc.style.opacity = co;
-      tc.style.transform = `scale(${1 + 0.07 * ss(5.6, 6.8, v)})`;
+      tc.style.transform = `translate3d(0,0,0) scale(${(1 + 0.07 * ss(5.6, 6.8, v)).toFixed(4)})`;
       tc.style.filter = `brightness(${1 - 0.28 * ss(6.8, 7.4, v) * (1 - ss(9.6, 10.0, v))})`;
       const r = lerp(lerp(30, 74, em) * (1 - 0.5 * pu), 34, co);
       vg.style.setProperty("--r", r + "%");
@@ -609,7 +609,7 @@ export function createExperience(root) {
       if (i === 0 && o > 0) {
         if (!colH) lay();
         const ty = lerp(innerHeight * 0.66, -(colH - innerHeight * 0.55), u);
-        tcol.style.transform = `translateY(${ty}px)`;
+        tcol.style.transform = `translate3d(0,${ty.toFixed(2)}px,0)`;
         rows.forEach((r, j) => {
           const y = rowCY[j] + ty,
             e = RM ? 1 : ss(H * 0.98, H * 0.58, y),

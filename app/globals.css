@@ -88,7 +88,7 @@ body::-webkit-scrollbar {
 
 #scroll {
   position: relative;
-  height: 1200vh;
+  height: 480vh;
 }
 
 #stage {
@@ -941,7 +941,7 @@ body,
 }
 
 #scroll {
-  height: 1200vh;
+  height: 480vh;
 }
 
 body {
@@ -1190,7 +1190,7 @@ header b {
   }
 
   #scroll {
-    height: 800vh;
+    height: 360vh;
   }
 
   #gate h1 {
