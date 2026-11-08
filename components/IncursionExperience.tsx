@@ -148,9 +148,16 @@ export default function IncursionExperience() {
           <span className="stage-tease-meta">30 — 31 January 2027 · Pune, India</span>
         </div>
         <div className="stage-end-tease" id="registration" aria-live="polite">
-          <span>Stay tuned</span>
-          <strong>Something big is here</strong>
-          <DoomsdayCountdown />
+          <div className="end-tease-bg" aria-hidden="true">
+            <img className="end-tease-img" src="/media/doom-throne.webp" alt="" decoding="async" />
+            <div className="end-tease-beams" />
+            <div className="end-tease-vignette" />
+          </div>
+          <div className="end-tease-hud">
+            <span className="end-tease-eyebrow">Stay tuned</span>
+            <strong className="end-tease-title">Something big is here</strong>
+            <DoomsdayCountdown />
+          </div>
         </div>
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />

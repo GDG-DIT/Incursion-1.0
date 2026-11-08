@@ -54,36 +54,44 @@ export default function DoomsdayCountdown() {
 
   return (
     <div className="doomsday-countdown" aria-label="Countdown to Incursion on 30 January 2027">
+      <div className="countdown-pulse-badge">
+        <span className="countdown-dot" aria-hidden="true" />
+        <span>THE DOOMSDAY CLOCK IS TICKING</span>
+      </div>
+
       <div className="countdown-digits" suppressHydrationWarning>
-        <div className="countdown-col">
+        <div className="countdown-card">
           <span className="countdown-num">{timeLeft.months}</span>
           <span className="countdown-label">Months</span>
         </div>
         <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-col">
+        <div className="countdown-card">
           <span className="countdown-num">{timeLeft.days}</span>
           <span className="countdown-label">Days</span>
         </div>
         <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-col">
+        <div className="countdown-card">
           <span className="countdown-num">{timeLeft.hours}</span>
           <span className="countdown-label">Hours</span>
         </div>
         <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-col">
+        <div className="countdown-card">
           <span className="countdown-num">{timeLeft.minutes}</span>
           <span className="countdown-label">Minutes</span>
         </div>
         <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-col">
+        <div className="countdown-card">
           <span className="countdown-num">{timeLeft.seconds}</span>
           <span className="countdown-label">Seconds</span>
         </div>
       </div>
+
       <div className="countdown-footer">
         <span>30 January 2027</span>
         <i aria-hidden="true" />
-        <span>DYPIT Pune</span>
+        <span>DYPIT Campus, Pune</span>
+        <i aria-hidden="true" />
+        <span>National Hackathon</span>
       </div>
     </div>
   );
