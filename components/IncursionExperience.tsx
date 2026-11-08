@@ -154,7 +154,7 @@ export default function IncursionExperience() {
             <div className="end-tease-vignette" />
           </div>
           <div className="end-tease-hud">
-            <span className="end-tease-eyebrow">Avengers: Doomsday · Stay tuned</span>
+            <span className="end-tease-eyebrow">Stay tuned</span>
             <strong className="end-tease-title">Something big is here</strong>
             <DoomsdayCountdown />
           </div>
