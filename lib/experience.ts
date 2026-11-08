@@ -128,6 +128,7 @@ export function createExperience(root) {
       }
       const t = new Audio(AUDIO_TRACK);
       t.preload = "auto";
+      t.loop = true;
       t.volume = 0;
       t.muted = !this.on;
       listen(t, "error", () => {
@@ -280,7 +281,7 @@ export function createExperience(root) {
         this.master.gain.setTargetAtTime(b ? 1 : 0, this.ctx.currentTime, 0.05);
       if (this.trk) this.trk.muted = !b;
       if (b && this.ctx?.state === "suspended") this.ctx.resume().catch(() => {});
-      iv.muted = !b;
+      iv.muted = true;
       if (typeof window !== "undefined") {
         sessionStorage.setItem("incursion_audio_enabled", b ? "true" : "false");
         window.dispatchEvent(new CustomEvent("incursion:audio-state", {
@@ -351,6 +352,8 @@ export function createExperience(root) {
     done = true;
     ready = true;
     iv.pause();
+    const prompt = $("#sound-prompt");
+    if (prompt) prompt.classList.remove("is-visible");
     $("#skip").style.display = "none";
     document.documentElement.classList.remove("lock");
     iv.style.transition = "opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
@@ -358,51 +361,69 @@ export function createExperience(root) {
     $("#term").classList.add("out");
     $("#term").inert = true;
     triggerFlash();
-    AC.drone();
-    if (AC.on && AC.trk && trk === 0) {
-      trk = 1;
-      AC.play(0, 1.0, 400);
+    // soundtrack.mp3 continues playing seamlessly without interruption
+    if (AC.on && AC.trk && (AC.trk.paused || AC.trk.volume < 0.5)) {
+      AC.play(AC.trk.currentTime || 0, 1.0, 400);
     }
     $("#snd").focus({ preventScroll: true });
     dirty = true;
   }
   function enter(snd) {
     introStarted = true;
-    iv.muted = !snd;
-    iv.volume = snd ? 1 : 0;
-    if (typeof window !== "undefined") {
-      sessionStorage.setItem("incursion_audio_enabled", snd ? "true" : "false");
-    }
+    iv.muted = true;
+    iv.volume = 0;
+
+    const stored = typeof window !== "undefined" ? sessionStorage.getItem("incursion_audio_enabled") : null;
+    const shouldAudio = stored !== null ? stored === "true" : snd;
+
     AC.init();
-    AC.set(snd);
-    if (snd && AC.ctx?.state === "suspended") {
-      AC.ctx.resume().catch(() => {});
-    }
-    if (snd && AC.trk && trk === 0) {
-      trk = 1;
-      AC.play(0, 1.0, 400);
-    }
-    const p = iv.play();
-    if (p && p.catch) {
-      p.catch(() => {
-        if (disposed || done) return;
-        iv.muted = true;
-        iv.play().catch(() => {});
-        const resumeExperienceAudio = () => {
-          if (disposed || done || !AC.on) return;
-          if (AC.ctx?.state === "suspended") {
-            AC.ctx.resume().catch(() => {});
-          }
-          if (AC.trk) {
-            AC.play(AC.trk.currentTime || 0, 1.0, 400);
-          }
-          iv.muted = false;
-          iv.volume = 1;
-          iv.play().catch(() => {});
-        };
-        listen(window, "pointerdown", resumeExperienceAudio, { once: true });
-        listen(window, "keydown", resumeExperienceAudio, { once: true });
-      });
+    AC.set(shouldAudio);
+
+    const savedTime = typeof window !== "undefined" ? sessionStorage.getItem("incursion_audio_time") : null;
+    const initialTime = savedTime && !isNaN(parseFloat(savedTime)) ? parseFloat(savedTime) : 0;
+
+    // Start video playback (muted so it autoplays 100% reliably)
+    iv.play().catch(() => {});
+
+    const soundPrompt = $("#sound-prompt");
+
+    const unlockAudio = () => {
+      if (disposed) return;
+      if (soundPrompt) soundPrompt.classList.remove("is-visible");
+      AC.init();
+      if (AC.ctx?.state === "suspended") {
+        AC.ctx.resume().catch(() => {});
+      }
+      if (!AC.on) {
+        AC.set(true);
+      }
+      if (AC.trk && (AC.trk.paused || AC.trk.volume === 0)) {
+        AC.play(AC.trk.currentTime || 0, 1.0, 400);
+      }
+    };
+
+    if (shouldAudio && AC.trk) {
+      AC.play(initialTime, 1.0, 400);
+      const playPromise = AC.trk.play();
+      if (playPromise && playPromise.catch) {
+        playPromise.then(() => {
+          if (soundPrompt) soundPrompt.classList.remove("is-visible");
+        }).catch(() => {
+          // Autoplay blocked by browser policy until interaction
+          if (soundPrompt && !done) soundPrompt.classList.add("is-visible");
+          const unlockEvents = [
+            "pointerdown", "touchstart", "touchend", "mousedown",
+            "click", "wheel", "scroll", "keydown"
+          ];
+          const unlockHandler = () => {
+            unlockAudio();
+            unlockEvents.forEach((ev) => window.removeEventListener(ev, unlockHandler));
+          };
+          unlockEvents.forEach((ev) => {
+            listen(window, ev, unlockHandler, { passive: true });
+          });
+        });
+      }
     }
   }
 
@@ -637,12 +658,7 @@ export function createExperience(root) {
      *   window.location.href = "/universe";
      * }
      */
-      if (v < 0.05 && trk >= 1) {
-        trk = 0;
-        reveal = 0;
-        AC.stop(400);
-      }
-      if (trk >= 1 && reveal && AC.trk && AC.trk.volume > 0) {
+      if (reveal && AC.trk && AC.trk.volume > 0) {
         const q = 1.0;
         if (AC._q !== q && rt > 4.5) {
           AC._q = q;

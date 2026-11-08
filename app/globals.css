@@ -275,6 +275,43 @@ h3 {
   color: var(--ink);
 }
 
+.sound-prompt {
+  display: none;
+  position: absolute;
+  top: calc(24px + env(safe-area-inset-top, 0px));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 35;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(4, 6, 5, 0.75);
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font: 500 12px var(--sans);
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  pointer-events: none;
+  animation: soundPromptPulse 2s ease-in-out infinite;
+}
+
+.sound-prompt.is-visible {
+  display: inline-flex;
+}
+
+@keyframes soundPromptPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(63, 224, 142, 0.4);
+    opacity: 0.85;
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(63, 224, 142, 0);
+    opacity: 1;
+  }
+}
+
 /* header */
 header {
   position: absolute;

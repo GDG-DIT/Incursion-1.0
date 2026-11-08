@@ -50,17 +50,16 @@ export default function AudioPlayer() {
       }
     };
     window.addEventListener('incursion:audio-state', handleSharedAudioState);
+    const unlockEvents = ['pointerdown', 'touchstart', 'touchend', 'mousedown', 'click', 'wheel', 'scroll', 'keydown'];
     if (shouldPlay) {
-      window.addEventListener('pointerdown', playAudio, { once: true });
-      window.addEventListener('keydown', playAudio, { once: true });
+      unlockEvents.forEach((ev) => window.addEventListener(ev, playAudio, { once: true, passive: true }));
     }
 
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('incursion:audio-state', handleSharedAudioState);
       if (shouldPlay) {
-        window.removeEventListener('pointerdown', playAudio);
-        window.removeEventListener('keydown', playAudio);
+        unlockEvents.forEach((ev) => window.removeEventListener(ev, playAudio));
       }
     };
   }, []);
