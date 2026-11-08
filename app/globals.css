@@ -291,7 +291,7 @@ header .hdr-brand,
 
 header .hdr-logo,
 #hdr .hdr-logo {
-  height: 22px;
+  height: 24px;
   width: auto;
   display: block;
 }
@@ -307,14 +307,14 @@ header .hdr-collab,
 
 header .hdr-collab svg,
 #hdr .hdr-collab svg {
-  width: 13px;
-  height: 13px;
+  width: 14px;
+  height: 14px;
   display: block;
 }
 
 header .hdr-incursion-logo,
 #hdr .hdr-incursion-logo {
-  height: 34px !important;
+  height: 48px !important;
   width: auto;
   display: block;
   object-fit: contain;
@@ -325,8 +325,9 @@ header b,
 #hdr b,
 header .hdr-year,
 #hdr .hdr-year {
-  font: italic 400 24px/1 var(--serif);
-  letter-spacing: 0.02em;
+  font: italic 400 16px/1 var(--serif);
+  letter-spacing: 0.06em;
+  color: rgba(233, 231, 224, 0.88);
   display: inline-flex;
   align-items: center;
   overflow: visible;
@@ -1456,7 +1457,7 @@ header b {
 
   #hdr b,
   #hdr .hdr-year {
-    font-size: 19px;
+    font-size: 14px;
     line-height: 1.15;
     overflow: visible;
   }
@@ -2269,23 +2270,23 @@ header b {
   }
 
   #hdr .hdr-logo {
-    height: 18px !important;
+    height: 20px !important;
     transform: none;
   }
 
   #hdr .hdr-collab svg {
-    width: 10px;
-    height: 10px;
+    width: 11px;
+    height: 11px;
   }
 
   #hdr .hdr-incursion-logo {
-    height: 26px !important;
+    height: 36px !important;
     transform: none;
   }
 
   #hdr b,
   #hdr .hdr-year {
-    font-size: 19px;
+    font-size: 14px;
     line-height: 1.15;
     overflow: visible;
     white-space: nowrap;
