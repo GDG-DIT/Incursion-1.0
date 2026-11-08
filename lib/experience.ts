@@ -64,6 +64,7 @@ export function createExperience(root) {
       el.style.visibility = o > 0.002 ? "visible" : "hidden";
     };
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isTouch = matchMedia("(pointer: coarse)").matches;
   const STORY_END = 25.0;
   let lastTick = 0,
     scenePosition = 0,
@@ -76,7 +77,7 @@ export function createExperience(root) {
     if (allowJump) allowDirectJump = 8;
     scrollTo({
       top: (clamp(position, 0, STORY_END) / STORY_END) * scrollRange(),
-      behavior: "auto",
+      behavior: allowJump && !RM ? "smooth" : "auto",
     });
   }
   history.scrollRestoration = "manual";
@@ -495,34 +496,25 @@ export function createExperience(root) {
     redirected = false,
     firstScrollReveal = false,
     timelineVisited = false;
-  listen(window, "wheel", (event) => {
-    if (!ready || firstScrollReveal || event.deltaY <= 0 || readPosition() >= 10.3) return;
-    event.preventDefault();
-    firstScrollReveal = true;
-    goScene(10.9);
-  }, { passive: false });
   function tick() {
     scheduleFrame(tick);
     const now = performance.now(),
       dt = Math.min(0.05, (now - (lastTick || now)) / 1000);
     lastTick = now;
-    let targetPosition = readPosition();
-    if (!allowDirectJump && Math.abs(targetPosition - scenePosition) > 2.2) {
-      targetPosition = clamp(
-        scenePosition + Math.sign(targetPosition - scenePosition) * 1.8,
-        0,
-        STORY_END,
-      );
-      goScene(targetPosition);
-    } else {
-      allowDirectJump = Math.max(0, allowDirectJump - 1);
+    const targetPosition = readPosition();
+    if (allowDirectJump > 0) {
+      allowDirectJump--;
     }
+    // High-precision smooth interpolation: responsive on touch, silky gliding on wheel
+    const lerpRate = isTouch ? 9.5 : 8.0;
     scenePosition = RM
       ? targetPosition
-      : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * 9));
-    if (Math.abs(targetPosition - scenePosition) < 0.002)
+      : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * lerpRate));
+    if (Math.abs(targetPosition - scenePosition) < 0.001) {
       scenePosition = targetPosition;
-    else dirty = true;
+    } else {
+      dirty = true;
+    }
     const raw = scenePosition,
       v = raw;
     window.dispatchEvent(new CustomEvent("incursion:scroll", { detail: { v } }));

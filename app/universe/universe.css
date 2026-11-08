@@ -19,14 +19,16 @@
 }
 
 html:has(.universe-page) {
-  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  -webkit-overflow-scrolling: touch;
 }
 
 .universe-content > .universe-hero,
 .universe-content > .universe-section,
 .universe-content > .universe-footer {
   scroll-snap-align: start;
-  scroll-snap-stop: always;
+  scroll-snap-stop: normal;
 }
 
 .universe-content {
@@ -1114,6 +1116,15 @@ footer.universe-footer {
 }
 
 @media (max-width: 768px) {
+  html:has(.universe-page) {
+    scroll-snap-type: none !important;
+  }
+  .universe-content > .universe-hero,
+  .universe-content > .universe-section,
+  .universe-content > .universe-footer {
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
+  }
   header.universe-navbar {
     height: calc(64px + env(safe-area-inset-top, 0px)) !important;
     padding-top: env(safe-area-inset-top, 0px) !important;
