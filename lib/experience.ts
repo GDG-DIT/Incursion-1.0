@@ -373,6 +373,14 @@ export function createExperience(root) {
     iv.muted = true;
     iv.volume = 0;
 
+    if (typeof window !== "undefined") {
+      const isMobile = window.innerWidth <= 768;
+      const targetSrc = isMobile ? "/media/intro-mobile.mp4" : "/media/intro.mp4";
+      if (!iv.currentSrc?.endsWith(targetSrc) && (!iv.src || !iv.src.endsWith(targetSrc))) {
+        iv.src = targetSrc;
+      }
+    }
+
     const stored = typeof window !== "undefined" ? sessionStorage.getItem("incursion_audio_enabled") : null;
     const shouldAudio = stored !== null ? stored === "true" : snd;
 
@@ -386,20 +394,35 @@ export function createExperience(root) {
     iv.play().catch(() => {});
 
     const soundPrompt = $("#sound-prompt");
+    const term = $("#term");
 
+    let unlocked = false;
     const unlockAudio = () => {
-      if (disposed) return;
+      if (disposed || unlocked) return;
+      unlocked = true;
       if (soundPrompt) soundPrompt.classList.remove("is-visible");
       AC.init();
       if (AC.ctx?.state === "suspended") {
         AC.ctx.resume().catch(() => {});
       }
-      if (!AC.on) {
-        AC.set(true);
+      AC.set(true);
+      if (AC.trk) {
+        AC.trk.muted = false;
+        AC.play(AC.trk.currentTime || 0, 1.0, 300);
       }
-      if (AC.trk && (AC.trk.paused || AC.trk.volume === 0)) {
-        AC.play(AC.trk.currentTime || 0, 1.0, 400);
-      }
+    };
+
+    const unlockEvents = [
+      "pointerdown", "touchstart", "touchend", "mousedown",
+      "click", "wheel", "scroll", "keydown"
+    ];
+    const onUserGesture = () => {
+      unlockAudio();
+      unlockEvents.forEach((ev) => {
+        window.removeEventListener(ev, onUserGesture);
+        if (term) term.removeEventListener(ev, onUserGesture);
+        if (soundPrompt) soundPrompt.removeEventListener(ev, onUserGesture);
+      });
     };
 
     if (shouldAudio && AC.trk) {
@@ -411,27 +434,40 @@ export function createExperience(root) {
         }).catch(() => {
           // Autoplay blocked by browser policy until interaction
           if (soundPrompt && !done) soundPrompt.classList.add("is-visible");
-          const unlockEvents = [
-            "pointerdown", "touchstart", "touchend", "mousedown",
-            "click", "wheel", "scroll", "keydown"
-          ];
-          const unlockHandler = () => {
-            unlockAudio();
-            unlockEvents.forEach((ev) => window.removeEventListener(ev, unlockHandler));
-          };
-          unlockEvents.forEach((ev) => {
-            listen(window, ev, unlockHandler, { passive: true });
-          });
         });
       }
+    } else {
+      if (soundPrompt && !done) soundPrompt.classList.add("is-visible");
     }
+
+    unlockEvents.forEach((ev) => {
+      listen(window, ev, onUserGesture, { passive: true });
+      if (term) listen(term, ev, onUserGesture, { passive: true });
+      if (soundPrompt) listen(soundPrompt, ev, onUserGesture, { passive: true });
+    });
   }
 
   listen(iv, "ended", finish);
   listen(iv, "error", finish);
   $("#skip").style.display = "block";
-  listen($("#skip"), "click", finish);
+  listen($("#skip"), "click", () => {
+    unlockAudio();
+    finish();
+  });
   enter(true);
+
+  // Resume audio on the first gesture after intro completes if still blocked
+  const unlockOnPageTouch = () => {
+    if (AC.on && AC.trk && (AC.trk.paused || AC.trk.muted)) {
+      AC.init();
+      if (AC.ctx?.state === "suspended") AC.ctx.resume().catch(() => {});
+      AC.trk.muted = false;
+      AC.play(AC.trk.currentTime || 0, 1.0, 300);
+    }
+  };
+  ["pointerdown", "touchstart", "click"].forEach((ev) => {
+    listen(window, ev, unlockOnPageTouch, { passive: true, once: true });
+  });
   /* ---- registration / schedule buttons ---- */
   $$("a[href*='/universe']").forEach((link) => {
     listen(link, "click", () => {

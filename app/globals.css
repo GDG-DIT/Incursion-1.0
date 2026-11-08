@@ -278,23 +278,26 @@ h3 {
 .sound-prompt {
   display: none;
   position: absolute;
-  top: calc(24px + env(safe-area-inset-top, 0px));
+  bottom: calc(84px + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   z-index: 35;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  background: rgba(4, 6, 5, 0.75);
-  border: 1px solid rgba(63, 224, 142, 0.4);
+  gap: 10px;
+  padding: 10px 22px;
+  background: rgba(4, 6, 5, 0.88);
+  border: 1px solid rgba(63, 224, 142, 0.6);
   border-radius: 999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  font: 500 12px var(--sans);
-  letter-spacing: 0.08em;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font: 600 12px var(--sans);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--ink);
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
   animation: soundPromptPulse 2s ease-in-out infinite;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(63, 224, 142, 0.25);
 }
 
 .sound-prompt.is-visible {
@@ -303,11 +306,11 @@ h3 {
 
 @keyframes soundPromptPulse {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(63, 224, 142, 0.4);
-    opacity: 0.85;
+    box-shadow: 0 0 0 0 rgba(63, 224, 142, 0.5), 0 4px 24px rgba(0, 0, 0, 0.6);
+    opacity: 0.9;
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(63, 224, 142, 0);
+    box-shadow: 0 0 0 10px rgba(63, 224, 142, 0), 0 4px 24px rgba(0, 0, 0, 0.6);
     opacity: 1;
   }
 }
@@ -1267,6 +1270,7 @@ header b {
     will-change: auto;
     margin: auto;
     background: #000;
+    pointer-events: none !important;
   }
 
   #skip {
@@ -1281,6 +1285,13 @@ header b {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     color: rgba(233, 231, 224, 0.85);
+  }
+
+  .sound-prompt {
+    bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+    padding: 9px 18px;
+    font-size: 11px;
+    white-space: nowrap;
   }
 
   #scroll {
@@ -1708,8 +1719,22 @@ header b {
 }
 
 #hero h1 {
-  width: min(100%, 560px);
+  width: auto;
   margin: 0 0 22px;
+  font: italic 400 clamp(54px, 7.8vw, 120px)/1.0 var(--serif);
+  letter-spacing: 0.01em;
+  color: #fff;
+  white-space: nowrap;
+  text-shadow: 0 4px 36px rgba(0, 0, 0, 0.75), 0 0 40px rgba(63, 224, 142, 0.2);
+}
+
+#hero h1 em {
+  font-size: 0.44em;
+  font-style: italic;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  vertical-align: 0.22em;
+  margin-left: 0.2em;
 }
 
 #hero .hero-incursion-logo {
@@ -2432,9 +2457,21 @@ header b {
   }
 
   #hero h1 {
-    width: min(100%, 320px);
-    margin: 0 auto clamp(138px, 18svh, 174px);
-    transform: translateY(-10px);
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    font-size: clamp(38px, 12vw, 64px);
+    line-height: 0.95;
+    text-align: center;
+    white-space: nowrap;
+    transform: none;
+  }
+
+  #hero h1 em {
+    display: inline-block;
+    margin-left: 0.18em;
+    font-size: 0.44em;
+    vertical-align: 0.18em;
   }
 
   #hero .hero-year {
