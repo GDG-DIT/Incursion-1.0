@@ -2473,9 +2473,10 @@ header b {
   }
 
   #hero .hero-copy {
-    width: 88%;
+    width: 90%;
+    max-width: 440px;
     margin: 0 auto;
-    padding-top: calc(max(70px, calc(54px + env(safe-area-inset-top, 0px))) + 32px);
+    padding-top: calc(max(68px, calc(52px + env(safe-area-inset-top, 0px))) + 26px);
     text-align: center;
   }
 
@@ -2483,16 +2484,16 @@ header b {
     display: flex !important;
     justify-content: center;
     max-width: 100%;
-    margin-bottom: 14px;
+    margin-bottom: 22px;
     font-size: 11px;
-    letter-spacing: 0.23em;
+    letter-spacing: 0.22em;
     line-height: 1.35;
   }
 
   #hero h1 {
     width: auto;
     max-width: 100%;
-    margin: 0 auto clamp(180px, 22svh, 240px);
+    margin: 0 auto clamp(170px, 21svh, 230px);
     font-size: clamp(36px, 11.5vw, 54px);
     line-height: 0.95;
     text-align: center;
@@ -2521,8 +2522,8 @@ header b {
     margin-left: auto;
     margin-bottom: 0;
     max-width: 28ch;
-    font-size: 19px;
-    line-height: 1.5;
+    font-size: clamp(18px, 4.4vw, 21px);
+    line-height: 1.52;
   }
 
   #hero .hero-meta {
@@ -2531,27 +2532,27 @@ header b {
     margin-left: auto;
     gap: 8px;
     max-width: 330px;
-    margin-top: 16px;
-    font-size: 10px;
-    letter-spacing: 0.08em;
+    margin-top: clamp(18px, 2.5svh, 24px);
+    font-size: 10.5px;
+    letter-spacing: 0.09em;
     line-height: 1.6;
   }
 
   #hero .hero-actions {
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-top: 24px;
-    margin-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+    gap: 12px;
+    margin-top: clamp(28px, 3.8svh, 36px);
+    margin-bottom: calc(max(44px, calc(28px + env(safe-area-inset-bottom, 0px))) + 18px);
   }
 
   #hero .hero-actions .btn {
     justify-content: center;
-    min-width: 136px;
-    min-height: 44px;
-    padding: 11px 16px;
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    min-width: 144px;
+    min-height: 48px;
+    padding: 13px 18px;
+    font-size: 10.5px;
+    letter-spacing: 0.13em;
   }
 
   .hero-scroll {
