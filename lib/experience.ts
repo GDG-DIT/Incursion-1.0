@@ -145,11 +145,13 @@ export function createExperience(root) {
         this.hasTrk = false;
         upd();
       });
-      // Guarantee continuous unbroken looping until the track restarts
+      // Guarantee continuous unbroken looping - only when whole track is completed (~1:52 / ~113s)
       listen(t, "ended", () => {
         if (!this.on || !this.want) return;
         try {
-          t.currentTime = 0;
+          if (!t.duration || t.currentTime >= t.duration - 1.5) {
+            t.currentTime = 0;
+          }
           const p = t.play();
           if (p && p.catch) p.catch(() => {});
         } catch (e) {}
@@ -454,7 +456,7 @@ export function createExperience(root) {
     AC.set(shouldAudio);
 
     const savedTime = typeof window !== "undefined" ? sessionStorage.getItem("incursion_audio_time") : null;
-    const initialTime = savedTime && !isNaN(parseFloat(savedTime)) ? parseFloat(savedTime) : 0;
+    const initialTime = savedTime && !isNaN(parseFloat(savedTime)) ? parseFloat(savedTime) : (AC.trk?.currentTime || 0);
 
     // Start video playback (muted so it autoplays 100% reliably)
     iv.play().catch(() => {});
