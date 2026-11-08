@@ -7,7 +7,7 @@ export const TIMELINE = [
   {
     t: 'Registration',
     d: '10 November – 5 December 2026',
-    x: 'National registration and team formation on the official hackathon platform.',
+    x: 'National registration and team formation on the official platform.',
     img: { f: 0 },
     ic: { f: 0, z: '420%', p: '4% 45%' },
   },
