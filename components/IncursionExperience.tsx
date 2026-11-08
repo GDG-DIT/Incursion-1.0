@@ -12,7 +12,23 @@ function Arrow() {
 function IntroGate() {
   return (
     <section id="term" aria-label="Welcome to Incursion">
-      <video id="iv" autoPlay playsInline preload="auto" src="/media/intro.mp4" aria-label="Incursion introduction" />
+      <video
+        id="iv"
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
+        src="/media/intro.mp4"
+        aria-label="Incursion introduction"
+      />
+      <div id="sound-prompt" className="sound-prompt" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+          <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z" />
+        </svg>
+        <span>Tap anywhere for sound</span>
+      </div>
       <button id="skip" type="button">Skip intro</button>
     </section>
   );
@@ -154,7 +170,7 @@ export default function IncursionExperience() {
                 <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
               </svg>
             </span>
-            <b>INCURSION 2027</b>
+            <img className="hdr-incursion-logo" src="/incursion-logo.webp" alt="Incursion" />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button id="snd" aria-label="Turn sound off" aria-pressed="true" data-sound-state="on" type="button">
