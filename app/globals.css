@@ -262,22 +262,30 @@ h3 {
   right: 24px;
   bottom: calc(24px + env(safe-area-inset-bottom, 0px));
   z-index: 100 !important;
-  font: 500 13px var(--sans);
-  letter-spacing: 0.2em;
+  font: 600 12px var(--sans);
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--mute);
-  background: none;
-  border: 0;
+  color: rgba(233, 231, 224, 0.85);
+  background: rgba(4, 6, 5, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 8px 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   cursor: pointer;
   pointer-events: auto !important;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
+  transition: all 0.2s ease;
 }
 
 #skip:hover {
-  color: var(--ink);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(4, 6, 5, 0.95);
+  transform: translateY(-1px);
 }
 
 .sound-prompt {
