@@ -226,7 +226,7 @@ export default function DoomMaskHero() {
           targetRotY = 0;
         }
 
-        const lerpFactor = reducedMotion ? 1 : 1 - Math.exp(-dt * 5.5);
+        const lerpFactor = reducedMotion ? 1 : 1 - Math.exp(-dt * 8.5);
         pivot.position.x += (targetX - pivot.position.x) * lerpFactor;
         pivot.position.y += (targetY - pivot.position.y) * lerpFactor;
         pivot.position.z += (targetZ - pivot.position.z) * lerpFactor;

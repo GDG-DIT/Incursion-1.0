@@ -64,6 +64,7 @@ export function createExperience(root) {
       el.style.visibility = o > 0.002 ? "visible" : "hidden";
     };
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const isTouch = matchMedia("(pointer: coarse)").matches;
   const STORY_END = 25.0;
   let lastTick = 0,
     scenePosition = 0,
@@ -76,7 +77,7 @@ export function createExperience(root) {
     if (allowJump) allowDirectJump = 8;
     scrollTo({
       top: (clamp(position, 0, STORY_END) / STORY_END) * scrollRange(),
-      behavior: "auto",
+      behavior: allowJump && !RM ? "smooth" : "auto",
     });
   }
   history.scrollRestoration = "manual";
@@ -495,34 +496,25 @@ export function createExperience(root) {
     redirected = false,
     firstScrollReveal = false,
     timelineVisited = false;
-  listen(window, "wheel", (event) => {
-    if (!ready || firstScrollReveal || event.deltaY <= 0 || readPosition() >= 10.3) return;
-    event.preventDefault();
-    firstScrollReveal = true;
-    goScene(10.9);
-  }, { passive: false });
   function tick() {
     scheduleFrame(tick);
     const now = performance.now(),
       dt = Math.min(0.05, (now - (lastTick || now)) / 1000);
     lastTick = now;
-    let targetPosition = readPosition();
-    if (!allowDirectJump && Math.abs(targetPosition - scenePosition) > 2.2) {
-      targetPosition = clamp(
-        scenePosition + Math.sign(targetPosition - scenePosition) * 1.8,
-        0,
-        STORY_END,
-      );
-      goScene(targetPosition);
-    } else {
-      allowDirectJump = Math.max(0, allowDirectJump - 1);
+    const targetPosition = readPosition();
+    if (allowDirectJump > 0) {
+      allowDirectJump--;
     }
+    // Snappy, butter-smooth responsive interpolation: zero lag, velvety glide
+    const lerpRate = isTouch ? 14.0 : 12.0;
     scenePosition = RM
       ? targetPosition
-      : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * 9));
-    if (Math.abs(targetPosition - scenePosition) < 0.002)
+      : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * lerpRate));
+    if (Math.abs(targetPosition - scenePosition) < 0.0005) {
       scenePosition = targetPosition;
-    else dirty = true;
+    } else {
+      dirty = true;
+    }
     const raw = scenePosition,
       v = raw;
     window.dispatchEvent(new CustomEvent("incursion:scroll", { detail: { v } }));
@@ -574,11 +566,11 @@ export function createExperience(root) {
       const j = RM ? 0 : 0.15 + 0.25 * pu,
         jx = (Math.sin(v * 11) + Math.sin(v * 6.3)) * j,
         jy = Math.cos(v * 8.7) * j;
-      tw2.style.transform = `translate(${jx}px,${jy}px) scale(${S})`;
+      tw2.style.transform = `translate3d(${jx.toFixed(2)}px,${jy.toFixed(2)}px,0) scale(${S.toFixed(4)})`;
       tw2.style.filter = `brightness(${0.5 + 0.5 * em})${RM ? "" : ` blur(${0.25 * pu * pu}px)`}`;
       tw2.style.visibility = co < 0.999 ? "visible" : "hidden";
       tc.style.opacity = co;
-      tc.style.transform = `scale(${1 + 0.07 * ss(5.6, 6.8, v)})`;
+      tc.style.transform = `translate3d(0,0,0) scale(${(1 + 0.07 * ss(5.6, 6.8, v)).toFixed(4)})`;
       tc.style.filter = `brightness(${1 - 0.28 * ss(6.8, 7.4, v) * (1 - ss(9.6, 10.0, v))})`;
       const r = lerp(lerp(30, 74, em) * (1 - 0.5 * pu), 34, co);
       vg.style.setProperty("--r", r + "%");
@@ -617,7 +609,7 @@ export function createExperience(root) {
       if (i === 0 && o > 0) {
         if (!colH) lay();
         const ty = lerp(innerHeight * 0.66, -(colH - innerHeight * 0.55), u);
-        tcol.style.transform = `translateY(${ty}px)`;
+        tcol.style.transform = `translate3d(0,${ty.toFixed(2)}px,0)`;
         rows.forEach((r, j) => {
           const y = rowCY[j] + ty,
             e = RM ? 1 : ss(H * 0.98, H * 0.58, y),
