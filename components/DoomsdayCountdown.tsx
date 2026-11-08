@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 
-// Target: 30 January 2027 (00:00:00 IST = UTC+05:30)
-const TARGET_TIME = new Date('2027-01-30T00:00:00+05:30').getTime();
+// Target: 10 November 2026, 10:00 AM IST (UTC+05:30)
+const TARGET_TIME = new Date('2026-11-10T10:00:00+05:30').getTime();
 
 function calculateTimeLeft() {
   const diff = TARGET_TIME - Date.now();
@@ -51,7 +51,7 @@ export default function DoomsdayCountdown() {
   }, []);
 
   return (
-    <div className="avengers-countdown" aria-label="Countdown to Incursion on 30 January 2027">
+    <div className="avengers-countdown" aria-label="Countdown to Incursion on 10 November 2026">
       <div className="avengers-digits-row" suppressHydrationWarning>
         <div className="avengers-unit">
           <span className="avengers-num">{timeLeft.months}</span>
@@ -80,7 +80,7 @@ export default function DoomsdayCountdown() {
       </div>
 
       <div className="countdown-footer">
-        <span>30 January 2027</span>
+        <span>10 November 2026 · 10:00 AM</span>
       </div>
     </div>
   );
