@@ -79,15 +79,8 @@ export default function DoomsdayCountdown() {
         </div>
       </div>
 
-      {/* Theatrical Billing Block */}
-      <div className="avengers-billing-box">
-        <div className="billing-top">
-          <span>REGISTRATION OPENS · 30 JANUARY 2027</span>
-        </div>
-        <div className="billing-divider" />
-        <div className="billing-bottom">
-          <span>GDG ON CAMPUS · DYPIT PUNE · INCURSION 1.0</span>
-        </div>
+      <div className="countdown-footer">
+        <span>30 January 2027</span>
       </div>
     </div>
   );

@@ -2133,59 +2133,18 @@ header b {
   user-select: none;
 }
 
-/* Marvel Theatrical Billing / Rating Block */
-.avengers-billing-box {
-  margin-top: clamp(24px, 3.8vh, 42px);
+.countdown-footer {
+  margin-top: clamp(24px, 3.8vh, 44px);
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 8px 18px;
-  border: 1px solid rgba(220, 240, 228, 0.4);
-  background: rgba(3, 10, 6, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
-}
-
-.billing-top {
-  padding-bottom: 6px;
+  justify-content: center;
   font-family: var(--sans);
-  font-size: clamp(8px, 0.95vw, 11px);
+  font-size: clamp(12px, 1.3vw, 16px);
   font-weight: 700;
-  letter-spacing: 0.24em;
-  color: #f0f7f2;
+  letter-spacing: 0.32em;
+  color: #c4ebd0;
   text-transform: uppercase;
-}
-
-.billing-divider {
-  width: 100%;
-  height: 1px;
-  background: rgba(220, 240, 228, 0.35);
-}
-
-.billing-bottom {
-  padding-top: 6px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--sans);
-  font-size: clamp(8px, 0.85vw, 10.5px);
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  color: var(--accent);
-  text-transform: uppercase;
-}
-
-.billing-marvel-tag {
-  border: 1px solid var(--accent);
-  padding: 1px 5px;
-  font-weight: 800;
-  font-size: 0.85em;
-  letter-spacing: 0.12em;
-}
-
-.billing-copyright {
-  color: #d6e2d9;
+  text-shadow: 0 0 18px rgba(63, 224, 142, 0.65), 0 2px 10px rgba(0, 0, 0, 0.95);
 }
 
 .countdown-footer i {
@@ -2667,22 +2626,10 @@ header b {
     margin-top: 6px;
   }
 
-  .avengers-billing-box {
+  .countdown-footer {
     margin-top: 20px;
-    padding: 6px 12px;
-  }
-
-  .billing-top {
-    font-size: 8px;
-    letter-spacing: 0.18em;
-    padding-bottom: 4px;
-  }
-
-  .billing-bottom {
-    font-size: 7.5px;
-    letter-spacing: 0.14em;
-    gap: 6px;
-    padding-top: 4px;
+    font-size: 11px;
+    letter-spacing: 0.22em;
   }
 
   .warn {
