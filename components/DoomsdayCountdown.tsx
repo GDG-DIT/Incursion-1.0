@@ -52,11 +52,6 @@ export default function DoomsdayCountdown() {
 
   return (
     <div className="avengers-countdown" aria-label="Countdown to Incursion on 30 January 2027">
-      <div className="countdown-pulse-badge">
-        <span className="countdown-dot" aria-hidden="true" />
-        <span>DOOMSDAY CLOCK IS TICKING</span>
-      </div>
-
       <div className="avengers-digits-row" suppressHydrationWarning>
         <div className="avengers-unit">
           <span className="avengers-num">{timeLeft.months}</span>
@@ -84,15 +79,14 @@ export default function DoomsdayCountdown() {
         </div>
       </div>
 
-      {/* Authentic Marvel Theatrical Billing / Rating Block */}
+      {/* Theatrical Billing Block */}
       <div className="avengers-billing-box">
         <div className="billing-top">
           <span>REGISTRATION OPENS · 30 JANUARY 2027</span>
         </div>
         <div className="billing-divider" />
         <div className="billing-bottom">
-          <span className="billing-marvel-tag">MARVEL</span>
-          <span className="billing-copyright">GDG ON CAMPUS · DYPIT PUNE · INCURSION 1.0</span>
+          <span>GDG ON CAMPUS · DYPIT PUNE · INCURSION 1.0</span>
         </div>
       </div>
     </div>

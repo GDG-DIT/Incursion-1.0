@@ -2024,16 +2024,20 @@ header b {
 }
 
 .end-tease-eyebrow {
-  color: var(--accent);
-  font: 700 clamp(11px, 1.1vw, 14px)/1.2 var(--sans);
-  letter-spacing: 0.38em;
+  display: block;
+  color: #bbf7d0;
+  font: 700 clamp(13px, 1.35vw, 17px)/1.4 var(--sans);
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  text-shadow: 0 0 18px rgba(63, 224, 142, 0.6);
-  margin-bottom: 8px;
+  text-shadow:
+    0 0 20px rgba(63, 224, 142, 0.8),
+    0 2px 8px rgba(0, 0, 0, 0.95);
+  margin-bottom: clamp(14px, 2vh, 20px);
 }
 
 .end-tease-title {
-  font: italic 400 clamp(28px, 4.4vw, 58px)/1.04 var(--serif);
+  display: block;
+  font: italic 400 clamp(28px, 4.4vw, 58px)/1.18 var(--serif);
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #f7faf7;
@@ -2627,22 +2631,16 @@ header b {
   }
 
   .end-tease-eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.26em;
-    margin-bottom: 6px;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    margin-bottom: 10px;
+    line-height: 1.35;
   }
 
   .end-tease-title {
     max-width: 95%;
     font-size: clamp(24px, 6.8vw, 36px);
-    line-height: 1.08;
-  }
-
-  .countdown-pulse-badge {
-    padding: 5px 12px;
-    font-size: 8.5px;
-    letter-spacing: 0.18em;
-    margin-bottom: 14px;
+    line-height: 1.15;
   }
 
   .avengers-digits-row {
