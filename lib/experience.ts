@@ -353,8 +353,8 @@ export function createExperience(root) {
     iv.pause();
     $("#skip").style.display = "none";
     document.documentElement.classList.remove("lock");
-    iv.style.transition = "opacity 0.6s";
-    iv.style.opacity = 0;
+    iv.style.transition = "opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1)";
+    iv.style.opacity = "0";
     $("#term").classList.add("out");
     $("#term").inert = true;
     triggerFlash();

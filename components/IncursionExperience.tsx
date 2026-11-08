@@ -12,7 +12,16 @@ function Arrow() {
 function IntroGate() {
   return (
     <section id="term" aria-label="Welcome to Incursion">
-      <video id="iv" autoPlay playsInline preload="auto" src="/media/intro.mp4" aria-label="Incursion introduction" />
+      <video
+        id="iv"
+        autoPlay
+        playsInline
+        preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
+        src="/media/intro.mp4"
+        aria-label="Incursion introduction"
+      />
       <button id="skip" type="button">Skip intro</button>
     </section>
   );
