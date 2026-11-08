@@ -77,13 +77,13 @@ function Timeline() {
 }
 
 function HeroStage() {
-  const registerHref = REGISTER_URL || '';
+  // const registerHref = REGISTER_URL || '';
 
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title">
       <picture>
         <source media="(max-width: 760px)" srcSet="/media/doom-closeup.webp" />
-        <img className="hero-backdrop" src="/media/doom-closeup4.webp" alt="" />
+        <img className="hero-backdrop" src="/media/doom-closeup4.webp" alt="Doomsday" />
       </picture>
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
@@ -111,18 +111,18 @@ function HeroStage() {
         <div className="hero-actions">
           <a
             className="btn hero-primary reg"
-            href={registerHref || '#registration'}
-            target={registerHref ? '_blank' : undefined}
-            rel={registerHref ? 'noopener noreferrer' : undefined}
-            onClick={(e) => {
-              if (!registerHref) {
-                e.preventDefault();
-                const destination = 23.4;
-                window.location.hash = 'registration';
-                window.dispatchEvent(new CustomEvent('incursion:scene-jump', { detail: { position: destination } }));
-              }
-            }}
-            title={registerHref ? 'Register Now' : 'Registration opening soon on Unstop'}
+            // href={registerHref || '#registration'}
+            // target={registerHref ? '_blank' : undefined}
+            // rel={registerHref ? 'noopener noreferrer' : undefined}
+            // onClick={(e) => {
+            //   if (!registerHref) {
+            //     e.preventDefault();
+            //     const destination = 23.4;
+            //     window.location.hash = 'registration';
+            //     window.dispatchEvent(new CustomEvent('incursion:scene-jump', { detail: { position: destination } }));
+            //   }
+            // }}
+            // title={registerHref ? 'Register Now' : 'Registration opening soon on Unstop'}
           >
             Register now<Arrow />
           </a>
@@ -141,7 +141,7 @@ export default function IncursionExperience() {
     <main ref={root}>
       <div id="scroll"><div id="stage">
         <section id="throne" aria-label="Doctor Doom on his throne">
-          <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="" decoding="async" />
+          <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="Doctor Doom on his throne" decoding="async" />
           <img id="tc" className="pic" src="/media/doom-closeup6.webp" alt="Doctor Doom, hooded, eyes glowing green" decoding="async" />
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
