@@ -130,11 +130,17 @@ export function createExperience(root) {
       } catch (e) {
         this.ctx = null;
       }
-      const t = new Audio(AUDIO_TRACK);
+      const globalAudio = typeof window !== "undefined" ? (window as any).__INCURSION_AUDIO__ : null;
+      const t = globalAudio?.element || new Audio(AUDIO_TRACK);
       t.preload = "auto";
       t.loop = true;
-      t.volume = 0;
-      t.muted = !this.on;
+      if (globalAudio?.isPlaying) {
+        this.on = true;
+        this.want = true;
+      } else {
+        t.volume = 0;
+        t.muted = !this.on;
+      }
       listen(t, "error", () => {
         this.hasTrk = false;
         upd();
@@ -305,6 +311,11 @@ export function createExperience(root) {
       iv.muted = true;
       if (typeof window !== "undefined") {
         sessionStorage.setItem("incursion_audio_enabled", b ? "true" : "false");
+        const globalAudio = (window as any).__INCURSION_AUDIO__;
+        if (globalAudio) {
+          if (b) globalAudio.play(1.0, 250);
+          else globalAudio.pause(250);
+        }
         window.dispatchEvent(new CustomEvent("incursion:audio-state", {
           detail: { enabled: b },
         }));
@@ -326,6 +337,13 @@ export function createExperience(root) {
       : "The music track failed to load, so only the synthesised cues will play";
   }
   upd();
+  listen(window, "incursion:audio-state", (event: any) => {
+    const enabled = event.detail?.enabled;
+    if (typeof enabled === "boolean" && enabled !== AC.on) {
+      AC.on = enabled;
+      upd();
+    }
+  });
   listen($("#snd"), "click", (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -772,7 +790,8 @@ export function createExperience(root) {
       intervals.forEach(clearInterval);
       collisionSound.dispose();
       if (iv && typeof iv.pause === "function") iv.pause();
-      if (AC.trk) {
+      const globalAudio = typeof window !== "undefined" ? (window as any).__INCURSION_AUDIO__ : null;
+      if (AC.trk && AC.trk !== globalAudio?.element) {
         AC.trk.pause();
         AC.trk.removeAttribute("src");
         AC.trk.load();
