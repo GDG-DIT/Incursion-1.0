@@ -149,12 +149,12 @@ export default function IncursionExperience() {
         </div>
         <div className="stage-end-tease" id="registration" aria-live="polite">
           <div className="end-tease-bg" aria-hidden="true">
-            <img className="end-tease-img" src="/media/doom-throne.webp" alt="" decoding="async" />
+            <img className="end-tease-img" src="/media/avengers-countdown-bg.webp" alt="Avengers Doomsday" decoding="async" />
             <div className="end-tease-beams" />
             <div className="end-tease-vignette" />
           </div>
           <div className="end-tease-hud">
-            <span className="end-tease-eyebrow">Stay tuned</span>
+            <span className="end-tease-eyebrow">Avengers: Doomsday · Stay tuned</span>
             <strong className="end-tease-title">Something big is here</strong>
             <DoomsdayCountdown />
           </div>

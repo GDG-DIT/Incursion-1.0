@@ -1971,7 +1971,7 @@ header b {
   overflow: hidden;
 }
 
-/* Atmospheric Throne & Volumetric Rays Backdrop */
+/* Atmospheric Avengers Doomsday Backdrop */
 .end-tease-bg {
   position: absolute;
   inset: 0;
@@ -1984,9 +1984,9 @@ header b {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 36%;
-  filter: brightness(0.64) saturate(1.1) contrast(1.18);
-  transform: scale(1.04);
+  object-position: 50% 50%;
+  filter: brightness(0.78) saturate(1.18) contrast(1.15);
+  transform: scale(1.03);
   transform-origin: center center;
 }
 
@@ -1994,8 +1994,8 @@ header b {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 75% 45% at 50% -12%, rgba(63, 224, 142, 0.32), transparent 70%),
-    radial-gradient(circle at 50% 50%, rgba(4, 28, 16, 0.45), transparent 60%);
+    radial-gradient(ellipse 75% 55% at 50% 28%, rgba(63, 224, 142, 0.28), transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(4, 30, 16, 0.45), transparent 65%);
   mix-blend-mode: screen;
   animation: doomsday-beam-pulse 6s ease-in-out infinite alternate;
   pointer-events: none;
@@ -2005,12 +2005,12 @@ header b {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 65% 55% at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0.94) 92%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.75) 0%, transparent 25%, transparent 75%, rgba(0, 0, 0, 0.9) 100%);
+    radial-gradient(ellipse 70% 60% at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.58) 66%, rgba(0, 0, 0, 0.95) 94%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.82) 0%, transparent 20%, transparent 78%, rgba(0, 0, 0, 0.94) 100%);
   pointer-events: none;
 }
 
-/* Epic Doomsday HUD Centerpiece */
+/* Epic Avengers Doomsday Finale Centerpiece */
 .end-tease-hud {
   position: relative;
   z-index: 2;
@@ -2018,23 +2018,14 @@ header b {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  width: min(94vw, 920px);
-  padding: clamp(28px, 4.6vh, 48px) clamp(20px, 4vw, 54px);
-  border-radius: 20px;
-  background: radial-gradient(120% 120% at 50% 10%, rgba(8, 22, 14, 0.8), rgba(2, 8, 4, 0.92));
-  border: 1px solid rgba(63, 224, 142, 0.3);
-  box-shadow:
-    0 0 60px rgba(0, 0, 0, 0.85),
-    0 0 35px rgba(63, 224, 142, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    inset 0 0 40px rgba(63, 224, 142, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  width: min(96vw, 1080px);
+  padding: clamp(24px, 4vh, 44px) clamp(16px, 3.2vw, 42px);
+  pointer-events: auto;
 }
 
 .end-tease-eyebrow {
   color: var(--accent);
-  font: 600 clamp(12px, 1.2vw, 15px)/1.2 var(--sans);
+  font: 700 clamp(11px, 1.1vw, 14px)/1.2 var(--sans);
   letter-spacing: 0.38em;
   text-transform: uppercase;
   text-shadow: 0 0 18px rgba(63, 224, 142, 0.6);
@@ -2042,21 +2033,21 @@ header b {
 }
 
 .end-tease-title {
-  font: italic 400 clamp(28px, 4.6vw, 60px)/1.04 var(--serif);
+  font: italic 400 clamp(28px, 4.4vw, 58px)/1.04 var(--serif);
   letter-spacing: 0.03em;
   text-transform: uppercase;
   color: #f7faf7;
   text-shadow:
-    0 0 30px rgba(63, 224, 142, 0.45),
+    0 0 32px rgba(63, 224, 142, 0.45),
     0 4px 20px rgba(0, 0, 0, 0.9);
 }
 
-/* Doomsday Special Look Countdown */
-.doomsday-countdown {
+/* Avengers Special Look Floating Countdown */
+.avengers-countdown {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: clamp(20px, 3.2vh, 32px);
+  margin-top: clamp(22px, 3.4vh, 36px);
   width: 100%;
 }
 
@@ -2064,13 +2055,13 @@ header b {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
+  padding: 5px 14px;
   border-radius: 20px;
-  background: rgba(63, 224, 142, 0.08);
-  border: 1px solid rgba(63, 224, 142, 0.25);
+  background: rgba(63, 224, 142, 0.1);
+  border: 1px solid rgba(63, 224, 142, 0.35);
   color: var(--accent);
-  font: 600 10.5px/1 var(--sans);
-  letter-spacing: 0.24em;
+  font: 700 10px/1 var(--sans);
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   margin-bottom: clamp(16px, 2.6vh, 26px);
   box-shadow: 0 0 16px rgba(63, 224, 142, 0.15);
@@ -2085,78 +2076,112 @@ header b {
   animation: doomsday-dot-pulse 1.6s ease-in-out infinite;
 }
 
-.countdown-digits {
+.avengers-digits-row {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(6px, 1.4vw, 16px);
+  gap: clamp(8px, 1.8vw, 24px);
   width: 100%;
 }
 
-.countdown-card {
+.avengers-unit {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: clamp(52px, 11vw, 108px);
-  padding: clamp(12px, 2vh, 20px) clamp(8px, 1.5vw, 16px);
-  border-radius: 12px;
-  background: linear-gradient(180deg, rgba(12, 32, 20, 0.82), rgba(4, 14, 8, 0.92));
-  border: 1px solid rgba(63, 224, 142, 0.32);
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.7),
-    0 0 20px rgba(63, 224, 142, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18),
-    inset 0 0 16px rgba(63, 224, 142, 0.08);
+  min-width: clamp(52px, 10.5vw, 120px);
 }
 
-.countdown-num {
+.avengers-num {
   font-family: var(--sans);
   font-weight: 700;
-  font-size: clamp(26px, 5.2vw, 56px);
+  font-size: clamp(32px, 5.8vw, 76px);
   line-height: 1;
   color: #ffffff;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   font-variant-numeric: tabular-nums;
-  text-shadow: 0 0 22px rgba(63, 224, 142, 0.5), 0 2px 8px rgba(0, 0, 0, 0.9);
+  text-shadow:
+    0 0 28px rgba(63, 224, 142, 0.5),
+    0 2px 14px rgba(0, 0, 0, 0.95);
 }
 
-.countdown-label {
+.avengers-label {
   font-family: var(--sans);
-  font-size: clamp(8px, 1.1vw, 12px);
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  color: #a4c4af;
-  margin-top: clamp(8px, 1.2vh, 12px);
+  font-size: clamp(8.5px, 1.05vw, 13px);
+  font-weight: 700;
+  letter-spacing: clamp(0.24em, 0.35vw, 0.42em);
+  color: #d6e2d9;
+  margin-top: clamp(8px, 1.2vh, 16px);
   text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
 }
 
-.countdown-sep {
+.avengers-sep {
   font-family: var(--sans);
   font-weight: 600;
-  font-size: clamp(22px, 4.2vw, 44px);
+  font-size: clamp(26px, 4.8vw, 60px);
   line-height: 1;
-  color: var(--accent);
-  opacity: 0.9;
-  text-shadow: 0 0 14px rgba(63, 224, 142, 0.6);
+  color: #ffffff;
+  margin-top: -16px;
+  opacity: 0.95;
+  text-shadow: 0 0 20px rgba(63, 224, 142, 0.6);
   animation: colon-pulse 1.4s ease-in-out infinite alternate;
   user-select: none;
 }
 
-.countdown-footer {
-  margin-top: clamp(20px, 3.2vh, 30px);
+/* Marvel Theatrical Billing / Rating Block */
+.avengers-billing-box {
+  margin-top: clamp(24px, 3.8vh, 42px);
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  padding: 8px 18px;
+  border: 1px solid rgba(220, 240, 228, 0.4);
+  background: rgba(3, 10, 6, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.billing-top {
+  padding-bottom: 6px;
+  font-family: var(--sans);
+  font-size: clamp(8px, 0.95vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: #f0f7f2;
+  text-transform: uppercase;
+}
+
+.billing-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(220, 240, 228, 0.35);
+}
+
+.billing-bottom {
+  padding-top: 6px;
+  display: flex;
+  align-items: center;
   gap: 10px;
   font-family: var(--sans);
-  font-size: clamp(10px, 1.1vw, 13px);
+  font-size: clamp(8px, 0.85vw, 10.5px);
   font-weight: 600;
   letter-spacing: 0.2em;
   color: var(--accent);
   text-transform: uppercase;
-  text-shadow: 0 0 12px rgba(63, 224, 142, 0.35);
+}
+
+.billing-marvel-tag {
+  border: 1px solid var(--accent);
+  padding: 1px 5px;
+  font-weight: 800;
+  font-size: 0.85em;
+  letter-spacing: 0.12em;
+}
+
+.billing-copyright {
+  color: #d6e2d9;
 }
 
 .countdown-footer i {
@@ -2597,14 +2622,13 @@ header b {
   }
 
   .end-tease-hud {
-    width: min(94vw, 440px);
-    padding: clamp(20px, 3.2vh, 28px) clamp(12px, 3vw, 20px);
-    border-radius: 16px;
+    width: min(96vw, 440px);
+    padding: clamp(20px, 3.2vh, 28px) 8px;
   }
 
   .end-tease-eyebrow {
-    font-size: 11px;
-    letter-spacing: 0.28em;
+    font-size: 10px;
+    letter-spacing: 0.26em;
     margin-bottom: 6px;
   }
 
@@ -2616,41 +2640,51 @@ header b {
 
   .countdown-pulse-badge {
     padding: 5px 12px;
-    font-size: 9px;
+    font-size: 8.5px;
     letter-spacing: 0.18em;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
   }
 
-  .countdown-digits {
-    gap: clamp(4px, 1.4vw, 8px);
+  .avengers-digits-row {
+    gap: clamp(3px, 1.1vw, 8px);
   }
 
-  .countdown-card {
-    min-width: clamp(48px, 15vw, 68px);
-    padding: 10px 4px;
-    border-radius: 8px;
+  .avengers-unit {
+    min-width: clamp(40px, 14vw, 62px);
   }
 
-  .countdown-num {
-    font-size: clamp(20px, 5.8vw, 30px);
+  .avengers-num {
+    font-size: clamp(22px, 6.4vw, 34px);
     letter-spacing: 0.04em;
   }
 
-  .countdown-sep {
-    font-size: clamp(16px, 4.4vw, 24px);
+  .avengers-sep {
+    font-size: clamp(18px, 5vw, 26px);
+    margin-top: -10px;
   }
 
-  .countdown-label {
-    font-size: clamp(7px, 1.8vw, 9px);
-    letter-spacing: 0.12em;
+  .avengers-label {
+    font-size: clamp(6.5px, 1.8vw, 8.5px);
+    letter-spacing: 0.14em;
     margin-top: 6px;
   }
 
-  .countdown-footer {
-    margin-top: 18px;
-    font-size: 9.5px;
+  .avengers-billing-box {
+    margin-top: 20px;
+    padding: 6px 12px;
+  }
+
+  .billing-top {
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    padding-bottom: 4px;
+  }
+
+  .billing-bottom {
+    font-size: 7.5px;
     letter-spacing: 0.14em;
     gap: 6px;
+    padding-top: 4px;
   }
 
   .warn {

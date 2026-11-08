@@ -16,7 +16,7 @@ function calculateTimeLeft() {
   const totalHours = Math.floor(totalMins / 60);
   const totalDays = Math.floor(totalHours / 24);
 
-  // Standard trailer countdown unit breakdown (months approx 30 days)
+  // Standard cinematic countdown unit breakdown
   const months = Math.floor(totalDays / 30);
   const days = totalDays % 30;
   const hours = totalHours % 24;
@@ -42,9 +42,7 @@ export default function DoomsdayCountdown() {
   }>(calculateTimeLeft);
 
   useEffect(() => {
-    // Initial sync on mount
     setTimeLeft(calculateTimeLeft());
-
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -53,45 +51,49 @@ export default function DoomsdayCountdown() {
   }, []);
 
   return (
-    <div className="doomsday-countdown" aria-label="Countdown to Incursion on 30 January 2027">
+    <div className="avengers-countdown" aria-label="Countdown to Incursion on 30 January 2027">
       <div className="countdown-pulse-badge">
         <span className="countdown-dot" aria-hidden="true" />
-        <span>THE DOOMSDAY CLOCK IS TICKING</span>
+        <span>DOOMSDAY CLOCK IS TICKING</span>
       </div>
 
-      <div className="countdown-digits" suppressHydrationWarning>
-        <div className="countdown-card">
-          <span className="countdown-num">{timeLeft.months}</span>
-          <span className="countdown-label">Months</span>
+      <div className="avengers-digits-row" suppressHydrationWarning>
+        <div className="avengers-unit">
+          <span className="avengers-num">{timeLeft.months}</span>
+          <span className="avengers-label">Months</span>
         </div>
-        <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-card">
-          <span className="countdown-num">{timeLeft.days}</span>
-          <span className="countdown-label">Days</span>
+        <span className="avengers-sep" aria-hidden="true">:</span>
+        <div className="avengers-unit">
+          <span className="avengers-num">{timeLeft.days}</span>
+          <span className="avengers-label">Days</span>
         </div>
-        <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-card">
-          <span className="countdown-num">{timeLeft.hours}</span>
-          <span className="countdown-label">Hours</span>
+        <span className="avengers-sep" aria-hidden="true">:</span>
+        <div className="avengers-unit">
+          <span className="avengers-num">{timeLeft.hours}</span>
+          <span className="avengers-label">Hours</span>
         </div>
-        <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-card">
-          <span className="countdown-num">{timeLeft.minutes}</span>
-          <span className="countdown-label">Minutes</span>
+        <span className="avengers-sep" aria-hidden="true">:</span>
+        <div className="avengers-unit">
+          <span className="avengers-num">{timeLeft.minutes}</span>
+          <span className="avengers-label">Minutes</span>
         </div>
-        <span className="countdown-sep" aria-hidden="true">:</span>
-        <div className="countdown-card">
-          <span className="countdown-num">{timeLeft.seconds}</span>
-          <span className="countdown-label">Seconds</span>
+        <span className="avengers-sep" aria-hidden="true">:</span>
+        <div className="avengers-unit">
+          <span className="avengers-num">{timeLeft.seconds}</span>
+          <span className="avengers-label">Seconds</span>
         </div>
       </div>
 
-      <div className="countdown-footer">
-        <span>30 January 2027</span>
-        <i aria-hidden="true" />
-        <span>DYPIT Campus, Pune</span>
-        <i aria-hidden="true" />
-        <span>National Hackathon</span>
+      {/* Authentic Marvel Theatrical Billing / Rating Block */}
+      <div className="avengers-billing-box">
+        <div className="billing-top">
+          <span>REGISTRATION OPENS · 30 JANUARY 2027</span>
+        </div>
+        <div className="billing-divider" />
+        <div className="billing-bottom">
+          <span className="billing-marvel-tag">MARVEL</span>
+          <span className="billing-copyright">GDG ON CAMPUS · DYPIT PUNE · INCURSION 1.0</span>
+        </div>
       </div>
     </div>
   );
