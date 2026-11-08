@@ -88,11 +88,18 @@ export default function DoomMaskHero() {
       return environmentTarget.texture;
     }
 
+    let cachedHostWidth = 390;
+    let cachedHostHeight = 844;
+    let hostTimelineActive = false;
+    let preloadTimer;
+
     function resize() {
       if (disposed || !renderer) return;
       const rect = host.getBoundingClientRect();
-      const width = Math.max(1, rect.width);
-      const height = Math.max(1, rect.height);
+      cachedHostWidth = Math.max(1, rect.width);
+      cachedHostHeight = Math.max(1, rect.height);
+      const width = cachedHostWidth;
+      const height = cachedHostHeight;
       const isMobile = width < 768 || isTouch;
       renderer.setPixelRatio(isMobile ? 1.0 : Math.min(window.devicePixelRatio || 1, 1.5));
       renderer.setSize(width, height, false);
@@ -160,8 +167,7 @@ export default function DoomMaskHero() {
       const seconds = clock.elapsedTime;
 
       if (meshes.length && pivot) {
-        const rect = host.getBoundingClientRect();
-        const width = Math.max(1, rect.width);
+        const width = cachedHostWidth || 390;
         const mobile = width < 760;
         const widthFill = camera.aspect < 0.8 ? 1.05 : 0.84;
         const vHeight = visibleHeight || Math.max(maskHeight / 0.67, (maskWidth / widthFill) / camera.aspect);
@@ -380,12 +386,23 @@ export default function DoomMaskHero() {
     function onScroll(event) {
       if (typeof event.detail?.v === 'number') {
         currentV = event.detail.v;
-        if (host) {
-          host.classList.toggle('is-timeline', currentV >= 13.8 && currentV <= 22.6);
+        const inTimeline = currentV >= 13.8 && currentV <= 22.6;
+        if (host && hostTimelineActive !== inTimeline) {
+          hostTimelineActive = inTimeline;
+          host.classList.toggle('is-timeline', inTimeline);
         }
         if (heroActive) startLoop();
       }
     }
+
+    // Gracefully preload mask model during idle moments to eliminate scrolling frame drops
+    preloadTimer = setTimeout(() => {
+      if (!disposed && !modelLoadStarted) {
+        if (initializeRenderer()) {
+          loadMask();
+        }
+      }
+    }, 1500);
 
     if ('ResizeObserver' in window) {
       resizeObserver = new ResizeObserver(resize);
@@ -411,6 +428,7 @@ export default function DoomMaskHero() {
 
     return () => {
       disposed = true;
+      clearTimeout(preloadTimer);
       stopLoop();
       resizeObserver?.disconnect();
       intersectionObserver?.disconnect();

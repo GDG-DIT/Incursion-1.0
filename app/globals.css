@@ -1319,7 +1319,7 @@ header b {
   }
 
   #scroll {
-    height: 360vh;
+    height: 480vh;
   }
 
   #gate h1 {
@@ -1670,6 +1670,15 @@ header b {
   opacity: 0;
   transition: opacity 1.4s ease;
   pointer-events: auto;
+  touch-action: pan-y;
+}
+
+@media (hover: none) and (pointer: coarse) {
+  #mask-stage .mask-canvas,
+  .mask-stage .mask-canvas,
+  #hero .mask-canvas {
+    pointer-events: none !important;
+  }
 }
 
 #mask-stage.is-ready .mask-canvas,

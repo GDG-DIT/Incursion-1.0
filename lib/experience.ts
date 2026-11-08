@@ -69,14 +69,17 @@ export function createExperience(root) {
   let lastTick = 0,
     scenePosition = 0,
     introStarted = false,
-    allowDirectJump = 0;
-  const scrollRange = () =>
-    Math.max(1, document.documentElement.scrollHeight - innerHeight);
-  const readPosition = () => (scrollY / scrollRange()) * STORY_END;
+    allowDirectJump = 0,
+    maxScroll = 1;
+  const updateScrollRange = () => {
+    maxScroll = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+  };
+  const scrollRange = () => maxScroll;
+  const readPosition = () => (scrollY / maxScroll) * STORY_END;
   function goScene(position, allowJump = false) {
     if (allowJump) allowDirectJump = 8;
     scrollTo({
-      top: (clamp(position, 0, STORY_END) / STORY_END) * scrollRange(),
+      top: (clamp(position, 0, STORY_END) / STORY_END) * maxScroll,
       behavior: allowJump && !RM ? "smooth" : "auto",
     });
   }
@@ -95,6 +98,7 @@ export function createExperience(root) {
   const rows = $$(".row");
   let rowCY = [];
   function lay() {
+    updateScrollRange();
     colH = tcol.offsetHeight;
     rowCY = rows.map((r) => {
       const st = r.querySelector(".strip");
@@ -134,6 +138,15 @@ export function createExperience(root) {
       listen(t, "error", () => {
         this.hasTrk = false;
         upd();
+      });
+      // Guarantee continuous unbroken looping until the track restarts
+      listen(t, "ended", () => {
+        if (!this.on || !this.want) return;
+        try {
+          t.currentTime = 0;
+          const p = t.play();
+          if (p && p.catch) p.catch(() => {});
+        } catch (e) {}
       });
       this.trk = t;
     },
@@ -245,6 +258,11 @@ export function createExperience(root) {
       const t = this.trk;
       if (!t) return;
       cancelEvery(this._f);
+      if (!ms || ms <= 0) {
+        t.volume = clamp(to);
+        if (then) then();
+        return;
+      }
       const from = t.volume,
         st = performance.now();
       this._f = every(() => {
@@ -254,20 +272,23 @@ export function createExperience(root) {
           cancelEvery(this._f);
           if (then) then();
         }
-      }, 50);
+      }, 30);
     },
     play(from, vol, ms) {
       const t = this.trk;
       if (!t || !this.hasTrk) return;
-      if (from != null) {
+      // Never re-seek if already playing smoothly; only restore position when paused and different
+      if (from != null && t.paused && Math.abs((t.currentTime || 0) - from) > 0.5) {
         try {
           t.currentTime = from;
         } catch (e) { }
       }
       this.want = true;
-      const p = t.play();
-      if (p && p.catch) p.catch(() => { });
-      this.fade(vol, ms);
+      if (t.paused) {
+        const p = t.play();
+        if (p && p.catch) p.catch(() => { });
+      }
+      this.fade(vol ?? 1.0, ms || 300);
     },
     stop(ms) {
       this.want = false;
@@ -360,7 +381,11 @@ export function createExperience(root) {
     AC.set(true);
     if (AC.trk) {
       AC.trk.muted = false;
-      AC.play(AC.trk.currentTime || 0, 1.0, 300);
+      if (AC.trk.paused) {
+        AC.play(null, 1.0, 300);
+      } else {
+        AC.fade(1.0, 300);
+      }
     }
   };
 
@@ -385,8 +410,8 @@ export function createExperience(root) {
       triggerFlash();
     } catch (e) {}
     // soundtrack.mp3 continues playing seamlessly without interruption
-    if (AC.on && AC.trk && (AC.trk.paused || AC.trk.volume < 0.5)) {
-      AC.play(AC.trk.currentTime || 0, 1.0, 400);
+    if (AC.on && AC.trk && AC.trk.paused) {
+      AC.play(null, 1.0, 400);
     }
     $("#snd")?.focus?.({ preventScroll: true });
     dirty = true;
@@ -484,7 +509,11 @@ export function createExperience(root) {
       AC.init();
       if (AC.ctx?.state === "suspended") AC.ctx.resume().catch(() => {});
       AC.trk.muted = false;
-      AC.play(AC.trk.currentTime || 0, 1.0, 300);
+      if (AC.trk.paused) {
+        AC.play(null, 1.0, 300);
+      } else {
+        AC.fade(1.0, 300);
+      }
     }
   };
   ["pointerdown", "touchstart", "click"].forEach((ev) => {
@@ -582,14 +611,15 @@ export function createExperience(root) {
     lastTick = now;
     const targetPosition = readPosition();
     if (allowDirectJump > 0) {
+      scenePosition = targetPosition;
       allowDirectJump--;
     }
-    // Snappy, butter-smooth responsive interpolation: zero lag, velvety glide
-    const lerpRate = isTouch ? 14.0 : 12.0;
+    // High-performance smooth glide: responsive and jitter-free
+    const lerpRate = isTouch ? 11.0 : 10.5;
     scenePosition = RM
       ? targetPosition
       : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * lerpRate));
-    if (Math.abs(targetPosition - scenePosition) < 0.0005) {
+    if (Math.abs(targetPosition - scenePosition) < 0.0004) {
       scenePosition = targetPosition;
     } else {
       dirty = true;
@@ -604,11 +634,11 @@ export function createExperience(root) {
     /* chrome */
     if (hdr) hdr.style.opacity = ready ? 1 : 0;
     topButton.classList.toggle("on", ready && raw > 0.7);
-    /* throne room: push-in toward the figure, timed dissolve to the close-up */
-    const em = ss(0.2, 1.8, v),
-      pu = ss(1.8, 4.8, v),
-      S = 1 + 0.8 * pu;
-    const co = ss(3.8, 5.3, v),
+    /* throne room: continuous push-in toward the figure, dissolving gradually to the close-up */
+    const em = ss(0.2, 2.0, v),
+      pu = ss(1.0, 5.4, v),
+      S = 1 + 0.65 * pu;
+    const co = ss(2.8, 6.0, v),
       tO = 1 - ss(10.0, 10.8, v);
     if (!ready) {
       THR.style.opacity = "0";
@@ -642,20 +672,22 @@ export function createExperience(root) {
     }
     const rt = reveal ? (now - reveal) / 1000 : 0;
     if (tO > 0) {
-      const j = RM ? 0 : 0.15 + 0.25 * pu,
-        jx = (Math.sin(v * 11) + Math.sin(v * 6.3)) * j,
-        jy = Math.cos(v * 8.7) * j;
+      const j = RM ? 0 : 0.06 + 0.12 * pu,
+        jx = (Math.sin(v * 7.3) + Math.sin(v * 4.1)) * j,
+        jy = Math.cos(v * 5.7) * j;
       tw2.style.transform = `translate3d(${jx.toFixed(2)}px,${jy.toFixed(2)}px,0) scale(${S.toFixed(4)})`;
-      tw2.style.filter = `brightness(${0.5 + 0.5 * em})${RM ? "" : ` blur(${0.25 * pu * pu}px)`}`;
-      tw2.style.visibility = co < 0.999 ? "visible" : "hidden";
-      tc.style.opacity = co;
-      tc.style.transform = `translate3d(0,0,0) scale(${(1 + 0.07 * ss(5.6, 6.8, v)).toFixed(4)})`;
-      tc.style.filter = `brightness(${1 - 0.28 * ss(6.8, 7.4, v) * (1 - ss(9.6, 10.0, v))})`;
-      const r = lerp(lerp(30, 74, em) * (1 - 0.5 * pu), 34, co);
-      vg.style.setProperty("--r", r + "%");
-      vg.style.setProperty("--fx", lerp(55, 52, co) + "%");
-      vg.style.setProperty("--fy", lerp(58, 36, co) + "%");
-      scrim.style.opacity = ss(6.6, 7.2, v) * (1 - ss(9.4, 9.9, v));
+      tw2.style.filter = `brightness(${(0.5 + 0.5 * em).toFixed(3)})`;
+      tw2.style.visibility = co < 0.995 ? "visible" : "hidden";
+      tc.style.opacity = co.toFixed(3);
+      const tcScale = (1.0 + 0.12 * ss(3.0, 9.8, v)).toFixed(4);
+      tc.style.transform = `translate3d(0,0,0) scale(${tcScale})`;
+      const tcDim = ss(6.4, 7.8, v) * (1 - ss(9.6, 10.1, v));
+      tc.style.filter = `brightness(${(1 - 0.22 * tcDim).toFixed(3)})`;
+      const r = lerp(lerp(28, 72, em) * (1 - 0.42 * pu), 36, co);
+      vg.style.setProperty("--r", r.toFixed(1) + "%");
+      vg.style.setProperty("--fx", lerp(55, 52, co).toFixed(1) + "%");
+      vg.style.setProperty("--fy", lerp(58, 40, co).toFixed(1) + "%");
+      scrim.style.opacity = (ss(6.4, 7.4, v) * (1 - ss(9.4, 9.9, v))).toFixed(3);
     }
     /* the warning text fades in and out between the throne close-up and the hero reveal */
     tl.forEach((o) => {
