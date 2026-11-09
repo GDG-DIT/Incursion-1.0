@@ -43,6 +43,7 @@ const DAY_2_SCHEDULE = [
 export default function Schedule() {
   const [activeTab, setActiveTab] = useState<'roadmap' | 'finale'>('roadmap');
   const [finaleDay, setFinaleDay] = useState<1 | 2>(1);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
     <section id="schedule" className="universe-section">
@@ -78,28 +79,38 @@ export default function Schedule() {
             <div className="universe-conduit-timeline">
               {TIMELINE.map((item, index) => {
                 const img = MILESTONE_IMAGES[index] || MILESTONE_IMAGES[0];
+                const isHovered = hoveredIndex === index;
+                const isDimmed = hoveredIndex !== null && !isHovered;
+                const isLive = index === 0;
+
                 return (
-                  <div key={item.t} className="universe-conduit-item">
-                    <div className="conduit-marker">
+                  <div
+                    key={item.t}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                    className={`universe-conduit-item ${isHovered ? 'item-focused' : ''} ${isDimmed ? 'item-dimmed' : ''}`}
+                  >
+                    <div className={`conduit-marker ${isHovered ? 'marker-active' : ''} ${isLive ? 'marker-live' : ''}`}>
                       <span className="conduit-pulse" />
                       <span className="conduit-dot" />
                       <span className="conduit-index">0{index + 1}</span>
                     </div>
 
-                    <div className="universe-card universe-conduit-card">
+                    <div className={`universe-card universe-conduit-card ${isHovered ? 'card-focused' : ''} ${isDimmed ? 'card-dimmed' : ''} ${isLive ? 'card-live' : ''}`}>
                       <div className="tactical-corner tl" />
                       <div className="tactical-corner tr" />
                       <div className="tactical-corner bl" />
                       <div className="tactical-corner br" />
 
                       <div className="conduit-card-layout">
-                        {/* Cinematic Doomsday Still */}
+                        {/* Cinematic Doomsday Still with Hover Zoom */}
                         <div
                           className="conduit-thumb"
                           style={{ backgroundImage: `url(${img})` }}
                           aria-hidden="true"
                         >
                           <div className="conduit-thumb-overlay" />
+                          <div className="conduit-thumb-scanlines" />
                         </div>
 
                         {/* Content */}
@@ -109,6 +120,12 @@ export default function Schedule() {
                             {item.tag && (
                               <span className="universe-meta-pill conduit-tag">
                                 {item.tag}
+                              </span>
+                            )}
+                            {isLive && (
+                              <span className="conduit-live-beacon">
+                                <span className="beacon-dot" />
+                                LIVE NOW
                               </span>
                             )}
                           </div>

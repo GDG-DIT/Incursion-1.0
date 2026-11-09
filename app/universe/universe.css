@@ -775,10 +775,19 @@ header.universe-navbar {
 }
 
 .universe-prize-card.highlight {
-  border-color: var(--em);
-  background: rgba(183, 155, 104, 0.04);
-  box-shadow: 0 0 40px rgba(183, 155, 104, 0.15);
-  transform: translateY(-8px);
+  border-color: #ffd700;
+  background: linear-gradient(145deg, rgba(255, 215, 0, 0.08) 0%, rgba(8, 12, 10, 0.85) 60%);
+  box-shadow: 0 0 50px rgba(255, 215, 0, 0.22), 0 20px 40px rgba(0, 0, 0, 0.8);
+  transform: translateY(-12px);
+}
+
+.universe-prize-card.highlight .universe-prize-val {
+  color: #ffd700;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+}
+
+.universe-prize-card.highlight .tactical-corner {
+  border-color: #ffd700;
 }
 
 .universe-prize-rank {
@@ -2161,14 +2170,46 @@ footer.universe-footer {
   bottom: 40px;
   left: 28px;
   width: 2px;
-  background: linear-gradient(180deg, #3fe08e 0%, rgba(63, 224, 142, 0.3) 50%, #3fe08e 100%);
+  background: linear-gradient(180deg, #3fe08e 0%, rgba(63, 224, 142, 0.25) 50%, #3fe08e 100%);
   box-shadow: 0 0 10px rgba(63, 224, 142, 0.4);
 }
+/* Flowing laser energy spark traveling down conduit */
+.universe-conduit-timeline::after {
+  content: '';
+  position: absolute;
+  left: 27px;
+  top: 40px;
+  width: 4px;
+  height: 90px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, transparent, #3fe08e 50%, #bfffd6 85%, transparent 100%);
+  box-shadow: 0 0 16px #3fe08e;
+  animation: conduit-laser-flow 3.5s infinite linear;
+  pointer-events: none;
+}
+@keyframes conduit-laser-flow {
+  0% {
+    top: 40px;
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 100px);
+    opacity: 0;
+  }
+}
+
 .universe-conduit-item {
   display: flex;
   align-items: flex-start;
   gap: 28px;
   position: relative;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .conduit-marker {
   position: relative;
@@ -2182,7 +2223,27 @@ footer.universe-footer {
   place-items: center;
   flex-shrink: 0;
   z-index: 2;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
+.conduit-marker.marker-active,
+.universe-conduit-item:hover .conduit-marker {
+  border-color: #bfffd6;
+  box-shadow: 0 0 25px rgba(63, 224, 142, 0.8), 0 0 40px rgba(63, 224, 142, 0.4);
+  transform: scale(1.08);
+}
+.conduit-marker.marker-live {
+  border-color: #3fe08e;
+  animation: marker-glow-live 2s infinite ease-in-out;
+}
+@keyframes marker-glow-live {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(63, 224, 142, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(63, 224, 142, 0.8), 0 0 50px rgba(63, 224, 142, 0.4);
+  }
+}
+
 .conduit-pulse {
   position: absolute;
   inset: -6px;
@@ -2196,20 +2257,35 @@ footer.universe-footer {
   font-weight: 800;
   color: #ffffff;
 }
+
+/* Conduit Card with Focus / Dimming */
 .universe-conduit-card {
   flex: 1;
   padding: 0 !important;
   overflow: hidden;
   border-radius: 12px;
-  background: rgba(8, 12, 10, 0.7) !important;
+  background: rgba(8, 12, 10, 0.78) !important;
   border: 1px solid rgba(233, 231, 224, 0.15) !important;
-  transition: all 0.3s ease;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.universe-conduit-card:hover {
-  border-color: rgba(63, 224, 142, 0.5) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(63, 224, 142, 0.15) !important;
-  transform: translateY(-2px);
+.universe-conduit-card.card-live {
+  border-color: rgba(63, 224, 142, 0.4) !important;
 }
+/* Focused Card: surges with emerald glory */
+.universe-conduit-card.card-focused,
+.universe-conduit-item:hover .universe-conduit-card {
+  border-color: #3fe08e !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 35px rgba(63, 224, 142, 0.35) !important;
+  transform: translateX(6px) scale(1.01);
+  background: rgba(10, 18, 14, 0.9) !important;
+}
+/* Dimmed Sibling Cards: cinematic depth-of-field */
+.universe-conduit-card.card-dimmed {
+  opacity: 0.38;
+  filter: blur(0.5px) grayscale(30%);
+  transform: scale(0.99);
+}
+
 .conduit-card-layout {
   display: grid;
   grid-template-columns: 240px 1fr;
@@ -2220,12 +2296,32 @@ footer.universe-footer {
   background-size: cover;
   background-position: center;
   filter: brightness(0.8) contrast(1.1);
+  transition: transform 0.5s ease, filter 0.5s ease;
+  overflow: hidden;
+}
+.universe-conduit-card.card-focused .conduit-thumb,
+.universe-conduit-item:hover .conduit-thumb {
+  filter: brightness(0.95) contrast(1.15);
+  transform: scale(1.05);
 }
 .conduit-thumb-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, transparent 40%, rgba(8, 12, 10, 0.95) 100%);
+  pointer-events: none;
 }
+.conduit-thumb-scanlines {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.45;
+}
+
 .conduit-card-info {
   padding: 22px 28px;
   display: flex;
@@ -2247,10 +2343,33 @@ footer.universe-footer {
   font-size: 10px !important;
   font-weight: 700 !important;
 }
+.conduit-live-beacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(63, 224, 142, 0.18);
+  border: 1px solid rgba(63, 224, 142, 0.5);
+  color: #3fe08e;
+  font-size: 9.5px;
+  font-weight: 800;
+  font-family: monospace;
+  letter-spacing: 0.12em;
+}
+.beacon-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3fe08e;
+  box-shadow: 0 0 8px #3fe08e;
+  animation: pulse-dot 1.4s infinite;
+}
 .conduit-title {
   font-size: 22px !important;
   color: #ffffff !important;
   margin-bottom: 4px !important;
+  letter-spacing: 0.02em;
 }
 .conduit-highlight {
   font-size: 13.5px !important;

@@ -60,7 +60,7 @@ export const TIMELINE = [
     ic: { f: 2, z: '420%', p: '50% 52%' },
   },
   {
-    t: 'Grand Finale (On Campus)',
+    t: 'Grand Finale • On Campus',
     phase: 'Phase 4 • Grand Finale',
     tag: '24H National Finale',
     d: '30–31 January 2027 · DYPIT Campus, Pune',

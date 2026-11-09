@@ -186,15 +186,15 @@ export default function UniverseMaskCanvas() {
           targetScale = mobile ? 0.60 : 0.82;
           targetRimColor.setHex(0x3fe08e); // Emerald Surge
         } else if (p < 0.74) {
-          // Schedule Section: Deep atmospheric perspective
+          // Schedule / Timeline Section: Gracefully glide to far right flank and fade out
           const t = (p - 0.56) / 0.18;
-          targetX = THREE.MathUtils.lerp(mobile ? 0 : sideX * 0.75, 0, t);
-          targetY = THREE.MathUtils.lerp(0.20, -0.10, t);
-          targetZ = THREE.MathUtils.lerp(0.1, -1.4, t);
-          targetRotY = THREE.MathUtils.lerp(-0.30, 0, t);
+          targetX = THREE.MathUtils.lerp(mobile ? 0 : sideX * 0.75, visibleHeight * camera.aspect * 0.52, t);
+          targetY = THREE.MathUtils.lerp(0.20, -0.05, t);
+          targetZ = THREE.MathUtils.lerp(0.1, -3.2, t);
+          targetRotY = THREE.MathUtils.lerp(-0.30, -0.45, t);
           targetRotX = 0;
-          targetScale = mobile ? 0.55 : 0.75;
-          targetRimColor.setHex(0xa855f7); // Reality Purple
+          targetScale = mobile ? 0.35 : 0.50;
+          targetRimColor.setHex(0xa855f7);
         } else if (p < 0.88) {
           // Prizes Section: Vibranium Gold specular shine
           const t = (p - 0.74) / 0.14;
@@ -241,6 +241,12 @@ export default function UniverseMaskCanvas() {
         torch.position.lerp(targetLightPos, 1 - Math.exp(-dt * 8.0));
         const flicker = reducedMotion ? 1 : 1 + 0.04 * Math.sin(seconds * 14) + 0.025 * Math.sin(seconds * 24);
         torch.intensity = 2.2 * flicker;
+
+        // Fade out canvas in the timeline zone to keep cards 100% focused and unhindered
+        const inTimelineZone = p >= 0.52 && p < 0.73;
+        const targetCanvasOpacity = inTimelineZone ? 0 : 1;
+        const currentCanvasOpacity = parseFloat(canvas.style.opacity || '1');
+        canvas.style.opacity = String(THREE.MathUtils.lerp(currentCanvasOpacity, targetCanvasOpacity, dt * 6.0));
       }
 
       renderer.render(scene, camera);
