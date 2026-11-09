@@ -1910,3 +1910,510 @@ footer.universe-footer {
     width: 100%;
   }
 }
+
+
+/* ==========================================================================
+   Epic Incursion Chambers, Sacred Timeline Conduit & Tournament Grid
+   ========================================================================== */
+
+/* 1. Incursion Chambers (Tracks) */
+.universe-chamber-tabs {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.chamber-tab-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 16px;
+  background: rgba(8, 12, 10, 0.7);
+  border: 1px solid rgba(233, 231, 224, 0.12);
+  border-radius: 8px;
+  color: var(--mute);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+.chamber-tab-btn:hover {
+  border-color: rgba(63, 224, 142, 0.4);
+  background: rgba(63, 224, 142, 0.05);
+}
+.chamber-tab-btn.active {
+  border-color: #3fe08e;
+  background: rgba(63, 224, 142, 0.1);
+  box-shadow: 0 0 20px rgba(63, 224, 142, 0.2);
+}
+.chamber-tab-id {
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: var(--mute);
+}
+.chamber-tab-btn.active .chamber-tab-id {
+  color: #3fe08e;
+}
+.chamber-tab-name {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: #ffffff;
+  margin: 4px 0 2px;
+  line-height: 1.2;
+}
+.chamber-tab-bounty {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--em);
+}
+.chamber-tab-btn.active .chamber-tab-bounty {
+  color: #3fe08e;
+}
+
+/* Spotlight Card */
+.universe-chamber-spotlight {
+  position: relative;
+  min-height: 440px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(63, 224, 142, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(63, 224, 142, 0.1);
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: #030704;
+}
+.spotlight-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 35%;
+  filter: brightness(0.7) contrast(1.15) saturate(1.1);
+  transition: transform 0.8s ease, filter 0.8s ease;
+}
+.universe-chamber-spotlight:hover .spotlight-bg {
+  transform: scale(1.02);
+  filter: brightness(0.78) contrast(1.2) saturate(1.15);
+}
+.spotlight-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 7, 4, 0.4) 0%,
+    rgba(3, 7, 4, 0.85) 55%,
+    rgba(3, 7, 4, 0.98) 100%
+  );
+  pointer-events: none;
+}
+.spotlight-content {
+  position: relative;
+  z-index: 2;
+  padding: clamp(24px, 4vw, 42px);
+}
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.spotlight-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.spotlight-meta .universe-tag {
+  margin-bottom: 0;
+}
+.spotlight-sector-id {
+  font-family: monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  color: var(--mute);
+}
+.spotlight-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(32px, 5vw, 48px);
+  color: #ffffff;
+  margin-bottom: 10px;
+  line-height: 1.05;
+  text-shadow: 0 0 30px rgba(63, 224, 142, 0.4);
+}
+.spotlight-mission {
+  font-size: 16px;
+  font-style: italic;
+  color: #3fe08e;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  max-width: 840px;
+}
+.spotlight-desc {
+  font-size: 15px;
+  color: #c5c6be;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  max-width: 880px;
+}
+.spotlight-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  border-top: 1px solid rgba(233, 231, 224, 0.12);
+  padding-top: 20px;
+}
+.spotlight-label {
+  display: block;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--em);
+  margin-bottom: 10px;
+}
+.spotlight-tech-chip {
+  background: rgba(63, 224, 142, 0.08) !important;
+  border-color: rgba(63, 224, 142, 0.25) !important;
+  color: #bfffd6 !important;
+  font-family: monospace;
+}
+
+/* 5-Chamber Mini-Cards Grid */
+.universe-chamber-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+.universe-mini-chamber-card {
+  padding: 0 !important;
+  cursor: pointer;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+.universe-mini-chamber-card.active {
+  border-color: #3fe08e !important;
+  box-shadow: 0 0 20px rgba(63, 224, 142, 0.25) !important;
+}
+.mini-card-thumb {
+  height: 90px;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.65);
+  transition: all 0.3s ease;
+}
+.universe-mini-chamber-card:hover .mini-card-thumb {
+  filter: brightness(0.85);
+  transform: scale(1.05);
+}
+.mini-card-body {
+  padding: 12px;
+}
+.mini-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+.mini-card-id {
+  font-family: monospace;
+  font-size: 10px;
+  color: var(--mute);
+  letter-spacing: 0.1em;
+}
+.mini-card-bounty {
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #3fe08e;
+}
+.mini-card-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 2px;
+  line-height: 1.2;
+}
+.mini-card-tag {
+  font-size: 11px;
+  color: var(--mute);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 2. Sacred Timeline Conduit */
+.universe-conduit-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: relative;
+}
+.universe-conduit-timeline::before {
+  content: '';
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 28px;
+  width: 2px;
+  background: linear-gradient(180deg, #3fe08e 0%, rgba(63, 224, 142, 0.3) 50%, #3fe08e 100%);
+  box-shadow: 0 0 10px rgba(63, 224, 142, 0.4);
+}
+.universe-conduit-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+  position: relative;
+}
+.conduit-marker {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #030704;
+  border: 2px solid #3fe08e;
+  box-shadow: 0 0 15px rgba(63, 224, 142, 0.5);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.conduit-pulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+.conduit-index {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 800;
+  color: #ffffff;
+}
+.universe-conduit-card {
+  flex: 1;
+  padding: 0 !important;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(8, 12, 10, 0.7) !important;
+  border: 1px solid rgba(233, 231, 224, 0.15) !important;
+  transition: all 0.3s ease;
+}
+.universe-conduit-card:hover {
+  border-color: rgba(63, 224, 142, 0.5) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(63, 224, 142, 0.15) !important;
+  transform: translateY(-2px);
+}
+.conduit-card-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 140px;
+}
+.conduit-thumb {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.8) contrast(1.1);
+}
+.conduit-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 40%, rgba(8, 12, 10, 0.95) 100%);
+}
+.conduit-card-info {
+  padding: 22px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.conduit-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.conduit-tag {
+  color: #3fe08e !important;
+  border-color: rgba(63, 224, 142, 0.35) !important;
+  background: rgba(63, 224, 142, 0.08) !important;
+  text-transform: uppercase;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+}
+.conduit-title {
+  font-size: 22px !important;
+  color: #ffffff !important;
+  margin-bottom: 4px !important;
+}
+.conduit-highlight {
+  font-size: 13.5px !important;
+  color: var(--em) !important;
+  margin-bottom: 8px !important;
+}
+.conduit-desc {
+  font-size: 14px !important;
+  color: var(--mute) !important;
+  margin: 0 !important;
+  line-height: 1.55 !important;
+}
+
+/* 3. Tournament Architecture Grid (About) */
+.universe-tournament-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 48px;
+}
+.universe-tournament-card {
+  padding: 32px !important;
+  background: rgba(8, 12, 10, 0.65) !important;
+  border-radius: 12px;
+}
+.tournament-badge {
+  display: inline-block;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+.tournament-badge.round-1 {
+  background: rgba(94, 197, 255, 0.12);
+  border: 1px solid rgba(94, 197, 255, 0.35);
+  color: #5ec5ff;
+}
+.tournament-badge.round-2 {
+  background: rgba(63, 224, 142, 0.15);
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  color: #3fe08e;
+}
+.round-2-card {
+  border-color: rgba(63, 224, 142, 0.35) !important;
+  box-shadow: 0 0 30px rgba(63, 224, 142, 0.1) !important;
+}
+.tournament-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 26px;
+  color: #ffffff;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.tournament-desc {
+  font-size: 14.5px;
+  color: var(--mute);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.tournament-perks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tournament-filter-hub {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.filter-line {
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(180deg, transparent, #3fe08e, transparent);
+}
+.filter-badge {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 16px 20px;
+  background: #030704;
+  border: 1.5px solid #3fe08e;
+  border-radius: 50px;
+  box-shadow: 0 0 25px rgba(63, 224, 142, 0.35);
+}
+.filter-pulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50px;
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  animation: pulse-dot 2s infinite ease-in-out;
+}
+.filter-num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1;
+}
+.filter-sub {
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #3fe08e;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* Media Queries for Incursion Chambers & Timeline */
+@media (max-width: 900px) {
+  .universe-chamber-tabs {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-columns {
+    grid-template-columns: 1fr;
+  }
+  .universe-chamber-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .conduit-card-layout {
+    grid-template-columns: 1fr;
+  }
+  .conduit-thumb {
+    height: 160px;
+  }
+  .conduit-thumb-overlay {
+    background: linear-gradient(180deg, transparent 40%, rgba(8, 12, 10, 0.95) 100%);
+  }
+  .universe-tournament-grid {
+    grid-template-columns: 1fr;
+  }
+  .filter-line {
+    width: 48px;
+    height: 2px;
+  }
+}
+
+@media (max-width: 600px) {
+  .universe-conduit-timeline::before {
+    left: 20px;
+  }
+  .conduit-marker {
+    width: 42px;
+    height: 42px;
+  }
+  .conduit-index {
+    font-size: 12px;
+  }
+  .universe-conduit-item {
+    gap: 16px;
+  }
+  .conduit-card-info {
+    padding: 16px;
+  }
+  .universe-chamber-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,6 +3,16 @@
 import { useState } from 'react';
 import { TIMELINE } from '../../lib/content';
 
+const MILESTONE_IMAGES = [
+  '/media/doom-closeup.webp',
+  '/media/timeline-1.webp',
+  '/media/timeline-2.webp',
+  '/media/timeline-3.webp',
+  '/media/timeline-4.webp',
+  '/media/doom-closeup4.webp',
+  '/media/doom-throne.webp',
+];
+
 const DAY_1_SCHEDULE = [
   { time: '08:00', title: 'Registration & Check-In', desc: 'Badge pickup, kit distribution, and finalist security clearance.' },
   { time: '09:00', title: 'Location Distribution', desc: 'Teams settle into designated hacking bays and workstation zones.' },
@@ -64,46 +74,56 @@ export default function Schedule() {
         </div>
 
         {activeTab === 'roadmap' ? (
-          <div className="universe-container-narrow" style={{ margin: '0 auto' }}>
-            <div className="universe-timeline">
-              {TIMELINE.map((item, index) => (
-                <div key={item.t} className="universe-timeline-item">
-                  <div className="universe-timeline-marker" />
-                  <div className="universe-timeline-date">{item.d.split('·')[0].trim()}</div>
-                  <div className="universe-timeline-card">
-                    <div className="tactical-corner tl" />
-                    <div className="tactical-corner tr" />
-                    <div className="tactical-corner bl" />
-                    <div className="tactical-corner br" />
+          <div className="universe-container" style={{ margin: '0 auto', maxWidth: '960px' }}>
+            <div className="universe-conduit-timeline">
+              {TIMELINE.map((item, index) => {
+                const img = MILESTONE_IMAGES[index] || MILESTONE_IMAGES[0];
+                return (
+                  <div key={item.t} className="universe-conduit-item">
+                    <div className="conduit-marker">
+                      <span className="conduit-pulse" />
+                      <span className="conduit-dot" />
+                      <span className="conduit-index">0{index + 1}</span>
+                    </div>
 
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
-                      <div className="universe-timeline-phase">{item.phase || `Phase 0${index + 1}`}</div>
-                      {item.tag && (
-                        <span
-                          className="universe-meta-pill"
-                          style={{
-                            color: '#3fe08e',
-                            borderColor: 'rgba(63, 224, 142, 0.35)',
-                            background: 'rgba(63, 224, 142, 0.08)',
-                            textTransform: 'uppercase',
-                            fontSize: '10px',
-                            fontWeight: 700,
-                            letterSpacing: '0.1em',
-                          }}
+                    <div className="universe-card universe-conduit-card">
+                      <div className="tactical-corner tl" />
+                      <div className="tactical-corner tr" />
+                      <div className="tactical-corner bl" />
+                      <div className="tactical-corner br" />
+
+                      <div className="conduit-card-layout">
+                        {/* Cinematic Doomsday Still */}
+                        <div
+                          className="conduit-thumb"
+                          style={{ backgroundImage: `url(${img})` }}
+                          aria-hidden="true"
                         >
-                          {item.tag}
-                        </span>
-                      )}
-                    </div>
+                          <div className="conduit-thumb-overlay" />
+                        </div>
 
-                    <h3 className="universe-timeline-title">{item.t}</h3>
-                    <div className="universe-timeline-highlight">
-                      {item.d}
+                        {/* Content */}
+                        <div className="conduit-card-info">
+                          <div className="conduit-card-meta">
+                            <span className="universe-timeline-phase">{item.phase || `Phase 0${index + 1}`}</span>
+                            {item.tag && (
+                              <span className="universe-meta-pill conduit-tag">
+                                {item.tag}
+                              </span>
+                            )}
+                          </div>
+
+                          <h3 className="universe-timeline-title conduit-title">{item.t}</h3>
+                          <div className="universe-timeline-highlight conduit-highlight">
+                            {item.d}
+                          </div>
+                          <p className="universe-timeline-desc conduit-desc">{item.x}</p>
+                        </div>
+                      </div>
                     </div>
-                    <p className="universe-timeline-desc">{item.x}</p>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         ) : (

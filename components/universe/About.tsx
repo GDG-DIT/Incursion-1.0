@@ -11,65 +11,66 @@ export default function About() {
           </div>
           <h2 className="universe-section-title">Doomsday Times Run Out</h2>
           <p className="universe-section-desc">
-            INCURSION 2027 is a national-level 24-hour student hackathon organized by GDG on Campus,
+            INCURSION 2027 is a premier national-level 24-hour student hackathon organized by GDG on Campus,
             Dr. D. Y. Patil Institute of Technology, Pimpri, Pune. Engineered as a high-intensity two-round gauntlet—an
-            online nationwide idea challenge followed by a 24-hour offline build sprint on campus—INCURSION
-            summons builders, engineers, and creators to engineer critical solutions before the clock hits zero.
+            online nationwide ideation and prototype screening followed by a 24-hour offline build sprint on campus—INCURSION
+            summons India&apos;s most ambitious developers, engineers, and researchers to engineer critical solutions before the clock hits zero.
           </p>
         </div>
 
-        {/* Feature Cards Grid (Two-Round Architecture + Bounty Vault) */}
-        <div className="universe-grid-3">
-          <div className="universe-card universe-tactical-card">
+        {/* Two-Round Tournament Architecture Graphic */}
+        <div className="universe-tournament-grid">
+          {/* Round 1 Card */}
+          <div className="universe-card universe-tournament-card">
             <div className="tactical-corner tl" />
             <div className="tactical-corner tr" />
             <div className="tactical-corner bl" />
             <div className="tactical-corner br" />
-            <div className="universe-card-num">01 // Round 1: Online Idea Challenge</div>
-            <h3 className="universe-card-title">National Screening</h3>
-            <p className="universe-card-desc">
+
+            <div className="tournament-badge round-1">ROUND 1 • ONLINE CHALLENGE</div>
+            <h3 className="tournament-title">National Screening &amp; Prototype Audit</h3>
+            <p className="tournament-desc">
               Open nationwide to student squads of 2–4 members with 100% free registration.
-              Submit your proposed technical blueprints and architecture on the platform. All submissions undergo
-              structured screening and jury evaluation.
+              Teams submit their solution proposal deck followed by a 3–5 min video prototype and GitHub repository.
+              Every submission undergoes rigorous scoring by a panel of industry and faculty judges.
             </p>
-            <div className="universe-card-meta">
-              <span className="universe-meta-pill">Free Entry</span>
-              <span className="universe-meta-pill">Inter-College Teams Allowed</span>
+            <div className="tournament-perks">
+              <span className="universe-meta-pill">Free Registration</span>
+              <span className="universe-meta-pill">Open Nationwide</span>
+              <span className="universe-meta-pill">2 to 4 Members</span>
+              <span className="universe-meta-pill">Inter-College Permitted</span>
             </div>
           </div>
 
-          <div className="universe-card universe-tactical-card">
+          {/* Central Conduit Indicator */}
+          <div className="tournament-filter-hub">
+            <div className="filter-line" />
+            <div className="filter-badge">
+              <span className="filter-pulse" />
+              <span className="filter-num">TOP 50 SQUADS</span>
+              <span className="filter-sub">Shortlisted Finalists</span>
+            </div>
+            <div className="filter-line" />
+          </div>
+
+          {/* Round 2 Card */}
+          <div className="universe-card universe-tournament-card round-2-card">
             <div className="tactical-corner tl" />
             <div className="tactical-corner tr" />
             <div className="tactical-corner bl" />
             <div className="tactical-corner br" />
-            <div className="universe-card-num">02 // Round 2: Offline Finale</div>
-            <h3 className="universe-card-title">24-Hour Build Sprint</h3>
-            <p className="universe-card-desc">
-              Top 50 shortlisted teams (~175–200 hackers) assemble on 30–31 January 2027 at the DYPIT campus in Pune.
-              A nominal confirmation fee (₹899/team) covers full 24-hour access, meals, snacks, rest areas, mentor reviews,
-              and exclusive finalist kits.
-            </p>
-            <div className="universe-card-meta">
-              <span className="universe-meta-pill">DYPIT Pune</span>
-              <span className="universe-meta-pill">50 Finalist Squads</span>
-            </div>
-          </div>
 
-          <div className="universe-card universe-tactical-card">
-            <div className="tactical-corner tl" />
-            <div className="tactical-corner tr" />
-            <div className="tactical-corner bl" />
-            <div className="tactical-corner br" />
-            <div className="universe-card-num">03 // The Rewards</div>
-            <h3 className="universe-card-title">₹2,05,000 Cash Pool & Beyond</h3>
-            <p className="universe-card-desc">
-              Compete for ₹2.05 Lakh in cash awards, winner trophies, official project showcases across GDG on Campus,
-              industry sponsor introductions, one-on-one mentorship sessions, and potential internship opportunities.
+            <div className="tournament-badge round-2">ROUND 2 • OFFLINE FINALE</div>
+            <h3 className="tournament-title">24-Hour Non-Stop Build Sprint</h3>
+            <p className="tournament-desc">
+              Top 50 finalist squads (~175–200 hackers) assemble on 30–31 January 2027 at DYPIT campus in Pune.
+              A nominal confirmation fee (₹899/team) covers complete 24-hour venue access, high-speed Wi-Fi, all meals,
+              midnight snacks, rest areas, mentor check-ins, and the official finalist welcome kit.
             </p>
-            <div className="universe-card-meta">
-              <span className="universe-meta-pill">₹2,05,000 Cash</span>
-              <span className="universe-meta-pill">Grand Trophies</span>
+            <div className="tournament-perks">
+              <span className="universe-meta-pill" style={{ color: '#3fe08e', borderColor: 'rgba(63,224,142,0.3)' }}>DYPIT Pune Campus</span>
+              <span className="universe-meta-pill" style={{ color: '#3fe08e', borderColor: 'rgba(63,224,142,0.3)' }}>24 Hours Non-Stop</span>
+              <span className="universe-meta-pill" style={{ color: '#3fe08e', borderColor: 'rgba(63,224,142,0.3)' }}>Full Catering &amp; Kit</span>
             </div>
           </div>
         </div>
