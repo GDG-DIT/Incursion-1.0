@@ -28,10 +28,6 @@ export default function Navbar() {
         <a href="#schedule">Schedule</a>
         <a href="#prizes">Prizes</a>
         <a href="#judging">Judging</a>
-        <a href="#operative-pass" className="universe-nav-badge-link">
-          Pass
-          <span className="nav-badge-live">LIVE</span>
-        </a>
         <a href="#sponsors">Sponsors</a>
         <a href="#faq">FAQ</a>
         <Link href="/" className="universe-nav-replay">
@@ -50,7 +46,7 @@ export default function Navbar() {
           target={REGISTER_URL ? '_blank' : undefined}
           rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
           className="universe-nav-btn"
-          title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening on Unstop'}
+          title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening soon on Unstop'}
         >
           <span>Register Now</span>
           <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="14" height="8">
@@ -82,7 +78,6 @@ export default function Navbar() {
         <a href="#schedule" onClick={() => setMobileOpen(false)}>Schedule</a>
         <a href="#prizes" onClick={() => setMobileOpen(false)}>Prizes</a>
         <a href="#judging" onClick={() => setMobileOpen(false)}>Judging Criteria</a>
-        <a href="#operative-pass" onClick={() => setMobileOpen(false)}>Claim Operative Pass ✦</a>
         <a href="#sponsors" onClick={() => setMobileOpen(false)}>Sponsors</a>
         <a href="#faq" onClick={() => setMobileOpen(false)}>FAQ</a>
         <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: 'var(--em)' }}>

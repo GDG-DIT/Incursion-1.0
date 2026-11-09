@@ -56,7 +56,7 @@ function Timeline() {
       <div className="tlh">
         <div className="k">Schedule</div>
         <h2>The Fractured Timeline</h2>
-        <p>Five milestones. One universe-changing finale.</p>
+        <p>Seven operational milestones. One universe-changing finale.</p>
       </div>
       <div id="tmask">
         <ol id="tcol">

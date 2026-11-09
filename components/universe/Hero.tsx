@@ -68,7 +68,7 @@ export default function Hero() {
             target={REGISTER_URL ? '_blank' : undefined}
             rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
             className="universe-btn-primary"
-            title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening on Unstop'}
+            title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening soon on Unstop'}
           >
             <span>Claim Your Spot</span>
             <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="16" height="8">
@@ -78,9 +78,8 @@ export default function Hero() {
           <a href="#tracks" className="universe-btn-secondary">
             Explore Battlegrounds
           </a>
-          <a href="#operative-pass" className="universe-btn-secondary universe-btn-hologram">
-            <span>Operative Pass</span>
-            <span className="btn-tag-pill">3D</span>
+          <a href="#schedule" className="universe-btn-secondary">
+            Milestones Roadmap
           </a>
         </div>
 

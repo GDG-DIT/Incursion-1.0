@@ -56,7 +56,6 @@ export default function Footer() {
               <li><a href="#schedule">Timeline &amp; Schedule</a></li>
               <li><a href="#prizes">Prize Pool (₹2.05L)</a></li>
               <li><a href="#judging">Judging Criteria</a></li>
-              <li><a href="#operative-pass">Claim Operative Pass</a></li>
               <li><a href="#sponsors">Partners &amp; Sponsors</a></li>
               <li><a href="#faq">FAQ</a></li>
             </ul>
@@ -71,7 +70,7 @@ export default function Footer() {
                   href={REGISTER_URL || '#schedule'}
                   target={REGISTER_URL ? '_blank' : undefined}
                   rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
-                  title={REGISTER_URL ? 'Registration Portal on Unstop' : 'Registrations opening on Unstop'}
+                  title={REGISTER_URL ? 'Registration Portal on Unstop' : 'Registrations opening soon on Unstop'}
                 >
                   Registration Portal (Unstop) ↗
                 </a>

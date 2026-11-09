@@ -25,8 +25,8 @@ const FAQS: FaqItem[] = [
     cat: 'eligibility',
   },
   {
-    q: 'How does the two-round format and timeline work?',
-    a: 'Phase 01 begins with Online Registration (10 Nov – 5 Dec 2026), followed by Idea Submission (6 Dec – 25 Dec 2026) where teams submit their technical blueprint across the 5 battleground tracks. Following structured jury evaluation (26 Dec 2026 – 5 Jan 2027), the top 50 finalist teams are announced on 6 January 2027. Shortlisted squads assemble on 30–31 January 2027 at DYPIT campus in Pune for the 24-hour offline build and demo sprint.',
+    q: 'How does the multi-stage roadmap and timeline work?',
+    a: 'The roadmap begins with the Registrations Window (8 Nov – 5 Dec 2026). Phase 2 covers the PPT Submission Round (6 – 12 Dec 2026) followed by PPT Evaluation (13 – 19 Dec 2026). Phase 3 covers Video Prototype Submission (20 – 25 Dec 2026) and Prototype Evaluation (25 Dec 2026 – 5 Jan 2027). Finalists are announced on 6 January 2027, leading up to the 24-hour offline Grand Finale on campus at DYPIT Pune on 30–31 January 2027.',
     cat: 'schedule',
   },
   {

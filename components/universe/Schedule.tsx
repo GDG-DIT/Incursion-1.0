@@ -41,7 +41,7 @@ export default function Schedule() {
           <div className="universe-eyebrow">Timeline & Operational Schedule</div>
           <h2 className="universe-section-title">The Convergence Roadmap</h2>
           <p className="universe-section-desc">
-            From the nationwide online registration to the 24-hour offline showdown on campus at DYPIT Pune.
+            Seven mission milestones leading from national registration to the 24-hour offline showdown at DYPIT Pune.
           </p>
 
           {/* Schedule Mode Switcher */}
@@ -51,7 +51,7 @@ export default function Schedule() {
               onClick={() => setActiveTab('roadmap')}
               className={`universe-tab-btn ${activeTab === 'roadmap' ? 'active' : ''}`}
             >
-              Key Dates Roadmap
+              Key Milestones Roadmap
             </button>
             <button
               type="button"
@@ -75,7 +75,27 @@ export default function Schedule() {
                     <div className="tactical-corner tr" />
                     <div className="tactical-corner bl" />
                     <div className="tactical-corner br" />
-                    <div className="universe-timeline-phase">Phase 0{index + 1}</div>
+
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px', marginBottom: '8px', flexWrap: 'wrap' }}>
+                      <div className="universe-timeline-phase">{item.phase || `Phase 0${index + 1}`}</div>
+                      {item.tag && (
+                        <span
+                          className="universe-meta-pill"
+                          style={{
+                            color: '#3fe08e',
+                            borderColor: 'rgba(63, 224, 142, 0.35)',
+                            background: 'rgba(63, 224, 142, 0.08)',
+                            textTransform: 'uppercase',
+                            fontSize: '10px',
+                            fontWeight: 700,
+                            letterSpacing: '0.1em',
+                          }}
+                        >
+                          {item.tag}
+                        </span>
+                      )}
+                    </div>
+
                     <h3 className="universe-timeline-title">{item.t}</h3>
                     <div className="universe-timeline-highlight">
                       {item.d}
