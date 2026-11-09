@@ -35,14 +35,6 @@ export default function Hero() {
   return (
     <section className="universe-hero">
       <div className="universe-container">
-        {/* Telemetry HUD Ribbon */}
-        <div className="universe-telemetry-ribbon">
-          <span className="universe-dot-ping" aria-hidden="true" />
-          <span className="universe-telemetry-text">
-            SYSTEM MISSION: ROUND 1 REGISTRATION ACTIVE // DYPIT PUNE // 30–31 JAN 2027
-          </span>
-        </div>
-
         {/* Eyebrow badge */}
         <div className="universe-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
           <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'block' }} />
