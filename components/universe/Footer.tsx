@@ -11,6 +11,16 @@ export default function Footer() {
   return (
     <footer className="universe-footer">
       <div className="universe-container">
+        {/* Assemble Banner Quote */}
+        <div className="universe-assemble-banner">
+          <div className="assemble-text">
+            &ldquo;THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.&rdquo;
+          </div>
+          <div className="assemble-sub">
+            50 SQUADS // 24 HOURS // DYPIT PUNE // EARTH-616&apos;S FINAL STAND
+          </div>
+        </div>
+
         <div className="universe-footer-grid">
           {/* Column 1: Brand & Theme */}
           <div>
@@ -29,7 +39,7 @@ export default function Footer() {
               </Link>
             </div>
             <p className="universe-footer-desc">
-              National-level student hackathon organized by GDG on Campus,
+              National-level 24-hour student hackathon organized by GDG on Campus,
               Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.
             </p>
             <div className="universe-footer-tagline">
@@ -39,42 +49,41 @@ export default function Footer() {
 
           {/* Column 2: Navigation */}
           <div>
-            <div className="universe-footer-col-title">Navigation</div>
+            <div className="universe-footer-col-title">Command Navigation</div>
             <ul className="universe-footer-links">
               <li><a href="#about">About Event</a></li>
               <li><a href="#tracks">Hackathon Tracks</a></li>
-              <li><a href="#schedule">Timeline & Schedule</a></li>
-              <li><a href="#prizes">Prize Pool & Perks</a></li>
-              <li><a href="#sponsors">Partners & Sponsors</a></li>
+              <li><a href="#schedule">Timeline &amp; Schedule</a></li>
+              <li><a href="#prizes">Prize Pool (₹2.05L)</a></li>
+              <li><a href="#judging">Judging Criteria</a></li>
+              <li><a href="#operative-pass">Claim Operative Pass</a></li>
+              <li><a href="#sponsors">Partners &amp; Sponsors</a></li>
               <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
 
           {/* Column 3: Transmission */}
           <div>
-            <div className="universe-footer-col-title">Transmission</div>
+            <div className="universe-footer-col-title">Mission Transmission</div>
             <ul className="universe-footer-links">
               <li>
                 <a
-                  href={REGISTER_URL || ''}
+                  href={REGISTER_URL || '#schedule'}
                   target={REGISTER_URL ? '_blank' : undefined}
                   rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
-                  onClick={(e) => {
-                    if (!REGISTER_URL) e.preventDefault();
-                  }}
-                  title={REGISTER_URL ? 'Unstop Registration' : 'Registration opening soon on Unstop'}
+                  title={REGISTER_URL ? 'Registration Portal on Unstop' : 'Registrations opening on Unstop'}
                 >
-                  Registration Portal (Unstop)
+                  Registration Portal (Unstop) ↗
                 </a>
               </li>
               <li>
                 <a href="https://www.instagram.com/gdg.dit" target="_blank" rel="noopener noreferrer">
-                  Instagram: @gdg.dit
+                  Instagram: @gdg.dit ↗
                 </a>
               </li>
               <li>
                 <a href="https://www.linkedin.com/company/gdg-dit/" target="_blank" rel="noopener noreferrer">
-                  LinkedIn: GDG DIT
+                  LinkedIn: GDG DIT ↗
                 </a>
               </li>
               <li>
@@ -107,7 +116,7 @@ export default function Footer() {
 
           {/* Column 4: Campus Map */}
           <div className="universe-footer-map-column">
-            <div className="universe-footer-col-title">Campus Location</div>
+            <div className="universe-footer-col-title">Campus Operations Base</div>
             <div className="universe-footer-map">
               <iframe
                 title="Dr. D. Y. Patil Institute of Technology campus map"
@@ -134,11 +143,12 @@ export default function Footer() {
             <span>© 2027 INCURSION • GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.</span>
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
-            <span>24 Hours National Level Hackathon</span>
+            <span>24 Hours National Hackathon</span>
             <span>DYPIT Pune</span>
           </div>
         </div>
       </div>
+
       <button
         type="button"
         className="universe-floating-top"

@@ -10,6 +10,8 @@ import About from '../../components/universe/About';
 import Tracks from '../../components/universe/Tracks';
 import Schedule from '../../components/universe/Schedule';
 import Prizes from '../../components/universe/Prizes';
+import Judging from '../../components/universe/Judging';
+import HolographicPass from '../../components/universe/HolographicPass';
 import Sponsors from '../../components/universe/Sponsors';
 import Faq from '../../components/universe/Faq';
 import Footer from '../../components/universe/Footer';
@@ -38,6 +40,8 @@ export default function UniversePage() {
         <Tracks />
         <Schedule />
         <Prizes />
+        <Judging />
+        <HolographicPass />
         <Sponsors />
         <Faq />
         <Footer />

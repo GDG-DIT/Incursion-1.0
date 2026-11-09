@@ -35,6 +35,14 @@ export default function Hero() {
   return (
     <section className="universe-hero">
       <div className="universe-container">
+        {/* Telemetry HUD Ribbon */}
+        <div className="universe-telemetry-ribbon">
+          <span className="universe-dot-ping" aria-hidden="true" />
+          <span className="universe-telemetry-text">
+            SYSTEM MISSION: ROUND 1 REGISTRATION ACTIVE // DYPIT PUNE // 30–31 JAN 2027
+          </span>
+        </div>
+
         {/* Eyebrow badge */}
         <div className="universe-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
           <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'block' }} />
@@ -49,21 +57,18 @@ export default function Hero() {
 
         {/* Cinematic Description */}
         <p className="universe-hero-subtitle">
-          Two worlds have collided. The timeline is fractured. An online national idea challenge
-          followed by an offline build-and-demo finale at DYPIT campus, Pune.
+          Two universes collide. The timeline fractures. A national-level 24-hour hackathon summoning India&apos;s
+          most cracked student squads for an online challenge leading to the high-stakes build finale at DYPIT campus, Pune.
         </p>
 
         {/* Call to Actions */}
         <div className="universe-hero-cta">
           <a
-            href={REGISTER_URL || ''}
+            href={REGISTER_URL || '#schedule'}
             target={REGISTER_URL ? '_blank' : undefined}
             rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
-            onClick={(e) => {
-              if (!REGISTER_URL) e.preventDefault();
-            }}
             className="universe-btn-primary"
-            title={REGISTER_URL ? 'Register Now' : 'Registration opening soon on Unstop'}
+            title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening on Unstop'}
           >
             <span>Claim Your Spot</span>
             <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="16" height="8">
@@ -71,7 +76,11 @@ export default function Hero() {
             </svg>
           </a>
           <a href="#tracks" className="universe-btn-secondary">
-            Explore Tracks
+            Explore Battlegrounds
+          </a>
+          <a href="#operative-pass" className="universe-btn-secondary universe-btn-hologram">
+            <span>Operative Pass</span>
+            <span className="btn-tag-pill">3D</span>
           </a>
         </div>
 
@@ -107,19 +116,19 @@ export default function Hero() {
         <div className="universe-stats-row">
           <div>
             <div className="universe-stat-num">24 Hours</div>
-            <div className="universe-stat-lbl">Offline Build Sprint</div>
+            <div className="universe-stat-lbl">Non-Stop Offline Sprint</div>
           </div>
           <div>
-            <div className="universe-stat-num accent">₹2 Lakh</div>
-            <div className="universe-stat-lbl">Total Prize Pool</div>
+            <div className="universe-stat-num accent">₹2.05 Lakh</div>
+            <div className="universe-stat-lbl">Total Cash Prize Pool</div>
           </div>
           <div>
-            <div className="universe-stat-num">Open to All</div>
-            <div className="universe-stat-lbl">Online Idea Submission</div>
-          </div>
-          <div>
-            <div className="universe-stat-num accent">Top 50 Teams</div>
+            <div className="universe-stat-num">Top 50 Teams</div>
             <div className="universe-stat-lbl">Round 2 Finale (DYPIT Pune)</div>
+          </div>
+          <div>
+            <div className="universe-stat-num accent">5 Domains</div>
+            <div className="universe-stat-lbl">Dedicated ₹5K Track Bounties</div>
           </div>
         </div>
       </div>
