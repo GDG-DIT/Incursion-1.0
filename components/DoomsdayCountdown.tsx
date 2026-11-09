@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from 'react';
 
-// Target: 10 November 2026, 10:00 PM IST (UTC+05:30)
-const TARGET_TIME = new Date('2026-11-10T22:00:00+05:30').getTime();
+
+
+// Target: 10 November 2026, 08:00 PM IST (UTC+05:30)
+const TARGET_TIME = new Date('2026-11-10T19:00:00+05:30').getTime();
 
 function calculateTimeLeft() {
   const diff = TARGET_TIME - Date.now();
@@ -80,7 +82,7 @@ export default function DoomsdayCountdown() {
       </div>
 
       <div className="countdown-footer">
-        <span>10 November 2026 · 10:00 PM</span>
+        <span>10 November 2026 · 08:00 PM</span>
       </div>
     </div>
   );
