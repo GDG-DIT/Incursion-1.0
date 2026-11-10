@@ -1,11 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
-
-
-// Target: 30 January 2027, 08:00 AM IST (Finale Check-in)
-const TARGET_TIME = new Date('2027-01-30T08:00:00+05:30').getTime();
+// Target: 11 November 2026, 08:00 PM IST (Finale Check-in)
+const TARGET_TIME = new Date('2026-11-11T20:00:00+05:30').getTime();
 
 function calculateTimeLeft() {
   const diff = TARGET_TIME - Date.now();
@@ -53,7 +50,7 @@ export default function DoomsdayCountdown() {
   }, []);
 
   return (
-    <div className="avengers-countdown" aria-label="Countdown to Incursion on 30 January 2027">
+    <div className="avengers-countdown" aria-label="Countdown to Incursion on 11 November 2026, 08:00 PM IST">
       <div className="avengers-digits-row" suppressHydrationWarning>
         <div className="avengers-unit">
           <span className="avengers-num">{timeLeft.months}</span>
@@ -82,7 +79,7 @@ export default function DoomsdayCountdown() {
       </div>
 
       <div className="countdown-footer">
-        <span>30 January 2027 · 08:00 AM IST</span>
+        <span>11 November 2026 · 08:00 PM IST</span>
       </div>
 
       <a
