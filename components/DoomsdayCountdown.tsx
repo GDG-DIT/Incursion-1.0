@@ -4,8 +4,8 @@ import { useState, useEffect } from 'react';
 
 
 
-// Target: 10 November 2026, 08:00 PM IST (UTC+05:30)
-const TARGET_TIME = new Date('2026-11-10T19:00:00+05:30').getTime();
+// Target: 30 January 2027, 08:00 AM IST (Finale Check-in)
+const TARGET_TIME = new Date('2027-01-30T08:00:00+05:30').getTime();
 
 function calculateTimeLeft() {
   const diff = TARGET_TIME - Date.now();
@@ -53,7 +53,7 @@ export default function DoomsdayCountdown() {
   }, []);
 
   return (
-    <div className="avengers-countdown" aria-label="Countdown to Incursion on 10 November 2026">
+    <div className="avengers-countdown" aria-label="Countdown to Incursion on 30 January 2027">
       <div className="avengers-digits-row" suppressHydrationWarning>
         <div className="avengers-unit">
           <span className="avengers-num">{timeLeft.months}</span>
@@ -82,8 +82,20 @@ export default function DoomsdayCountdown() {
       </div>
 
       <div className="countdown-footer">
-        <span>10 November 2026 · 08:00 PM</span>
+        <span>30 January 2027 · 08:00 AM IST</span>
       </div>
+
+      <a
+        className="btn countdown-discord-link"
+        href="https://discord.gg/QYQZBEmgQ"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Join the Discord
+        <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M0 4h17M13 1l4 3-4 3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </a>
     </div>
   );
 }
