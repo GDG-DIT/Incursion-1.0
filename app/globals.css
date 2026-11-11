@@ -1641,8 +1641,8 @@ header b {
   height: 100%;
   object-fit: cover;
   object-position: 50% 44%;
-  opacity: 1;
-  filter: brightness(1.28) contrast(1.12) saturate(1.18);
+  opacity: 0.88;
+  filter: brightness(0.90) contrast(0.92) saturate(0.88);
   transition: opacity 0.6s ease;
 }
 
@@ -1652,10 +1652,10 @@ header b {
   inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.68) 28%, rgba(0, 0, 0, 0.22) 52%, transparent 70%),
-    radial-gradient(ellipse at 62% 46%, transparent 30%, rgba(1, 3, 2, 0.25) 70%, rgba(0, 0, 0, 0.75) 100%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, transparent 18%, transparent 82%, rgba(0, 0, 0, 0.62) 100%);
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.4);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.65) 32%, rgba(0, 0, 0, 0.28) 55%, transparent 74%),
+    radial-gradient(ellipse at 60% 46%, transparent 26%, rgba(1, 3, 2, 0.40) 68%, rgba(0, 0, 0, 0.88) 100%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.52) 0%, transparent 20%, transparent 80%, rgba(0, 0, 0, 0.72) 100%);
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.55);
 }
 
 #mask-stage.mask-stage,
@@ -1759,37 +1759,38 @@ header b {
 #hero .hero-copy {
   position: relative;
   z-index: 3;
-  width: min(560px, 43vw);
-  margin: 70px 0 54px clamp(24px, 9.2vw, 148px);
-  padding-top: 12px;
+  width: min(580px, 45vw);
+  margin: clamp(88px, 11vh, 120px) 0 54px clamp(24px, 9.2vw, 148px);
+  padding-top: 14px;
   pointer-events: none;
 }
 
 #hero .hero-eyebrow {
   display: flex;
   align-items: center;
-  margin-bottom: clamp(10px, 1.3vw, 16px);
+  margin-bottom: clamp(26px, 3.2vw, 40px);
   pointer-events: auto;
 }
 
 #hero .hero-eyebrow-badge {
   display: inline-flex;
   align-items: center;
+  white-space: nowrap;
   gap: 10px;
-  padding: 5px 14px 5px 10px;
-  background: rgba(8, 16, 12, 0.72);
+  padding: 6px 14px 6px 10px;
+  background: rgba(8, 16, 12, 0.76);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgba(63, 224, 142, 0.28);
   border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 20px rgba(63, 224, 142, 0.12);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.45), 0 0 16px rgba(63, 224, 142, 0.10);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #hero .hero-eyebrow-badge:hover {
-  background: rgba(12, 24, 17, 0.85);
+  background: rgba(12, 24, 17, 0.88);
   border-color: rgba(63, 224, 142, 0.55);
-  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.55), 0 0 30px rgba(63, 224, 142, 0.25);
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.55), 0 0 26px rgba(63, 224, 142, 0.22);
   transform: translateY(-1px);
 }
 
@@ -1819,11 +1820,13 @@ header b {
 #hero h1 {
   width: auto;
   margin: 0 0 22px;
-  font: italic 400 clamp(54px, 7.8vw, 120px)/1.0 var(--serif);
+  padding-top: 14px;
+  font: italic 400 clamp(54px, 7.8vw, 120px)/1.15 var(--serif);
   letter-spacing: 0.01em;
   color: #fff;
   white-space: nowrap;
   text-shadow: 0 4px 36px rgba(0, 0, 0, 0.75), 0 0 40px rgba(63, 224, 142, 0.2);
+  overflow: visible;
 }
 
 #hero h1 em {
@@ -2756,15 +2759,15 @@ header b {
 
   #hero .hero-backdrop {
     object-position: 53% 45%;
-    opacity: 0.96;
-    filter: brightness(1.24) contrast(1.1) saturate(1.15);
+    opacity: 0.85;
+    filter: brightness(0.88) contrast(0.92) saturate(0.85);
   }
 
   #hero .hero-shade {
     background:
-      linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.15) 45%, rgba(0, 0, 0, 0.6) 100%),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.5) 0%, transparent 80%);
-    box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.3);
+      linear-gradient(180deg, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.18) 45%, rgba(0, 0, 0, 0.65) 100%),
+      linear-gradient(90deg, rgba(0, 0, 0, 0.55) 0%, transparent 80%);
+    box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.4);
   }
 
   #hero .mask-fallback {
@@ -2795,12 +2798,13 @@ header b {
     display: flex !important;
     justify-content: center;
     max-width: 100%;
-    margin-bottom: 14px;
+    margin-bottom: 24px;
   }
 
   #hero .hero-eyebrow-badge {
     gap: 8px;
     padding: 5px 12px 5px 8px;
+    white-space: nowrap;
   }
 
   #hero .hero-eyebrow-logo {
@@ -2820,8 +2824,9 @@ header b {
     width: auto;
     max-width: 100%;
     margin: 0 auto clamp(170px, 21svh, 230px);
+    padding-top: 10px;
     font-size: clamp(36px, 11.5vw, 54px);
-    line-height: 0.95;
+    line-height: 1.1;
     text-align: center;
     white-space: nowrap;
     transform: none;

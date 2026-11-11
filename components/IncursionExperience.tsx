@@ -51,7 +51,7 @@ function HeroStage() {
           <div className="hero-eyebrow-badge">
             <img className="hero-eyebrow-logo" src="/gdg-logo.svg" alt="GDG on Campus Logo" />
             <span className="hero-eyebrow-sep" aria-hidden="true" />
-            <span className="hero-eyebrow-text">GDG on Campus</span>
+            <span className="hero-eyebrow-text">GDG on Campus // DYPIT Pune presents</span>
           </div>
         </div>
         <h1 id="hero-title" aria-label="INCURSION 2027">

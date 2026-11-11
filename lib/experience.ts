@@ -675,13 +675,13 @@ export function createExperience(root) {
         jx = (Math.sin(v * 7.3) + Math.sin(v * 4.1)) * j,
         jy = Math.cos(v * 5.7) * j;
       tw2.style.transform = `translate3d(${jx.toFixed(2)}px,${jy.toFixed(2)}px,0) scale(${S.toFixed(4)})`;
-      tw2.style.filter = `brightness(${(0.72 + 0.38 * em).toFixed(3)}) contrast(1.08) saturate(1.1)`;
+      tw2.style.filter = `brightness(${(0.52 + 0.38 * em).toFixed(3)}) contrast(0.95) saturate(0.9)`;
       tw2.style.visibility = co < 0.995 ? "visible" : "hidden";
       tc.style.opacity = co.toFixed(3);
       const tcScale = (1.0 + 0.12 * ss(3.0, 9.8, v)).toFixed(4);
       tc.style.transform = `translate3d(0,0,0) scale(${tcScale})`;
       const tcDim = ss(6.4, 7.8, v) * (1 - ss(9.6, 10.1, v));
-      tc.style.filter = `brightness(${(1.08 - 0.16 * tcDim).toFixed(3)}) contrast(1.08) saturate(1.1)`;
+      tc.style.filter = `brightness(${(0.96 - 0.18 * tcDim).toFixed(3)}) contrast(0.95) saturate(0.9)`;
       const r = lerp(lerp(28, 72, em) * (1 - 0.42 * pu), 36, co);
       vg.style.setProperty("--r", r.toFixed(1) + "%");
       vg.style.setProperty("--fx", lerp(55, 52, co).toFixed(1) + "%");
