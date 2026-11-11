@@ -7,7 +7,7 @@ export const REGISTER_URL = process.env.NEXT_PUBLIC_REGISTER_URL || '';
 export const TIMELINE = [
   {
     t: 'Registrations Window',
-    phase: 'Phase 1 • Registration',
+    phase: 'Phase 1 // Registration',
     tag: 'Updated Start Date',
     d: '8 November – 5 December 2026',
     x: 'National student team registrations (2 to 4 members).',
@@ -16,7 +16,7 @@ export const TIMELINE = [
   },
   {
     t: 'PPT Submission Round',
-    phase: 'Phase 2 • Ideation',
+    phase: 'Phase 2 // Ideation',
     tag: 'Proposal Round',
     d: '6 – 12 December 2026',
     x: 'Submission of solution deck & proposed architecture.',
@@ -25,7 +25,7 @@ export const TIMELINE = [
   },
   {
     t: 'PPT Evaluation',
-    phase: 'Phase 2 • Screening',
+    phase: 'Phase 2 // Screening',
     tag: 'Expert Review',
     d: '13 – 19 December 2026',
     x: 'Rigorous scoring by panel of industry & faculty judges.',
@@ -34,7 +34,7 @@ export const TIMELINE = [
   },
   {
     t: 'Video Prototype Submission',
-    phase: 'Phase 3 • Prototyping',
+    phase: 'Phase 3 // Prototyping',
     tag: 'Working Demo',
     d: '20 – 25 December 2026',
     x: 'Working prototype video demo (3–5 mins) & GitHub repo.',
@@ -43,7 +43,7 @@ export const TIMELINE = [
   },
   {
     t: 'Prototype Evaluation',
-    phase: 'Phase 3 • Audit',
+    phase: 'Phase 3 // Audit',
     tag: 'Code Review',
     d: '25 December 2026 – 5 January 2027',
     x: 'In-depth codebase audit & technical assessment.',
@@ -52,7 +52,7 @@ export const TIMELINE = [
   },
   {
     t: 'Result Announcement',
-    phase: 'Phase 4 • Finalists',
+    phase: 'Phase 4 // Finalists',
     tag: 'Offline Invite',
     d: '6 January 2027',
     x: 'Declaration of Grand Finalists across India.',
@@ -60,10 +60,10 @@ export const TIMELINE = [
     ic: { f: 2, z: '420%', p: '50% 52%' },
   },
   {
-    t: 'Grand Finale • On Campus',
-    phase: 'Phase 4 • Grand Finale',
+    t: 'Grand Finale - On Campus',
+    phase: 'Phase 4 // Grand Finale',
     tag: '24H National Finale',
-    d: '30–31 January 2027 · DYPIT Campus, Pune',
+    d: '30–31 January 2027 // DYPIT Campus, Pune',
     x: '24 Hours non-stop hackathon on campus at DIT Pimpri.',
     img: { url: '/media/doom-throne.webp', z: '190%', p: '50% 58%' },
     ic: { url: '/media/doom-closeup.webp', z: '390%', p: '52% 38%' },

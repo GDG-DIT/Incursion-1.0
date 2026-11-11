@@ -200,7 +200,7 @@ export default function Schedule() {
                         {isGrandFinale ? (
                           <span className="badge-finale">GRAND FINALE</span>
                         ) : isLive ? (
-                          <span className="badge-live">STAGE 01 • ACTIVE</span>
+                          <span className="badge-live">STAGE 01 // ACTIVE</span>
                         ) : (
                           <span>STAGE 0{index + 1}</span>
                         )}
@@ -265,7 +265,7 @@ export default function Schedule() {
                 onClick={() => setFinaleDay(1)}
                 className={`universe-day-btn ${finaleDay === 1 ? 'active' : ''}`}
               >
-                <span>Day 1 • 30 January 2027</span>
+                <span>Day 1 // 30 January 2027</span>
                 <span className="day-sub">Opening Ceremony &amp; 24H Build Kickoff</span>
               </button>
               <button
@@ -273,7 +273,7 @@ export default function Schedule() {
                 onClick={() => setFinaleDay(2)}
                 className={`universe-day-btn ${finaleDay === 2 ? 'active' : ''}`}
               >
-                <span>Day 2 • 31 January 2027</span>
+                <span>Day 2 // 31 January 2027</span>
                 <span className="day-sub">Code Freeze, Pitch Demos &amp; Awards</span>
               </button>
             </div>

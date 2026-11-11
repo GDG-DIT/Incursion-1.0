@@ -81,13 +81,11 @@ export default function Prizes() {
                   <span className="universe-prize-rank">Rank {prize.rank}</span>
                   {prize.highlight && (
                     <span className="universe-prize-badge" style={{ background: '#ffd700', color: '#040605' }}>
-                      <span className="bounty-spark" aria-hidden="true" style={{ color: '#040605' }}>★</span>
                       GRAND CHAMPION
                     </span>
                   )}
                 </div>
                 <h3 className="universe-prize-title">
-                  {prize.highlight && <span style={{ marginRight: '8px' }}>🏆</span>}
                   {prize.title}
                 </h3>
                 <div className="universe-prize-val">{prize.award}</div>
@@ -101,7 +99,7 @@ export default function Prizes() {
                 <ul className="universe-prize-list">
                   {prize.perks.map((p) => (
                     <li key={p} className="universe-prize-item">
-                      <span className="universe-prize-item-bullet" aria-hidden="true">✦</span>
+                      <span className="universe-prize-dot" aria-hidden="true" />
                       <span>{p}</span>
                     </li>
                   ))}
@@ -116,7 +114,7 @@ export default function Prizes() {
           <div className="universe-bounties-header">
             <div className="universe-eyebrow">Dedicated Track Bounties &amp; Special Category</div>
             <h3 className="universe-bounties-title">
-              5x Track Winners (₹5,000 Each) + Best First-Time Team (₹5,000)
+              5 Track Winners and Best Rookie Squad
             </h3>
           </div>
 

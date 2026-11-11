@@ -80,7 +80,7 @@ export default function DoomsdayCountdown() {
       </div>
 
       <div className="countdown-footer">
-        <span>10 November 2026 · 10:00 AM</span>
+        <span>10 November 2026 // 10:00 AM</span>
       </div>
     </div>
   );

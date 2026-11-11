@@ -93,7 +93,7 @@ export default function IncursionExperience() {
           <span className="stage-tease-alert">The multiverse is collapsing</span>
           <strong className="stage-tease-title">INCURSION <em>2027</em></strong>
           <strong className="stage-tease-subtitle">The final hour begins.</strong>
-          <span className="stage-tease-meta">30 — 31 January 2027 · Pune, India</span>
+          <span className="stage-tease-meta">30 — 31 January 2027 // Pune, India</span>
         </div>
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />
@@ -127,20 +127,13 @@ export default function IncursionExperience() {
         <div id="universe-portal-transition" className="universe-portal-overlay" aria-hidden="true">
           <div className="portal-glow" />
           <div className="portal-vignette" />
-          <div className="portal-scanline" />
           <div className="portal-content">
-            <div className="portal-badge">
-              <span className="portal-badge-dot" />
-              <span>Dimensional Incursion Protocol</span>
-            </div>
             <h2 className="portal-title">
-              WELCOME TO THE <em>UNIVERSE</em>
+              <span>WELCOME</span> <span>TO</span> <span>THE</span> <em>UNIVERSE</em>
             </h2>
-            <p className="portal-tagline">Two worlds collide. Doomsday Times Run Out.</p>
             <div className="portal-meter">
               <div className="portal-meter-bar" />
             </div>
-            <span className="portal-meta">BREACHING REALITY • PREPARE FOR DOOMSDAY</span>
           </div>
         </div>
       </div></div>

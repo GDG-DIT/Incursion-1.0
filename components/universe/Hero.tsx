@@ -38,7 +38,7 @@ export default function Hero() {
         {/* Eyebrow badge */}
         <div className="universe-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
           <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'block' }} />
-          <span>GDG on Campus, DYPIT Pune Presents • 30–31 January 2027</span>
+          <span>GDG on Campus, DYPIT Pune Presents // 30–31 January 2027</span>
         </div>
 
         {/* Main Title */}

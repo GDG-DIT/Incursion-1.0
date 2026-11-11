@@ -43,7 +43,7 @@ export default function Footer() {
               Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.
             </p>
             <div className="universe-footer-tagline">
-              30–31 January 2027 • Theme: &ldquo;Doomsday Times Run Out&rdquo;
+              30–31 January 2027 // Theme: &ldquo;Doomsday Times Run Out&rdquo;
             </div>
           </div>
 
@@ -137,7 +137,7 @@ export default function Footer() {
         <div className="universe-footer-bottom">
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '16px', width: 'auto' }} />
-            <span>© 2027 INCURSION • GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.</span>
+            <span>© 2027 INCURSION // GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.</span>
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
             <span>24 Hours National Hackathon</span>
