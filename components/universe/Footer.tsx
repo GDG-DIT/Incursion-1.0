@@ -14,10 +14,7 @@ export default function Footer() {
         {/* Assemble Banner Quote */}
         <div className="universe-assemble-banner">
           <div className="assemble-text">
-            &ldquo;THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.&rdquo;
-          </div>
-          <div className="assemble-sub">
-            50 SQUADS // 24 HOURS // DYPIT PUNE // EARTH-616&apos;S FINAL STAND
+            THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.
           </div>
         </div>
 

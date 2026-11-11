@@ -12,7 +12,6 @@ import Schedule from '../../components/universe/Schedule';
 import Prizes from '../../components/universe/Prizes';
 import Sponsors from '../../components/universe/Sponsors';
 import Footer from '../../components/universe/Footer';
-import FinaleSection from '../../components/universe/FinaleSection';
 
 export default function UniversePage() {
   useEffect(() => {
@@ -39,7 +38,6 @@ export default function UniversePage() {
         <Schedule />
         <Prizes />
         <Sponsors />
-        <FinaleSection />
         <Footer />
       </main>
     </div>
