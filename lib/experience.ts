@@ -718,15 +718,7 @@ export function createExperience(root) {
       }
     }
   }
-      if (reveal && AC.trk && AC.trk.volume > 0) {
-        const q = 1.0;
-        if (AC._q !== q && rt > 4.5) {
-          AC._q = q;
-          AC.fade(q, 1000);
-        }
-      }
-    }
-    scheduleFrame(tick);
+  scheduleFrame(tick);
 
     return () => {
       disposed = true;
