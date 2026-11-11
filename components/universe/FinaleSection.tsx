@@ -1,12 +1,40 @@
 'use client';
 
+import { useEffect, useState, useRef } from 'react';
 import DoomsdayCountdown from '../DoomsdayCountdown';
 
 export const DISCORD_INVITE_URL = 'https://discord.gg/QYQZBEmgQ';
 
 export default function FinaleSection() {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      {
+        threshold: 0.12,
+      }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <section id="finale" className="universe-finale-section" aria-label="Countdown to Incursion 2027">
+    <section
+      ref={sectionRef}
+      id="finale"
+      className={`universe-finale-section ${isVisible ? 'is-visible' : ''}`}
+      aria-label="Countdown to Incursion 2027"
+    >
       {/* Atmospheric Avengers Doomsday Backdrop */}
       <div className="finale-bg" aria-hidden="true">
         <img

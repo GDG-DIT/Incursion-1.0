@@ -154,27 +154,6 @@ export default function Footer() {
             <span>DYPIT Pune</span>
           </div>
         </div>
-
-        {/* Smooth Transition Bridge to Finale Countdown */}
-        <div className="universe-footer-to-finale-transition">
-          <div className="footer-transition-line" aria-hidden="true" />
-          <a
-            href="#finale"
-            className="footer-transition-cue"
-            onClick={(e) => {
-              e.preventDefault();
-              const el = document.getElementById('finale');
-              if (el) el.scrollIntoView({ behavior: 'smooth' });
-            }}
-            aria-label="Scroll to Doomsday Countdown Vault"
-          >
-            <span className="footer-transition-glow-dot" aria-hidden="true" />
-            <span className="footer-transition-label">DOOMSDAY PROTOCOL // THE FINAL COUNTDOWN</span>
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" width="14" height="14" className="footer-transition-arrow" aria-hidden="true">
-              <path d="M8 2v10M3 8l5 5 5-5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-        </div>
       </div>
 
       <button

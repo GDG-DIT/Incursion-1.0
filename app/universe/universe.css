@@ -2762,84 +2762,8 @@ footer.universe-footer {
 }
 
 /* ==========================================================================
-   Smooth Footer to Finale Transition & Doomsday Finale Countdown Section
+   Doomsday Finale Countdown Section (Revealed when scrolling down past Footer)
    ========================================================================== */
-
-/* Footer Transition Bridge */
-.universe-footer-to-finale-transition {
-  position: relative;
-  margin-top: 36px;
-  padding-top: 28px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.footer-transition-line {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: min(84%, 720px);
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(63, 224, 142, 0.25) 20%,
-    rgba(63, 224, 142, 0.85) 50%,
-    rgba(63, 224, 142, 0.25) 80%,
-    transparent 100%
-  );
-  box-shadow: 0 0 16px rgba(63, 224, 142, 0.6);
-}
-
-.footer-transition-cue {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 9px 22px;
-  border-radius: 9999px;
-  background: rgba(63, 224, 142, 0.06);
-  border: 1px solid rgba(63, 224, 142, 0.28);
-  color: #c4ebd0;
-  text-decoration: none;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.26em;
-  text-transform: uppercase;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 16px rgba(63, 224, 142, 0.12);
-  cursor: pointer;
-}
-
-.footer-transition-cue:hover {
-  color: #ffffff;
-  border-color: rgba(63, 224, 142, 0.65);
-  background: rgba(63, 224, 142, 0.16);
-  box-shadow: 0 0 24px rgba(63, 224, 142, 0.3);
-  transform: translateY(2px);
-}
-
-.footer-transition-glow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #3fe08e;
-  box-shadow: 0 0 8px #3fe08e, 0 0 16px #3fe08e;
-  animation: doomsday-dot-pulse 1.4s ease-in-out infinite;
-}
-
-.footer-transition-arrow {
-  color: #3fe08e;
-  transition: transform 0.25s ease;
-}
-
-.footer-transition-cue:hover .footer-transition-arrow {
-  transform: translateY(3px);
-}
 
 /* Finale Section */
 .universe-finale-section {
@@ -2852,6 +2776,8 @@ footer.universe-footer {
   overflow: hidden;
   padding: clamp(90px, 11vh, 130px) 20px clamp(50px, 7vh, 80px);
   background: #020604;
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
 }
 
 .finale-bg {
@@ -2870,6 +2796,11 @@ footer.universe-footer {
   filter: brightness(0.8) saturate(1.18) contrast(1.15);
   transform: scale(1.02);
   transform-origin: center center;
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s ease;
+}
+
+.universe-finale-section.is-visible .finale-img {
+  transform: scale(1);
 }
 
 /* Seamless blend from footer obsidian glass into finale atmosphere */
@@ -2878,11 +2809,11 @@ footer.universe-footer {
   top: 0;
   left: 0;
   right: 0;
-  height: clamp(140px, 20vh, 260px);
+  height: clamp(160px, 22vh, 280px);
   background: linear-gradient(
     180deg,
-    rgba(4, 6, 5, 0.96) 0%,
-    rgba(4, 14, 8, 0.6) 50%,
+    rgba(4, 6, 5, 0.98) 0%,
+    rgba(4, 14, 8, 0.7) 45%,
     transparent 100%
   );
   z-index: 1;
@@ -2921,6 +2852,19 @@ footer.universe-footer {
   width: min(96vw, 1080px);
   padding: clamp(24px, 4vh, 44px) clamp(16px, 3.2vw, 42px);
   pointer-events: auto;
+  opacity: 0;
+  transform: translateY(28px);
+  filter: blur(4px);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.universe-finale-section.is-visible .finale-hud {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
 }
 
 .finale-eyebrow {
