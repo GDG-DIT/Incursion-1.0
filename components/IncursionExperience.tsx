@@ -37,7 +37,7 @@ function IntroGate() {
 }
 
 function HeroStage() {
-  const registerHref = REGISTER_URL || '';
+  const registerHref = REGISTER_URL || '#';
 
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title">
@@ -67,9 +67,9 @@ function HeroStage() {
           <a
             className="btn hero-primary reg"
             href={registerHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            title="Register Now on Unstop"
+            target={REGISTER_URL ? '_blank' : undefined}
+            rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
+            title={REGISTER_URL ? 'Register Now' : 'Registrations opening soon'}
           >
             Register now<Arrow />
           </a>

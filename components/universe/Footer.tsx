@@ -65,9 +65,9 @@ export default function Footer() {
                   href={REGISTER_URL || '#schedule'}
                   target={REGISTER_URL ? '_blank' : undefined}
                   rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
-                  title={REGISTER_URL ? 'Registration Portal on Unstop' : 'Registrations opening soon on Unstop'}
+                  title={REGISTER_URL ? 'Registration Portal' : 'Registrations opening soon'}
                 >
-                  Registration Portal (Unstop) ↗
+                  Registration Portal ↗
                 </a>
               </li>
               <li>

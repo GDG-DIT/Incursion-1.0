@@ -44,7 +44,7 @@ export default function Navbar() {
           target={REGISTER_URL ? '_blank' : undefined}
           rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
           className="universe-nav-btn"
-          title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening soon on Unstop'}
+          title={REGISTER_URL ? 'Register Now' : 'Registrations opening soon'}
         >
           <span>Register Now</span>
           <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="14" height="8">
