@@ -12,6 +12,7 @@ import Schedule from '../../components/universe/Schedule';
 import Prizes from '../../components/universe/Prizes';
 import Sponsors from '../../components/universe/Sponsors';
 import Footer from '../../components/universe/Footer';
+import FooterScrollTransition from '../../components/universe/FooterScrollTransition';
 
 export default function UniversePage() {
   useEffect(() => {
@@ -40,6 +41,9 @@ export default function UniversePage() {
         <Sponsors />
         <Footer />
       </main>
+
+      {/* Cinematic Transition to Countdown Page on Scroll Past Footer */}
+      <FooterScrollTransition />
     </div>
   );
 }

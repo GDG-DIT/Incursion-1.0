@@ -3151,3 +3151,129 @@ header b {
 .universe-portal-overlay.is-active .portal-meter-bar {
   width: 100%;
 }
+
+/* Standalone Countdown Page */
+.countdown-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #020604;
+}
+
+.countdown-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(16px, 2.5vh, 26px) clamp(20px, 4vw, 56px);
+  pointer-events: auto;
+}
+
+.countdown-header-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.countdown-header-brand:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+}
+
+.countdown-header-logo {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+.countdown-header-collab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(233, 231, 224, 0.6);
+}
+
+.countdown-header-collab svg {
+  width: 13px;
+  height: 13px;
+}
+
+.countdown-header-incursion-logo {
+  height: 38px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.countdown-discord-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(12px, 1.5vh, 16px) clamp(28px, 2.8vw, 42px);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), inset 0 0 14px rgba(63, 224, 142, 0.1);
+}
+
+.countdown-discord-btn:hover {
+  border-color: #3fe08e;
+  background: rgba(63, 224, 142, 0.16);
+  color: #ffffff;
+  box-shadow:
+    0 0 30px rgba(63, 224, 142, 0.4),
+    inset 0 0 20px rgba(63, 224, 142, 0.2);
+  transform: translateY(-2px);
+}
+
+.countdown-discord-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  font-size: 1.1em;
+}
+
+.countdown-discord-btn:hover .countdown-discord-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .countdown-header {
+    padding: 16px 20px;
+  }
+  .countdown-header-logo {
+    height: 18px;
+  }
+  .countdown-header-incursion-logo {
+    height: 28px;
+  }
+  .countdown-discord-btn {
+    padding: 12px 24px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+}

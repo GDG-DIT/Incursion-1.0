@@ -118,7 +118,6 @@ export default function UniverseMaskCanvas() {
     }
 
     let isScheduleInView = false;
-    let isFinaleInView = false;
 
     function updateScrollProgress() {
       const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
@@ -131,15 +130,6 @@ export default function UniverseMaskCanvas() {
         isScheduleInView = rect.top < window.innerHeight * 0.82 && rect.bottom > window.innerHeight * 0.18;
       } else {
         isScheduleInView = false;
-      }
-
-      const finaleEl = document.getElementById('finale');
-      if (finaleEl) {
-        const fRect = finaleEl.getBoundingClientRect();
-        // Smoothly hide Doom 3D mask when viewing the grand finale countdown vault
-        isFinaleInView = fRect.top < window.innerHeight * 0.85;
-      } else {
-        isFinaleInView = false;
       }
 
       if (!running && inView && !document.hidden) startLoop();
@@ -240,8 +230,8 @@ export default function UniverseMaskCanvas() {
         const flicker = reducedMotion ? 1 : 1 + 0.04 * Math.sin(seconds * 14) + 0.02 * Math.sin(seconds * 24);
         torch.intensity = 2.2 * flicker;
 
-        // Continuously visible everywhere (100% opacity), smoothly fading out when schedule or finale countdown is in view
-        const targetCanvasOpacity = (isScheduleInView || isFinaleInView) ? 0.0 : 1.0;
+        // Continuously visible everywhere (100% opacity), smoothly fading out only when the timeline schedule is in view
+        const targetCanvasOpacity = isScheduleInView ? 0.0 : 1.0;
         const currentCanvasOpacity = parseFloat(canvas.style.opacity || '1');
         canvas.style.opacity = String(THREE.MathUtils.lerp(currentCanvasOpacity, targetCanvasOpacity, dt * 6.0));
       }
