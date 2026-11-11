@@ -415,17 +415,23 @@ header.universe-navbar {
   font-family: var(--serif);
   font-style: italic;
   font-size: clamp(48px, 8vw, 96px);
-  max-width: 980px;
+  max-width: 1040px;
   margin-left: auto;
   margin-right: auto;
-  line-height: 0.95;
+  line-height: 1.14;
   letter-spacing: 0.015em;
   color: var(--ink);
   margin-bottom: 32px;
   text-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+  overflow: visible;
 }
 
 .universe-hero-title-accent {
+  display: inline-block;
+  padding-top: 0.16em;
+  padding-bottom: 0.08em;
+  line-height: 1.18;
+  overflow: visible;
   background: linear-gradient(135deg, #f3f0e7 0%, #d7c398 50%, #9b7a42 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1991,106 +1997,365 @@ footer.universe-footer {
   -webkit-backdrop-filter: blur(16px);
 }
 
-/* 2. Sacred Timeline Conduit */
-.universe-conduit-timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+/* 2. Sacred Serpentine Candy-Crush Timeline Conduit */
+.serpentine-timeline-wrapper {
   position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 40px auto 0;
+  padding: 20px 16px 60px;
 }
-.universe-conduit-timeline::before {
-  content: '';
+
+.serpentine-svg-container {
   position: absolute;
-  top: 40px;
-  bottom: 40px;
-  left: 28px;
-  width: 2px;
-  background: linear-gradient(180deg, #3fe08e 0%, rgba(63, 224, 142, 0.25) 50%, #3fe08e 100%);
-  box-shadow: 0 0 10px rgba(63, 224, 142, 0.4);
-}
-/* Flowing laser energy spark traveling down conduit */
-.universe-conduit-timeline::after {
-  content: '';
-  position: absolute;
-  left: 27px;
-  top: 40px;
-  width: 4px;
-  height: 90px;
-  border-radius: 2px;
-  background: linear-gradient(180deg, transparent, #3fe08e 50%, #bfffd6 85%, transparent 100%);
-  box-shadow: 0 0 16px #3fe08e;
-  animation: conduit-laser-flow 3.5s infinite linear;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+  z-index: 1;
 }
-@keyframes conduit-laser-flow {
+
+.serpentine-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.serpentine-laser-pulse {
+  stroke-dasharray: 100 360;
+  stroke-dashoffset: 0;
+  animation: serpentine-laser-flow 7s linear infinite;
+}
+
+@keyframes serpentine-laser-flow {
   0% {
-    top: 40px;
-    opacity: 0;
-  }
-  15% {
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
+    stroke-dashoffset: 1800;
   }
   100% {
-    top: calc(100% - 100px);
-    opacity: 0;
+    stroke-dashoffset: -1800;
   }
 }
 
-.universe-conduit-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 28px;
+.serpentine-milestones {
   position: relative;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.conduit-marker {
-  position: relative;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #030704;
-  border: 2px solid #3fe08e;
-  box-shadow: 0 0 15px rgba(63, 224, 142, 0.5);
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+}
+
+.serpentine-milestone-row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.conduit-marker.marker-active,
-.universe-conduit-item:hover .conduit-marker {
-  border-color: #bfffd6;
-  box-shadow: 0 0 25px rgba(63, 224, 142, 0.8), 0 0 40px rgba(63, 224, 142, 0.4);
-  transform: scale(1.08);
+
+.row-node-left {
+  padding-left: calc(22% - 36px);
+  justify-content: flex-start;
+  gap: 32px;
 }
-.conduit-marker.marker-live {
-  border-color: #3fe08e;
-  animation: marker-glow-live 2s infinite ease-in-out;
+
+.row-node-right {
+  padding-right: calc(22% - 36px);
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 32px;
 }
-@keyframes marker-glow-live {
+
+.row-grand-finale {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 28px;
+  text-align: center;
+  width: 100%;
+}
+
+/* Hover Dimming & Focusing Dynamics */
+.serpentine-milestone-row.milestone-focused {
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+.serpentine-milestone-row.milestone-focused .serpentine-card {
+  border-color: #3fe08e !important;
+  box-shadow: 0 0 32px rgba(63, 224, 142, 0.35), 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.serpentine-milestone-row.milestone-focused .serpentine-waypoint .waypoint-core {
+  transform: scale(1.12);
+  box-shadow: 0 0 35px rgba(63, 224, 142, 0.8), inset 0 0 16px rgba(63, 224, 142, 0.5);
+}
+
+.serpentine-milestone-row.milestone-dimmed {
+  opacity: 0.38;
+  filter: grayscale(40%) blur(0.4px);
+  transition: all 0.35s ease;
+}
+
+/* Waypoint Emblems (Candy Crush Level Nodes) */
+.serpentine-waypoint {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.waypoint-core {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #0d281a 0%, #030805 85%);
+  border: 2.5px solid #3fe08e;
+  box-shadow: 0 0 20px rgba(63, 224, 142, 0.4), inset 0 0 10px rgba(63, 224, 142, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.waypoint-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.waypoint-ring.ring-1 {
+  inset: -7px;
+  border: 1.5px dashed rgba(63, 224, 142, 0.35);
+  animation: waypointRingSpin 20s linear infinite;
+}
+
+.waypoint-ring.ring-2 {
+  inset: -14px;
+  border: 1px solid rgba(63, 224, 142, 0.15);
+}
+
+@keyframes waypointRingSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.waypoint-num {
+  font-family: var(--mono, monospace);
+  font-size: 19px;
+  font-weight: 800;
+  color: #bfffd6;
+  letter-spacing: -0.02em;
+}
+
+.waypoint-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Active Live Waypoint (Stage 1) */
+.waypoint-live .waypoint-core {
+  border-color: #00ff88;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.65), inset 0 0 14px rgba(0, 255, 136, 0.4);
+  animation: waypointLivePulse 2.4s infinite ease-in-out;
+}
+
+@keyframes waypointLivePulse {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(63, 224, 142, 0.5);
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 0 10px rgba(0, 255, 136, 0.3);
   }
   50% {
-    box-shadow: 0 0 30px rgba(63, 224, 142, 0.8), 0 0 50px rgba(63, 224, 142, 0.4);
+    box-shadow: 0 0 38px rgba(0, 255, 136, 0.85), inset 0 0 18px rgba(0, 255, 136, 0.5);
+    transform: scale(1.05);
   }
 }
 
-.conduit-pulse {
-  position: absolute;
-  inset: -6px;
-  border-radius: 50%;
-  border: 1px solid rgba(63, 224, 142, 0.4);
-  animation: pulse-dot 2s infinite ease-in-out;
+/* Grand Finale Waypoint (Stage 7) */
+.waypoint-finale .waypoint-core {
+  width: 84px;
+  height: 84px;
+  border-color: #ffd700;
+  background: radial-gradient(circle at 35% 30%, #3a2e05 0%, #0a0802 85%);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.6), inset 0 0 16px rgba(255, 215, 0, 0.4);
 }
-.conduit-index {
-  font-family: monospace;
-  font-size: 14px;
+
+.waypoint-finale .waypoint-ring.ring-1 {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.waypoint-finale .waypoint-ring.ring-2 {
+  border-color: rgba(255, 215, 0, 0.2);
+}
+
+/* Waypoint Level Badge */
+.waypoint-level-badge {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #050a07;
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  color: #3fe08e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+
+.waypoint-level-badge .badge-live {
+  color: #00ff88;
+  border-color: rgba(0, 255, 136, 0.7);
+}
+
+.waypoint-level-badge .badge-finale {
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.7);
+}
+
+/* Serpentine Dossier Cards */
+.serpentine-card {
+  position: relative;
+  flex: 1;
+  max-width: 540px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: rgba(10, 18, 14, 0.85);
+  border: 1.5px solid rgba(63, 224, 142, 0.2);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-grand-finale {
+  max-width: 680px;
+  width: 100%;
+  border-color: rgba(255, 215, 0, 0.4);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.08) 0%, rgba(10, 18, 14, 0.95) 75%);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.15);
+}
+
+.serpentine-card-layout {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.card-grand-finale .serpentine-card-layout {
+  grid-template-columns: 160px 1fr;
+}
+
+.serpentine-thumb {
+  position: relative;
+  width: 100%;
+  min-height: 110px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  border: 1px solid rgba(63, 224, 142, 0.22);
+}
+
+.serpentine-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(3, 7, 5, 0.1) 0%, rgba(3, 7, 5, 0.82) 100%);
+}
+
+.serpentine-thumb-scanlines {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.25) 2px, rgba(0, 0, 0, 0.25) 4px);
+  pointer-events: none;
+}
+
+.serpentine-card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.serpentine-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.conduit-title {
+  font-family: var(--serif, 'Playfair Display', serif);
+  font-style: italic;
+  font-size: 20px;
   font-weight: 800;
   color: #ffffff;
+  line-height: 1.15;
+  margin: 0;
+}
+
+.conduit-highlight {
+  font-family: var(--mono, monospace);
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffd700;
+}
+
+.conduit-desc {
+  font-size: 13px;
+  color: #cbd5e1;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.conduit-live-beacon {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--mono, monospace);
+  font-size: 10px;
+  font-weight: 700;
+  color: #3fe08e;
+  background: rgba(13, 40, 26, 0.85);
+  border: 1px solid rgba(63, 224, 142, 0.5);
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.conduit-live-beacon .beacon-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff88;
+  box-shadow: 0 0 8px #00ff88;
+  animation: beaconBlink 1.4s infinite ease-in-out;
+}
+
+@keyframes beaconBlink {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(0.7);
+  }
 }
 
 /* Conduit Card with Focus / Dimming */
@@ -2330,49 +2595,88 @@ footer.universe-footer {
 }
 
 @media (max-width: 900px) {
-  .conduit-card-layout {
+  .serpentine-card-layout {
     grid-template-columns: 1fr;
   }
-  .conduit-thumb {
-    height: 160px;
+  .card-grand-finale .serpentine-card-layout {
+    grid-template-columns: 1fr;
   }
-  .conduit-thumb-overlay {
-    background: linear-gradient(180deg, transparent 40%, rgba(8, 12, 10, 0.95) 100%);
+  .serpentine-thumb {
+    height: 140px;
+    min-height: 140px;
+  }
+  .row-node-left {
+    padding-left: 2%;
+  }
+  .row-node-right {
+    padding-right: 2%;
   }
 }
 
-@media (max-width: 720px) {
-  .universe-tracks-equal-grid {
-    gap: 16px;
+@media (max-width: 768px) {
+  .serpentine-svg-container {
+    display: none;
   }
-  .universe-equal-track-card {
-    flex: 1 1 100%;
+  .serpentine-timeline-wrapper {
+    padding: 20px 0 40px;
+  }
+  .serpentine-milestones {
+    gap: 32px;
+  }
+  .serpentine-milestones::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    bottom: 40px;
+    left: 28px;
+    width: 2px;
+    background: linear-gradient(180deg, #3fe08e 0%, rgba(63, 224, 142, 0.3) 70%, #ffd700 100%);
+    z-index: 1;
+  }
+  .serpentine-milestone-row,
+  .row-node-left,
+  .row-node-right {
+    flex-direction: row !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .serpentine-waypoint {
+    width: 56px;
+    height: 56px;
+    margin-left: 0;
+  }
+  .waypoint-core {
+    width: 56px;
+    height: 56px;
+  }
+  .waypoint-num {
+    font-size: 16px;
+  }
+  .waypoint-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .waypoint-level-badge {
+    display: none;
+  }
+  .serpentine-card {
     max-width: 100%;
-    padding: 18px;
-  }
-  .track-card-visual-window {
-    height: 170px;
-  }
-  .track-card-title {
-    font-size: 23px;
-  }
-}
-
-@media (max-width: 600px) {
-  .universe-conduit-timeline::before {
-    left: 20px;
-  }
-  .conduit-marker {
-    width: 42px;
-    height: 42px;
-  }
-  .conduit-index {
-    font-size: 12px;
-  }
-  .universe-conduit-item {
-    gap: 16px;
-  }
-  .conduit-card-info {
+    width: calc(100% - 72px);
     padding: 16px;
+  }
+  .row-grand-finale {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+  .row-grand-finale .serpentine-waypoint {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .row-grand-finale .serpentine-card {
+    width: 100%;
   }
 }

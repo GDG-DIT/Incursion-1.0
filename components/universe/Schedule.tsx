@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { TIMELINE } from '../../lib/content';
+import { Sparkles, Award, Trophy, MapPin, Calendar, Clock, ChevronRight, Lock } from 'lucide-react';
 
 const MILESTONE_IMAGES = [
   '/media/doom-closeup.webp',
@@ -46,13 +47,14 @@ export default function Schedule() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section id="schedule" className="universe-section">
+    <section id="schedule" className="universe-section relative">
       <div className="universe-container">
+        {/* Section Header */}
         <div className="universe-section-header">
           <div className="universe-eyebrow">Timeline & Operational Schedule</div>
           <h2 className="universe-section-title">The Convergence Roadmap</h2>
           <p className="universe-section-desc">
-            Seven mission milestones leading from national registration to the 24-hour offline showdown at DYPIT Pune.
+            Seven mission milestones leading from national online registration to the 24-hour offline showdown at DYPIT Pune.
           </p>
 
           {/* Schedule Mode Switcher */}
@@ -62,7 +64,7 @@ export default function Schedule() {
               onClick={() => setActiveTab('roadmap')}
               className={`universe-tab-btn ${activeTab === 'roadmap' ? 'active' : ''}`}
             >
-              Key Milestones Roadmap
+              Curved Mission Map
             </button>
             <button
               type="button"
@@ -75,53 +77,156 @@ export default function Schedule() {
         </div>
 
         {activeTab === 'roadmap' ? (
-          <div className="universe-container" style={{ margin: '0 auto', maxWidth: '960px' }}>
-            <div className="universe-conduit-timeline">
+          <div className="serpentine-timeline-wrapper">
+            {/* The Winding Cosmic Serpentine S-Curve Path (Candy Crush style level map) */}
+            <div className="serpentine-svg-container" aria-hidden="true">
+              <svg
+                viewBox="0 0 1000 1750"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                preserveAspectRatio="none"
+                className="serpentine-svg"
+              >
+                <defs>
+                  <linearGradient id="laserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stopColor="#3fe08e" stopOpacity="0.8" />
+                    <stop offset="50%" stopColor="#10b981" stopOpacity="1" />
+                    <stop offset="100%" stopColor="#ffd700" stopOpacity="0.9" />
+                  </linearGradient>
+                  <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                {/* Ambient Aura Path */}
+                <path
+                  d="M 220 80 
+                     C 220 200, 780 200, 780 320 
+                     C 780 440, 220 440, 220 560 
+                     C 220 680, 780 680, 780 800 
+                     C 780 920, 220 920, 220 1040 
+                     C 220 1160, 780 1160, 780 1280 
+                     C 780 1420, 500 1420, 500 1560"
+                  stroke="rgba(63, 224, 142, 0.15)"
+                  strokeWidth="24"
+                  strokeLinecap="round"
+                />
+
+                {/* Dashed High-Tech Conduit Road */}
+                <path
+                  d="M 220 80 
+                     C 220 200, 780 200, 780 320 
+                     C 780 440, 220 440, 220 560 
+                     C 220 680, 780 680, 780 800 
+                     C 780 920, 220 920, 220 1040 
+                     C 220 1160, 780 1160, 780 1280 
+                     C 780 1420, 500 1420, 500 1560"
+                  stroke="rgba(63, 224, 142, 0.35)"
+                  strokeWidth="4"
+                  strokeDasharray="10 14"
+                  strokeLinecap="round"
+                />
+
+                {/* Animated Glowing Laser Pulse Traveling Down the Winding Curve */}
+                <path
+                  d="M 220 80 
+                     C 220 200, 780 200, 780 320 
+                     C 780 440, 220 440, 220 560 
+                     C 220 680, 780 680, 780 800 
+                     C 780 920, 220 920, 220 1040 
+                     C 220 1160, 780 1160, 780 1280 
+                     C 780 1420, 500 1420, 500 1560"
+                  stroke="url(#laserGrad)"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                  className="serpentine-laser-pulse"
+                />
+              </svg>
+            </div>
+
+            {/* Checkpoint Milestones Along the Serpentine Curve */}
+            <div className="serpentine-milestones">
               {TIMELINE.map((item, index) => {
                 const img = MILESTONE_IMAGES[index] || MILESTONE_IMAGES[0];
                 const isHovered = hoveredIndex === index;
                 const isDimmed = hoveredIndex !== null && !isHovered;
                 const isLive = index === 0;
+                const isGrandFinale = index === 6;
+                const isEven = index % 2 === 0; // 0, 2, 4 are left; 1, 3, 5 are right; 6 is center
 
                 return (
                   <div
                     key={item.t}
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
-                    className={`universe-conduit-item ${isHovered ? 'item-focused' : ''} ${isDimmed ? 'item-dimmed' : ''}`}
+                    className={`serpentine-milestone-row ${
+                      isGrandFinale
+                        ? 'row-grand-finale'
+                        : isEven
+                        ? 'row-node-left'
+                        : 'row-node-right'
+                    } ${isHovered ? 'milestone-focused' : ''} ${isDimmed ? 'milestone-dimmed' : ''}`}
                   >
-                    <div className={`conduit-marker ${isHovered ? 'marker-active' : ''} ${isLive ? 'marker-live' : ''}`}>
-                      <span className="conduit-pulse" />
-                      <span className="conduit-dot" />
-                      <span className="conduit-index">0{index + 1}</span>
+                    {/* Winding Waypoint Node (Candy Crush Level Emblem) */}
+                    <div
+                      className={`serpentine-waypoint ${isLive ? 'waypoint-live' : ''} ${
+                        isGrandFinale ? 'waypoint-finale' : ''
+                      } ${isHovered ? 'waypoint-hovered' : ''}`}
+                    >
+                      {/* Concentric Radar Beacon Rings */}
+                      <span className="waypoint-ring ring-1" />
+                      <span className="waypoint-ring ring-2" />
+
+                      <div className="waypoint-core">
+                        {isGrandFinale ? (
+                          <Trophy className="waypoint-icon text-amber-300" />
+                        ) : isLive ? (
+                          <Sparkles className="waypoint-icon text-emerald-300" />
+                        ) : (
+                          <span className="waypoint-num">0{index + 1}</span>
+                        )}
+                      </div>
+
+                      {/* Level Status Tag */}
+                      <div className="waypoint-level-badge">
+                        {isGrandFinale ? (
+                          <span className="badge-finale">GRAND FINALE</span>
+                        ) : isLive ? (
+                          <span className="badge-live">LEVEL 01 • ACTIVE</span>
+                        ) : (
+                          <span>STAGE 0{index + 1}</span>
+                        )}
+                      </div>
                     </div>
 
-                    <div className={`universe-card universe-conduit-card ${isHovered ? 'card-focused' : ''} ${isDimmed ? 'card-dimmed' : ''} ${isLive ? 'card-live' : ''}`}>
+                    {/* Milestone Dossier Card */}
+                    <div
+                      className={`universe-card serpentine-card ${isGrandFinale ? 'card-grand-finale' : ''} ${
+                        isHovered ? 'card-focused' : ''
+                      }`}
+                    >
                       <div className="tactical-corner tl" />
                       <div className="tactical-corner tr" />
                       <div className="tactical-corner bl" />
                       <div className="tactical-corner br" />
 
-                      <div className="conduit-card-layout">
-                        {/* Cinematic Doomsday Still with Hover Zoom */}
+                      <div className="serpentine-card-layout">
+                        {/* Thumbnail Viewport */}
                         <div
-                          className="conduit-thumb"
+                          className="serpentine-thumb"
                           style={{ backgroundImage: `url(${img})` }}
                           aria-hidden="true"
                         >
-                          <div className="conduit-thumb-overlay" />
-                          <div className="conduit-thumb-scanlines" />
+                          <div className="serpentine-thumb-overlay" />
+                          <div className="serpentine-thumb-scanlines" />
                         </div>
 
-                        {/* Content */}
-                        <div className="conduit-card-info">
-                          <div className="conduit-card-meta">
-                            <span className="universe-timeline-phase">{item.phase || `Phase 0${index + 1}`}</span>
-                            {item.tag && (
-                              <span className="universe-meta-pill conduit-tag">
-                                {item.tag}
-                              </span>
-                            )}
+                        {/* Content Body */}
+                        <div className="serpentine-card-info">
+                          <div className="serpentine-card-meta">
+                            <span className="universe-timeline-phase">{item.phase || `Stage 0${index + 1}`}</span>
+                            {item.tag && <span className="universe-meta-pill conduit-tag">{item.tag}</span>}
                             {isLive && (
                               <span className="conduit-live-beacon">
                                 <span className="beacon-dot" />
@@ -131,9 +236,7 @@ export default function Schedule() {
                           </div>
 
                           <h3 className="universe-timeline-title conduit-title">{item.t}</h3>
-                          <div className="universe-timeline-highlight conduit-highlight">
-                            {item.d}
-                          </div>
+                          <div className="universe-timeline-highlight conduit-highlight">{item.d}</div>
                           <p className="universe-timeline-desc conduit-desc">{item.x}</p>
                         </div>
                       </div>
@@ -153,7 +256,7 @@ export default function Schedule() {
                 className={`universe-day-btn ${finaleDay === 1 ? 'active' : ''}`}
               >
                 <span>Day 1 • 30 January 2027</span>
-                <small>Kickoff &amp; Overnight Build</small>
+                <span className="day-sub">Opening Ceremony &amp; 24H Build Kickoff</span>
               </button>
               <button
                 type="button"
@@ -161,18 +264,21 @@ export default function Schedule() {
                 className={`universe-day-btn ${finaleDay === 2 ? 'active' : ''}`}
               >
                 <span>Day 2 • 31 January 2027</span>
-                <small>Code Freeze, Demos &amp; Awards</small>
+                <span className="day-sub">Code Freeze, Pitch Demos &amp; Awards</span>
               </button>
             </div>
 
-            {/* Hour-by-hour timeline grid */}
-            <div className="universe-agenda-list">
+            {/* Schedule Items List */}
+            <div className="universe-schedule-agenda">
               {(finaleDay === 1 ? DAY_1_SCHEDULE : DAY_2_SCHEDULE).map((slot) => (
-                <div key={slot.time + slot.title} className="universe-card universe-agenda-item">
-                  <div className="universe-agenda-time">{slot.time}</div>
-                  <div className="universe-agenda-details">
-                    <h4 className="universe-agenda-title">{slot.title}</h4>
-                    <p className="universe-agenda-desc">{slot.desc}</p>
+                <div key={slot.time} className="universe-agenda-row">
+                  <div className="agenda-time-col">
+                    <span className="agenda-time">{slot.time}</span>
+                    <span className="agenda-time-dot" />
+                  </div>
+                  <div className="universe-card agenda-card">
+                    <h4 className="agenda-title">{slot.title}</h4>
+                    <p className="agenda-desc">{slot.desc}</p>
                   </div>
                 </div>
               ))}

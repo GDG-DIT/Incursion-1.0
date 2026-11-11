@@ -18,6 +18,9 @@ import {
   ArrowUpRight,
   Clock,
   Layers,
+  Crosshair,
+  Sliders,
+  ChevronLeft,
 } from 'lucide-react';
 import { REGISTER_URL } from '../../lib/content';
 
@@ -51,7 +54,7 @@ const TRACKS: TrackItem[] = [
     brief:
       'Deploy autonomous synthetic agents and multi-modal cognitive pipelines engineered for high-volatility decision making.',
     focusVectors: ['AI Agents', 'Multilingual Assistants', 'Process Automation', 'Intelligent Assistants'],
-    icon: <Cpu className="w-6 h-6 text-emerald-400" />,
+    icon: <Cpu className="w-5 h-5 text-emerald-400" />,
     dossierIntel: {
       status: 'ACTIVE TELEMETRY',
       clearance: 'OMEGA-LEVEL CLEARANCE',
@@ -69,7 +72,7 @@ const TRACKS: TrackItem[] = [
     brief:
       'Fortify zero-trust financial rails, neutralize real-time threat vectors, and secure digital identity at national scale.',
     focusVectors: ['Threat Detection', 'Fraud & Scams', 'Privacy & Identity', 'Payments & Financial Inclusion'],
-    icon: <ShieldAlert className="w-6 h-6 text-emerald-400" />,
+    icon: <ShieldAlert className="w-5 h-5 text-emerald-400" />,
     dossierIntel: {
       status: 'ACTIVE DEFENSE',
       clearance: 'DEFCON 1 PROTOCOL',
@@ -87,7 +90,7 @@ const TRACKS: TrackItem[] = [
     brief:
       'Engineer breakthrough survival and resilience systems across climate, emergency response, medtech, and orbital tech.',
     focusVectors: ['Climate Tech', 'Health & MedTech', 'Disaster & Safety', 'Agriculture & Space'],
-    icon: <Radio className="w-6 h-6 text-emerald-400" />,
+    icon: <Radio className="w-5 h-5 text-emerald-400" />,
     dossierIntel: {
       status: 'PLANETARY SURVEILLANCE',
       clearance: 'MULTIVERSAL RIFT OPS',
@@ -105,7 +108,7 @@ const TRACKS: TrackItem[] = [
     brief:
       'Build tamper-proof civic infrastructure for radical public transparency, automated grievance redressal, and institutional accountability.',
     focusVectors: ['Transparency', 'Public Services', 'Grievance Redressal', 'Accountability'],
-    icon: <Landmark className="w-6 h-6 text-emerald-400" />,
+    icon: <Landmark className="w-5 h-5 text-emerald-400" />,
     dossierIntel: {
       status: 'CIVIC CITADEL ONLINE',
       clearance: 'PUBLIC AUDIT MANDATE',
@@ -123,7 +126,7 @@ const TRACKS: TrackItem[] = [
     brief:
       'Optimize urban lifelines—intelligent traffic grids, water telemetry, and rapid-response civic infrastructure.',
     focusVectors: ['Smart Transport', 'Traffic Management', 'Water Systems', 'Civic Technology'],
-    icon: <Network className="w-6 h-6 text-emerald-400" />,
+    icon: <Network className="w-5 h-5 text-emerald-400" />,
     dossierIntel: {
       status: 'METROPOLIS GRID SYNCED',
       clearance: 'URBAN LIFELINE DIRECTIVE',
@@ -142,7 +145,7 @@ const TRACKS: TrackItem[] = [
     brief:
       'Dedicated recognition tier for first-time national contenders alongside encrypted live mission drops.',
     focusVectors: ['Best First-Time Team', 'Encrypted Challenge Pack', 'Multi-Track Eligibility', 'Campus Keynote Drop'],
-    icon: <Award className="w-6 h-6 text-amber-400" />,
+    icon: <Award className="w-5 h-5 text-amber-400" />,
     dossierIntel: {
       status: 'CIPHER-LOCKED',
       clearance: 'ALL REGISTERED SQUADS',
@@ -163,7 +166,12 @@ const JUDGING_CRITERIA = [
 ];
 
 export default function Tracks() {
+  const [activeSectorIndex, setActiveSectorIndex] = useState(0);
   const [selectedTrack, setSelectedTrack] = useState<TrackItem | null>(null);
+  const [viewMode, setViewMode] = useState<'console' | 'matrix'>('console');
+
+  const activeTrack = TRACKS[activeSectorIndex];
+  const isAmber = activeTrack.accentColor === 'amber';
 
   // Close modal on escape key
   useEffect(() => {
@@ -174,18 +182,9 @@ export default function Tracks() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Mouse move spotlight handler
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    e.currentTarget.style.setProperty('--mouse-x', `${x}px`);
-    e.currentTarget.style.setProperty('--mouse-y', `${y}px`);
-  };
-
   return (
     <section id="tracks" className="universe-section relative overflow-hidden">
-      {/* Background radial gradient & subtle grid */}
+      {/* Background radial gradient & tactical grid */}
       <div className="absolute inset-0 bg-[#050806] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(16,185,129,0.08),transparent_70%)] pointer-events-none" />
       <div
@@ -199,10 +198,10 @@ export default function Tracks() {
 
       <div className="universe-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-emerald-400 text-xs font-mono tracking-widest uppercase mb-4 shadow-[0_0_12px_rgba(16,185,129,0.2)]">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>Battleground Domains // Latverian Multiverse HUD</span>
+            <Crosshair className="w-3.5 h-3.5 text-emerald-400 animate-spin" style={{ animationDuration: '8s' }} />
+            <span>Latverian War Room // Tactical Incursion Deck</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-wider text-white mb-4 font-serif">
@@ -210,222 +209,433 @@ export default function Tracks() {
           </h2>
 
           <p className="text-neutral-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed mb-6 font-sans">
-            Five specialized operational sectors. Each chamber features an independent{' '}
-            <span className="text-emerald-400 font-semibold">₹5,000 Track Bounty</span> alongside full eligibility for
-            the <span className="text-amber-400 font-semibold">₹1,00,000 Grand Championship</span>.
+            Five operational battlegrounds plus the Omega Vault. Each chamber features an independent{' '}
+            <span className="text-emerald-400 font-semibold">₹5,000 Track Bounty</span> alongside eligibility for the{' '}
+            <span className="text-amber-400 font-semibold">₹1,00,000 Grand Championship</span>.
           </p>
 
-          {/* Broad Tracks Live Notice Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/25 text-xs font-mono text-emerald-300 tracking-wider shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]">
-            <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-            <span>BROAD TRACKS PUBLISHED NOW // DETAILED PROBLEM STATEMENTS REVEALED AT KICKOFF</span>
+          {/* Broad Tracks Notice + Mode Switcher */}
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/25 text-xs font-mono text-emerald-300 tracking-wider">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span>BROAD TRACKS ACTIVE • DETAILED CHALLENGES UNVEILED AT KICKOFF</span>
+            </div>
+
+            <div className="inline-flex items-center bg-black/60 p-1 rounded-lg border border-emerald-500/25">
+              <button
+                type="button"
+                onClick={() => setViewMode('console')}
+                className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
+                  viewMode === 'console'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                    : 'text-neutral-400 hover:text-white'
+                }`}
+              >
+                Command Console
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('matrix')}
+                className={`px-3 py-1 rounded text-xs font-mono transition-colors ${
+                  viewMode === 'matrix'
+                    ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
+                    : 'text-neutral-400 hover:text-white'
+                }`}
+              >
+                6-Sector Grid
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* 3x2 Tactical Bento Grid (6 Cells Symmetrical) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TRACKS.map((track) => {
-            const isAmber = track.accentColor === 'amber';
+        {/* VIEW 1: THE TACTICAL COMMAND CONSOLE (INTERACTIVE THEATER) */}
+        {viewMode === 'console' && (
+          <div className="space-y-6">
+            {/* Top Tactical Sector Selector Strip */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+              {TRACKS.map((t, idx) => {
+                const isActive = activeSectorIndex === idx;
+                const isItemAmber = t.accentColor === 'amber';
 
-            return (
-              <div
-                key={track.id}
-                onMouseMove={handleMouseMove}
-                onClick={() => setSelectedTrack(track)}
-                className={`group relative rounded-xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300 ${
+                return (
+                  <button
+                    key={t.id}
+                    type="button"
+                    onClick={() => setActiveSectorIndex(idx)}
+                    className={`relative p-3 rounded-xl border text-left transition-all duration-200 overflow-hidden ${
+                      isActive
+                        ? isItemAmber
+                          ? 'bg-gradient-to-b from-amber-950/70 to-black/90 border-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.3)]'
+                          : 'bg-gradient-to-b from-emerald-950/70 to-black/90 border-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)]'
+                        : 'bg-black/50 border-emerald-500/20 hover:border-emerald-500/50 hover:bg-emerald-950/20'
+                    }`}
+                  >
+                    {/* Active Sector Accent Line */}
+                    {isActive && (
+                      <div
+                        className={`absolute top-0 left-0 right-0 h-1 ${
+                          isItemAmber ? 'bg-amber-400' : 'bg-emerald-400'
+                        } shadow-[0_0_8px_currentColor]`}
+                      />
+                    )}
+
+                    <div className="flex items-center justify-between text-[11px] font-mono mb-1">
+                      <span className={isActive ? (isItemAmber ? 'text-amber-400' : 'text-emerald-400') : 'text-neutral-400'}>
+                        {t.id}
+                      </span>
+                      <span className="text-[10px] text-amber-300 font-bold">₹5K</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <div className="flex-shrink-0">{t.icon}</div>
+                      <div className="font-serif italic font-bold text-sm text-white truncate">{t.name}</div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Main Holographic Theater Display */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeTrack.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.25 }}
+                className={`relative rounded-2xl p-6 sm:p-8 border overflow-hidden ${
                   isAmber
-                    ? 'bg-gradient-to-b from-[#14120a]/90 via-[#0e0d08]/95 to-[#080704]/98 border border-amber-500/30 hover:border-amber-400/80 shadow-[0_10px_30px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(245,158,11,0.15)] hover:shadow-[0_15px_40px_rgba(245,158,11,0.25)]'
-                    : 'bg-gradient-to-b from-[#0e1612]/90 via-[#0a100d]/95 to-[#060a08]/98 border border-emerald-500/25 hover:border-emerald-400/70 shadow-[0_10px_30px_rgba(0,0,0,0.7),inset_0_1px_0_rgba(16,185,129,0.1)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.2)]'
+                    ? 'bg-gradient-to-b from-[#14120a]/95 via-[#0d0c07]/98 to-[#060503] border-amber-500/40 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(245,158,11,0.15)]'
+                    : 'bg-gradient-to-b from-[#0e1813]/95 via-[#08100c]/98 to-[#040806] border-emerald-500/35 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(16,185,129,0.15)]'
                 }`}
-                style={{
-                  minHeight: '380px',
-                }}
               >
-                {/* Mouse-tracking radial spotlight */}
+                {/* Tactical Corner Brackets */}
                 <div
-                  className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{
-                    background: isAmber
-                      ? 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(245, 158, 11, 0.15), transparent 70%)'
-                      : 'radial-gradient(350px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(16, 185, 129, 0.14), transparent 70%)',
-                  }}
-                />
-
-                {/* Tactical Corner Brackets (Expanding on hover) */}
-                <div
-                  className={`absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 transition-all duration-300 ${
-                    isAmber
-                      ? 'border-amber-400/60 group-hover:border-amber-300 group-hover:w-4 group-hover:h-4'
-                      : 'border-emerald-400/60 group-hover:border-emerald-300 group-hover:w-4 group-hover:h-4'
+                  className={`absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 ${
+                    isAmber ? 'border-amber-400' : 'border-emerald-400'
                   }`}
                 />
                 <div
-                  className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 transition-all duration-300 ${
-                    isAmber
-                      ? 'border-amber-400/60 group-hover:border-amber-300 group-hover:w-4 group-hover:h-4'
-                      : 'border-emerald-400/60 group-hover:border-emerald-300 group-hover:w-4 group-hover:h-4'
+                  className={`absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 ${
+                    isAmber ? 'border-amber-400' : 'border-emerald-400'
                   }`}
                 />
                 <div
-                  className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 transition-all duration-300 ${
-                    isAmber
-                      ? 'border-amber-400/60 group-hover:border-amber-300 group-hover:w-4 group-hover:h-4'
-                      : 'border-emerald-400/60 group-hover:border-emerald-300 group-hover:w-4 group-hover:h-4'
+                  className={`absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 ${
+                    isAmber ? 'border-amber-400' : 'border-emerald-400'
                   }`}
                 />
                 <div
-                  className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 transition-all duration-300 ${
-                    isAmber
-                      ? 'border-amber-400/60 group-hover:border-amber-300 group-hover:w-4 group-hover:h-4'
-                      : 'border-emerald-400/60 group-hover:border-emerald-300 group-hover:w-4 group-hover:h-4'
+                  className={`absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 ${
+                    isAmber ? 'border-amber-400' : 'border-emerald-400'
                   }`}
                 />
 
-                {/* Giant Background Watermark (01–06) */}
+                {/* Giant Background Watermark */}
                 <div
                   aria-hidden="true"
-                  className={`absolute top-2 right-4 text-7xl font-black font-mono select-none pointer-events-none transition-colors duration-300 ${
-                    isAmber
-                      ? 'text-amber-500/[0.05] group-hover:text-amber-400/[0.12]'
-                      : 'text-emerald-500/[0.05] group-hover:text-emerald-400/[0.12]'
+                  className={`absolute top-4 right-8 text-9xl font-black font-mono select-none pointer-events-none opacity-[0.04] ${
+                    isAmber ? 'text-amber-400' : 'text-emerald-400'
                   }`}
                 >
-                  {track.number}
+                  {activeTrack.number}
                 </div>
 
-                {/* Card Top: Telemetry Bar */}
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className={`w-2 h-2 rounded-full ${
-                          isAmber ? 'bg-amber-400 shadow-[0_0_8px_#f59e0b]' : 'bg-emerald-400 shadow-[0_0_8px_#10b981]'
-                        } animate-pulse`}
-                      />
-                      <span
-                        className={`text-xs font-mono font-bold tracking-widest ${
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+                  {/* Left Wing: Dossier & Mission Telemetry */}
+                  <div className="lg:col-span-7 flex flex-col justify-between">
+                    <div>
+                      {/* Meta Pills */}
+                      <div className="flex flex-wrap items-center gap-2.5 mb-4">
+                        <span
+                          className={`px-3 py-1 rounded-full text-xs font-mono font-bold tracking-widest ${
+                            isAmber
+                              ? 'bg-amber-950/70 border border-amber-500/40 text-amber-300'
+                              : 'bg-emerald-950/70 border border-emerald-500/40 text-emerald-300'
+                          }`}
+                        >
+                          {activeTrack.id} // {activeTrack.dossierIntel.status}
+                        </span>
+
+                        <span className="px-3 py-1 rounded-full bg-amber-950/60 border border-amber-500/40 text-amber-300 text-xs font-mono font-bold tracking-wider flex items-center gap-1.5 shadow-[0_0_12px_rgba(245,158,11,0.2)]">
+                          <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                          <span>{activeTrack.bounty}</span>
+                        </span>
+
+                        <span className="text-xs font-mono text-neutral-400 tracking-wider">
+                          {activeTrack.dossierIntel.clearance}
+                        </span>
+                      </div>
+
+                      {/* Title & Domain */}
+                      <h3 className="text-3xl sm:text-4xl md:text-5xl font-black font-serif italic text-white tracking-wide mb-2">
+                        {activeTrack.name}
+                      </h3>
+                      <div
+                        className={`text-sm font-mono tracking-widest uppercase font-bold mb-5 ${
                           isAmber ? 'text-amber-400' : 'text-emerald-400'
                         }`}
                       >
-                        {track.id}
-                      </span>
-                    </div>
+                        {activeTrack.tag}
+                      </div>
 
-                    <div
-                      className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider ${
-                        isAmber
-                          ? 'bg-amber-950/50 border border-amber-500/40 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.2)]'
-                          : 'bg-emerald-950/50 border border-emerald-500/40 text-emerald-300 shadow-[0_0_12px_rgba(16,185,129,0.2)]'
-                      }`}
-                    >
-                      <Sparkles className="w-3 h-3 text-amber-400" />
-                      <span>{track.bounty}</span>
-                    </div>
-                  </div>
-
-                  {/* Track Identity Block */}
-                  <div className="flex items-start gap-3.5 mb-3">
-                    <div
-                      className={`w-12 h-12 rounded-lg flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-105 ${
-                        isAmber
-                          ? 'bg-amber-950/60 border border-amber-500/30 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
-                          : 'bg-emerald-950/60 border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.2)]'
-                      }`}
-                    >
-                      {track.icon}
-                    </div>
-
-                    <div className="flex-1 min-w-0">
-                      <h3
-                        className={`text-xl sm:text-2xl font-bold font-serif italic tracking-wide text-white transition-colors duration-200 ${
-                          isAmber ? 'group-hover:text-amber-300' : 'group-hover:text-emerald-300'
-                        }`}
-                      >
-                        {track.name}
-                      </h3>
+                      {/* Mission Brief Quote */}
                       <div
-                        className={`text-xs font-mono tracking-wider font-semibold uppercase mt-0.5 ${
-                          isAmber ? 'text-amber-400/90' : 'text-emerald-400/90'
+                        className={`p-4 rounded-xl mb-6 border-l-4 ${
+                          isAmber
+                            ? 'bg-amber-950/20 border-amber-400 text-neutral-200'
+                            : 'bg-emerald-950/20 border-emerald-400 text-neutral-200'
                         }`}
                       >
-                        {track.tag}
+                        <p className="text-sm sm:text-base leading-relaxed italic">&ldquo;{activeTrack.brief}&rdquo;</p>
+                      </div>
+                    </div>
+
+                    {/* Telemetry Metric Dials */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-dashed border-emerald-500/20 font-mono text-xs">
+                      <div className="p-2.5 rounded-lg bg-black/50 border border-emerald-500/15">
+                        <span className="text-neutral-400 text-[10px] block uppercase">Sector Bounty</span>
+                        <span className="text-amber-400 font-bold text-sm">₹5,000 Cash</span>
+                      </div>
+                      <div className="p-2.5 rounded-lg bg-black/50 border border-emerald-500/15">
+                        <span className="text-neutral-400 text-[10px] block uppercase">Grand Pool</span>
+                        <span className="text-emerald-400 font-bold text-sm">₹2.05L Total</span>
+                      </div>
+                      <div className="p-2.5 rounded-lg bg-black/50 border border-emerald-500/15">
+                        <span className="text-neutral-400 text-[10px] block uppercase">Team Size</span>
+                        <span className="text-white font-bold text-sm">2 to 4 Squad</span>
+                      </div>
+                      <div className="p-2.5 rounded-lg bg-black/50 border border-emerald-500/15">
+                        <span className="text-neutral-400 text-[10px] block uppercase">Offline Finale</span>
+                        <span className="text-emerald-300 font-bold text-sm">30–31 Jan</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* Tactical Mission Brief */}
-                  <div
-                    className={`my-3 pl-3 text-sm text-neutral-300 border-l-2 leading-relaxed ${
-                      isAmber ? 'border-amber-500/40' : 'border-emerald-500/40'
-                    }`}
-                  >
-                    {track.brief}
-                  </div>
-                </div>
+                  {/* Right Wing: Core Focus Vectors & Terminal */}
+                  <div className="lg:col-span-5 flex flex-col justify-between space-y-6">
+                    {/* Core Focus Vectors */}
+                    <div>
+                      <div className="flex items-center gap-2 text-xs font-mono font-bold text-emerald-400 tracking-widest uppercase mb-3">
+                        <Layers className="w-4 h-4" />
+                        <span>CORE FOCUS VECTORS</span>
+                        <span className="flex-1 h-px bg-emerald-500/20" />
+                      </div>
 
-                {/* Special Card Decryption Terminal Box (Cell 6) */}
-                {track.isSpecial && (
-                  <div className="my-3 p-3 rounded-lg bg-black/60 border border-amber-500/25 font-mono text-xs">
-                    <div className="flex items-center gap-2 text-amber-400 font-bold mb-1.5">
-                      <Lock className="w-3.5 h-3.5" />
-                      <span>ENCRYPTED PROBLEM STATEMENTS</span>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {activeTrack.focusVectors.map((vector) => (
+                          <div
+                            key={vector}
+                            className={`p-3 rounded-xl border flex items-center gap-2.5 text-xs transition-colors ${
+                              isAmber
+                                ? 'bg-amber-950/20 border-amber-500/25 text-neutral-100'
+                                : 'bg-emerald-950/20 border-emerald-500/25 text-neutral-100'
+                            }`}
+                          >
+                            <span className={isAmber ? 'text-amber-400 font-bold' : 'text-emerald-400 font-bold'}>
+                              ›
+                            </span>
+                            <span className="font-sans font-medium">{vector}</span>
+                          </div>
+                        ))}
+                      </div>
                     </div>
-                    <div className="text-neutral-400 text-[11px] leading-tight space-y-1">
-                      <p className="text-amber-300/80">&gt; DECRYPTING: 30 JAN 2027 // 10:30 IST</p>
-                      <p>&gt; UNLOCKS LIVE ON CAMPUS AT DYPIT</p>
-                      <p className="text-emerald-400/80">&gt; ROOKIE PRIZE: ELIGIBLE FOR ALL 1ST-TIME SQUADS</p>
+
+                    {/* Live Decryption Status Terminal Box */}
+                    <div className="p-4 rounded-xl bg-black/80 border border-emerald-500/30 font-mono text-xs space-y-2">
+                      <div className="flex items-center justify-between border-b border-emerald-500/20 pb-2">
+                        <div className="flex items-center gap-2 text-emerald-400 font-bold">
+                          <Terminal className="w-3.5 h-3.5" />
+                          <span>CHALLENGE DIRECTIVE: LOCKED</span>
+                        </div>
+                        <span className="text-[10px] text-amber-300 font-bold">256-BIT CIPHER</span>
+                      </div>
+
+                      <div className="text-[11px] text-neutral-400 space-y-1">
+                        <p>&gt; STATUS: Broad track active. Problem statements drop at kickoff.</p>
+                        <p className="text-amber-300/90">&gt; DECRYPTING: 30 Jan 2027 // 10:30 AM IST</p>
+                        <p className="text-emerald-400/90">&gt; LOCATION: DYPIT Campus, Pimpri, Pune</p>
+                      </div>
                     </div>
-                  </div>
-                )}
 
-                {/* Core Focus Vectors (Upgraded Telemetry Chips) */}
-                <div className="mt-2 mb-4">
-                  <div className="text-[10px] font-mono tracking-widest text-emerald-400/70 mb-2 uppercase flex items-center gap-1.5">
-                    <span>CORE FOCUS VECTORS</span>
-                    <span className="flex-1 h-px bg-emerald-500/20" />
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5">
-                    {track.focusVectors.map((vector) => (
-                      <span
-                        key={vector}
-                        className={`text-xs px-2.5 py-1 rounded font-sans flex items-center gap-1 transition-colors duration-200 ${
+                    {/* Action Buttons */}
+                    <div className="flex flex-col sm:flex-row items-center gap-3">
+                      <a
+                        href={REGISTER_URL || '#schedule'}
+                        target={REGISTER_URL ? '_blank' : undefined}
+                        rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
+                        className={`w-full sm:flex-1 py-3 px-5 rounded-xl text-black font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                           isAmber
-                            ? 'bg-amber-950/30 border border-amber-500/20 text-neutral-200 group-hover:border-amber-400/50'
-                            : 'bg-emerald-950/30 border border-emerald-500/20 text-neutral-200 group-hover:border-emerald-400/50'
+                            ? 'bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 shadow-[0_0_20px_rgba(245,158,11,0.4)]'
+                            : 'bg-gradient-to-r from-emerald-400 to-emerald-500 hover:from-emerald-300 hover:to-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.4)]'
                         }`}
                       >
-                        <span className={isAmber ? 'text-amber-400' : 'text-emerald-400'}>›</span>
-                        <span>{vector}</span>
-                      </span>
-                    ))}
+                        <span>Breach Sector // Register</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                      </a>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedTrack(activeTrack)}
+                        className="w-full sm:w-auto py-3 px-5 rounded-xl bg-black/60 border border-emerald-500/30 text-neutral-200 hover:text-white hover:border-emerald-400 text-xs font-mono tracking-wider transition-colors"
+                      >
+                        Evaluation Matrix
+                      </button>
+                    </div>
                   </div>
                 </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        )}
 
-                {/* Locked Dossier Footer Bar */}
+        {/* VIEW 2: THE 6-SECTOR GRID MATRIX */}
+        {viewMode === 'matrix' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {TRACKS.map((track) => {
+              const isCardAmber = track.accentColor === 'amber';
+
+              return (
                 <div
-                  className={`pt-3 mt-auto border-t border-dashed flex items-center justify-between text-xs font-mono ${
-                    isAmber ? 'border-amber-500/25 text-amber-300/80' : 'border-emerald-500/20 text-neutral-400'
+                  key={track.id}
+                  onClick={() => setSelectedTrack(track)}
+                  className={`group relative rounded-xl p-6 flex flex-col justify-between cursor-pointer transition-all duration-300 ${
+                    isCardAmber
+                      ? 'bg-gradient-to-b from-[#14120a]/90 via-[#0e0d08]/95 to-[#080704]/98 border border-amber-500/30 hover:border-amber-400/80 shadow-[0_10px_30px_rgba(0,0,0,0.7)] hover:shadow-[0_15px_40px_rgba(245,158,11,0.25)]'
+                      : 'bg-gradient-to-b from-[#0e1612]/90 via-[#0a100d]/95 to-[#060a08]/98 border border-emerald-500/25 hover:border-emerald-400/70 shadow-[0_10px_30px_rgba(0,0,0,0.7)] hover:shadow-[0_15px_40px_rgba(16,185,129,0.2)]'
                   }`}
+                  style={{ minHeight: '380px' }}
                 >
-                  <div className="flex items-center gap-1.5">
-                    <Lock className="w-3 h-3 text-emerald-400/80" />
-                    <span>DOSSIER LOCKED • REVEAL 30 JAN</span>
-                  </div>
-
+                  {/* Corner Brackets */}
                   <div
-                    className={`flex items-center gap-1 font-semibold group-hover:translate-x-1 transition-transform duration-200 ${
-                      isAmber ? 'text-amber-400' : 'text-emerald-400'
+                    className={`absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 ${
+                      isCardAmber ? 'border-amber-400/60' : 'border-emerald-400/60'
+                    }`}
+                  />
+                  <div
+                    className={`absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 ${
+                      isCardAmber ? 'border-amber-400/60' : 'border-emerald-400/60'
+                    }`}
+                  />
+                  <div
+                    className={`absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 ${
+                      isCardAmber ? 'border-amber-400/60' : 'border-emerald-400/60'
+                    }`}
+                  />
+                  <div
+                    className={`absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 ${
+                      isCardAmber ? 'border-amber-400/60' : 'border-emerald-400/60'
+                    }`}
+                  />
+
+                  {/* Watermark */}
+                  <div
+                    aria-hidden="true"
+                    className={`absolute top-2 right-4 text-7xl font-black font-mono select-none pointer-events-none opacity-[0.05] group-hover:opacity-[0.12] transition-opacity ${
+                      isCardAmber ? 'text-amber-400' : 'text-emerald-400'
                     }`}
                   >
-                    <span>BREACH CHAMBER</span>
-                    <ChevronRight className="w-3.5 h-3.5" />
+                    {track.number}
+                  </div>
+
+                  {/* Header */}
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className={`w-2 h-2 rounded-full ${
+                            isCardAmber ? 'bg-amber-400' : 'bg-emerald-400'
+                          } animate-pulse`}
+                        />
+                        <span
+                          className={`text-xs font-mono font-bold tracking-widest ${
+                            isCardAmber ? 'text-amber-400' : 'text-emerald-400'
+                          }`}
+                        >
+                          {track.id}
+                        </span>
+                      </div>
+
+                      <div
+                        className={`inline-flex items-center gap-1 px-3 py-0.5 rounded-full text-xs font-mono font-bold ${
+                          isCardAmber
+                            ? 'bg-amber-950/60 border border-amber-500/40 text-amber-300'
+                            : 'bg-emerald-950/60 border border-emerald-500/40 text-emerald-300'
+                        }`}
+                      >
+                        <Sparkles className="w-3 h-3" />
+                        <span>{track.bounty}</span>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-3 mb-3">
+                      <div
+                        className={`w-11 h-11 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                          isCardAmber
+                            ? 'bg-amber-950/60 border border-amber-500/30'
+                            : 'bg-emerald-950/60 border border-emerald-500/30'
+                        }`}
+                      >
+                        {track.icon}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold font-serif italic text-white tracking-wide">{track.name}</h3>
+                        <div
+                          className={`text-xs font-mono font-semibold uppercase ${
+                            isCardAmber ? 'text-amber-400/90' : 'text-emerald-400/90'
+                          }`}
+                        >
+                          {track.tag}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      className={`my-3 pl-3 text-xs text-neutral-300 border-l-2 leading-relaxed ${
+                        isCardAmber ? 'border-amber-500/40' : 'border-emerald-500/40'
+                      }`}
+                    >
+                      {track.brief}
+                    </div>
+                  </div>
+
+                  {/* Focus Vectors */}
+                  <div className="my-3">
+                    <div className="text-[10px] font-mono tracking-widest text-emerald-400/70 mb-2 uppercase">
+                      CORE FOCUS VECTORS
+                    </div>
+                    <div className="flex flex-wrap gap-1.5">
+                      {track.focusVectors.map((vector) => (
+                        <span
+                          key={vector}
+                          className="text-xs px-2.5 py-1 rounded bg-black/40 border border-emerald-500/20 text-neutral-200"
+                        >
+                          <span className={isCardAmber ? 'text-amber-400' : 'text-emerald-400'}>›</span> {vector}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="pt-3 border-t border-dashed border-emerald-500/20 flex items-center justify-between text-xs font-mono text-neutral-400">
+                    <div className="flex items-center gap-1.5">
+                      <Lock className="w-3 h-3 text-emerald-400/80" />
+                      <span>DOSSIER LOCKED</span>
+                    </div>
+                    <div
+                      className={`flex items-center gap-1 font-semibold ${
+                        isCardAmber ? 'text-amber-400' : 'text-emerald-400'
+                      }`}
+                    >
+                      <span>INSPECT MATRIX</span>
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
 
       {/* Classified Sector Modal / Drawer (Framer Motion) */}
