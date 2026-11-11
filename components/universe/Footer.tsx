@@ -55,9 +55,7 @@ export default function Footer() {
               <li><a href="#tracks">Hackathon Tracks</a></li>
               <li><a href="#schedule">Timeline &amp; Schedule</a></li>
               <li><a href="#prizes">Prize Pool (₹2.05L)</a></li>
-              <li><a href="#judging">Judging Criteria</a></li>
               <li><a href="#sponsors">Partners &amp; Sponsors</a></li>
-              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
 

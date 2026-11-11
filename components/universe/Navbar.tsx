@@ -27,9 +27,7 @@ export default function Navbar() {
         <a href="#tracks">Tracks</a>
         <a href="#schedule">Schedule</a>
         <a href="#prizes">Prizes</a>
-        <a href="#judging">Judging</a>
         <a href="#sponsors">Sponsors</a>
-        <a href="#faq">FAQ</a>
         <Link href="/" className="universe-nav-replay">
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" width="12" height="12">
             <path d="M6 3L1 8l5 5M1 8h14" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -77,9 +75,7 @@ export default function Navbar() {
         <a href="#tracks" onClick={() => setMobileOpen(false)}>Tracks</a>
         <a href="#schedule" onClick={() => setMobileOpen(false)}>Schedule</a>
         <a href="#prizes" onClick={() => setMobileOpen(false)}>Prizes</a>
-        <a href="#judging" onClick={() => setMobileOpen(false)}>Judging Criteria</a>
         <a href="#sponsors" onClick={() => setMobileOpen(false)}>Sponsors</a>
-        <a href="#faq" onClick={() => setMobileOpen(false)}>FAQ</a>
         <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: 'var(--em)' }}>
           ← Replay Film Experience
         </Link>

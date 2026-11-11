@@ -10,9 +10,7 @@ import About from '../../components/universe/About';
 import Tracks from '../../components/universe/Tracks';
 import Schedule from '../../components/universe/Schedule';
 import Prizes from '../../components/universe/Prizes';
-import Judging from '../../components/universe/Judging';
 import Sponsors from '../../components/universe/Sponsors';
-import Faq from '../../components/universe/Faq';
 import Footer from '../../components/universe/Footer';
 
 export default function UniversePage() {
@@ -39,9 +37,7 @@ export default function UniversePage() {
         <Tracks />
         <Schedule />
         <Prizes />
-        <Judging />
         <Sponsors />
-        <Faq />
         <Footer />
       </main>
     </div>

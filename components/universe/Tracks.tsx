@@ -14,7 +14,6 @@ const TRACKS = [
     mission:
       'Engineer self-directing synthetic agents and cognitive intelligence pipelines capable of autonomous real-time decision making under high operational volatility.',
     focusAreas: ['Autonomous AI Agents', 'Multi-Modal Models', 'Process Automation', 'Cognitive Reasoning'],
-    techStack: ['PyTorch', 'LangChain', 'LlamaIndex', 'Edge AI', 'Ollama', 'Computer Vision'],
   },
   {
     id: 'SECTOR 02',
@@ -27,7 +26,6 @@ const TRACKS = [
     mission:
       'Architect impenetrable defensive bastions against modern attack vectors, synthetic identity spoofing, and catastrophic financial exploitation.',
     focusAreas: ['Threat Detection', 'Fraud Mitigation', 'Zero-Knowledge Privacy', 'Modern Payments'],
-    techStack: ['Rust', 'Solidity', 'Web3.js', 'Zero-Knowledge Proofs', 'eBPF', 'SIEM Telemetry'],
   },
   {
     id: 'SECTOR 03',
@@ -40,7 +38,6 @@ const TRACKS = [
     mission:
       'Tackle existential human frontiers—from rapid emergency crisis triage and climate catastrophe resilience to deep telemetry for next-generation survival.',
     focusAreas: ['Climate Intelligence', 'Health & MedTech', 'Disaster Response', 'Agri & Space Tech'],
-    techStack: ['IoT', 'WebSockets', 'Embedded Telemetry', 'OpenCV', 'FastAPI', 'Flutter'],
   },
   {
     id: 'SECTOR 04',
@@ -53,7 +50,6 @@ const TRACKS = [
     mission:
       'Dismantle opaque bureaucratic barriers with transparent public utility platforms, immutable audit logs, and direct-action citizen grievance resolution.',
     focusAreas: ['Public Services', 'Grievance Redressal', 'Civic Transparency', 'Tamper-Proof Audits'],
-    techStack: ['Distributed Ledgers', 'Next.js', 'FastAPI', 'IPFS', 'PostgreSQL', 'GraphQL'],
   },
   {
     id: 'SECTOR 05',
@@ -66,7 +62,6 @@ const TRACKS = [
     mission:
       'Rebuild collapsing urban ecosystems into hyper-resilient, automated smart cities powered by real-time sensor intelligence and predictive civic logistics.',
     focusAreas: ['Smart Mobility', 'Traffic Intelligence', 'Water Management', 'Civic Telemetry'],
-    techStack: ['MQTT', 'Docker', 'Redis', 'Kubernetes', 'GIS Mapping', 'WebRTC'],
   },
 ];
 
@@ -82,7 +77,7 @@ export default function Tracks() {
           <h2 className="universe-section-title">The 5 Incursion Chambers</h2>
           <p className="universe-section-desc">
             Explore the five operational battlegrounds. Select a sector to inspect its tactical mission dossier,
-            suggested technology stacks, and dedicated ₹5,000 Track Bounty.
+            core focus vectors, and dedicated ₹5,000 Track Bounty.
           </p>
         </div>
 
@@ -135,27 +130,14 @@ export default function Tracks() {
             <p className="spotlight-mission">&ldquo;{current.mission}&rdquo;</p>
             <p className="spotlight-desc">{current.summary}</p>
 
-            <div className="spotlight-columns">
-              <div className="spotlight-col">
-                <span className="spotlight-label">CORE FOCUS VECTORS</span>
-                <div className="universe-focus-tags">
-                  {current.focusAreas.map((area) => (
-                    <span key={area} className="universe-focus-tag">
-                      {area}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="spotlight-col">
-                <span className="spotlight-label">RECOMMENDED TECH ARSENAL</span>
-                <div className="universe-focus-tags">
-                  {current.techStack.map((tech) => (
-                    <span key={tech} className="universe-focus-tag spotlight-tech-chip">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+            <div className="spotlight-focus-wrapper">
+              <span className="spotlight-label">CORE FOCUS VECTORS</span>
+              <div className="universe-focus-tags">
+                {current.focusAreas.map((area) => (
+                  <span key={area} className="universe-focus-tag">
+                    {area}
+                  </span>
+                ))}
               </div>
             </div>
           </div>

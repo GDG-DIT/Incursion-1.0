@@ -18,63 +18,6 @@ export default function About() {
           </p>
         </div>
 
-        {/* Two-Round Tournament Architecture Graphic */}
-        <div className="universe-tournament-grid">
-          {/* Round 1 Card */}
-          <div className="universe-card universe-tournament-card">
-            <div className="tactical-corner tl" />
-            <div className="tactical-corner tr" />
-            <div className="tactical-corner bl" />
-            <div className="tactical-corner br" />
-
-            <div className="tournament-badge round-1">ROUND 1 • ONLINE CHALLENGE</div>
-            <h3 className="tournament-title">National Screening &amp; Prototype Audit</h3>
-            <p className="tournament-desc">
-              Open nationwide to student squads of 2–4 members with 100% free registration.
-              Teams submit their solution proposal deck followed by a 3–5 min video prototype and GitHub repository.
-              Every submission undergoes rigorous scoring by a panel of industry and faculty judges.
-            </p>
-            <div className="tournament-perks">
-              <span className="universe-meta-pill">Free Registration</span>
-              <span className="universe-meta-pill">Open Nationwide</span>
-              <span className="universe-meta-pill">2 to 4 Members</span>
-              <span className="universe-meta-pill">Inter-College Permitted</span>
-            </div>
-          </div>
-
-          {/* Central Conduit Indicator */}
-          <div className="tournament-filter-hub">
-            <div className="filter-line" />
-            <div className="filter-badge">
-              <span className="filter-pulse" />
-              <span className="filter-num">TOP 50 SQUADS</span>
-              <span className="filter-sub">Shortlisted Finalists</span>
-            </div>
-            <div className="filter-line" />
-          </div>
-
-          {/* Round 2 Card */}
-          <div className="universe-card universe-tournament-card round-2-card">
-            <div className="tactical-corner tl" />
-            <div className="tactical-corner tr" />
-            <div className="tactical-corner bl" />
-            <div className="tactical-corner br" />
-
-            <div className="tournament-badge round-2">ROUND 2 • OFFLINE FINALE</div>
-            <h3 className="tournament-title">24-Hour Non-Stop Build Sprint</h3>
-            <p className="tournament-desc">
-              Top 50 finalist squads (~175–200 hackers) assemble on 30–31 January 2027 at DYPIT campus in Pune.
-              A nominal confirmation fee (₹899/team) covers complete 24-hour venue access, high-speed Wi-Fi, all meals,
-              midnight snacks, rest areas, mentor check-ins, and the official finalist welcome kit.
-            </p>
-            <div className="tournament-perks">
-              <span className="universe-meta-pill" style={{ color: '#3fe08e', borderColor: 'rgba(63,224,142,0.3)' }}>DYPIT Pune Campus</span>
-              <span className="universe-meta-pill" style={{ color: '#3fe08e', borderColor: 'rgba(63,224,142,0.3)' }}>24 Hours Non-Stop</span>
-              <span className="universe-meta-pill" style={{ color: '#3fe08e', borderColor: 'rgba(63,224,142,0.3)' }}>Full Catering &amp; Kit</span>
-            </div>
-          </div>
-        </div>
-
         {/* Dossier Key Metrics Bar */}
         <div className="universe-dossier-metrics">
           <div className="dossier-metric">
