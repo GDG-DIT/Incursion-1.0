@@ -31,7 +31,7 @@ export default function Hero() {
             target={REGISTER_URL ? '_blank' : undefined}
             rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
             className="universe-btn-primary"
-            title={REGISTER_URL ? 'Register Now' : 'Registrations opening soon'}
+            title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening soon'}
           >
             <span>Claim Your Spot</span>
             <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" width="16" height="8">

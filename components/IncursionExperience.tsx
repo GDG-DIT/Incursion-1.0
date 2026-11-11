@@ -69,7 +69,7 @@ function HeroStage() {
             href={registerHref}
             target={REGISTER_URL ? '_blank' : undefined}
             rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
-            title={REGISTER_URL ? 'Register Now' : 'Registrations opening soon'}
+            title={REGISTER_URL ? 'Register Now on Unstop' : 'Registrations opening soon'}
           >
             Register now<Arrow />
           </a>
