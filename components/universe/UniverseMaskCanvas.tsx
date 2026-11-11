@@ -116,9 +116,26 @@ export default function UniverseMaskCanvas() {
       }
     }
 
+    let isScheduleInView = false;
+
     function updateScrollProgress() {
       const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
       scrollProgress = Math.max(0, Math.min(1, window.scrollY / scrollRange));
+
+      const scheduleEl = document.getElementById('schedule');
+      if (scheduleEl) {
+        const rect = scheduleEl.getBoundingClientRect();
+        // Fully hide the Doom 3D mask while viewing the timeline/schedule section
+        isScheduleInView = rect.top < window.innerHeight * 0.82 && rect.bottom > window.innerHeight * 0.18;
+      } else {
+        isScheduleInView = false;
+      }
+
+      if (host) {
+        host.style.opacity = isScheduleInView ? '0' : '1';
+        host.style.pointerEvents = isScheduleInView ? 'none' : 'auto';
+      }
+
       if (!running && inView && !document.hidden) startLoop();
     }
 
@@ -160,7 +177,11 @@ export default function UniverseMaskCanvas() {
         let targetRotZ = 0;
         let targetScale = mobile ? 0.72 : 0.96;
 
-        if (p < 0.16) {
+        if (isScheduleInView) {
+          // Fade away and push deep into background when timeline is in focus
+          targetZ = -8.0;
+          targetScale = 0.2;
+        } else if (p < 0.16) {
           // Hero Section: Imposing, clear heroic framing
           targetX = sideX;
           targetY = mobile ? 0.32 : -0.02;
