@@ -541,13 +541,18 @@ export function createExperience(root) {
       sessionStorage.setItem("incursion_audio_enabled", AC.on ? "true" : "false");
       sessionStorage.setItem("incursion_audio_time", String(AC.trk?.currentTime || 0));
     }
+    try {
+      AC.impact(0.55);
+    } catch { }
+
     const overlay = $("#universe-portal-transition") || document.getElementById("universe-portal-transition");
     if (overlay) {
       overlay.classList.add("is-active");
     }
+    // Cinematic 1-second pause on the Doomsday "Welcome to the Universe" transition
     setTimeout(() => {
       window.location.href = targetUrl;
-    }, 600);
+    }, 1200);
   }
 
   $$("[data-universe-link], a[href*='/universe']").forEach((link) => {

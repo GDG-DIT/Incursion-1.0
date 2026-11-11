@@ -123,13 +123,24 @@ export default function IncursionExperience() {
         </header>
         <div className="grain" aria-hidden="true" />
         <IntroGate />
-        {/* Cinematic Universe Portal Transition */}
+        {/* Doomsday Universe Portal Transition */}
         <div id="universe-portal-transition" className="universe-portal-overlay" aria-hidden="true">
           <div className="portal-glow" />
+          <div className="portal-vignette" />
+          <div className="portal-scanline" />
           <div className="portal-content">
-            <span className="portal-eyebrow">Dimensional Incursion</span>
-            <h2 className="portal-title">Entering The Universe</h2>
-            <div className="portal-spinner" />
+            <div className="portal-badge">
+              <span className="portal-badge-dot" />
+              <span>Dimensional Incursion Protocol</span>
+            </div>
+            <h2 className="portal-title">
+              WELCOME TO THE <em>UNIVERSE</em>
+            </h2>
+            <p className="portal-tagline">Two worlds collide. Doomsday Times Run Out.</p>
+            <div className="portal-meter">
+              <div className="portal-meter-bar" />
+            </div>
+            <span className="portal-meta">BREACHING REALITY • PREPARE FOR DOOMSDAY</span>
           </div>
         </div>
       </div></div>
