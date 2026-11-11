@@ -2,9 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { createExperience } from '../lib/experience';
-import { TIMELINE, REGISTER_URL, imageStyle, jag } from '../lib/content';
-import DoomMaskHero from './DoomMaskHero';
-import DoomsdayCountdown from './DoomsdayCountdown';
+import { REGISTER_URL } from '../lib/content';
 
 function Arrow() {
   return <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" aria-hidden="true"><path d="M0 4h17M13 1l4 3-4 3" /></svg>;
@@ -38,50 +36,8 @@ function IntroGate() {
   );
 }
 
-function Timeline() {
-  return (
-    <section className="ch timeline-section" id="tlv" aria-label="Schedule">
-      <video
-        id="timeline-bg"
-        className="timeline-bg"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/media/timeline-1.webp"
-        // src="/media/timeline-bg.mp4"
-        aria-hidden="true"
-      />
-      <div className="tlh">
-        <div className="k">Schedule</div>
-        <h2>The Fractured Timeline</h2>
-        <p>Seven operational milestones. One universe-changing finale.</p>
-      </div>
-      <div id="tmask">
-        <ol id="tcol">
-          {TIMELINE.map((event, index) => (
-            <li className={`row ${index % 2 ? 'R' : 'L'}`} key={event.t}>
-              <div className="strip" aria-hidden="true">
-                <i className="pp" style={{ clipPath: jag(index * 13 + 3) }} />
-                <i className="im" style={{ clipPath: jag(index * 13 + 9) }}><b className="ii" style={imageStyle(event.img)} /></i>
-              </div>
-              <div className="txt">
-                <i className="ic" aria-hidden="true" style={imageStyle(event.ic)} />
-                <h3>{event.t}</h3><span className="ln" aria-hidden="true" />
-                <div className="date">{event.d}</div><p>{event.x}</p>
-              </div>
-            </li>
-          ))}
-        </ol>
-      </div>
-      <DoomMaskHero />
-    </section>
-  );
-}
-
 function HeroStage() {
-  // const registerHref = REGISTER_URL || '';
+  const registerHref = REGISTER_URL || '';
 
   return (
     <section className="hero" id="hero" aria-labelledby="hero-title">
@@ -92,7 +48,6 @@ function HeroStage() {
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
         <p className="hero-eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          {/* <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'inline-block' }} /> */}
           <span>GDG on Campus, DYPIT Pune presents</span>
         </p>
         <h1 id="hero-title" aria-label="INCURSION 2027">
@@ -107,22 +62,15 @@ function HeroStage() {
         <div className="hero-actions">
           <a
             className="btn hero-primary reg"
-            // href={registerHref || '#registration'}
-            // target={registerHref ? '_blank' : undefined}
-            // rel={registerHref ? 'noopener noreferrer' : undefined}
-            // onClick={(e) => {
-            //   if (!registerHref) {
-            //     e.preventDefault();
-            //     const destination = 23.4;
-            //     window.location.hash = 'registration';
-            //     window.dispatchEvent(new CustomEvent('incursion:scene-jump', { detail: { position: destination } }));
-            //   }
-            // }}
-            // title={registerHref ? 'Register Now' : 'Registration opening soon on Unstop'}
+            href={registerHref || '/universe'}
+            data-universe-link="true"
+            title={registerHref ? 'Register Now' : 'Enter the Universe'}
           >
             Register now<Arrow />
           </a>
-          <a className="btn hero-secondary" href="#tlv" data-scene-target="13.9">View timeline</a>
+          <a className="btn hero-secondary" href="/universe#schedule" data-universe-link="true">
+            View timeline
+          </a>
         </div>
       </div>
     </section>
@@ -147,25 +95,12 @@ export default function IncursionExperience() {
           <strong className="stage-tease-subtitle">The final hour begins.</strong>
           <span className="stage-tease-meta">30 — 31 January 2027 · Pune, India</span>
         </div>
-        <div className="stage-end-tease" id="registration" aria-live="polite">
-          <div className="end-tease-bg" aria-hidden="true">
-            <img className="end-tease-img" src="/media/avengers-countdown-bg.webp" alt="Avengers Doomsday" decoding="async" />
-            <div className="end-tease-beams" />
-            <div className="end-tease-vignette" />
-          </div>
-          <div className="end-tease-hud">
-            <span className="end-tease-eyebrow">Stay tuned</span>
-            <strong className="end-tease-title">Something big is here</strong>
-            <DoomsdayCountdown />
-          </div>
-        </div>
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />
-        <a className="hero-scroll" id="hero-scroll-cue" href="#tlv" data-scene-target="13.9" aria-label="Scroll to illuminate">
-          <span>Scroll to enter the incursion ↓</span>
+        <a className="hero-scroll" id="hero-scroll-cue" href="/universe" data-universe-link="true" aria-label="Scroll to enter the incursion">
+          <span>Scroll to enter the universe ↓</span>
           <i aria-hidden="true" />
         </a>
-        <Timeline />
         <header id="hdr">
           <div className="hdr-brand">
             <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG Logo" />
@@ -188,6 +123,15 @@ export default function IncursionExperience() {
         </header>
         <div className="grain" aria-hidden="true" />
         <IntroGate />
+        {/* Cinematic Universe Portal Transition */}
+        <div id="universe-portal-transition" className="universe-portal-overlay" aria-hidden="true">
+          <div className="portal-glow" />
+          <div className="portal-content">
+            <span className="portal-eyebrow">Dimensional Incursion</span>
+            <h2 className="portal-title">Entering The Universe</h2>
+            <div className="portal-spinner" />
+          </div>
+        </div>
       </div></div>
       <button id="top" type="button" aria-label="Go to top">
         <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" /></svg>

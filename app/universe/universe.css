@@ -1965,57 +1965,37 @@ footer.universe-footer {
   }
 }
 
-/* Bespoke Doom Card: Latverian Obsidian Glass + Green & Gold Armor */
+/* Bespoke Doom Card: Latverian Obsidian Glass */
 .doom-card {
   position: relative;
   border-radius: 16px;
-  background: linear-gradient(155deg, rgba(8, 20, 14, 0.94) 0%, rgba(4, 10, 7, 0.98) 55%, rgba(14, 12, 5, 0.94) 100%);
-  border: 1.5px solid transparent;
-  background-clip: padding-box;
-  padding: 28px 24px 22px;
+  background: rgba(8, 16, 12, 0.94);
+  border: 1px solid rgba(63, 224, 142, 0.28);
+  padding: 28px 24px 26px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   overflow: hidden;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  min-height: 380px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
 }
 
-/* Dual Green + Gold Gradient Border */
-.doom-card::before {
-  content: '';
-  position: absolute;
-  inset: -1.5px;
-  border-radius: 17px;
-  background: linear-gradient(135deg, rgba(63, 224, 142, 0.55) 0%, rgba(255, 215, 0, 0.45) 50%, rgba(16, 185, 129, 0.55) 100%);
-  z-index: -1;
-  pointer-events: none;
-  transition: all 0.35s ease;
-}
-
-.doom-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.85), 0 0 35px rgba(63, 224, 142, 0.28);
-}
-
-.doom-card:hover::before {
-  background: linear-gradient(135deg, #00ff88 0%, #ffd700 50%, #10b981 100%);
-  box-shadow: 0 0 25px rgba(63, 224, 142, 0.5);
-}
-
-/* Card 06 Special Gold Vault */
 .doom-card-gold {
-  background: linear-gradient(155deg, rgba(22, 18, 8, 0.95) 0%, rgba(12, 10, 4, 0.98) 55%, rgba(26, 20, 8, 0.95) 100%);
+  background: rgba(16, 13, 6, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.35);
 }
 
-.doom-card-gold::before {
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.65) 0%, rgba(245, 158, 11, 0.5) 50%, rgba(255, 215, 0, 0.7) 100%);
+/* Subtle Hover Effects ONLY — NEVER wash or flood card background! */
+.doom-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(63, 224, 142, 0.75);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.85), 0 0 24px rgba(63, 224, 142, 0.16);
 }
 
-.doom-card-gold:hover::before {
-  background: linear-gradient(135deg, #ffd700 0%, #ffffff 50%, #f59e0b 100%);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+.doom-card-gold:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 215, 0, 0.8);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.85), 0 0 24px rgba(255, 215, 0, 0.22);
 }
 
 /* Tactical Corner Accents */
@@ -2025,6 +2005,7 @@ footer.universe-footer {
   height: 10px;
   pointer-events: none;
   z-index: 3;
+  transition: all 0.3s ease;
 }
 
 .tc-tl {
@@ -2059,11 +2040,11 @@ footer.universe-footer {
   box-shadow: 0 0 8px currentColor;
 }
 
-/* Card Top: Sector ID + Gold Bounty */
+/* Card Top: Sector ID */
 .doom-card-top {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 20px;
   position: relative;
   z-index: 2;
@@ -2085,6 +2066,12 @@ footer.universe-footer {
   border: 1px solid rgba(63, 224, 142, 0.3);
 }
 
+.doom-card-gold .doom-sector-badge {
+  color: #ffd700;
+  background: rgba(36, 28, 8, 0.6);
+  border-color: rgba(255, 215, 0, 0.35);
+}
+
 .doom-dot {
   width: 6px;
   height: 6px;
@@ -2094,20 +2081,9 @@ footer.universe-footer {
   animation: beaconBlink 1.4s infinite ease-in-out;
 }
 
-.doom-bounty-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-family: var(--mono, monospace);
-  font-size: 11.5px;
-  font-weight: 800;
-  color: #ffd700;
-  background: rgba(38, 30, 8, 0.8);
-  border: 1px solid rgba(255, 215, 0, 0.45);
-  padding: 4px 10px;
-  border-radius: 6px;
-  letter-spacing: 0.05em;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+.doom-card-gold .doom-dot {
+  background: #ffd700;
+  box-shadow: 0 0 6px #ffd700;
 }
 
 /* Card Identity */
@@ -2131,7 +2107,7 @@ footer.universe-footer {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .doom-card:hover .doom-card-icon {
@@ -2144,6 +2120,11 @@ footer.universe-footer {
   background: radial-gradient(circle at 35% 30%, #3a2e05 0%, #0a0802 85%);
   border-color: rgba(255, 215, 0, 0.6);
   box-shadow: 0 0 16px rgba(255, 215, 0, 0.25);
+}
+
+.doom-card-gold:hover .doom-card-icon {
+  border-color: #ffd700;
+  box-shadow: 0 0 22px rgba(255, 215, 0, 0.45);
 }
 
 .doom-card-title {
@@ -2182,13 +2163,13 @@ footer.universe-footer {
 
 .doom-card-gold .doom-card-brief {
   border-left-color: rgba(255, 215, 0, 0.5);
+  color: #cbd5e1;
 }
 
 .doom-vectors-wrap {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-bottom: 22px;
   position: relative;
   z-index: 2;
 }
@@ -2221,474 +2202,373 @@ footer.universe-footer {
   background: #3fe08e;
 }
 
+.doom-card-gold .doom-vector-pill {
+  background: rgba(28, 22, 6, 0.7);
+  border-color: rgba(255, 215, 0, 0.25);
+}
+
+.doom-card-gold .doom-vector-pill:hover {
+  background: rgba(45, 35, 10, 0.95);
+  border-color: #ffd700;
+  color: #fff4b8;
+}
+
 .doom-card-gold .pill-dot {
   background: #ffd700;
 }
 
-.doom-card-footer {
-  border-top: 1px solid rgba(63, 224, 142, 0.2);
-  padding-top: 16px;
-  margin-top: auto;
-  position: relative;
-  z-index: 2;
-}
-
-.doom-register-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px 16px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, rgba(13, 40, 26, 0.9) 0%, rgba(8, 22, 14, 0.95) 100%);
-  border: 1.5px solid rgba(63, 224, 142, 0.45);
-  color: #3fe08e;
-  font-family: var(--mono, monospace);
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  text-decoration: none;
-  transition: all 0.25s ease;
-  cursor: pointer;
-}
-
-.doom-register-cta:hover {
-  background: #3fe08e;
-  color: #030805;
-  border-color: #3fe08e;
-  box-shadow: 0 0 20px rgba(63, 224, 142, 0.6);
-}
-
-.doom-card-gold .doom-register-cta {
-  background: linear-gradient(135deg, rgba(42, 34, 10, 0.9) 0%, rgba(20, 16, 5, 0.95) 100%);
-  border-color: rgba(255, 215, 0, 0.5);
-  color: #ffd700;
-}
-
-.doom-card-gold .doom-register-cta:hover {
-  background: #ffd700;
-  color: #050401;
-  border-color: #ffd700;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
-}
-
 
 /* ==========================================================================
-   Horizontal Candy-Crush Curved Timeline Map
+   Professional Serpentine Winding Timeline (Curved Mission Map)
    ========================================================================== */
 
-.candy-map-wrapper {
+.serpentine-timeline-wrapper {
   position: relative;
   width: 100%;
-  max-width: 1240px;
-  margin: 32px auto 0;
+  max-width: 1080px;
+  margin: 40px auto 0;
+  padding: 20px 16px 60px;
 }
 
-.candy-board-container {
-  position: relative;
-  width: 100%;
-  height: 480px;
-  background: radial-gradient(circle at 50% 50%, rgba(6, 24, 16, 0.5) 0%, rgba(3, 8, 5, 0.95) 75%);
-  border: 1.5px solid rgba(63, 224, 142, 0.25);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), inset 0 0 40px rgba(6, 24, 16, 0.6);
-}
-
-.candy-board-svg {
+.serpentine-svg-container {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
   z-index: 1;
 }
 
-.candy-laser-flow {
-  stroke-dasharray: 100 280;
+.serpentine-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.serpentine-laser-pulse {
+  stroke-dasharray: 100 360;
   stroke-dashoffset: 0;
-  animation: candyLaserAnim 6s linear infinite;
+  animation: serpentine-laser-flow 7s linear infinite;
 }
 
-@keyframes candyLaserAnim {
-  0% { stroke-dashoffset: 1400; }
-  100% { stroke-dashoffset: -1400; }
+@keyframes serpentine-laser-flow {
+  0% {
+    stroke-dashoffset: 1800;
+  }
+  100% {
+    stroke-dashoffset: -1800;
+  }
 }
 
-.candy-buttons-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: auto;
-}
-
-/* Individual Level Point */
-.candy-level-point {
-  position: absolute;
-  transform: translate(-50%, -50%);
+.serpentine-milestones {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  z-index: 6;
+  gap: 52px;
 }
 
-.candy-beacon-aura {
-  position: absolute;
-  width: 86px;
-  height: 86px;
-  border-radius: 50%;
-  background: rgba(0, 255, 136, 0.2);
-  border: 1.5px solid rgba(0, 255, 136, 0.6);
-  animation: beaconRadar 2s infinite ease-out;
-  pointer-events: none;
-  z-index: 1;
-}
-
-@keyframes beaconRadar {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(1.6); opacity: 0; }
-}
-
-/* 3D Candy Crush Circular Button */
-.candy-3d-button {
+.serpentine-milestone-row {
   position: relative;
-  width: 64px;
-  height: 64px;
-  border-radius: 50%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  outline: none;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.candy-3d-button:hover,
-.candy-level-point.is-selected .candy-3d-button {
-  transform: translateY(-4px) scale(1.08);
+.row-node-left {
+  padding-left: calc(22% - 36px);
+  justify-content: flex-start;
+  gap: 32px;
 }
 
-.candy-btn-bevel {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: #022c1d;
-  box-shadow: 0 7px 0 #011a11, 0 10px 20px rgba(0, 0, 0, 0.85);
-  transition: all 0.2s ease;
+.row-node-right {
+  padding-right: calc(22% - 36px);
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  gap: 32px;
 }
 
-.btn-gold .candy-btn-bevel {
-  background: #4d3805;
-  box-shadow: 0 7px 0 #281d02, 0 10px 22px rgba(255, 215, 0, 0.4);
+.row-grand-finale {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 24px;
+  gap: 28px;
+  text-align: center;
+  width: 100%;
 }
 
-.candy-btn-face {
-  position: absolute;
-  inset: 4px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #3fe08e 0%, #064e3b 85%);
-  border: 2px solid #a7f3d0;
+/* Hover Dimming & Focusing Dynamics */
+.serpentine-milestone-row.milestone-focused {
+  transform: scale(1.02);
+  z-index: 10;
+}
+
+.serpentine-milestone-row.milestone-focused .serpentine-card {
+  border-color: #3fe08e !important;
+  box-shadow: 0 0 32px rgba(63, 224, 142, 0.35), 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.serpentine-milestone-row.milestone-focused .serpentine-waypoint .waypoint-core {
+  transform: scale(1.12);
+  box-shadow: 0 0 35px rgba(63, 224, 142, 0.8), inset 0 0 16px rgba(63, 224, 142, 0.5);
+}
+
+.serpentine-milestone-row.milestone-dimmed {
+  opacity: 0.38;
+  filter: grayscale(40%) blur(0.4px);
+  transition: all 0.35s ease;
+}
+
+/* Waypoint Emblems */
+.serpentine-waypoint {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.5), 0 0 12px rgba(63, 224, 142, 0.4);
-}
-
-.btn-gold .candy-btn-face {
-  background: radial-gradient(circle at 35% 30%, #ffd700 0%, #78590c 85%);
-  border-color: #fef08a;
-  box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 0 15px rgba(255, 215, 0, 0.5);
-}
-
-.candy-level-num {
-  font-family: var(--mono, monospace);
-  font-size: 19px;
-  font-weight: 900;
-  color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-}
-
-/* 3 Stars Row (Classic Candy Crush Aesthetic) */
-.candy-stars-row {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  margin-top: 10px;
-}
-
-.candy-star {
-  width: 13px;
-  height: 13px;
-  color: rgba(255, 215, 0, 0.4);
-  fill: rgba(255, 215, 0, 0.2);
-  transition: all 0.3s ease;
-}
-
-.candy-star.star-lit {
-  color: #ffd700;
-  fill: #ffd700;
-  filter: drop-shadow(0 0 4px #ffd700);
-}
-
-.star-center {
-  transform: translateY(2px);
-  width: 15px;
-  height: 15px;
-}
-
-/* Node Label */
-.candy-node-label {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-.candy-node-label.label-top {
-  bottom: 82px;
-}
-
-.candy-node-label.label-bottom {
-  top: 86px;
-}
-
-.candy-node-label.label-left {
-  right: 76px;
-  top: 50%;
-  transform: translateY(-50%);
-  align-items: flex-end;
-}
-
-.candy-node-label.label-right {
-  left: 76px;
-  top: 50%;
-  transform: translateY(-50%);
-  align-items: flex-start;
-}
-
-.node-label-title {
-  font-family: var(--serif, 'Playfair Display', serif);
-  font-style: italic;
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
-}
-
-.node-label-date {
-  font-family: var(--mono, monospace);
-  font-size: 10.5px;
-  font-weight: 700;
-  color: #ffd700;
-}
-
-/* Inspection Card & Navigation Below Map */
-.candy-inspection-wrap {
-  margin-top: 24px;
-}
-
-.candy-nav-controls {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
-
-.candy-nav-arrow {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--mono, monospace);
-  font-size: 11.5px;
-  font-weight: 700;
-  color: #3fe08e;
-  background: rgba(8, 24, 16, 0.8);
-  border: 1px solid rgba(63, 224, 142, 0.4);
-  padding: 7px 14px;
-  border-radius: 8px;
   cursor: pointer;
-  transition: all 0.2s ease;
 }
 
-.candy-nav-arrow:hover {
-  background: #3fe08e;
-  color: #030805;
-  box-shadow: 0 0 15px rgba(63, 224, 142, 0.5);
-}
-
-.candy-dots {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.candy-dot {
-  width: 10px;
-  height: 10px;
+.waypoint-core {
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  padding: 0;
-}
-
-.candy-dot.active {
-  background: #3fe08e;
-  box-shadow: 0 0 10px #3fe08e;
-  transform: scale(1.3);
-}
-
-/* Active Milestone Card */
-.candy-milestone-card {
-  position: relative;
-  background: linear-gradient(155deg, rgba(8, 20, 14, 0.95) 0%, rgba(4, 10, 7, 0.98) 100%);
-  border: 1.5px solid rgba(63, 224, 142, 0.4);
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(63, 224, 142, 0.2);
-  overflow: hidden;
-}
-
-.candy-milestone-card.card-gold-finale {
-  border-color: #ffd700;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 215, 0, 0.3);
-}
-
-.candy-card-grid {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 24px;
+  background: radial-gradient(circle at 35% 30%, #0d281a 0%, #030805 85%);
+  border: 2.5px solid #3fe08e;
+  box-shadow: 0 0 20px rgba(63, 224, 142, 0.4), inset 0 0 10px rgba(63, 224, 142, 0.25);
+  display: flex;
   align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@media (max-width: 768px) {
-  .candy-card-grid {
-    grid-template-columns: 1fr;
+.waypoint-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.waypoint-ring.ring-1 {
+  inset: -7px;
+  border: 1.5px dashed rgba(63, 224, 142, 0.35);
+  animation: waypointRingSpin 20s linear infinite;
+}
+
+.waypoint-ring.ring-2 {
+  inset: -14px;
+  border: 1px solid rgba(63, 224, 142, 0.15);
+}
+
+@keyframes waypointRingSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 
-.candy-card-thumb {
+.waypoint-num {
+  font-family: var(--mono, monospace);
+  font-size: 19px;
+  font-weight: 800;
+  color: #bfffd6;
+  letter-spacing: -0.02em;
+}
+
+.waypoint-icon {
+  width: 28px;
+  height: 28px;
+}
+
+/* Active Live Waypoint (Stage 1) */
+.waypoint-live .waypoint-core {
+  border-color: #00ff88;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.65), inset 0 0 14px rgba(0, 255, 136, 0.4);
+  animation: waypointLivePulse 2.4s infinite ease-in-out;
+}
+
+@keyframes waypointLivePulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5), inset 0 0 10px rgba(0, 255, 136, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 38px rgba(0, 255, 136, 0.85), inset 0 0 18px rgba(0, 255, 136, 0.5);
+    transform: scale(1.05);
+  }
+}
+
+/* Grand Finale Waypoint (Stage 7) */
+.waypoint-finale .waypoint-core {
+  width: 84px;
+  height: 84px;
+  border-color: #ffd700;
+  background: radial-gradient(circle at 35% 30%, #3a2e05 0%, #0a0802 85%);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.6), inset 0 0 16px rgba(255, 215, 0, 0.4);
+}
+
+.waypoint-finale .waypoint-ring.ring-1 {
+  border-color: rgba(255, 215, 0, 0.4);
+}
+
+.waypoint-finale .waypoint-ring.ring-2 {
+  border-color: rgba(255, 215, 0, 0.2);
+}
+
+/* Waypoint Level Badge */
+.waypoint-level-badge {
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--mono, monospace);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  background: #050a07;
+  border: 1px solid rgba(63, 224, 142, 0.4);
+  color: #3fe08e;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  z-index: 3;
+}
+
+.waypoint-level-badge .badge-live {
+  color: #00ff88;
+  border-color: rgba(0, 255, 136, 0.7);
+}
+
+.waypoint-level-badge .badge-finale {
+  color: #ffd700;
+  border-color: rgba(255, 215, 0, 0.7);
+}
+
+/* Serpentine Dossier Cards */
+.serpentine-card {
   position: relative;
+  flex: 1;
+  max-width: 540px;
+  padding: 18px 22px;
+  border-radius: 14px;
+  background: rgba(10, 18, 14, 0.88);
+  border: 1.5px solid rgba(63, 224, 142, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.75);
+}
+
+.card-grand-finale {
+  max-width: 680px;
   width: 100%;
-  height: 140px;
-  border-radius: 10px;
+  border-color: rgba(255, 215, 0, 0.45);
+  background: radial-gradient(circle at 50% 0%, rgba(255, 215, 0, 0.08) 0%, rgba(10, 18, 14, 0.95) 75%);
+  box-shadow: 0 0 35px rgba(255, 215, 0, 0.18), 0 14px 34px rgba(0, 0, 0, 0.85);
+}
+
+.serpentine-card-layout {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.serpentine-thumb {
+  position: relative;
+  border-radius: 8px;
   background-size: cover;
   background-position: center;
-  border: 1px solid rgba(63, 224, 142, 0.3);
+  border: 1px solid rgba(63, 224, 142, 0.2);
+  min-height: 105px;
   overflow: hidden;
 }
 
-.candy-thumb-overlay {
+.serpentine-thumb-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.75) 100%);
 }
 
-.candy-thumb-badge {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  font-family: var(--mono, monospace);
-  font-size: 10px;
-  font-weight: 800;
-  color: #ffd700;
-  background: rgba(0, 0, 0, 0.75);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  padding: 2px 8px;
-  border-radius: 4px;
-}
-
-.candy-card-body {
+.serpentine-card-info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
 }
 
-.candy-card-phase {
+.serpentine-card-meta {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-family: var(--mono, monospace);
-  font-size: 11px;
-  color: #3fe08e;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+  gap: 8px;
   margin-bottom: 6px;
 }
 
-.candy-tag-pill {
-  color: #ffd700;
-  background: rgba(45, 35, 10, 0.7);
-  border: 1px solid rgba(255, 215, 0, 0.4);
-  padding: 1px 8px;
-  border-radius: 4px;
-  font-size: 10px;
+/* Agenda list for Finale tab */
+.universe-schedule-agenda {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 32px;
 }
 
-.candy-card-title {
+.universe-agenda-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 20px;
+  align-items: center;
+}
+
+.agenda-time-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.agenda-time {
+  font-family: var(--mono, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  color: #ffd700;
+}
+
+.agenda-time-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3fe08e;
+  box-shadow: 0 0 6px #3fe08e;
+}
+
+.agenda-card {
+  padding: 16px 20px;
+  background: rgba(10, 18, 14, 0.75);
+  border: 1px solid rgba(63, 224, 142, 0.2);
+  border-radius: 10px;
+}
+
+.agenda-title {
   font-family: var(--serif, 'Playfair Display', serif);
   font-style: italic;
-  font-size: 26px;
-  font-weight: 800;
+  font-size: 18px;
   color: #ffffff;
-  line-height: 1.1;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
 }
 
-.candy-card-date {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono, monospace);
-  font-size: 12.5px;
-  font-weight: 700;
-  color: #ffd700;
-  margin-bottom: 10px;
-}
-
-.candy-card-desc {
-  font-size: 13.5px;
-  color: #cbd5e1;
-  line-height: 1.55;
-  margin: 0 0 16px;
-}
-
-.candy-finale-callout {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--mono, monospace);
-  font-size: 12px;
-  font-weight: 700;
-  color: #ffd700;
-}
-
-.candy-step-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono, monospace);
-  font-size: 11px;
-  color: #64748b;
-}
-
-@media (max-width: 900px) {
-  .candy-board-container {
-    height: 380px;
-  }
-  .candy-3d-button {
-    width: 52px;
-    height: 52px;
-  }
-  .candy-level-num {
-    font-size: 16px;
-  }
-  .node-label-title {
-    font-size: 11px;
-  }
+.agenda-desc {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.45;
 }
 
 
@@ -2795,30 +2675,75 @@ footer.universe-footer {
   text-transform: uppercase;
 }
 
-/* Responsive Candy Crush Timeline */
+/* Responsive Serpentine Timeline */
 @media (max-width: 768px) {
-  .candy-board-container {
-    height: 340px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  .serpentine-timeline-wrapper {
+    padding: 20px 0 40px;
   }
-  .candy-board-svg {
-    min-width: 680px;
+  .serpentine-milestones {
+    gap: 32px;
   }
-  .candy-buttons-layer {
-    min-width: 680px;
+  .serpentine-milestones::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    bottom: 40px;
+    left: 28px;
+    width: 2px;
+    background: linear-gradient(180deg, #3fe08e 0%, rgba(63, 224, 142, 0.3) 70%, #ffd700 100%);
+    z-index: 1;
   }
-  .candy-3d-button {
-    width: 46px;
-    height: 46px;
+  .serpentine-milestone-row,
+  .row-node-left,
+  .row-node-right {
+    flex-direction: row !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: flex-start;
   }
-  .candy-level-num {
-    font-size: 14px;
+  .serpentine-waypoint {
+    width: 56px;
+    height: 56px;
+    margin-left: 0;
   }
-  .node-label-title {
-    font-size: 10px;
+  .waypoint-core {
+    width: 56px;
+    height: 56px;
   }
-  .node-label-date {
-    font-size: 9px;
+  .waypoint-num {
+    font-size: 16px;
+  }
+  .waypoint-icon {
+    width: 22px;
+    height: 22px;
+  }
+  .waypoint-level-badge {
+    display: none;
+  }
+  .serpentine-card {
+    max-width: 100%;
+    width: calc(100% - 72px);
+    padding: 16px;
+  }
+  .serpentine-card-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .serpentine-thumb {
+    height: 100px;
+  }
+  .row-grand-finale {
+    flex-direction: column !important;
+    align-items: center;
+    text-align: center;
+  }
+  .row-grand-finale .serpentine-waypoint {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .row-grand-finale .serpentine-card {
+    width: 100%;
   }
 }

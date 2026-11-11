@@ -7,20 +7,14 @@ import {
   Landmark,
   Network,
   Award,
-  ChevronRight,
-  ArrowUpRight,
   Sparkles,
-  Zap,
 } from 'lucide-react';
-import { REGISTER_URL } from '../../lib/content';
 
 export interface TrackItem {
   id: string;
   number: string;
   name: string;
   tag: string;
-  bounty: string;
-  isSpecial?: boolean;
   brief: string;
   focusVectors: string[];
   icon: React.ReactNode;
@@ -33,7 +27,6 @@ const TRACKS: TrackItem[] = [
     number: '01',
     name: 'ROGUE PROTOCOL',
     tag: 'AI & AGENTIC SYSTEMS',
-    bounty: '₹5,000 BOUNTY',
     accentColor: 'emerald',
     brief:
       'Deploy autonomous synthetic agents and multi-modal cognitive pipelines engineered for high-volatility decision making.',
@@ -45,7 +38,6 @@ const TRACKS: TrackItem[] = [
     number: '02',
     name: 'FIREWALL ZERO',
     tag: 'CYBERSECURITY & FINTECH',
-    bounty: '₹5,000 BOUNTY',
     accentColor: 'emerald',
     brief:
       'Fortify zero-trust financial rails, neutralize real-time threat vectors, and secure digital identity at national scale.',
@@ -57,7 +49,6 @@ const TRACKS: TrackItem[] = [
     number: '03',
     name: 'FINAL HOUR',
     tag: 'OPEN INNOVATION',
-    bounty: '₹5,000 BOUNTY',
     accentColor: 'emerald',
     brief:
       'Engineer breakthrough survival and resilience systems across climate, emergency response, medtech, and orbital tech.',
@@ -69,7 +60,6 @@ const TRACKS: TrackItem[] = [
     number: '04',
     name: 'GLASS WALL',
     tag: 'GOVTECH & GOVERNANCE',
-    bounty: '₹5,000 BOUNTY',
     accentColor: 'emerald',
     brief:
       'Build tamper-proof civic infrastructure for radical public transparency, automated grievance redressal, and institutional trust.',
@@ -81,7 +71,6 @@ const TRACKS: TrackItem[] = [
     number: '05',
     name: 'SURVIVAL CITY',
     tag: 'SMART CITIES & CIVIC TECH',
-    bounty: '₹5,000 BOUNTY',
     accentColor: 'emerald',
     brief:
       'Optimize urban lifelines—intelligent traffic grids, water telemetry, distributed sensor networks, and emergency civic response.',
@@ -93,8 +82,6 @@ const TRACKS: TrackItem[] = [
     number: '06',
     name: 'OMEGA PROTOCOL',
     tag: 'ROOKIE & SPECIAL VAULT',
-    bounty: '₹5,000 ROOKIE BOUNTY',
-    isSpecial: true,
     accentColor: 'gold',
     brief:
       'Exclusive recognition tier for first-time national hackathon squads competing across all problem domains.',
@@ -117,9 +104,7 @@ export default function Tracks() {
           <h2 className="universe-section-title">The 5 Incursion Chambers</h2>
 
           <p className="universe-section-desc">
-            Five operational battlegrounds plus the Omega Rookie Vault. Each chamber features an independent{' '}
-            <span className="text-gold-highlight">₹5,000 Track Bounty</span> alongside eligibility for the{' '}
-            <span className="text-gold-highlight">₹1,00,000 Grand Championship</span>.
+            Five operational battlegrounds plus the Omega Rookie Vault. Engineered for high-impact innovation across agentic intelligence, zero-trust security, urban tech, and open frontiers.
           </p>
         </div>
 
@@ -139,19 +124,11 @@ export default function Tracks() {
                 <span className="doom-corner tc-bl" />
                 <span className="doom-corner tc-br" />
 
-                {/* Ambient Aura Background */}
-                <div className="doom-card-glow" />
-
-                {/* Card Top: Sector ID + Metallic Bounty */}
+                {/* Card Top: Sector ID */}
                 <div className="doom-card-top">
                   <div className="doom-sector-badge">
                     <span className="doom-dot" />
                     <span>{track.id}</span>
-                  </div>
-
-                  <div className="doom-bounty-badge">
-                    <Zap className="w-3.5 h-3.5 text-amber-300" />
-                    <span>{track.bounty}</span>
                   </div>
                 </div>
 
@@ -175,19 +152,6 @@ export default function Tracks() {
                       <span>{v}</span>
                     </span>
                   ))}
-                </div>
-
-                {/* Card Action Link */}
-                <div className="doom-card-footer">
-                  <a
-                    href={REGISTER_URL || '#schedule'}
-                    target={REGISTER_URL ? '_blank' : undefined}
-                    rel={REGISTER_URL ? 'noopener noreferrer' : undefined}
-                    className="doom-register-cta"
-                  >
-                    <span>Register Squad in {track.name}</span>
-                    <ArrowUpRight className="w-4 h-4 ml-1 inline transition-transform group-hover:translate-x-1" />
-                  </a>
                 </div>
               </div>
             );

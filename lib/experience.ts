@@ -65,7 +65,7 @@ export function createExperience(root) {
     };
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const isTouch = matchMedia("(pointer: coarse)").matches;
-  const STORY_END = 25.0;
+  const STORY_END = 14.5;
   let lastTick = 0,
     scenePosition = 0,
     introStarted = false,
@@ -91,19 +91,12 @@ export function createExperience(root) {
     if (Number.isFinite(position)) goScene(position, true);
   });
   listen(window, "hashchange", () => {
-    if (window.location.hash === "#registration") goScene(23.4, true);
+    if (window.location.hash === "#registration" || window.location.hash === "#tlv") {
+      triggerUniverseRedirect("/universe#schedule");
+    }
   });
-  const tcol = $("#tcol");
-  let colH = 0;
-  const rows = $$(".row");
-  let rowCY = [];
   function lay() {
     updateScrollRange();
-    colH = tcol.offsetHeight;
-    rowCY = rows.map((r) => {
-      const st = r.querySelector(".strip");
-      return r.offsetTop + st.offsetTop + st.offsetHeight / 2;
-    });
     dirty = true;
   }
   listen(window, "resize", lay);
@@ -539,36 +532,52 @@ export function createExperience(root) {
   ["pointerdown", "touchstart", "click"].forEach((ev) => {
     listen(window, ev, unlockOnPageTouch, { passive: true, once: true });
   });
-  /* ---- registration / schedule buttons ---- */
-  $$("a[href*='/universe']").forEach((link) => {
-    listen(link, "click", () => {
-      if (typeof window !== "undefined") {
-        sessionStorage.setItem("incursion_audio_enabled", AC.on ? "true" : "false");
-        sessionStorage.setItem("incursion_audio_time", String(AC.trk?.currentTime || 0));
-      }
+  /* ---- universe smooth redirect controller ---- */
+  let redirected = false;
+  function triggerUniverseRedirect(targetUrl = "/universe") {
+    if (redirected) return;
+    redirected = true;
+    if (typeof window !== "undefined") {
+      sessionStorage.setItem("incursion_audio_enabled", AC.on ? "true" : "false");
+      sessionStorage.setItem("incursion_audio_time", String(AC.trk?.currentTime || 0));
+    }
+    const overlay = $("#universe-portal-transition") || document.getElementById("universe-portal-transition");
+    if (overlay) {
+      overlay.classList.add("is-active");
+    }
+    setTimeout(() => {
+      window.location.href = targetUrl;
+    }, 600);
+  }
+
+  $$("[data-universe-link], a[href*='/universe']").forEach((link) => {
+    listen(link, "click", (e) => {
+      e.preventDefault();
+      const target = link.getAttribute("href") || "/universe";
+      triggerUniverseRedirect(target);
     });
   });
+
   $$(".reg").forEach((a) => {
-    if (a.getAttribute("href")?.startsWith("/universe")) return;
     if (REGISTER_URL) {
       a.href = REGISTER_URL;
       a.target = "_blank";
       a.rel = "noopener";
-      if (a.closest("#c5")) a.textContent = "Register";
-    } else
+    } else {
       listen(a, "click", (e) => {
         e.preventDefault();
-        history.replaceState(null, "", "#registration");
-        goScene(23.4, true);
+        triggerUniverseRedirect("/universe#schedule");
       });
+    }
   });
+
   $$('[data-scene-target]').forEach((link) => {
     listen(link, "click", (event) => {
       event.preventDefault();
-      const position = Number(link.dataset.sceneTarget);
-      goScene(Number.isFinite(position) ? position : 13.9, true);
+      triggerUniverseRedirect("/universe#schedule");
     });
   });
+
   let H = innerHeight,
     dirty = true,
     lv = -1;
@@ -579,6 +588,7 @@ export function createExperience(root) {
   }
   listen(window, "resize", resize);
   resize();
+
   /* ---- scene tick ---- */
   const THR = $("#throne"),
     tw2 = $("#tw2"),
@@ -586,44 +596,17 @@ export function createExperience(root) {
     vg = $("#vg"),
     scrim = $("#scrim"),
     stageTease = $("#stage-tease"),
-    stageEndTease = $("#registration"),
     tl = $$("[data-w]").map((e) => ({
       e,
       w: e.dataset.w.split(",").map(Number),
     }));
   const hdr = $("#hdr"),
-    heroStage = $("#hero");
-  let heroSceneActive = false;
-  let heroTimers = [];
-  function setHeroSceneActive(active) {
-    if (active === heroSceneActive) return;
-    heroSceneActive = active;
-    if (active) {
-      heroTimers = [
-        later(() => heroSceneActive && AC.glitch(), 700),
-        later(() => heroSceneActive && AC.impact(0.8), 1420),
-      ];
-    } else {
-      heroTimers.forEach(cancelLater);
-      heroTimers = [];
-    }
-    window.dispatchEvent(
-      new CustomEvent("incursion:hero-active", { detail: { active } }),
-    );
-  }
-  const CH = [
-    [$("#tlv"), 13.8, 22.6],
-  ].map((a) => ({ el: a[0], s: a[1], e: a[2], seen: false }));
-  const scrollCue = $("#hero-scroll-cue");
-  const updateScrollCue = () => {
-    scrollCue?.classList.toggle("is-hidden", scrollY > 50);
-  };
-  listen(window, "scroll", updateScrollCue, { passive: true });
-  updateScrollCue();
+    heroStage = $("#hero"),
+    scrollCue = $("#hero-scroll-cue");
+
   let reveal = 0,
-    redirected = false,
-    firstScrollReveal = false,
-    timelineVisited = false;
+    firstScrollReveal = false;
+
   function tick() {
     scheduleFrame(tick);
     const now = performance.now(),
@@ -667,19 +650,10 @@ export function createExperience(root) {
         stageTease.style.opacity = "0";
         stageTease.style.visibility = "hidden";
       }
-      if (stageEndTease) {
-        stageEndTease.style.opacity = "0";
-        stageEndTease.style.visibility = "hidden";
-      }
     } else if (stageTease) {
       const teaseOpacity = 1 - ss(0.8, 3.2, v);
       stageTease.style.opacity = teaseOpacity;
       stageTease.style.visibility = teaseOpacity > 0.002 ? "visible" : "hidden";
-    }
-    if (ready && stageEndTease) {
-      const endTeaseOpacity = ss(22.7, 24.2, v);
-      stageEndTease.style.opacity = endTeaseOpacity;
-      stageEndTease.style.visibility = endTeaseOpacity > 0.002 ? "visible" : "hidden";
     }
     if (ready) vis(THR, tO);
     if (co > 0.5 && !reveal) {
@@ -716,64 +690,34 @@ export function createExperience(root) {
       o.e.style.opacity = t;
       o.e.style.visibility = t > 0.002 ? "visible" : "hidden";
     });
-    /* The 3D Doctor Doom mask is only active while the timeline is visible. */
-    setHeroSceneActive(ready && v >= 13.8 && v <= 22.6);
-    if (v >= 13.8 && v < 22.7) timelineVisited = true;
 
-    /* The opening hero text and CTA appear smoothly, then yield gently to the timeline */
-    const heroOpacity = ss(9.8, 11.6, v) * (1 - ss(13.0, 14.6, v));
+    /* The opening hero text and CTA appear smoothly and remain prominently visible */
+    const heroOpacity = ss(9.8, 11.4, v);
     if (heroStage) {
       vis(heroStage, heroOpacity);
       heroStage.style.transform = "none";
     }
-    /* timeline (scroll-linked reveals over a star field) + closing scene */
-    CH.forEach((k, i) => {
-      const o =
-        ss(k.s - 0.6, k.s + 0.6, v) *
-        (i < 1 ? 1 - ss(k.e - 0.6, k.e + 0.6, v) : 1),
-        u = clamp((v - k.s) / (k.e - k.s));
-      vis(k.el, o);
-      if (o > 0.5 && !k.seen) {
-        k.seen = true;
-        AC.swell();
-      } else if (v < k.s - 0.6) k.seen = false;
-      if (i === 0 && o > 0) {
-        if (!colH) lay();
-        const ty = lerp(innerHeight * 0.66, -(colH - innerHeight * 0.55), u);
-        tcol.style.transform = `translate3d(0,${ty.toFixed(2)}px,0)`;
-        const tlh = $("#tlv .tlh");
-        if (tlh) {
-          const tlhOpacity = clamp(1 - u * 4.5);
-          tlh.style.opacity = tlhOpacity.toFixed(2);
-          tlh.style.transform = `translate3d(0,${(-u * 60).toFixed(1)}px,0)`;
-        }
-        rows.forEach((r, j) => {
-          const y = rowCY[j] + ty,
-            e = RM ? 1 : ss(H * 0.98, H * 0.58, y),
-            f = RM ? 0.5 : 1 - clamp(Math.abs(y - H * 0.5) / (H * 0.5)),
-            st = (a, m) => clamp((e - a) * m).toFixed(3);
-          r.style.setProperty("--e", e.toFixed(3));
-          r.style.setProperty("--f", f.toFixed(3));
-          r.style.setProperty("--e1", st(0.2, 2.2));
-          r.style.setProperty("--e2", st(0.3, 2.2));
-          r.style.setProperty("--e3", st(0.4, 2.6));
-          r.style.setProperty("--e4", st(0.52, 2.6));
-          r.style.setProperty("--e5", st(0.62, 2.8));
-          r.classList.toggle("is-visible", RM || e > 0.035);
-        });
+
+    /* Scroll cue visibility tied to hero stage */
+    if (scrollCue) {
+      const cueOpacity = ss(10.8, 11.8, v);
+      scrollCue.style.opacity = String(cueOpacity);
+      scrollCue.style.pointerEvents = cueOpacity > 0.2 ? "auto" : "none";
+    }
+
+    /* As the user scrolls past the hero stage, smoothly transition directly into /universe */
+    if (v >= 13.5 && !redirected) {
+      triggerUniverseRedirect("/universe");
+    }
+
+    if (reveal && AC.trk && AC.trk.volume > 0) {
+      const q = 1.0;
+      if (AC._q !== q && rt > 4.5) {
+        AC._q = q;
+        AC.fade(q, 1000);
       }
-    });
-    /*
-     * Stage 1 ends on the timeline.
-     * The transition to /universe is intentionally disabled until Stage 2.
-     *
-     * if (v >= 22.7 && timelineVisited && !redirected) {
-     *   redirected = true;
-     *   sessionStorage.setItem("incursion_audio_enabled", AC.on ? "true" : "false");
-     *   sessionStorage.setItem("incursion_audio_time", String(AC.trk?.currentTime || 0));
-     *   window.location.href = "/universe";
-     * }
-     */
+    }
+  }
       if (reveal && AC.trk && AC.trk.volume > 0) {
         const q = 1.0;
         if (AC._q !== q && rt > 4.5) {

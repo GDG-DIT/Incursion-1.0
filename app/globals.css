@@ -88,7 +88,7 @@ body::-webkit-scrollbar {
 
 #scroll {
   position: relative;
-  height: 480vh;
+  height: 250vh;
 }
 
 #stage {
@@ -1017,7 +1017,7 @@ body,
 }
 
 #scroll {
-  height: 480vh;
+  height: 250vh;
 }
 
 body {
@@ -2962,4 +2962,81 @@ header b {
   #tlv .txt p {
     transition-duration: 0.01ms !important;
   }
+}
+
+/* Cinematic Portal Transition to /universe */
+.universe-portal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  background: #020503;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.65s ease;
+  backdrop-filter: blur(14px);
+}
+
+.universe-portal-overlay.is-active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.portal-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(63, 224, 142, 0.24) 0%, rgba(2, 5, 3, 0.88) 60%, #020503 100%);
+  animation: portalPulse 2s ease-in-out infinite;
+}
+
+@keyframes portalPulse {
+  0%, 100% { opacity: 0.7; transform: scale(0.98); }
+  50% { opacity: 1; transform: scale(1.02); }
+}
+
+.portal-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.portal-eyebrow {
+  font-family: var(--sans, sans-serif);
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #3fe08e;
+  font-weight: 600;
+}
+
+.portal-title {
+  font-family: var(--serif, serif);
+  font-size: clamp(24px, 4vw, 44px);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f0f5f1;
+  margin: 0;
+  text-shadow: 0 0 35px rgba(63, 224, 142, 0.45);
+}
+
+.portal-spinner {
+  margin-top: 10px;
+  width: 28px;
+  height: 28px;
+  border: 2px solid rgba(63, 224, 142, 0.2);
+  border-top-color: #3fe08e;
+  border-radius: 50%;
+  animation: portalSpin 0.75s linear infinite;
+}
+
+@keyframes portalSpin {
+  to { transform: rotate(360deg); }
 }
