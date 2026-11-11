@@ -14,6 +14,12 @@ export default function DoomMaskHero() {
   const [hint, setHint] = useState('Loading the mask…');
 
   useEffect(() => {
+    // Only load and render 3D model on desktop/website version; disabled on mobile
+    if (typeof window !== 'undefined' && (window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches)) {
+      setModelAvailable(false);
+      return;
+    }
+
     const host = hostRef.current;
     const canvas = canvasRef.current;
     if (!host || !canvas) return;
