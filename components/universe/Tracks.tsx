@@ -1,164 +1,182 @@
 'use client';
 
-import { useState } from 'react';
-
 const TRACKS = [
   {
     id: 'SECTOR 01',
+    code: 'AI-616',
     name: 'Rogue Protocol',
     tag: 'AI & Agentic Systems',
     bounty: '₹5,000 Bounty',
-    image: '/media/doom-throne.webp',
-    summary:
-      'Architect autonomous AI agents, multi-modal intelligent assistants, automated reasoning pipelines, and cognitive models designed to tackle complex decision-making systems.',
+    image: '/media/track-ai.webp',
     mission:
       'Engineer self-directing synthetic agents and cognitive intelligence pipelines capable of autonomous real-time decision making under high operational volatility.',
-    focusAreas: ['Autonomous AI Agents', 'Multi-Modal Models', 'Process Automation', 'Cognitive Reasoning'],
+    summary:
+      'Architect autonomous multi-agent swarms, multimodal vision-language systems, automated reasoning engines, and edge inference models capable of solving mission-critical real-world bottlenecks.',
+    focusAreas: [
+      'Autonomous Agent Swarms',
+      'Multimodal Foundation Models',
+      'Adaptive Cognitive Reasoning',
+      'Edge & Local Intelligence',
+    ],
   },
   {
     id: 'SECTOR 02',
+    code: 'SEC-404',
     name: 'Firewall Zero',
     tag: 'Cybersecurity & FinTech',
     bounty: '₹5,000 Bounty',
-    image: '/media/timeline-1.webp',
-    summary:
-      'Engineer robust threat detection engines, scam and fraud mitigation shields, privacy-preserving identities, modern payment layers, and resilient financial tooling.',
+    image: '/media/track-cyber.webp',
     mission:
       'Architect impenetrable defensive bastions against modern attack vectors, synthetic identity spoofing, and catastrophic financial exploitation.',
-    focusAreas: ['Threat Detection', 'Fraud Mitigation', 'Zero-Knowledge Privacy', 'Modern Payments'],
+    summary:
+      'Engineer next-generation threat telemetry shields, real-time scam and fraud detection engines, zero-knowledge privacy identities, and resilient, tamper-proof financial payment rails.',
+    focusAreas: [
+      'Threat & Anomaly Detection',
+      'Zero-Knowledge Cryptography',
+      'AI Fraud & Scam Mitigation',
+      'Resilient Payment Rails',
+    ],
   },
   {
     id: 'SECTOR 03',
+    code: 'RIFT-001',
     name: 'Final Hour',
     tag: 'Open Innovation',
     bounty: '₹5,000 Bounty',
-    image: '/media/timeline-2.webp',
-    summary:
-      'Tackle pressing existential and humanitarian frontiers spanning climate resilience, healthcare diagnostics, emergency disaster management, sustainable agriculture, and space tech.',
+    image: '/media/track-open.webp',
     mission:
       'Tackle existential human frontiers—from rapid emergency crisis triage and climate catastrophe resilience to deep telemetry for next-generation survival.',
-    focusAreas: ['Climate Intelligence', 'Health & MedTech', 'Disaster Response', 'Agri & Space Tech'],
+    summary:
+      'Build breakthrough solutions across open frontiers—predictive disaster response systems, precision telemetry diagnostics, climate resilience tools, and frontier space/hardware tech.',
+    focusAreas: [
+      'Disaster & Emergency Telemetry',
+      'Precision Health Intelligence',
+      'Climate & Eco Restoration',
+      'Frontier Space & Hardware',
+    ],
   },
   {
     id: 'SECTOR 04',
+    code: 'CIVIC-77',
     name: 'Glass Wall',
     tag: 'GovTech & Transparent Governance',
     bounty: '₹5,000 Bounty',
-    image: '/media/timeline-3.webp',
-    summary:
-      'Create high-accountability public service platforms, transparent civic workflows, citizen grievance redressal mechanisms, and tamper-evident audit trails for open governance.',
+    image: '/media/track-gov.webp',
     mission:
       'Dismantle opaque bureaucratic barriers with transparent public utility platforms, immutable audit logs, and direct-action citizen grievance resolution.',
-    focusAreas: ['Public Services', 'Grievance Redressal', 'Civic Transparency', 'Tamper-Proof Audits'],
+    summary:
+      'Create high-accountability public service platforms, transparent citizen grievance escalation workflows, verifiable algorithmic auditing, and immutable open governance ledgers.',
+    focusAreas: [
+      'Transparent Public Utilities',
+      'Citizen Grievance Automation',
+      'Immutable Audit Ledgers',
+      'Open Civic Governance',
+    ],
   },
   {
     id: 'SECTOR 05',
+    code: 'METRO-99',
     name: 'Survival City',
     tag: 'Smart Cities & Civic Tech',
     bounty: '₹5,000 Bounty',
-    image: '/media/timeline-4.webp',
-    summary:
-      'Reimagine modern urban infrastructure with smart mobility networks, intelligent traffic routing, water conservation telemetry, waste logistics, and responsive civic utilities.',
+    image: '/media/track-city.webp',
     mission:
       'Rebuild collapsing urban ecosystems into hyper-resilient, automated smart cities powered by real-time sensor intelligence and predictive civic logistics.',
-    focusAreas: ['Smart Mobility', 'Traffic Intelligence', 'Water Management', 'Civic Telemetry'],
+    summary:
+      'Reinvent urban living with intelligent dynamic traffic routing, predictive resource and water grid telemetry, automated municipal logistics, and resilient emergency civic infrastructure.',
+    focusAreas: [
+      'Intelligent Traffic & Transit',
+      'Grid & Water Telemetry',
+      'Smart Municipal Logistics',
+      'Automated Civic Response',
+    ],
   },
 ];
 
 export default function Tracks() {
-  const [activeSector, setActiveSector] = useState(0);
-  const current = TRACKS[activeSector];
-
   return (
     <section id="tracks" className="universe-section">
       <div className="universe-container">
+        {/* Section Header */}
         <div className="universe-section-header">
           <div className="universe-eyebrow">Battleground Domains</div>
           <h2 className="universe-section-title">The 5 Incursion Chambers</h2>
           <p className="universe-section-desc">
-            Explore the five operational battlegrounds. Select a sector to inspect its tactical mission dossier,
-            core focus vectors, and dedicated ₹5,000 Track Bounty.
+            Explore the five operational battlegrounds. Each sector presents a distinct challenge frontier with its
+            own dedicated ₹5,000 Track Bounty alongside eligibility for the ₹1,00,000 Grand Championship.
           </p>
         </div>
 
-        {/* Tactical Chamber Switcher Navigation Tabs */}
-        <div className="universe-chamber-tabs">
-          {TRACKS.map((t, idx) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => setActiveSector(idx)}
-              className={`chamber-tab-btn ${activeSector === idx ? 'active' : ''}`}
-            >
-              <span className="chamber-tab-id">{t.id}</span>
-              <span className="chamber-tab-name">{t.name}</span>
-              <span className="chamber-tab-bounty">₹5,000</span>
-            </button>
-          ))}
-        </div>
+        {/* 5 Equal Problem Statement Track Cards */}
+        <div className="universe-tracks-equal-grid">
+          {TRACKS.map((track) => (
+            <div key={track.id} className="universe-equal-track-card">
+              {/* Tactical Corner Accents */}
+              <div className="tactical-corner tl" />
+              <div className="tactical-corner tr" />
+              <div className="tactical-corner bl" />
+              <div className="tactical-corner br" />
 
-        {/* Active Cinematic Chamber Spotlight Card */}
-        <div className="universe-chamber-spotlight">
-          <div className="tactical-corner tl" />
-          <div className="tactical-corner tr" />
-          <div className="tactical-corner bl" />
-          <div className="tactical-corner br" />
-
-          {/* Background Cinematic Art with vignette */}
-          <div
-            className="spotlight-bg"
-            style={{
-              backgroundImage: `url(${current.image})`,
-            }}
-          />
-          <div className="spotlight-gradient-overlay" />
-
-          {/* Spotlight Content Overlay */}
-          <div className="spotlight-content">
-            <div className="spotlight-header">
-              <div className="spotlight-meta">
-                <span className="universe-tag">{current.tag}</span>
-                <span className="spotlight-sector-id">{current.id}</span>
-              </div>
-              <div className="universe-track-bounty-badge">
-                <span className="bounty-spark" aria-hidden="true">✦</span>
-                <span>{current.bounty}</span>
-              </div>
-            </div>
-
-            <h3 className="spotlight-title">{current.name}</h3>
-            <p className="spotlight-mission">&ldquo;{current.mission}&rdquo;</p>
-            <p className="spotlight-desc">{current.summary}</p>
-
-            <div className="spotlight-focus-wrapper">
-              <span className="spotlight-label">CORE FOCUS VECTORS</span>
-              <div className="universe-focus-tags">
-                {current.focusAreas.map((area) => (
-                  <span key={area} className="universe-focus-tag">
-                    {area}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* 5-Chamber Mini-Cards Grid for Quick Overview */}
-        <div className="universe-chamber-grid">
-          {TRACKS.map((track, idx) => (
-            <div
-              key={track.id}
-              onClick={() => setActiveSector(idx)}
-              className={`universe-card universe-mini-chamber-card ${activeSector === idx ? 'active' : ''}`}
-            >
-              <div className="mini-card-thumb" style={{ backgroundImage: `url(${track.image})` }} />
-              <div className="mini-card-body">
-                <div className="mini-card-top">
-                  <span className="mini-card-id">{track.id}</span>
-                  <span className="mini-card-bounty">₹5K</span>
+              {/* Card Top Meta Bar */}
+              <div className="track-card-top-bar">
+                <div className="track-card-sector">
+                  <span className="track-live-beacon" />
+                  <span className="track-sector-code">{track.id}</span>
+                  <span className="track-sector-divider">//</span>
+                  <span className="track-sector-subcode">{track.code}</span>
                 </div>
-                <h4 className="mini-card-title">{track.name}</h4>
-                <p className="mini-card-tag">{track.tag}</p>
+                <div className="track-card-bounty">
+                  <span className="bounty-spark" aria-hidden="true">✦</span>
+                  <span>{track.bounty}</span>
+                </div>
+              </div>
+
+              {/* Cinematic Visual Window */}
+              <div className="track-card-visual-window">
+                <img
+                  src={track.image}
+                  alt={`${track.name} - ${track.tag}`}
+                  className="track-card-img"
+                  loading="lazy"
+                />
+                <div className="track-card-img-overlay" />
+                <div className="track-card-domain-badge">
+                  <span>{track.tag}</span>
+                </div>
+                <div className="track-card-hud-coords" aria-hidden="true">
+                  INCURSION // 2027
+                </div>
+              </div>
+
+              {/* Card Body */}
+              <div className="track-card-body">
+                <h3 className="track-card-title">{track.name}</h3>
+                <p className="track-card-mission">&ldquo;{track.mission}&rdquo;</p>
+                <p className="track-card-desc">{track.summary}</p>
+              </div>
+
+              {/* Core Focus Vectors */}
+              <div className="track-card-vectors">
+                <div className="track-vectors-label">
+                  <span>CORE FOCUS VECTORS</span>
+                  <span className="vectors-accent-line" />
+                </div>
+                <div className="track-vectors-list">
+                  {track.focusAreas.map((area) => (
+                    <span key={area} className="universe-focus-tag">
+                      {area}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Card Tactical Footer */}
+              <div className="track-card-footer">
+                <div className="track-footer-left">
+                  <span className="track-footer-dot" />
+                  <span>24H OFFLINE FINALE</span>
+                </div>
+                <span className="track-footer-status">CHALLENGE READY</span>
               </div>
             </div>
           ))}
