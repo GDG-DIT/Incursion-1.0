@@ -54,7 +54,7 @@ export default function Footer() {
               <li><a href="#about">About Event</a></li>
               <li><a href="#tracks">Hackathon Tracks</a></li>
               <li><a href="#schedule">Timeline &amp; Schedule</a></li>
-              <li><a href="#prizes">Prize Pool (₹2.05L)</a></li>
+              <li><a href="#prizes">Prize Pool (₹2,00,000)</a></li>
               <li><a href="#sponsors">Partners &amp; Sponsors</a></li>
             </ul>
           </div>
@@ -71,6 +71,16 @@ export default function Footer() {
                   title={REGISTER_URL ? 'Registration Portal on Unstop' : 'Registrations opening soon on Unstop'}
                 >
                   Registration Portal (Unstop) ↗
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://discord.gg/QYQZBEmgQ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Incursion Discord Community"
+                >
+                  Discord: Join Server ↗
                 </a>
               </li>
               <li>
@@ -143,6 +153,27 @@ export default function Footer() {
             <span>24 Hours National Hackathon</span>
             <span>DYPIT Pune</span>
           </div>
+        </div>
+
+        {/* Smooth Transition Bridge to Finale Countdown */}
+        <div className="universe-footer-to-finale-transition">
+          <div className="footer-transition-line" aria-hidden="true" />
+          <a
+            href="#finale"
+            className="footer-transition-cue"
+            onClick={(e) => {
+              e.preventDefault();
+              const el = document.getElementById('finale');
+              if (el) el.scrollIntoView({ behavior: 'smooth' });
+            }}
+            aria-label="Scroll to Doomsday Countdown Vault"
+          >
+            <span className="footer-transition-glow-dot" aria-hidden="true" />
+            <span className="footer-transition-label">DOOMSDAY PROTOCOL // THE FINAL COUNTDOWN</span>
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" width="14" height="14" className="footer-transition-arrow" aria-hidden="true">
+              <path d="M8 2v10M3 8l5 5 5-5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </a>
         </div>
       </div>
 

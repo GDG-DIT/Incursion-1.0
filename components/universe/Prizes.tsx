@@ -57,9 +57,9 @@ export default function Prizes() {
       <div className="universe-container">
         <div className="universe-section-header">
           <div className="universe-eyebrow">The Vibranium Vault</div>
-          <h2 className="universe-section-title">Prize Pool: ₹2,05,000</h2>
+          <h2 className="universe-section-title">Prize Pool: ₹2,00,000</h2>
           <p className="universe-section-desc">
-            A combined ₹2,05,000 direct cash prize pool distributed across top podium finishes, specialized track bounties,
+            A combined ₹2,00,000 direct cash prize pool distributed across top podium finishes, specialized track bounties,
             and dedicated recognition for first-time contenders.
           </p>
         </div>

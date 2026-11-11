@@ -21,7 +21,7 @@ export default function About() {
         {/* Dossier Key Metrics Bar */}
         <div className="universe-dossier-metrics">
           <div className="dossier-metric">
-            <span className="dossier-val">₹2,05,000</span>
+            <span className="dossier-val">₹2,00,000</span>
             <span className="dossier-lbl">Total Cash Pool</span>
           </div>
           <div className="dossier-divider" aria-hidden="true" />

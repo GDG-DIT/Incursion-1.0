@@ -26,7 +26,8 @@ html:has(.universe-page) {
 
 .universe-content > .universe-hero,
 .universe-content > .universe-section,
-.universe-content > .universe-footer {
+.universe-content > .universe-footer,
+.universe-content > .universe-finale-section {
   scroll-snap-align: start;
   scroll-snap-stop: normal;
 }
@@ -112,9 +113,6 @@ html:has(.universe-page) {
 }
 
 /* Navigation Bar */
-/* ==========================================================================
-   Doctor Doom Imperial Gold & Emerald Navbar
-   ========================================================================== */
 header.universe-navbar {
   position: fixed !important;
   top: 0 !important;
@@ -124,27 +122,14 @@ header.universe-navbar {
   height: 74px !important;
   opacity: 1 !important;
   pointer-events: auto !important;
-  background: rgba(5, 10, 7, 0.86) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border-bottom: 1px solid rgba(255, 215, 0, 0.28) !important;
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 215, 0, 0.15), 0 0 25px rgba(255, 215, 0, 0.06) !important;
+  background: rgba(4, 6, 5, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border-bottom: 1px solid rgba(233, 231, 224, 0.12) !important;
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   padding: 0 clamp(20px, 4vw, 56px) !important;
-  transition: all 0.3s ease;
-}
-
-.nav-gold-top-beam {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1.5px;
-  background: linear-gradient(90deg, transparent 0%, rgba(63, 224, 142, 0.4) 15%, #ffd700 50%, rgba(63, 224, 142, 0.4) 85%, transparent 100%);
-  opacity: 0.9;
-  pointer-events: none;
 }
 
 .universe-nav-brand {
@@ -165,15 +150,13 @@ header.universe-navbar {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #ffd700;
+  color: rgba(233, 231, 224, 0.7);
   line-height: 1;
-  opacity: 0.85;
-  filter: drop-shadow(0 0 4px rgba(255, 215, 0, 0.4));
 }
 
 .universe-nav-collab svg {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   display: block;
 }
 
@@ -182,39 +165,21 @@ header.universe-navbar {
   width: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.7));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
 }
 
-.nav-doom-pill {
+.universe-nav-title,
+.universe-nav-year {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: var(--mono, monospace);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #ffd700;
-  background: rgba(38, 30, 8, 0.75);
-  border: 1px solid rgba(255, 215, 0, 0.35);
-  padding: 3px 9px;
-  border-radius: 9999px;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
-  margin-left: 4px;
-}
-
-@media (max-width: 900px) {
-  .nav-doom-pill {
-    display: none;
-  }
-}
-
-.nav-gold-pip {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #ffd700;
-  box-shadow: 0 0 6px #ffd700;
-  animation: beaconBlink 1.6s infinite ease-in-out;
+  line-height: 1;
+  white-space: nowrap;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  color: rgba(233, 231, 224, 0.88);
+  overflow: visible;
 }
 
 .universe-nav-links {
@@ -224,69 +189,35 @@ header.universe-navbar {
 }
 
 .universe-nav-links a {
-  position: relative;
-  font-family: var(--mono, monospace);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: #9ca3af;
+  letter-spacing: 0.16em;
+  color: var(--mute);
   text-decoration: none;
-  transition: all 0.25s ease;
-  padding: 6px 0;
-}
-
-.universe-nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 1.5px;
-  background: linear-gradient(90deg, #3fe08e 0%, #ffd700 100%);
-  transition: all 0.25s ease;
-  transform: translateX(-50%);
-  border-radius: 1px;
+  transition: color 0.2s ease;
 }
 
 .universe-nav-links a:hover {
-  color: #ffd700;
-  text-shadow: 0 0 12px rgba(255, 215, 0, 0.45);
-}
-
-.universe-nav-links a:hover::after {
-  width: 100%;
-  box-shadow: 0 0 8px #ffd700;
+  color: var(--ink);
 }
 
 .universe-nav-replay {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px !important;
-  border-radius: 6px;
-  border: 1px solid rgba(255, 215, 0, 0.4) !important;
-  background: rgba(38, 30, 8, 0.55);
-  color: #ffd700 !important;
-  font-family: var(--mono, monospace) !important;
+  padding: 5px 12px;
+  border-radius: 4px;
+  border: 1px solid rgba(183, 155, 104, 0.35);
+  color: var(--em) !important;
   font-size: 11px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.12em !important;
+  letter-spacing: 0.18em !important;
   text-decoration: none;
-  transition: all 0.25s ease;
-  box-shadow: 0 0 10px rgba(255, 215, 0, 0.12);
-}
-
-.universe-nav-replay::after {
-  display: none !important;
+  transition: all 0.2s ease;
 }
 
 .universe-nav-replay:hover {
-  background: rgba(255, 215, 0, 0.2) !important;
-  border-color: #ffd700 !important;
-  color: #ffffff !important;
-  box-shadow: 0 0 18px rgba(255, 215, 0, 0.45) !important;
-  transform: translateY(-1px);
+  background: rgba(183, 155, 104, 0.1);
+  border-color: var(--em);
 }
 
 .universe-nav-actions {
@@ -302,21 +233,19 @@ header.universe-navbar {
   width: 42px;
   height: 42px;
   padding: 0;
-  background: rgba(38, 30, 8, 0.65);
+  background: rgba(255, 255, 255, 0.08);
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 215, 0, 0.4);
-  color: #ffd700;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: all 0.25s ease;
-  box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
 }
 
 .universe-sound-btn:hover {
-  background: rgba(60, 48, 12, 0.85);
-  border-color: #ffd700;
-  color: #ffffff;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.55);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
 }
 
 .universe-sound-icon {
@@ -339,45 +268,34 @@ header.universe-navbar {
   50% { opacity: 0.65; transform: scale(0.92); }
 }
 
-/* Bespoke Doctor Doom Gold Register CTA */
 .universe-nav-btn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 10px 22px;
-  font-family: var(--mono, monospace);
-  font-size: 11.5px;
+  padding: 10px 20px;
+  font-size: 12px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 800;
-  color: #050805 !important;
-  background: linear-gradient(135deg, #ffd700 0%, #e6be30 45%, #b38600 100%);
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: #040605;
+  background: var(--em);
   text-decoration: none;
-  border-radius: 7px;
-  border: 1px solid #ffe57f;
-  box-shadow: 0 0 18px rgba(255, 215, 0, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.6);
+  border-radius: 2px;
   transition: all 0.25s ease;
 }
 
 .universe-nav-btn:hover {
-  background: linear-gradient(135deg, #fff399 0%, #ffd700 50%, #d4af37 100%);
-  box-shadow: 0 0 28px rgba(255, 215, 0, 0.7), 0 4px 14px rgba(0, 0, 0, 0.6);
-  transform: translateY(-2px);
+  background: #d3b77f;
+  box-shadow: 0 0 20px rgba(183, 155, 104, 0.45);
 }
 
 .universe-mobile-toggle {
   display: none;
   background: none;
   border: none;
-  color: #ffd700;
+  color: var(--ink);
   cursor: pointer;
   padding: 8px;
-  transition: transform 0.2s ease;
-}
-
-.universe-mobile-toggle:hover {
-  transform: scale(1.1);
-  color: #ffffff;
 }
 
 .universe-mobile-menu {
@@ -386,10 +304,9 @@ header.universe-navbar {
   top: 74px;
   left: 0;
   right: 0;
-  background: rgba(6, 12, 9, 0.98);
-  backdrop-filter: blur(24px);
-  border-bottom: 1.5px solid rgba(255, 215, 0, 0.35);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.85);
+  background: rgba(4, 6, 5, 0.98);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(233, 231, 224, 0.12);
   padding: 24px;
   flex-direction: column;
   gap: 18px;
@@ -401,19 +318,12 @@ header.universe-navbar {
 }
 
 .universe-mobile-menu a {
-  font-family: var(--mono, monospace);
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #e2e8f0;
-  text-transform: uppercase;
+  color: var(--ink);
   text-decoration: none;
-  transition: color 0.2s ease;
-  padding: 4px 0;
-}
-
-.universe-mobile-menu a:hover {
-  color: #ffd700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  padding: 6px 0;
 }
 
 /* Sections Common Styles */
@@ -1245,7 +1155,8 @@ footer.universe-footer {
   }
   .universe-content > .universe-hero,
   .universe-content > .universe-section,
-  .universe-content > .universe-footer {
+  .universe-content > .universe-footer,
+  .universe-content > .universe-finale-section {
     scroll-snap-align: none !important;
     scroll-snap-stop: normal !important;
   }
@@ -2849,3 +2760,269 @@ footer.universe-footer {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Smooth Footer to Finale Transition & Doomsday Finale Countdown Section
+   ========================================================================== */
+
+/* Footer Transition Bridge */
+.universe-footer-to-finale-transition {
+  position: relative;
+  margin-top: 36px;
+  padding-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.footer-transition-line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(84%, 720px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(63, 224, 142, 0.25) 20%,
+    rgba(63, 224, 142, 0.85) 50%,
+    rgba(63, 224, 142, 0.25) 80%,
+    transparent 100%
+  );
+  box-shadow: 0 0 16px rgba(63, 224, 142, 0.6);
+}
+
+.footer-transition-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 22px;
+  border-radius: 9999px;
+  background: rgba(63, 224, 142, 0.06);
+  border: 1px solid rgba(63, 224, 142, 0.28);
+  color: #c4ebd0;
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 16px rgba(63, 224, 142, 0.12);
+  cursor: pointer;
+}
+
+.footer-transition-cue:hover {
+  color: #ffffff;
+  border-color: rgba(63, 224, 142, 0.65);
+  background: rgba(63, 224, 142, 0.16);
+  box-shadow: 0 0 24px rgba(63, 224, 142, 0.3);
+  transform: translateY(2px);
+}
+
+.footer-transition-glow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #3fe08e;
+  box-shadow: 0 0 8px #3fe08e, 0 0 16px #3fe08e;
+  animation: doomsday-dot-pulse 1.4s ease-in-out infinite;
+}
+
+.footer-transition-arrow {
+  color: #3fe08e;
+  transition: transform 0.25s ease;
+}
+
+.footer-transition-cue:hover .footer-transition-arrow {
+  transform: translateY(3px);
+}
+
+/* Finale Section */
+.universe-finale-section {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(90px, 11vh, 130px) 20px clamp(50px, 7vh, 80px);
+  background: #020604;
+}
+
+.finale-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.finale-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  filter: brightness(0.8) saturate(1.18) contrast(1.15);
+  transform: scale(1.02);
+  transform-origin: center center;
+}
+
+/* Seamless blend from footer obsidian glass into finale atmosphere */
+.finale-top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(140px, 20vh, 260px);
+  background: linear-gradient(
+    180deg,
+    rgba(4, 6, 5, 0.96) 0%,
+    rgba(4, 14, 8, 0.6) 50%,
+    transparent 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+.finale-beams {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 28%, rgba(63, 224, 142, 0.28), transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(4, 30, 16, 0.45), transparent 65%);
+  mix-blend-mode: screen;
+  animation: doomsday-beam-pulse 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.finale-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.58) 66%, rgba(0, 0, 0, 0.95) 94%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.82) 0%, transparent 20%, transparent 78%, rgba(0, 0, 0, 0.95) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.finale-hud {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: min(96vw, 1080px);
+  padding: clamp(24px, 4vh, 44px) clamp(16px, 3.2vw, 42px);
+  pointer-events: auto;
+}
+
+.finale-eyebrow {
+  display: block;
+  color: #bbf7d0;
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(13px, 1.35vw, 17px);
+  line-height: 1.4;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 20px rgba(63, 224, 142, 0.8),
+    0 2px 8px rgba(0, 0, 0, 0.95);
+  margin-bottom: clamp(14px, 2vh, 20px);
+}
+
+.finale-title {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(30px, 4.8vw, 62px);
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: #f7faf7;
+  margin: 0;
+  text-shadow:
+    0 0 35px rgba(63, 224, 142, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.95);
+}
+
+.finale-actions {
+  margin-top: clamp(22px, 3.4vh, 38px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.finale-discord-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: clamp(12px, 1.5vh, 16px) clamp(26px, 2.8vw, 40px);
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #ffffff;
+  font-family: var(--sans);
+  font-size: clamp(12px, 1.1vw, 14px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.75), inset 0 0 14px rgba(63, 224, 142, 0.1);
+}
+
+.finale-discord-btn:hover {
+  border-color: #3fe08e;
+  background: rgba(63, 224, 142, 0.16);
+  color: #ffffff;
+  box-shadow:
+    0 0 30px rgba(63, 224, 142, 0.4),
+    inset 0 0 20px rgba(63, 224, 142, 0.2);
+  transform: translateY(-2px);
+}
+
+.finale-btn-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  font-size: 1.1em;
+}
+
+.finale-discord-btn:hover .finale-btn-arrow {
+  transform: translateX(4px);
+}
+
+@media (max-width: 768px) {
+  .universe-finale-section {
+    padding: 80px 16px 50px;
+  }
+  .finale-hud {
+    width: 100%;
+    padding: 18px 10px;
+  }
+  .finale-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.3em;
+  }
+  .finale-title {
+    font-size: clamp(24px, 7.2vw, 36px);
+  }
+  .finale-discord-btn {
+    padding: 12px 24px;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+}
+

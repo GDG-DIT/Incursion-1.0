@@ -10,22 +10,15 @@ export default function Navbar() {
 
   return (
     <header className="universe-navbar">
-      {/* Top Gold Horizon Beam */}
-      <div className="nav-gold-top-beam" aria-hidden="true" />
-
       {/* Brand */}
       <Link href="/universe" className="universe-nav-brand">
         <img src="/gdg-logo.svg" alt="GDG on Campus Logo" className="universe-nav-logo" />
         <span className="universe-nav-collab" aria-hidden="true">
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+          <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
             <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
           </svg>
         </span>
         <img src="/incursion-logo.webp" alt="Incursion" className="universe-nav-incursion-logo" />
-        <span className="nav-doom-pill">
-          <span className="nav-gold-pip" />
-          <span>DOOMSDAY // 2027</span>
-        </span>
       </Link>
 
       {/* Desktop Nav Links */}
@@ -39,7 +32,7 @@ export default function Navbar() {
           <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" width="12" height="12">
             <path d="M6 3L1 8l5 5M1 8h14" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <span>Replay Film</span>
+          Replay Film
         </Link>
       </nav>
 
@@ -83,7 +76,7 @@ export default function Navbar() {
         <a href="#schedule" onClick={() => setMobileOpen(false)}>Schedule</a>
         <a href="#prizes" onClick={() => setMobileOpen(false)}>Prizes</a>
         <a href="#sponsors" onClick={() => setMobileOpen(false)}>Sponsors</a>
-        <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: '#ffd700' }}>
+        <Link href="/" onClick={() => setMobileOpen(false)} style={{ color: 'var(--em)' }}>
           ← Replay Film Experience
         </Link>
         <a

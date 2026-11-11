@@ -1,44 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { REGISTER_URL } from '../../lib/content';
 
 export default function Hero() {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    // Target: 30 January 2027, 08:00 IST (Finale Check-in)
-    const target = new Date('2027-01-30T08:00:00+05:30').getTime();
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const diff = Math.max(0, target - now);
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      setTimeLeft({ days, hours, minutes, seconds });
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <section className="universe-hero">
       <div className="universe-container">
         {/* Eyebrow badge */}
         <div className="universe-hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
           <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '16px', width: 'auto', display: 'block' }} />
-          <span>GDG on Campus, DYPIT Pune Presents // 30–31 January 2027</span>
+          <span>GDG on Campus</span>
         </div>
 
         {/* Main Title */}
@@ -75,34 +46,6 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* Countdown Box */}
-        <div className="universe-countdown-box">
-          <div className="universe-countdown-col">
-            <span className="universe-countdown-num">
-              {String(timeLeft.days).padStart(2, '0')}
-            </span>
-            <span className="universe-countdown-lbl">Days</span>
-          </div>
-          <div className="universe-countdown-col">
-            <span className="universe-countdown-num">
-              {String(timeLeft.hours).padStart(2, '0')}
-            </span>
-            <span className="universe-countdown-lbl">Hours</span>
-          </div>
-          <div className="universe-countdown-col">
-            <span className="universe-countdown-num">
-              {String(timeLeft.minutes).padStart(2, '0')}
-            </span>
-            <span className="universe-countdown-lbl">Mins</span>
-          </div>
-          <div className="universe-countdown-col">
-            <span className="universe-countdown-num accent">
-              {String(timeLeft.seconds).padStart(2, '0')}
-            </span>
-            <span className="universe-countdown-lbl">Secs</span>
-          </div>
-        </div>
-
         {/* Stats Strip */}
         <div className="universe-stats-row">
           <div>
@@ -110,7 +53,7 @@ export default function Hero() {
             <div className="universe-stat-lbl">Non-Stop Offline Sprint</div>
           </div>
           <div>
-            <div className="universe-stat-num accent">₹2.05 Lakh</div>
+            <div className="universe-stat-num accent">₹2,00,000</div>
             <div className="universe-stat-lbl">Total Cash Prize Pool</div>
           </div>
           <div>

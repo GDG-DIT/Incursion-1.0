@@ -47,9 +47,13 @@ function HeroStage() {
       </picture>
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
-        <p className="hero-eyebrow" style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}>
-          <span>GDG on Campus, DYPIT Pune presents</span>
-        </p>
+        <div className="hero-eyebrow">
+          <div className="hero-eyebrow-badge">
+            <img className="hero-eyebrow-logo" src="/gdg-logo.svg" alt="GDG on Campus Logo" />
+            <span className="hero-eyebrow-sep" aria-hidden="true" />
+            <span className="hero-eyebrow-text">GDG on Campus, DYPIT Pune presents</span>
+          </div>
+        </div>
         <h1 id="hero-title" aria-label="INCURSION 2027">
           INCURSION <em>2027</em>
         </h1>
@@ -103,15 +107,15 @@ export default function IncursionExperience() {
           <i aria-hidden="true" />
         </a>
         <header id="hdr">
-          <div className="hdr-brand">
-            <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG Logo" />
+          <a href="/universe" className="hdr-brand" data-universe-link="true" title="GDG on Campus × INCURSION 2027">
+            <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG on Campus Logo" />
             <span className="hdr-collab" aria-hidden="true">
               <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                 <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
               </svg>
             </span>
             <img className="hdr-incursion-logo" src="/incursion-logo.webp" alt="Incursion" />
-          </div>
+          </a>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button id="snd" aria-label="Turn sound off" aria-pressed="true" data-sound-state="on" type="button">
               <svg viewBox="0 0 24 24" aria-hidden="true">
