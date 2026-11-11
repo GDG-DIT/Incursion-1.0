@@ -1925,273 +1925,70 @@ footer.universe-footer {
    Epic Incursion Chambers, Sacred Timeline Conduit & Tournament Grid
    ========================================================================== */
 
-/* 1. Incursion Chambers (Standard Tactical Cards - No Images, High-Signal) */
-.universe-tracks-notice {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 14px;
-  padding: 8px 18px;
-  background: rgba(63, 224, 142, 0.07);
-  border: 1px solid rgba(63, 224, 142, 0.28);
-  border-radius: 100px;
-  font-family: monospace;
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: #bfffd6;
-  text-transform: uppercase;
-}
-
-.notice-beacon {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #3fe08e;
-  box-shadow: 0 0 10px #3fe08e;
-  display: inline-block;
-  animation: trackBeaconPulse 2s infinite ease-in-out;
-}
-
-@keyframes trackBeaconPulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.35; transform: scale(0.85); }
-}
-
-.universe-tracks-equal-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 22px;
-  margin-top: 36px;
-}
-
-.universe-equal-track-card {
-  flex: 0 1 calc(33.333% - 16px);
-  min-width: 320px;
-  max-width: 390px;
-  background: linear-gradient(180deg, rgba(14, 22, 17, 0.92) 0%, rgba(7, 11, 9, 0.98) 100%);
-  border: 1px solid rgba(63, 224, 142, 0.22);
-  border-radius: 12px;
-  padding: 24px;
+/* 1. Incursion Chambers (3x2 Tactical Bento Grid & Doomsday HUD) */
+#tracks {
   position: relative;
+  background-color: #050806;
+}
+
+#tracks .grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+#tracks .grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+@media (min-width: 768px) {
+  #tracks .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  #tracks .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+#tracks .max-w-7xl {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#tracks .group {
+  position: relative;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.universe-equal-track-card:hover {
+#tracks .group:hover {
   transform: translateY(-6px);
-  border-color: rgba(63, 224, 142, 0.65);
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 30px rgba(63, 224, 142, 0.2);
 }
 
-.universe-equal-track-card:hover .tactical-corner {
-  border-color: #3fe08e;
+/* Expanding corner brackets on hover with neon glow */
+#tracks .group:hover [class*="border-emerald-400"] {
+  border-color: #00ff88 !important;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.6);
 }
 
-/* Card Top Meta Bar */
-.track-card-top-bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+#tracks .group:hover [class*="border-amber-400"] {
+  border-color: #ffd700 !important;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
 }
 
-.track-card-sector {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: monospace;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-}
-
-.track-live-beacon {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #3fe08e;
-  box-shadow: 0 0 10px #3fe08e;
-  display: inline-block;
-  animation: trackBeaconPulse 2s infinite ease-in-out;
-}
-
-.track-sector-code {
-  color: #3fe08e;
-  font-weight: 700;
-}
-
-.track-card-bounty {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(63, 224, 142, 0.12);
-  border: 1px solid rgba(63, 224, 142, 0.35);
-  color: #3fe08e;
-  font-family: monospace;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  padding: 4px 11px;
-  border-radius: 100px;
-  box-shadow: 0 0 12px rgba(63, 224, 142, 0.15);
-}
-
-.track-card-bounty .bounty-spark {
-  color: #ffd700;
-  font-size: 12px;
-}
-
-/* Card Header with Domain Glyph & Titles */
-.track-card-header {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin: 14px 0 14px;
-}
-
-.track-card-icon-wrap {
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
-  background: rgba(63, 224, 142, 0.08);
-  border: 1px solid rgba(63, 224, 142, 0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #3fe08e;
-  flex-shrink: 0;
-  transition: all 0.3s ease;
-}
-
-.universe-equal-track-card:hover .track-card-icon-wrap {
-  background: rgba(63, 224, 142, 0.16);
-  border-color: #3fe08e;
-  box-shadow: 0 0 18px rgba(63, 224, 142, 0.35);
-  transform: scale(1.06);
-}
-
-.track-card-title-group {
-  flex: 1;
-  min-width: 0;
-}
-
-.track-card-title {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 1.15;
-  color: #ffffff;
-  margin: 0 0 5px;
-  letter-spacing: 0.01em;
-  transition: color 0.25s ease;
-}
-
-.universe-equal-track-card:hover .track-card-title {
-  color: #3fe08e;
-  text-shadow: 0 0 20px rgba(63, 224, 142, 0.4);
-}
-
-.track-card-domain-badge {
-  display: inline-block;
-  font-family: monospace;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  color: #e2fbf0;
-  text-transform: uppercase;
-}
-
-/* High-tech divider */
-.track-card-divider {
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, rgba(63, 224, 142, 0.35) 0%, rgba(255, 255, 255, 0.08) 60%, transparent 100%);
-  margin-bottom: 16px;
-}
-
-/* Core Focus Vectors */
-.track-card-vectors {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 18px;
-}
-
-.track-vectors-label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: monospace;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--em);
-  margin-bottom: 11px;
-}
-
-.vectors-accent-line {
-  flex: 1;
-  height: 1px;
-  background: rgba(63, 224, 142, 0.2);
-}
-
-.track-vectors-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-.universe-equal-track-card .universe-focus-tag {
-  font-size: 12px;
-  padding: 5px 11px;
-  background: rgba(63, 224, 142, 0.07);
-  border: 1px solid rgba(63, 224, 142, 0.22);
-  color: #e2fbf0;
-  border-radius: 4px;
-  transition: all 0.2s ease;
-  line-height: 1.4;
-}
-
-.universe-equal-track-card:hover .universe-focus-tag {
-  border-color: rgba(63, 224, 142, 0.45);
-  background: rgba(63, 224, 142, 0.14);
-}
-
-/* Card Tactical Footer */
-.track-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.track-footer-left {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-family: monospace;
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  color: var(--mute);
-}
-
-.track-footer-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--mute);
-}
-
-.track-footer-status {
-  font-family: monospace;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: #3fe08e;
-  font-weight: 700;
+/* Modal and Backdrop Blur */
+.modal-backdrop-blur {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 /* 2. Sacred Timeline Conduit */
