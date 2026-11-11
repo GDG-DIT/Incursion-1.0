@@ -95,6 +95,11 @@ export default function Footer() {
                   Email: gdg.dit@dypvp.edu.in
                 </a>
               </li>
+              <li>
+                <a href="https://discord.gg/QYQZBEmgQ" target="_blank" rel="noopener noreferrer">
+                  Join our Discord
+                </a>
+              </li>
               <li className="universe-footer-contact">
                 <div className="universe-footer-contact-person">
                   <strong>Tejas Nalawade</strong>

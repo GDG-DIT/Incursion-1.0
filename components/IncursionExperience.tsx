@@ -59,7 +59,7 @@ function HeroStage() {
         </h1>
         <p className="hero-deck">Two worlds. One final stand.<br />Doomsday Times Run Out.</p>
         <div className="hero-meta">
-          <span>8 Nov 2026 – 31 Jan 2027</span>
+          <span>11 Nov 2026 – 31 Jan 2027</span>
           <i aria-hidden="true" />
           <span>DYPIT Campus, Pune</span>
         </div>
