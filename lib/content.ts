@@ -2,7 +2,9 @@
 
 // Edit the schedule and registration destination here.
 // Source of truth: incursion-2027-content.md & EVENT TIMELINE & MILESTONES ROADMAP
-export const REGISTER_URL = process.env.NEXT_PUBLIC_REGISTER_URL || '';
+export const REGISTER_URL =
+  process.env.NEXT_PUBLIC_REGISTER_URL ||
+  'https://unstop.com/p/incursion-2027-dr-dy-patil-institute-of-technology-1803114?lb=Dwau7Xje&utm_medium=Share&utm_source=online_coding_challenge&utm_campaign=Googlgro2301';
 
 export const TIMELINE = [
   {

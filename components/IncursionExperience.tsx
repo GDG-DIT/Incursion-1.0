@@ -62,9 +62,10 @@ function HeroStage() {
         <div className="hero-actions">
           <a
             className="btn hero-primary reg"
-            href={registerHref || '/universe'}
-            data-universe-link="true"
-            title={registerHref ? 'Register Now' : 'Enter the Universe'}
+            href={registerHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Register Now on Unstop"
           >
             Register now<Arrow />
           </a>
