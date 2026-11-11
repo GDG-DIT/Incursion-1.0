@@ -97,6 +97,7 @@ export default function UniverseMaskCanvas() {
       camera.position.set(0, 0, visibleHeight / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))));
       camera.lookAt(0, 0, 0);
       camera.updateProjectionMatrix();
+      updateScrollProgress();
     }
 
     function initializeRenderer() {
@@ -131,11 +132,6 @@ export default function UniverseMaskCanvas() {
         isScheduleInView = false;
       }
 
-      if (host) {
-        host.style.opacity = isScheduleInView ? '0' : '1';
-        host.style.pointerEvents = isScheduleInView ? 'none' : 'auto';
-      }
-
       if (!running && inView && !document.hidden) startLoop();
     }
 
@@ -165,107 +161,77 @@ export default function UniverseMaskCanvas() {
         const mobile = width < 768;
         const visibleHeight = Math.max(maskHeight / 0.67, (maskWidth / (camera.aspect < 0.8 ? 1.05 : 0.84)) / camera.aspect);
 
-        // Section-mapped choreographies across normalized progress (0.0 to 1.0)
+        // Anchored continuously on the right flank (centered in hero on mobile)
         const p = scrollProgress;
-        const sideX = mobile ? 0 : visibleHeight * camera.aspect * 0.32;
+        const sideX = mobile ? 0 : visibleHeight * camera.aspect * 0.31;
 
-        let targetX = sideX;
-        let targetY = mobile ? 0.32 : -0.04;
-        let targetZ = mobile ? -0.3 : 0.1;
-        let targetRotX = 0;
+        // In-place organic breathing levitation
+        const idleFloatY = reducedMotion ? 0 : Math.sin(seconds * 1.5) * 0.04;
+        const idleRotZ = reducedMotion ? 0 : Math.sin(seconds * 1.2) * 0.02;
+        const idleRotX = reducedMotion ? 0 : Math.sin(seconds * 1.7) * 0.015;
+
+        const targetX = sideX;
+        const targetY = (mobile ? 0.32 : -0.02) + idleFloatY;
+        const targetZ = mobile ? -0.3 : 0.08;
+        const targetScale = mobile ? 0.70 : 0.94;
+
+        // Base angle facing slightly towards center content, with subtle section attitude shifts
+        let targetRotX = -0.02;
         let targetRotY = mobile ? 0 : -0.22;
-        let targetRotZ = 0;
-        let targetScale = mobile ? 0.72 : 0.96;
+        const targetRotZ = 0;
 
-        if (isScheduleInView) {
-          // Fade away and push deep into background when timeline is in focus
-          targetZ = -8.0;
-          targetScale = 0.2;
-        } else if (p < 0.16) {
-          // Hero Section: Imposing, clear heroic framing
-          targetX = sideX;
-          targetY = mobile ? 0.32 : -0.02;
+        if (p < 0.35) {
+          // Hero / About: Latverian Emerald
+          targetRotX = -0.02;
           targetRotY = mobile ? 0 : -0.24;
-          targetScale = mobile ? 0.72 : 0.98;
-          targetRimColor.setHex(0x3fe08e); // Emerald
-        } else if (p < 0.36) {
-          // About Section: Glides to Left flank, gazing across mission dossier
-          const t = (p - 0.16) / 0.20;
-          targetX = THREE.MathUtils.lerp(sideX, mobile ? 0 : -sideX * 0.85, t);
-          targetY = THREE.MathUtils.lerp(mobile ? 0.32 : -0.02, 0.10, t);
-          targetRotY = THREE.MathUtils.lerp(mobile ? 0 : -0.24, 0.38, t);
-          targetRotX = THREE.MathUtils.lerp(0, -0.05, t);
-          targetScale = mobile ? 0.65 : 0.88;
-          targetRimColor.setHex(0x5ec5ff); // Cosmic Cyan
-        } else if (p < 0.56) {
-          // Tracks Section: Elevated over the Incursion Chambers
-          const t = (p - 0.36) / 0.20;
-          targetX = THREE.MathUtils.lerp(mobile ? 0 : -sideX * 0.85, mobile ? 0 : sideX * 0.75, t);
-          targetY = THREE.MathUtils.lerp(0.10, 0.20, t);
-          targetRotY = THREE.MathUtils.lerp(0.38, -0.30, t);
-          targetRotX = THREE.MathUtils.lerp(-0.05, 0.08, t);
-          targetScale = mobile ? 0.60 : 0.82;
-          targetRimColor.setHex(0x3fe08e); // Emerald Surge
-        } else if (p < 0.74) {
-          // Schedule / Timeline Section: Gracefully glide to far right flank and fade out
-          const t = (p - 0.56) / 0.18;
-          targetX = THREE.MathUtils.lerp(mobile ? 0 : sideX * 0.75, visibleHeight * camera.aspect * 0.52, t);
-          targetY = THREE.MathUtils.lerp(0.20, -0.05, t);
-          targetZ = THREE.MathUtils.lerp(0.1, -3.2, t);
-          targetRotY = THREE.MathUtils.lerp(-0.30, -0.45, t);
-          targetRotX = 0;
-          targetScale = mobile ? 0.35 : 0.50;
-          targetRimColor.setHex(0xa855f7);
-        } else if (p < 0.88) {
-          // Prizes Section: Vibranium Gold specular shine
-          const t = (p - 0.74) / 0.14;
-          targetX = THREE.MathUtils.lerp(0, mobile ? 0 : sideX * 0.70, t);
-          targetY = THREE.MathUtils.lerp(-0.10, -0.12, t);
-          targetZ = THREE.MathUtils.lerp(-1.4, 0.05, t);
-          targetRotX = THREE.MathUtils.lerp(0, 0.18, t);
-          targetRotY = THREE.MathUtils.lerp(0, -0.22, t);
-          targetScale = mobile ? 0.65 : 0.90;
-          targetRimColor.setHex(0xffd700); // Pure Gold
+          targetRimColor.setHex(0x3fe08e);
+        } else if (p < 0.60) {
+          // Tracks: Cosmic Cyan
+          targetRotX = -0.04;
+          targetRotY = mobile ? 0 : -0.20;
+          targetRimColor.setHex(0x5ec5ff);
+        } else if (p < 0.85) {
+          // Prizes: Vibranium Gold
+          targetRotX = 0.05;
+          targetRotY = mobile ? 0 : -0.24;
+          targetRimColor.setHex(0xffd700);
         } else {
-          // Judging & FAQ: Looms in background
-          const t = Math.min(1, (p - 0.88) / 0.12);
-          targetX = THREE.MathUtils.lerp(mobile ? 0 : sideX * 0.70, 0, t);
-          targetY = THREE.MathUtils.lerp(-0.12, -0.20, t);
-          targetZ = THREE.MathUtils.lerp(0.05, -2.2, t);
-          targetRotX = 0;
-          targetRotY = 0;
-          targetScale = mobile ? 0.50 : 0.68;
+          // Sponsors & Footer: Latverian Emerald
+          targetRotX = -0.02;
+          targetRotY = mobile ? 0 : -0.22;
           targetRimColor.setHex(0x3fe08e);
         }
 
-        const lerpFactor = reducedMotion ? 1 : 1 - Math.exp(-dt * 8.5);
+        // Bold, cinematic lighting continuously
+        ambient.intensity = THREE.MathUtils.lerp(ambient.intensity, 1.8, dt * 4.0);
+        rim.intensity = THREE.MathUtils.lerp(rim.intensity, 2.8, dt * 4.0);
+        key.intensity = THREE.MathUtils.lerp(key.intensity, 1.8, dt * 4.0);
+
+        const lerpFactor = reducedMotion ? 1 : 1 - Math.exp(-dt * 6.5);
         pivot.position.x += (targetX - pivot.position.x) * lerpFactor;
         pivot.position.y += (targetY - pivot.position.y) * lerpFactor;
         pivot.position.z += (targetZ - pivot.position.z) * lerpFactor;
         pivot.scale.setScalar(THREE.MathUtils.lerp(pivot.scale.x, targetScale, lerpFactor));
 
-        // Idle organic breathing / floating
-        const idleRotZ = reducedMotion ? 0 : Math.sin(seconds * 1.3) * 0.02;
-        const idleFloatY = reducedMotion ? 0 : Math.sin(seconds * 1.5) * 0.04;
-
-        pivot.rotation.x += (targetRotX - pointer.y * 0.08 - pivot.rotation.x) * lerpFactor;
-        pivot.rotation.y += (targetRotY + pointer.x * 0.18 - pivot.rotation.y) * lerpFactor;
+        // Interactive mouse tracking: Doom's gaze follows the cursor across the screen + in-place breathing
+        const lookAtX = pointer.y * 0.12;
+        const lookAtY = pointer.x * 0.20;
+        pivot.rotation.x += (targetRotX - lookAtX + idleRotX - pivot.rotation.x) * lerpFactor;
+        pivot.rotation.y += (targetRotY + lookAtY - pivot.rotation.y) * lerpFactor;
         pivot.rotation.z += (targetRotZ + idleRotZ - pivot.rotation.z) * lerpFactor;
-        pivot.position.y += idleFloatY * dt * 2.0;
 
         // Smooth color transition for rim light
         currentRimColor.lerp(targetRimColor, 1 - Math.exp(-dt * 4.0));
         rim.color.copy(currentRimColor);
 
-        // Torch light tracking cursor with lively flicker
-        targetLightPos.set(pivot.position.x + pointer.x * 1.1, pivot.position.y - pointer.y * 0.7 + 0.25, frontZ + 0.45);
-        torch.position.lerp(targetLightPos, 1 - Math.exp(-dt * 8.0));
-        const flicker = reducedMotion ? 1 : 1 + 0.04 * Math.sin(seconds * 14) + 0.025 * Math.sin(seconds * 24);
+        // Torch light tracking cursor with live atmospheric flicker
+        targetLightPos.set(pivot.position.x + pointer.x * 0.9, pivot.position.y - pointer.y * 0.6 + 0.25, frontZ + 0.45);
+        torch.position.lerp(targetLightPos, 1 - Math.exp(-dt * 7.0));
+        const flicker = reducedMotion ? 1 : 1 + 0.04 * Math.sin(seconds * 14) + 0.02 * Math.sin(seconds * 24);
         torch.intensity = 2.2 * flicker;
 
-        // Fade out canvas in the timeline zone to keep cards 100% focused and unhindered
-        const inTimelineZone = p >= 0.52 && p < 0.73;
-        const targetCanvasOpacity = inTimelineZone ? 0 : 1;
+        // Continuously visible everywhere (100% opacity), smoothly fading out only when the timeline schedule is in view
+        const targetCanvasOpacity = isScheduleInView ? 0.0 : 1.0;
         const currentCanvasOpacity = parseFloat(canvas.style.opacity || '1');
         canvas.style.opacity = String(THREE.MathUtils.lerp(currentCanvasOpacity, targetCanvasOpacity, dt * 6.0));
       }

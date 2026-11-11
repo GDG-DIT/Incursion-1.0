@@ -634,8 +634,8 @@ export function createExperience(root) {
       scenePosition = targetPosition;
       allowDirectJump--;
     }
-    // High-performance smooth glide: responsive and jitter-free
-    const lerpRate = isTouch ? 11.0 : 10.5;
+    // High-performance smooth glide: silky, responsive, and jitter-free
+    const lerpRate = isTouch ? 6.8 : 6.2;
     scenePosition = RM
       ? targetPosition
       : lerp(scenePosition, targetPosition, 1 - Math.exp(-dt * lerpRate));
@@ -659,7 +659,7 @@ export function createExperience(root) {
       pu = ss(1.0, 5.4, v),
       S = 1 + 0.65 * pu;
     const co = ss(2.8, 6.0, v),
-      tO = 1 - ss(10.0, 10.8, v);
+      tO = 1 - ss(9.6, 11.4, v);
     if (!ready) {
       THR.style.opacity = "0";
       THR.style.visibility = "hidden";
@@ -720,8 +720,8 @@ export function createExperience(root) {
     setHeroSceneActive(ready && v >= 13.8 && v <= 22.6);
     if (v >= 13.8 && v < 22.7) timelineVisited = true;
 
-    /* The opening hero text and CTA appear, then yield to the timeline */
-    const heroOpacity = ss(10.3, 10.9, v) * (1 - ss(13.4, 14.0, v));
+    /* The opening hero text and CTA appear smoothly, then yield gently to the timeline */
+    const heroOpacity = ss(9.8, 11.6, v) * (1 - ss(13.0, 14.6, v));
     if (heroStage) {
       vis(heroStage, heroOpacity);
       heroStage.style.transform = "none";
@@ -729,8 +729,8 @@ export function createExperience(root) {
     /* timeline (scroll-linked reveals over a star field) + closing scene */
     CH.forEach((k, i) => {
       const o =
-        ss(k.s - 0.25, k.s + 0.25, v) *
-        (i < 1 ? 1 - ss(k.e - 0.25, k.e + 0.25, v) : 1),
+        ss(k.s - 0.6, k.s + 0.6, v) *
+        (i < 1 ? 1 - ss(k.e - 0.6, k.e + 0.6, v) : 1),
         u = clamp((v - k.s) / (k.e - k.s));
       vis(k.el, o);
       if (o > 0.5 && !k.seen) {
