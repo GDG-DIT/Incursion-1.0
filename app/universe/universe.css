@@ -111,6 +111,12 @@ html:has(.universe-page) {
   display: block;
 }
 
+@media (max-width: 768px) {
+  .universe-mask-stage {
+    display: none !important;
+  }
+}
+
 /* Navigation Bar */
 header.universe-navbar {
   position: fixed !important;

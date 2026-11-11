@@ -2976,7 +2976,10 @@ header b {
 
   #mask-stage,
   .mask-stage,
-  .mask-canvas {
+  .mask-canvas,
+  #hero .mask-canvas,
+  #hero .mask-fallback {
+    display: none !important;
     pointer-events: none !important;
   }
 

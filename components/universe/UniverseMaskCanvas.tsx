@@ -11,6 +11,11 @@ export default function UniverseMaskCanvas() {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
+    // Only load and render the 3D model on desktop/website version; disabled on mobile
+    if (typeof window !== 'undefined' && (window.innerWidth <= 768 || window.matchMedia('(max-width: 768px)').matches)) {
+      return;
+    }
+
     const host = hostRef.current;
     const canvas = canvasRef.current;
     if (!host || !canvas) return;

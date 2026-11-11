@@ -81,18 +81,6 @@ export default function DoomsdayCountdown() {
       <div className="countdown-footer">
         <span>30 JANUARY 2027 // 10:00 AM IST</span>
       </div>
-
-      <a
-        className="btn countdown-discord-link"
-        href="https://discord.gg/QYQZBEmgQ"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Join the Discord
-        <svg viewBox="0 0 18 8" fill="none" stroke="currentColor" aria-hidden="true">
-          <path d="M0 4h17M13 1l4 3-4 3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </a>
     </div>
   );
 }
