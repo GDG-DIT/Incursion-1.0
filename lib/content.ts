@@ -11,7 +11,7 @@ export const TIMELINE = [
     t: 'Registrations Window',
     phase: 'Phase 1 // Registration',
     tag: 'Updated Start Date',
-    d: '8 November – 5 December 2026',
+    d: '11 November – 5 December 2026',
     x: 'National student team registrations (2 to 4 members).',
     img: { f: 0 },
     ic: { f: 0, z: '420%', p: '4% 45%' },

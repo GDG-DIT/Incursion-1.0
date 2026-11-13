@@ -6,7 +6,6 @@ import {
   Radio,
   Landmark,
   Network,
-  Award,
   Sparkles,
 } from 'lucide-react';
 
@@ -77,17 +76,6 @@ const TRACKS: TrackItem[] = [
     focusVectors: ['Smart Transport', 'Traffic Telemetry', 'Water Grid Sensors', 'Civic Logistics'],
     icon: <Network className="w-6 h-6 text-emerald-400" />,
   },
-  {
-    id: 'SECTOR 06',
-    number: '06',
-    name: 'OMEGA PROTOCOL',
-    tag: 'ROOKIE & SPECIAL VAULT',
-    accentColor: 'gold',
-    brief:
-      'Exclusive recognition tier for first-time national hackathon squads competing across all problem domains.',
-    focusVectors: ['Best First-Time Squad', 'Multi-Track Eligibility', 'Keynote Showcase', 'Direct Mentorship'],
-    icon: <Award className="w-6 h-6 text-amber-300" />,
-  },
 ];
 
 export default function Tracks() {
@@ -104,7 +92,7 @@ export default function Tracks() {
           <h2 className="universe-section-title">The 5 Incursion Chambers</h2>
 
           <p className="universe-section-desc">
-            Five operational battlegrounds plus the Omega Rookie Vault. Engineered for high-impact innovation across agentic intelligence, zero-trust security, urban tech, and open frontiers.
+            Five operational battlegrounds engineered for high-impact innovation across agentic intelligence, zero-trust security, urban tech, and open frontiers.
           </p>
         </div>
 

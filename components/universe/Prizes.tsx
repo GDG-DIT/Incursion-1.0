@@ -109,12 +109,12 @@ export default function Prizes() {
           ))}
         </div>
 
-        {/* Track Winners & Special Category */}
+        {/* Track Winners */}
         <div className="universe-bounties-wrapper">
           <div className="universe-bounties-header">
-            <div className="universe-eyebrow">Dedicated Track Bounties &amp; Special Category</div>
+            <div className="universe-eyebrow">Dedicated Track Bounties</div>
             <h3 className="universe-bounties-title">
-              5 Track Winners and Best Rookie Squad
+              5 Incursion Track Winners
             </h3>
           </div>
 
@@ -127,14 +127,6 @@ export default function Prizes() {
                 <small className="bounty-perk">Trophy + Certificate</small>
               </div>
             ))}
-
-            {/* Special Category Best First-Time Team */}
-            <div className="universe-card universe-bounty-card special-bounty">
-              <div className="bounty-badge-tag special">Special Category</div>
-              <h4 className="bounty-name">Best First-Time Team</h4>
-              <div className="bounty-amount">₹5,000</div>
-              <small className="bounty-perk">Trophy + Certificate</small>
-            </div>
           </div>
         </div>
       </div>
