@@ -18,6 +18,22 @@ export default function UniversePage() {
   useEffect(() => {
     // Ensure document scrolling is unlocked on the portal page
     document.documentElement.classList.remove('lock');
+
+    // If returning from countdown, land at the footer so user smoothly continues scrolling upwards
+    if (typeof window !== 'undefined' && sessionStorage.getItem('incursion_return_target') === 'bottom') {
+      sessionStorage.removeItem('incursion_return_target');
+      const setScrollPos = () => {
+        const footerEl = document.getElementById('footer') || document.querySelector('.universe-footer');
+        if (footerEl) {
+          footerEl.scrollIntoView({ behavior: 'instant', block: 'end' });
+        } else {
+          const target = Math.max(0, document.documentElement.scrollHeight - window.innerHeight - 60);
+          window.scrollTo({ top: target, behavior: 'instant' });
+        }
+      };
+      requestAnimationFrame(setScrollPos);
+      setTimeout(setScrollPos, 120);
+    }
   }, []);
 
   return (

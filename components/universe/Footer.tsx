@@ -9,7 +9,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="universe-footer">
+    <footer id="footer" className="universe-footer">
       <div className="universe-container">
         {/* Assemble Banner Quote */}
         <div className="universe-assemble-banner">

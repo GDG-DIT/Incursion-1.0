@@ -103,7 +103,9 @@ export default function IncursionExperience() {
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />
         <a className="hero-scroll" id="hero-scroll-cue" href="/universe" data-universe-link="true" aria-label="Scroll to enter the incursion">
-          <span>Scroll to enter the universe ↓</span>
+          <span className="hero-scroll-pill">
+            Scroll to enter the universe <span className="hero-scroll-arrow" aria-hidden="true">↓</span>
+          </span>
           <i aria-hidden="true" />
         </a>
         <header id="hdr">
