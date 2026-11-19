@@ -12,13 +12,21 @@ export default function Navbar() {
     <header className="universe-navbar">
       {/* Brand */}
       <Link href="/universe" className="universe-nav-brand">
-        <img src="/gdg-logo.svg" alt="GDG on Campus Logo" className="universe-nav-logo" />
+        <img
+          src="/gdg-logo.svg"
+          alt="GDG on Campus Dr. D. Y. Patil Institute of Technology Pune Logo"
+          className="universe-nav-logo"
+        />
         <span className="universe-nav-collab" aria-hidden="true">
           <svg viewBox="0 0 16 16" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
             <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
           </svg>
         </span>
-        <img src="/incursion-logo.webp" alt="Incursion" className="universe-nav-incursion-logo" />
+        <img
+          src="/incursion-logo.webp"
+          alt="INCURSION 2027 24-Hour National Level Hackathon"
+          className="universe-nav-incursion-logo"
+        />
       </Link>
 
       {/* Desktop Nav Links */}

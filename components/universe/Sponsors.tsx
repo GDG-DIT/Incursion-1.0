@@ -28,7 +28,11 @@ export default function Sponsors() {
               border: '1px solid rgba(255, 255, 255, 0.12)',
             }}
           >
-            <img src="/gdg-logo.svg" alt="GDG on Campus Logo" style={{ height: '24px', width: 'auto' }} />
+            <img
+              src="/gdg-logo.svg"
+              alt="GDG on Campus Dr. D. Y. Patil Institute of Technology Pune Logo"
+              style={{ height: '24px', width: 'auto' }}
+            />
             <span style={{ fontSize: '15px', fontWeight: 600, color: 'var(--text)', letterSpacing: '0.02em' }}>
               GDG on Campus // Dr. D. Y. Patil Institute of Technology, Pimpri, Pune
             </span>

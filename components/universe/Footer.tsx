@@ -9,12 +9,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="universe-footer">
-      <div className="universe-container">
+    <footer id="footer" className="universe-footer">
+      <div className="universe-footer-container">
         {/* Assemble Banner Quote */}
         <div className="universe-assemble-banner">
-          <div className="assemble-text">
-            THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.
+          <div className="assemble-text assemble-pill">
+            <span className="assemble-pill-dot" aria-hidden="true" />
+            <span>THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.</span>
+            <span className="assemble-pill-dot" aria-hidden="true" />
           </div>
         </div>
 
@@ -26,10 +28,14 @@ export default function Footer() {
                 <img
                   className="universe-footer-incursion-logo-slot"
                   src="/incursion-logo.webp"
-                  alt="Incursion logo"
+                  alt="INCURSION 2027 24-Hour National Level Hackathon Logo"
                 />
                 <span className="universe-footer-logo-divider" aria-hidden="true" />
-                <img className="universe-footer-gdg-logo" src="/gdg-logo.svg" alt="GDG on Campus logo" />
+                <img
+                  className="universe-footer-gdg-logo"
+                  src="/gdg-logo.svg"
+                  alt="GDG on Campus Dr. D. Y. Patil Institute of Technology Pune Logo"
+                />
               </div>
               <Link href="/universe" className="universe-footer-brand-title">
                 INCURSION 2027
@@ -48,11 +54,12 @@ export default function Footer() {
           <div>
             <div className="universe-footer-col-title">Command Navigation</div>
             <ul className="universe-footer-links">
-              <li><a href="#about">About Event</a></li>
-              <li><a href="#tracks">Hackathon Tracks</a></li>
+              <li><a href="#about">About Event &amp; Eligibility</a></li>
+              <li><a href="#tracks">5 Hackathon Tracks</a></li>
               <li><a href="#schedule">Timeline &amp; Schedule</a></li>
-              <li><a href="#prizes">Prize Pool (₹2,00,000)</a></li>
-              <li><a href="#sponsors">Partners &amp; Sponsors</a></li>
+              <li><a href="#prizes">Prize Pool (₹2 Lakh)</a></li>
+              <li><a href="#sponsors">Partners &amp; Organizers</a></li>
+              <li><Link href="/countdown">Doomsday Clock Countdown</Link></li>
             </ul>
           </div>
 
@@ -100,26 +107,28 @@ export default function Footer() {
                   Join our Discord
                 </a>
               </li>
-              <li className="universe-footer-contact">
-                <div className="universe-footer-contact-person">
-                  <strong>Tejas Nalawade</strong>
-                  <span>Event Director</span>
-                </div>
-                <a className="universe-footer-call" href="tel:+919970940311">
-                  <span>+91 99709 40311</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </li>
-              <li className="universe-footer-contact">
-                <div className="universe-footer-contact-person">
-                  <strong>Parth Kharat</strong>
-                  <span>Tech Lead</span>
-                </div>
-                <a className="universe-footer-call" href="tel:+917972932522">
-                  <span>+91 79729 32522</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </li>
+              <div className="universe-footer-contacts-row">
+                <li className="universe-footer-contact">
+                  <div className="universe-footer-contact-person">
+                    <strong>Tejas Nalawade</strong>
+                    <span>Event Director</span>
+                  </div>
+                  <a className="universe-footer-call" href="tel:+919970940311">
+                    <span>+91 99709 40311</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+                <li className="universe-footer-contact">
+                  <div className="universe-footer-contact-person">
+                    <strong>Parth Kharat</strong>
+                    <span>Tech Lead</span>
+                  </div>
+                  <a className="universe-footer-call" href="tel:+917972932522">
+                    <span>+91 79729 32522</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              </div>
             </ul>
           </div>
 

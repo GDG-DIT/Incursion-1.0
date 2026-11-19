@@ -1,22 +1,26 @@
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+import type { MetadataRoute } from 'next';
 
-export default function sitemap() {
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://incursion.tech';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date('2026-11-19T00:00:00.000Z');
+
   return [
     {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
+      url: `${siteUrl}`,
+      lastModified,
+      changeFrequency: 'daily',
+      priority: 1.0,
     },
     {
       url: `${siteUrl}/universe`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
+      lastModified,
+      changeFrequency: 'daily',
       priority: 0.9,
     },
     {
       url: `${siteUrl}/countdown`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'weekly',
       priority: 0.8,
     },

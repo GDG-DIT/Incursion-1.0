@@ -43,13 +43,21 @@ function HeroStage() {
     <section className="hero" id="hero" aria-labelledby="hero-title">
       <picture>
         <source media="(max-width: 760px)" srcSet="/media/doom-closeup.webp" />
-        <img className="hero-backdrop" src="/media/doom-closeup4.webp" alt="Doomsday" />
+        <img
+          className="hero-backdrop"
+          src="/media/doom-closeup4.webp"
+          alt="INCURSION 2027 24-Hour National Level Hackathon - Doctor Doom Hero Artwork"
+        />
       </picture>
       <div className="hero-shade" aria-hidden="true" />
       <div className="hero-copy">
         <div className="hero-eyebrow">
           <div className="hero-eyebrow-badge">
-            <img className="hero-eyebrow-logo" src="/gdg-logo.svg" alt="GDG on Campus Logo" />
+            <img
+              className="hero-eyebrow-logo"
+              src="/gdg-logo.svg"
+              alt="GDG on Campus Dr. D. Y. Patil Institute of Technology Pune"
+            />
             <span className="hero-eyebrow-sep" aria-hidden="true" />
             <span className="hero-eyebrow-text">GDG on Campus // DYPIT Pune presents</span>
           </div>
@@ -63,6 +71,19 @@ function HeroStage() {
           <i aria-hidden="true" />
           <span>DYPIT Campus, Pune</span>
         </div>
+        <p
+          className="hero-seo-sub"
+          style={{
+            fontSize: '13px',
+            color: 'var(--mute)',
+            maxWidth: '520px',
+            margin: '10px auto 16px',
+            lineHeight: 1.45,
+          }}
+        >
+          24-Hour National Level Hackathon in Pune • ₹2,00,000 Prize Pool • AI &amp; Agentic AI,
+          Cybersecurity &amp; FinTech, GovTech, Smart Cities, Open Innovation
+        </p>
         <div className="hero-actions">
           <a
             className="btn hero-primary reg"
@@ -90,8 +111,20 @@ export default function IncursionExperience() {
     <main ref={root}>
       <div id="scroll"><div id="stage">
         <section id="throne" aria-label="Doctor Doom on his throne">
-          <img id="tw2" className="pic" src="/media/doom-throne.webp" alt="Doctor Doom on his throne" decoding="async" />
-          <img id="tc" className="pic" src="/media/doom-closeup6.webp" alt="Doctor Doom, hooded, eyes glowing green" decoding="async" />
+          <img
+            id="tw2"
+            className="pic"
+            src="/media/doom-throne.webp"
+            alt="INCURSION 2027 Doctor Doom on throne"
+            decoding="async"
+          />
+          <img
+            id="tc"
+            className="pic"
+            src="/media/doom-closeup6.webp"
+            alt="INCURSION 2027 Doctor Doom hooded emblem"
+            decoding="async"
+          />
           <div className="vg" id="vg" /><div className="scrim" id="scrim" />
         </section>
         <div className="stage-tease" id="stage-tease" aria-live="polite">
@@ -103,18 +136,20 @@ export default function IncursionExperience() {
         <div className="t warn" data-w="7.0,7.6,9.4,9.9"><h2>Something's coming, Something we may not be able to&nbsp;deter.</h2></div>
         <HeroStage />
         <a className="hero-scroll" id="hero-scroll-cue" href="/universe" data-universe-link="true" aria-label="Scroll to enter the incursion">
-          <span>Scroll to enter the universe ↓</span>
+          <span className="hero-scroll-pill">
+            Scroll to enter the universe <span className="hero-scroll-arrow" aria-hidden="true">↓</span>
+          </span>
           <i aria-hidden="true" />
         </a>
         <header id="hdr">
           <a href="/universe" className="hdr-brand" data-universe-link="true" title="GDG on Campus × INCURSION 2027">
-            <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG on Campus Logo" />
+            <img className="hdr-logo" src="/gdg-logo.svg" alt="GDG on Campus Dr. D. Y. Patil Institute of Technology Pune Logo" />
             <span className="hdr-collab" aria-hidden="true">
               <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
                 <path d="M2.5 2.5l11 11M13.5 2.5l-11 11" />
               </svg>
             </span>
-            <img className="hdr-incursion-logo" src="/incursion-logo.webp" alt="Incursion" />
+            <img className="hdr-incursion-logo" src="/incursion-logo.webp" alt="INCURSION 2027 Hackathon Logo" />
           </a>
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button id="snd" aria-label="Turn sound off" aria-pressed="true" data-sound-state="on" type="button">
@@ -145,7 +180,49 @@ export default function IncursionExperience() {
       <button id="top" type="button" aria-label="Go to top">
         <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" aria-hidden="true"><path d="M9 16V2M3.5 7.5 9 2l5.5 5.5" /></svg>
       </button>
-      <noscript><p>This experience uses JavaScript. INCURSION 2027 is a national-level student hackathon organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune on 30–31 January 2027.</p></noscript>
+
+      {/* Visually-hidden Semantic Search Engine & Screen Reader Content */}
+      <section className="sr-only" aria-label="Event Overview">
+        <h2>INCURSION 2027: 24-Hour National Level Hackathon in Pune</h2>
+        <p>
+          Organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology, Pimpri, Pune.
+          Theme: &ldquo;Doomsday Times Run Out&rdquo;. A high-stakes two-round gauntlet featuring an open online
+          national idea challenge followed by a 24-hour offline build sprint on January 30–31, 2027 at the DYPIT Pune campus.
+        </p>
+        <div>
+          <h3>Key Event Highlights:</h3>
+          <ul>
+            <li>Total Cash Prize Pool: ₹2,00,000 (₹2 Lakh)</li>
+            <li>Overall Winner: ₹1,00,000 | 1st Runner-Up: ₹50,000 | 2nd Runner-Up: ₹25,000</li>
+            <li>5 Specialized Track Bounties: ₹5,000 each (Rogue Protocol: AI &amp; Agentic Systems, Firewall Zero: Cybersecurity &amp; FinTech, Final Hour: Open Innovation, Glass Wall: GovTech &amp; Transparent Governance, Survival City: Smart Cities &amp; Civic Services)</li>
+            <li>Best First-Time Team Bounty: ₹5,000</li>
+            <li>Participation: Free initial online registration for student teams (2 to 4 members)</li>
+            <li>Finalists: Top 50 shortlisted squads (confirmation fee: ₹899 per team) for the 24-hour offline finale in Pune</li>
+          </ul>
+        </div>
+        <nav aria-label="Internal Navigation">
+          <a href="/universe">View Hackathon Universe, Tracks, Schedule and Prizes</a>
+          <a href="/countdown">View Doomsday Clock Countdown</a>
+        </nav>
+      </section>
+
+      <noscript>
+        <div style={{ padding: '24px', backgroundColor: '#040605', color: '#e9e7e0', textAlign: 'center' }}>
+          <h2>INCURSION 2027 — 24-Hour National Level Hackathon</h2>
+          <p>
+            Organized by GDG on Campus, Dr. D. Y. Patil Institute of Technology (DYPIT), Pimpri, Pune on 30–31 January 2027.
+            Prize Pool: ₹2,00,000 (₹2 Lakh). Free online registration for teams of 2 to 4 members.
+          </p>
+          <p>
+            Five Tracks: AI &amp; Agentic AI, Cybersecurity &amp; FinTech, Open Innovation, GovTech, Smart Cities.
+          </p>
+          <p>
+            <a href="/universe" style={{ color: '#3fe08e', textDecoration: 'underline' }}>
+              Explore Tracks, Schedule and Prizes &rarr;
+            </a>
+          </p>
+        </div>
+      </noscript>
     </main>
   );
 }

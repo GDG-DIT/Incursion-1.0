@@ -5,12 +5,19 @@ import { useEffect, useRef, useState } from 'react';
 export default function FooterScrollTransition() {
   const [transitioning, setTransitioning] = useState(false);
   const triggeredRef = useRef(false);
+  const cooldownRef = useRef(true);
 
   useEffect(() => {
+    // Grace cooldown upon mounting to prevent accidental immediate re-trigger
+    // when user returns back up into the universe page from countdown
+    const cooldownTimer = setTimeout(() => {
+      cooldownRef.current = false;
+    }, 1600);
+
     let touchStartY = 0;
 
     const triggerTransition = () => {
-      if (triggeredRef.current) return;
+      if (triggeredRef.current || cooldownRef.current) return;
       triggeredRef.current = true;
       setTransitioning(true);
 

@@ -2,19 +2,26 @@
 
 export default function About() {
   return (
-    <section id="about" className="universe-section">
+    <section id="about" className="universe-section" aria-labelledby="about-section-heading">
       <div className="universe-container">
         <div className="universe-section-header">
           <div style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '20px' }}>
-            <img src="/gdg-logo.svg" alt="GDG Logo" style={{ height: '18px', width: 'auto' }} />
+            <img
+              src="/gdg-logo.svg"
+              alt="GDG on Campus DYPIT Pune Logo"
+              style={{ height: '18px', width: 'auto' }}
+            />
             <div className="universe-eyebrow" style={{ margin: 0 }}>Classified Mission Briefing</div>
           </div>
-          <h2 className="universe-section-title">Doomsday Times Run Out</h2>
+          <h2 id="about-section-heading" className="universe-section-title">
+            National Level Hackathon in Pune // INCURSION 2027
+          </h2>
           <p className="universe-section-desc">
             INCURSION 2027 is a premier national-level 24-hour student hackathon organized by GDG on Campus,
-            Dr. D. Y. Patil Institute of Technology, Pimpri, Pune. Engineered as a high-intensity two-round gauntlet—an
-            online nationwide ideation and prototype screening followed by a 24-hour offline build sprint on campus—INCURSION
-            summons India&apos;s most ambitious developers, engineers, and researchers to engineer critical solutions before the clock hits zero.
+            Dr. D. Y. Patil Institute of Technology (DYPIT), Pimpri, Pune under the overarching theme &ldquo;Doomsday Times Run Out&rdquo;.
+            Structured as an elite two-round gauntlet—free nationwide online registration and idea evaluation, followed by an offline
+            24-hour build sprint on 30–31 January 2027 at the DYPIT campus for the top 50 finalist teams (confirmation fee: ₹899 per team)—INCURSION
+            summons India&apos;s most cracked developers, AI researchers, and cybersecurity engineers to build battle-ready solutions for a ₹2,00,000 prize pool.
           </p>
         </div>
 
@@ -27,7 +34,7 @@ export default function About() {
           <div className="dossier-divider" aria-hidden="true" />
           <div className="dossier-metric">
             <span className="dossier-val">50 SQUADS</span>
-            <span className="dossier-lbl">Campus Finalists</span>
+            <span className="dossier-lbl">Grand Finalists (DYPIT Pune)</span>
           </div>
           <div className="dossier-divider" aria-hidden="true" />
           <div className="dossier-metric">
