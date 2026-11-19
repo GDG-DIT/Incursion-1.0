@@ -10,11 +10,13 @@ export default function Footer() {
 
   return (
     <footer id="footer" className="universe-footer">
-      <div className="universe-container">
+      <div className="universe-footer-container">
         {/* Assemble Banner Quote */}
         <div className="universe-assemble-banner">
-          <div className="assemble-text">
-            THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.
+          <div className="assemble-text assemble-pill">
+            <span className="assemble-pill-dot" aria-hidden="true" />
+            <span>THERE WILL COME A DAY WHEN ALL TIMELINES CONVERGE. THAT DAY IS DOOMSDAY.</span>
+            <span className="assemble-pill-dot" aria-hidden="true" />
           </div>
         </div>
 
@@ -100,26 +102,28 @@ export default function Footer() {
                   Join our Discord
                 </a>
               </li>
-              <li className="universe-footer-contact">
-                <div className="universe-footer-contact-person">
-                  <strong>Tejas Nalawade</strong>
-                  <span>Event Director</span>
-                </div>
-                <a className="universe-footer-call" href="tel:+919970940311">
-                  <span>+91 99709 40311</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </li>
-              <li className="universe-footer-contact">
-                <div className="universe-footer-contact-person">
-                  <strong>Parth Kharat</strong>
-                  <span>Tech Lead</span>
-                </div>
-                <a className="universe-footer-call" href="tel:+917972932522">
-                  <span>+91 79729 32522</span>
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </li>
+              <div className="universe-footer-contacts-row">
+                <li className="universe-footer-contact">
+                  <div className="universe-footer-contact-person">
+                    <strong>Tejas Nalawade</strong>
+                    <span>Event Director</span>
+                  </div>
+                  <a className="universe-footer-call" href="tel:+919970940311">
+                    <span>+91 99709 40311</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+                <li className="universe-footer-contact">
+                  <div className="universe-footer-contact-person">
+                    <strong>Parth Kharat</strong>
+                    <span>Tech Lead</span>
+                  </div>
+                  <a className="universe-footer-call" href="tel:+917972932522">
+                    <span>+91 79729 32522</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              </div>
             </ul>
           </div>
 
